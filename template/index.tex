@@ -1,0 +1,45 @@
+% arara: pdflatex: { shell: true }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Шаблон}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{24 март 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Анотация (от \cite{Syllabus})}
+
+\section{Тема (от \cite{Notes} и \cite{Donchev})}
+
+\section{Примерни задачи (от \cite{Notes})}
+
+\printbibliography
+
+\end{document}

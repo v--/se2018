@@ -1,0 +1,252 @@
+% arara: pdflatex: { shell: true }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Misc packages
+\usepackage{enumitem}
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Тема 1}
+\subtitle{Уравнение на права и равнина. Формули за разстояния и ъгли. Криви от втора степен.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{24 март 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Анотация (от \cite{Syllabus})}
+
+\begin{enumerate}
+    \item Прави в равнината и пространството
+    \begin{enumerate}
+        \item Векторни и параметрични (скаларни) уравнения на права и равнина
+        \item Общо уравнение на права в равнината
+        \item Декартово уравнение
+        \item Взаимно положение на две прави
+        \item Нормално уравнение на права
+        \item Разстояние от точка до права
+        \item Ъгъл между прави
+    \end{enumerate}
+
+    \item Равнини в пространството
+    \begin{enumerate}
+        \item Общо уравнение на равнина
+        \item Взаимно положение на две равнини
+        \item Нормално уравнение на равнина
+        \item Разстояние от точка до равнина
+    \end{enumerate}
+
+    \item Криви от втора степен
+    \begin{enumerate}
+        \item Уравнение на окръжност
+        \item Канонични уравнения на елипса, хипербола и парабола
+        \item Фокални свойства на елипса, хипербола и парабола
+    \end{enumerate}
+\end{enumerate}
+
+\section{Теория (от \cite{Notes}, \cite{Donchev} и \cite{Stanilov})}
+
+\section{Примерни задачи (от \cite{Notes})}
+
+\subsection{Права в равнината}
+
+\begin{exercise}
+    Точките $A$ и $B$ и правите $a$ и $b$ имат спрямо ортонормирана координатна система $K$ координати $A(1, -2)$, $B(0, -1)$ и общи уравнения
+    \begin{align*}
+        &a: 3x + 4y + 2 = 0, \\
+        &b: 5x - 12y + 1 = 0.
+    \end{align*}
+
+    Да се намерят:
+    \begin{enumerate}[label=\alph*)]
+        \item Общо уравнение на правата $l$ през $\Point A$, успоредна на $a$
+        \item Общо уравнение на правата $m$ през $\Point B$, перпендикулярна на $b$
+        \item Общо уравнение на правата $AB$
+        \item Координатите на $\Point B'$, която е ортогонално симетрична на $\Point B$ относно правата $a$
+        \item Разстоянието от $\Point A$ до $a$
+        \item Общо уравнение на ъглополовящата на правите $a$ и $b$
+        \item Ъгълът между правите $a$ и $b$
+        \item Общо уравнение на правата $t$ през $\Point B$ и $\Point T = a \cap b$
+        \item Да се определи положението на $\Point A$ и $\Point B$ спрямо правата $a$
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    \begin{enumerate}[label=\alph*)]
+        \item Правата $l$ е успоредна на $a$, следователно тя има общо уравнение от вида
+        \begin{displaymath}
+            l: 3x + 4y + C = 0,
+        \end{displaymath}
+
+        където $C$ е подбрано спрямо условието $l$ да минава през $\Point A$, т.е.
+        \begin{displaymath}
+            C = - 3 \cdot 1 - 4 \cdot (-2) = 5.
+        \end{displaymath}
+
+        И така, $l$ има общо уравнение $l: 3x + 4y + 5 = 0$.
+
+        \item Правата $m$ е перпендикулярна на $b$, следователно нормалните вектори на $b$ (например $N_b(5, -12)$) са колинеарни с $m$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in m \iff \V{BP} \parallel N_b$ намираме общото уравнение
+        \begin{displaymath}
+            m: \det
+            \begin{pmatrix}
+                x & 5 \\
+                y + 1 & -12
+            \end{pmatrix}
+            = 0
+            \text{ или } m: 12x + 5y + 5 = 0.
+        \end{displaymath}
+
+        \item Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in AB \iff \V{BP} \parallel \V{BA}$ намираме общото уравнение
+        \begin{displaymath}
+            AB: \det
+            \begin{pmatrix}
+                x & 1 \\
+                y + 1 & -1
+            \end{pmatrix}
+            = 0
+            \text{ или } AB: x + y + 1 = 0.
+        \end{displaymath}
+
+        \item Нека $B'$ има спрямо $K$ координати $B'(x', y')$. Първо намираме правата $BB'$ от условието $BB' \perp a$, което е еквивалентно на $BB' \parallel N_a(3, 4)$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in BB' \iff \V{BP} \parallel \V{N_a}$ намираме общото уравнение
+        \begin{displaymath}
+            BB': \det
+            \begin{pmatrix}
+                x & 3 \\
+                y + 1 & 4
+            \end{pmatrix}
+            = 0
+            \text{ или } BB': 4x - 3y - 3 = 0.
+        \end{displaymath}
+
+        Координатите на пресечната точка $B'' = a \cap BB'$ намираме от системата
+        \begin{displaymath}
+            \begin{cases}
+                3x + 4y + 2 = 0 \;|\; (\;\cdot\; 3) \\
+                4x - 3y - 3 = 0 \;|\; (\;\cdot\; 4)
+            \end{cases}
+            \sim
+            \begin{cases}
+                9x + 12y + 6 = 0 \\
+                16x - 12y - 12 = 0
+            \end{cases}
+            \sim
+            \begin{cases}
+                25x = 6 \\
+                12y = 16x - 12
+            \end{cases}
+        \end{displaymath}
+
+        откъдето получаваме $B''(6/25, -17/25)$.
+
+        Остава да намерим координатите на $B'$. Имаме $BB'' = B''B'$, откъдето
+        \begin{displaymath}
+            \begin{cases}
+                6/25 = x' - 6/25 \\
+                -17/25 + 1 = y' + 17/25
+            \end{cases}
+            \sim
+            \begin{cases}
+                x' = 12/25 \\
+                y' = -34/25 + 1 = -9/25
+            \end{cases}.
+        \end{displaymath}
+
+        Получихме $B'(12/25, -9/25)$.
+
+        \item Разстоянието $\Dist(A, a)$ намираме от ориентираното разстояние $\ODist(A, a)$:
+        \begin{displaymath}
+            \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {N_a}},
+        \end{displaymath}
+
+        където $F_a(x, y) = 3x + 4y + 2$ е лявата част на зададеното общо уравнение на $a$, а $N_a(3, 4)$ е съответният нормален вектор. Директно пресмятаме разстоянието и получаваме
+        \begin{displaymath}
+            \Dist(A, a) = \frac {\Abs{3 \cdot 1 + 4 \cdot (-2) + 2}} 5 = \frac 3 5.
+        \end{displaymath}
+
+        \item Ъглополовящите $u_{1,2}$ на правите $a$ и $b$ се състоят от всички точки $P(x, y)$, за които $\Dist(P, a) = \Dist(P, b)$. Последното условие е еквивалентно на условието $\ODist(P, a) \pm \ODist(P, b) = 0$, откъдето намираме уравненията на ъглополовящите:
+        \begin{align*}
+            u_{1,2}&: \frac {3x + 4y + 2} 5 \pm \frac {5x - 12y + 1} {13} = 0, \\
+            u_{1,2}&: (39x + 52y + 26) \pm (25x - 60y + 5) = 0, \\
+            u_1&: 64x - 8y + 31 = 0, \\
+            u_2&: 14x + 112y + 21 = 0.
+        \end{align*}
+
+        \item Ъгълът между $a$ и $b$ намираме чрез нормалните им вектори $N_a(3, 5)$ и $N_b(5, -12)$:
+        \begin{displaymath}
+            \angle(a, b) = \arccos \frac {\Abs{\Prod{N_a} {N_b}}} {\Norm{N_a} \Norm{N_b}} = \arccos \Abs {- \frac {33} {65}} = \arccos \frac {33} {65}
+        \end{displaymath}
+
+        \item Координатите на пресечната точка $T = a \cap b$ намираме от системата
+        \begin{displaymath}
+            \begin{cases}
+                3x + 4y + 2 = 0 \;|\; (\;\cdot\; 3) \\
+                5x - 12y + 1 = 0
+            \end{cases}
+            \sim
+            \begin{cases}
+                9x + 12y + 6 = 0 \\
+                5x - 12y + 1 = 0
+            \end{cases}
+            \sim
+            \begin{cases}
+                14x = -7 \\
+                12y = 5x + 1
+            \end{cases}
+        \end{displaymath}
+
+        откъдето получаваме $T(-1/2, -1/8)$.
+
+        Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in t \iff \V{TP} \parallel \V{TB}$ намираме общото уравнение
+        \begin{displaymath}
+            t: \det
+            \begin{pmatrix}
+                x + 1/2 & 1/2 \\
+                y + 1/8 & -7/8
+            \end{pmatrix}
+            =
+            \frac 1 {16}
+            \begin{pmatrix}
+                2x + 1 & 1 \\
+                8y + 1 & -7
+            \end{pmatrix}
+            = -14x - 8y - 8 = 0
+        \end{displaymath}
+        или $t: 7x + 4y + 4 = 0$.
+
+        \item Означаваме $F_a(x, y) = 3x + 4y + 2$. Имаме, че $F_a(A) = F_a(1, -2) = -3 < 0$ и $F_a(B) = F_a(0, -1) = -2 < 0$. Двете точки не лежат върху правата $a$ и освен това $F_a(A)$ и $F_a(B)$ имат еднакви знаци, следователно $\Point A$ и $\Point B$ лежат в една и съща отворена полуравнина относно $a$.
+    \end{enumerate}
+\end{solution}
+
+\subsection{Равнина в пространството}
+
+\subsection{Права в пространството}
+
+\subsection{Канонизиране на крива от втора степен}
+
+\printbibliography
+
+\end{document}
