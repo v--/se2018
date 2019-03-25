@@ -1,13 +1,8 @@
-TOPICS_SRC := $(wildcard topics/*)
-TOPICS_DEST := $(patsubst topics/%,build/%.pdf,${TOPICS_SRC})
+TOPICS := $(patsubst topics/%,topics/%/index.pdf,$(wildcard topics/*))
 
 .PHONY: all
 
-all: build/ ${TOPICS_DEST}
+all: $(TOPICS)
 
-build/:
-	mkdir build
-
-build/%.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
+topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
 	cd $(<D) && arara --verbose index.tex
-	mv $(<D)/index.pdf $@

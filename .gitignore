@@ -1,5 +1,3 @@
-build/
-
 ; pdflatex
 index.aux
 index.log
@@ -15,4 +13,3 @@ index.run.xml
 index.snm
 index.toc
 index.vrb
-
