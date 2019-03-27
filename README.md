@@ -17,6 +17,7 @@
 * [Учебници на сайта на ФМИ](https://www.fmi.uni-sofia.bg/bg/econtent)
 * [Учебни материали от следването ми](https://ivasilev.net/files/ФМИ)
 * [Учебни материали за ДИ на Х. Марков](https://github.com/hristiyanmarkov/stat_di)
+* [Разписани лекции за някои предмети](https://debian.fmi.uni-sofia.bg/study/materials/va/)
 
 ## Построяване
 
