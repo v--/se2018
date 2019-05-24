@@ -20,6 +20,7 @@
 
 % Misc packages
 \usepackage{enumitem}
+\usepackage{tikz}
 
 % Custom packages
 \usepackage{../../common/macros}
@@ -30,15 +31,17 @@
 
 % Document
 \title{Тема 1}
-\subtitle{Уравнение на права и равнина. Формули за разстояния и ъгли. Криви от втора степен.}
+% \subtitle{Уравнение на права и равнина. Формули за разстояния и ъгли. Криви от втора степен.}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
-\date{24 март 2019}
+\date{24 май 2019}
+
+\usetikzlibrary{arrows.meta}
 
 \begin{document}
 
 \maketitle
 
-\section{Анотация (от \cite{Syllabus})}
+\section{Анотация (от~\cite{Syllabus})}
 
 \subsection{Теория}
 
@@ -74,14 +77,14 @@
 
 Не е даден списък с възможни задачи, затова съм включил всички задачи, свързани с материала, които са давани на упражнения.
 
-\section{Теория (от \cite{Notes}}
+\section{Теория (от~\cite{Notes})}
 
-\section{Примерни задачи (от \cite{Notes})}
+\section{Примерни задачи (от~\cite{Notes})}
 
 \subsection{Права в равнината}
 
 \begin{exercise}
-  Точките $A$ и $B$ и правите $a$ и $b$ имат спрямо ортонормирана координатна система $K$ координати $A(1, -2)$, $B(0, -1)$ и общи уравнения
+  Точките $A$ и $B$ и правите $a$ и $b$ имат спрямо ортонормирана координатна система $K = Oxy$ координати $A(1, -2)$, $B(0, -1)$ и общи уравнения
   \begin{align*}
     &a: 3x + 4y + 2 = 0, \\
     &b: 5x - 12y + 1 = 0.
@@ -137,7 +140,7 @@
       \text{ или } AB: x + y + 1 = 0.
     \end{displaymath}
 
-    \item Нека $B'$ има спрямо $K$ координати $B'(x', y')$. Първо намираме правата $BB'$ от условието $BB' \perp a$, което е еквивалентно на $BB' \parallel N_a(3, 4)$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in BB' \iff \V{BP} \parallel \V{N_a}$ намираме общото уравнение
+    \item Нека $B'$ има спрямо $K$ координати $B'(x', y')$. Първо намираме правата $BB'$ от условието $BB' \perp a$, което е еквивалентно на $BB' \parallel N_a(3, 4)$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in BB' \iff \V{BP} \parallel N_a$ намираме общото уравнение
     \begin{displaymath}
       BB': \det
       \begin{pmatrix}
@@ -148,11 +151,11 @@
       \text{ или } BB': 4x - 3y - 3 = 0.
     \end{displaymath}
 
-    Координатите на пресечната точка $B'' = a \cap BB'$ намираме от системата
+    Координатите на пресечната точка $B_a = a \cap BB'$ (ортогоналната проекция на $B$ върху $a$) намираме от системата
     \begin{displaymath}
       \begin{cases}
-        3x + 4y + 2 = 0 \;|\; (\;\cdot\; 3) \\
-        4x - 3y - 3 = 0 \;|\; (\;\cdot\; 4)
+        3x + 4y + 2 = 0 \mid (\;\cdot \; 3) \\
+        4x - 3y - 3 = 0 \mid (\;\cdot \; 4)
       \end{cases}
       \sim
       \begin{cases}
@@ -166,9 +169,9 @@
       \end{cases}
     \end{displaymath}
 
-    откъдето получаваме $B''(6/25, -17/25)$.
+    откъдето получаваме $B_a(6/25, -17/25)$.
 
-    Остава да намерим координатите на $B'$. Имаме $BB'' = B''B'$, откъдето
+    Остава да намерим координатите на $B'$. Имаме $\V{BB_a} = \V{B_a B'}$, откъдето
     \begin{displaymath}
       \begin{cases}
         6/25 = x' - 6/25 \\
@@ -209,7 +212,7 @@
     \item Координатите на пресечната точка $T = a \cap b$ намираме от системата
     \begin{displaymath}
       \begin{cases}
-        3x + 4y + 2 = 0 \;|\; (\;\cdot\; 3) \\
+        3x + 4y + 2 = 0 \mid (\;\cdot \; 3) \\
         5x - 12y + 1 = 0
       \end{cases}
       \sim
@@ -247,7 +250,341 @@
   \end{enumerate}
 \end{solution}
 
+\bigskip
+\begin{minipage}{0.5\textwidth}
+    \begin{exercise}
+    В равнината е зададена ортонормирана координатна система $K = Oxy$. Дадени са правите
+    \begin{align*}
+      &a: x + y = 0 \\
+      &b: x - 3y - 2 = 0
+    \end{align*}
+
+    Светлинен лъч $l \Ray$ минава през точка $M(2, 2)$ и се отразява от правата $a$. Отразеният лъч $l' \Ray$ е колинеарен с правата $b$.
+
+    Да се намерят уравнения спрямо $K$ на правите $l$ и $l'$, съдържащи съответно падащия лъч $l \Ray$ и отразения лъч $l' \Ray$.
+  \end{exercise}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \begin{center}
+    \begin{tikzpicture}[rotate=45]
+      \filldraw [black] (2, 2) circle (2pt);
+      \node[right] at (2, 2) {$M(2, 2)$};
+
+      \filldraw [black] (0, 0) circle (2pt);
+      \node at (1/3, 1/3) {$M_a$};
+
+      \filldraw [black] (-2, -2) circle (2pt);
+      \node[right] at (-2, -2) {$M'$};
+
+      \filldraw [black] (1, -1) circle (2pt);
+      \node at (1.5, -1.1) {$N$};
+
+      \node[right] at (5/3, 1) {$l$};
+      \draw[-{Latex[length=3mm]}] (7/3, 3) -- (1, -1);
+      \draw[thick, dotted] (1, -1) -- (-1/3, -5);
+
+      \node[right] at (3, -1/3) {$l'$};
+      \draw[-{Latex[length=3mm]}] (1, -1) -- (5, 1/3);
+      \draw[thick, dotted] (-3, -7/3) -- (1, -1);
+
+      \node[right] at (-7/10, 1) {$a$};
+      \draw[-] (-6/5, 6/5) -- (3, -3);
+
+      \node[right] at (3, 1/3) {$b$};
+      \draw[dotted] (-3, -5/3) -- (13/3, 7/9);
+    \end{tikzpicture}
+  \end{center}
+\end{minipage}
+\bigskip
+
+\begin{solution}
+  \mbox{}
+  \begin{enumerate}
+    \item Намираме координатите на ортогоналната проекция $M_a$ на точката $M$ върху $a$, използвайки нормален за $a$ вектор $N_a(1, 1)$.
+
+    От условието $N_a \parallel \V{M M_a}$ намираме ограничението
+    \begin{displaymath}
+      M_a(x, y): \det
+      \begin{pmatrix}
+        1 & x - 2 \\
+        1 & y - 2
+      \end{pmatrix}
+      = y - x
+      = 0,
+    \end{displaymath}
+
+    а от ограничението $M_a \in a$ получаваме, че $\Point M_a$ има координати $(0, 0)$ спрямо $K$.
+
+    \item Намираме координатите на ортогонално симетричната точка $M'(x', y')$ на $M$ относно $a$. Имаме $\V{MM_a} = \V{M_a M'}$, откъдето
+    \begin{displaymath}
+      \begin{cases}
+        2 - 0 = 0 - x' \\
+        2 - 0 = 0 - y'
+      \end{cases}
+      \implies
+      x' = y' = -2,
+    \end{displaymath}
+    т.е. $M'(-2, -2)$.
+
+    \item Намираме уравнението на правата $l'$. Тъй като $l' \parallel b$, правата $l'$ има общо уравнение
+    \begin{displaymath}
+      l': x - 3y + C = 0,
+    \end{displaymath}
+
+    където $C$ е подбрано спрямо условието $l'$ да минава през $\Point M'$, т.е.
+    \begin{displaymath}
+      C = - 1 \cdot (-2) + 3 \cdot (-2) = -4.
+    \end{displaymath}
+
+    И така, $l'$ има общо уравнение $l': x - 3y - 4 = 0$.
+
+    \item Намираме координатите на пресечната точка $N$ на $a$ и $l'$ (а също и $l'$):
+    \begin{displaymath}
+      N(x, y): \begin{cases}
+        x + y = 0 \\
+        x - 3y - 4 = 0
+      \end{cases}
+      \sim
+      \begin{cases}
+        x = -y \\
+        -4y = 4
+      \end{cases}
+      \sim
+      \begin{cases}
+        x = 1 \\
+        y = -1
+      \end{cases},
+    \end{displaymath}
+
+    т.е. $N(1, -1)$.
+
+    \item Намираме общо уравнение на $l$. Използваме това, че $l$ минава през $\Point M$ и $\Point N$, т.е. $\Point P(x, y) \in l \iff \V{MP} \parallel \V{MN}$:
+    \begin{displaymath}
+      l: \det
+      \begin{pmatrix}
+        x - 2 & 1 - 2\\
+        y - 2 & -1 - 2
+      \end{pmatrix}
+      =
+      -3x + y + 4
+      =
+      0.
+    \end{displaymath}
+  \end{enumerate}
+\end{solution}
+
 \subsection{Равнина в пространството}
+
+\begin{exercise}
+  В пространството е зададена ортонормирана координатна система $K = Oxyz$. Спрямо нея точките $A$, $B$, $C$ и $D$ имат координати
+  \begin{align*}
+    &A(3, 1, 4) &C(1, 2, -1) \\
+    &B(2, 1, 3) &D(0, -3, 2),
+  \end{align*}
+
+  а равнината $\beta$ има общо уравнение
+  \begin{displaymath}
+    \beta: x + y - z + 1 = 0.
+  \end{displaymath}
+
+  Да се намерят:
+  \begin{enumerate}[label=\alph*)]
+    \item Общо уравнение на равнината $\alpha$, минаваща през точките $A$, $B$ и $C$
+    \item Параметрични уравнения на права $h$, минаваща през $\Point D$ и ортогонална на равнината $\alpha$
+    \item Координатите на ортогонално симетричната на $\Point D$ спрямо $\alpha$ точка $\Point D'$
+    \item Общо уравнение на равнината $\gamma$, минаваща през $\Point D$ и успоредна на $\beta$
+    \item Координатите на някой вектор $v$, компланарен с $\alpha$ и $\beta$
+    \item Параметрични уравнения на пресечницата $m$ на $\alpha$ и $\beta$
+    \item Параметрични уравнения на права $l$, така че светлинния лъч $l\Ray$ през $\Point D$ след отразяването си от $\alpha$ (озн. отразения лъч с $l'\Ray$) пресича $\beta$ под прав ъгъл
+    \item Общо уравнение на равнината $\pi_1$, минаваща през $A$ и ортогонална на правата $m$
+    \item Общо уравнение на равнината $\pi_2$, съдържаща правата $l'$ и успоредна на правата $m$
+    \item Общо уравнение на равнината $\pi_3$, съдържаща правата $l'$ и ортогонална на равнината $\alpha$
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  \begin{enumerate}[label=\alph*)]
+    \item Нека $\Point P(x, y, z) \in \alpha$. Тогава $\V{AP} \parallel \V{AB}(-1, 0, -1) \parallel \V{AC}(-2, 1, -5)$, което условие ни позволява да намерим общо уравнение на $\alpha$:
+    \begin{multline*}
+      \alpha: \det
+      \begin{pmatrix}
+        x - 3 & -1 & -2 \\
+        y - 1 & 0 & 1 \\
+        z - 4 & -1 & -5
+      \end{pmatrix}
+      =
+      -1(z-4) + (-2)(y-1)(-1) - (x-3)(-1) - (-1)(y-1)(-5)
+      = \\ =
+      -z + 4 + 2y - 2 + x - 3 - 5y + 5
+      =
+      \boxed{x - 3y - z + 4 = 0}.
+    \end{multline*}
+
+    \item Правата $h$ е успоредна на нормалния за $\alpha$ вектор на $N_\alpha(1, -3, -1)$, следователно тя има векторно параметрично уравнение
+    \begin{displaymath}
+      h: \V{OD} + \lambda N_\alpha, \lambda \in \R
+    \end{displaymath}
+    и, съответно, скаларно параметрично уравнение
+    \begin{displaymath}
+      h: \begin{cases}
+        x = \lambda \\
+        y = -3 - 3\lambda \\
+        z = 2 - \lambda
+      \end{cases},
+      \lambda \in \R.
+    \end{displaymath}
+
+    \item За да намерим ортогонално симетричната на $\Point D$ спрямо $\alpha$ точка $\Point D'(x', y', z')$, първо ще намерим пресечната точка $\Point D_\alpha$ на правата $h$ и равнината $\alpha$.
+
+    Намираме стойността на параметъра $\lambda$ за уравнението на $h$, за която $h$ се пресича $\alpha$:
+    \begin{align*}
+      \lambda - 3(-3 - 3\lambda) - (2 - \lambda) + 4 &= 0 \\
+      \lambda + 9 + 9\lambda - 2 + \lambda + 4 &= 0 \\
+      11 \lambda &= -11 \\
+      \lambda &= -1,
+    \end{align*}
+
+    откъдето намираме координатите $(-1, 0, 3)$ на $\Point D_\alpha$.
+
+    След това, развиваме очевидното равенство $\V{D_\alpha D'} = \V{DD_\alpha}$ покоординатно:
+    \begin{displaymath}
+      \begin{cases}
+        x' + 1 = -1 \\
+        y' - 0 = 3 \\
+        z' - 3 = 1
+      \end{cases}
+      \sim
+      \begin{cases}
+        x' = -2 \\
+        y' = 3 \\
+        z' = 4,
+      \end{cases}
+    \end{displaymath}
+    т.е. $D'(-2, 3, 4)$.
+
+    \item Тъй като равнината $\gamma$ е успоредна на $\beta$, тя има общо уравнение
+    \begin{displaymath}
+      \gamma: x + y - z + C = 0,
+    \end{displaymath}
+
+    където $C$ е подбрано спрямо условието $\gamma$ да минава през $\Point D$, т.е.
+    \begin{displaymath}
+      C = -(0 + (- 3) - 2) = 5.
+    \end{displaymath}
+
+    И така, $\gamma: x + y - z + 5 = 0$.
+
+    \item Търсим едновременни решения на известните общи уравнения на равнините $\alpha$ и $\beta$:
+    \begin{displaymath}
+      \begin{cases}
+        \alpha: x - 3y - z + 4 = 0 \\
+        \beta: x + y - z + 1 = 0
+      \end{cases}
+      \sim
+      \begin{cases}
+        y = 3 / 4 \\
+        z = x + 7 / 4.
+      \end{cases}
+    \end{displaymath}
+
+    Очевидно точките $V_0\left(0, \frac 3 4, \frac 7 4 \right)$ и $V_1\left( 1, \frac 3 4, 1 + \frac 7 4 \right)$ удовлетворяват горната система, следователно векторът $v = \V{V_0 V_1}$ с координати $(1, 0, 1)$ е колинеарен и с двете равнини.
+
+    \item Пресечницата $m$ на $\alpha$ и $\beta$ има векторно параметрично уравнение
+    \begin{displaymath}
+      m: \V{OV_0} + \mu v, \mu \in \R
+    \end{displaymath}
+    и, съответно, скаларно параметрично уравнение
+    \begin{displaymath}
+      m: \begin{cases}
+        x = \mu \\
+        y = 3/4 \\
+        z = 7/4 + \mu
+      \end{cases},
+      \mu \in \R.
+    \end{displaymath}
+
+    \item Тъй като вече разполагаме с координатите на ортогонално симетричната на $D$ относно $\alpha$ точка $D'$ и нормалният за $\alpha$ вектор $N_\beta(1, 1, -1)$, можем да намерим векторно параметрично уравнения на правата $l'$:
+    \begin{displaymath}
+      l': \V{OD'} + \nu N_\beta, \nu \in \R
+    \end{displaymath}
+    и, съответно, скаларното параметрично уравнение
+    \begin{displaymath}
+      l': \begin{cases}
+        x = -2 + \nu \\
+        y = 3 + \nu \\
+        z = 4 - \nu
+      \end{cases},
+      \nu \in \R.
+    \end{displaymath}
+
+    Сега намираме стойността на параметъра $\nu$, за която $l'$ пресича равнината $\alpha$:
+    \begin{align*}
+      (-2 + \nu) - 3(3 + \nu) - (4 - \nu) + 4 &= 0 \\
+      -2 + \nu - 9 - \nu - 4 + \nu + 4 &= 0 \\
+      \nu &= 11
+    \end{align*}
+    т.е. пресечната точка $N$ на $l'$ и $\alpha$ има координати $N(9, 14, -7)$.
+
+    Сега намираме векторно параметрично уравнения на правата $l$, минаваща през $\Point D$ и $\Point N$:
+    \begin{displaymath}
+      l: \V{OD} + \xi \V{DN}, \xi \in \R
+    \end{displaymath}
+    и, съответно, скаларното параметрично уравнение
+    \begin{displaymath}
+      l: \begin{cases}
+        x = 9\xi \\
+        y = -3 + 17\xi \\
+        z = 2 - 9\xi
+      \end{cases},
+      \xi \in \R.
+    \end{displaymath}
+
+    \item Първо намираме два нормални за правата $m$ вектора. Нека $u(x, y, z)$ е произволен вектор. Тъй като $v$ е направляващ за $m$, $u$ е нормален за $m$ само ако
+    \begin{displaymath}
+      \Prod u v = x + z = 0.
+    \end{displaymath}
+
+    От горното условие виждаме, че два нормални за $m$ вектора са $u_1(0, 1, 0)$ и $u_2(-1, 0, 1)$.
+
+    Нека $\Point P$ има спрямо $K$ координати $(x, y, z)$. Тогава $\Point P \in \pi_1$ точно тогава, когато векторът $\V{AP}$ е колинеарен с $u_1$ и $u_2$, т.е.
+    \begin{displaymath}
+      \pi_1: \det
+      \begin{pmatrix}
+        x - 3 & 0 & -1 \\
+        y - 1 & 1 & 0 \\
+        z - 4 & 0 & 1
+      \end{pmatrix}
+      = (x - 3) - (-1)(z - 4) = \boxed{x + z - 7 = 0}.
+    \end{displaymath}
+
+    \item Имаме, че $\Point D'(-2, 3, 4) \in l'$ и векторът $N_\beta(1, 1, -1)'$ е направляващ за $l'$, а $v(1, 0, 1)$ е направляващ за $m$. Нека $\Point P$ има спрямо $K$ координати $(x, y, z)$. Тогава $\Point P \in \pi_2$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $N_\beta$ и $v$, т.е.
+    \begin{displaymath}
+      \pi_2: \det
+      \begin{pmatrix}
+        x + 2 & 1  & 1 \\
+        y - 3 & 1  & 0 \\
+        z - 4 & -1 & 1
+      \end{pmatrix}
+      = (x + 2) + (y - 3)(-1) - (z - 4) - (y - 3) = \boxed{x - 2y - z + 12 = 0}.
+    \end{displaymath}
+
+    \item Аналогично на $\pi_2$, имаме, че $\Point P \in \pi_3$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $N_\beta$ и $N_\alpha(1, -3, -1)$
+    \begin{multline*}
+      \pi_3: \det
+      \begin{pmatrix}
+        x + 2 & 1  & 1 \\
+        y - 3 & 1  & -3 \\
+        z - 4 & -1 & -1
+      \end{pmatrix}
+      = \\ =
+      (x + 2)(-1) + (-3)(z - 4) + (y - 3)(-1) - (z - 4) - (y - 3)(-1) - (x + 2)(-3)(-1)
+      = \\ =
+      (-4)(x + 2) + (-4)(z - 4) = 0
+      \text{ или }
+      \boxed{\pi_3: x + z - 2 = 0}.
+    \end{multline*}
+  \end{enumerate}
+\end{solution}
 
 \subsection{Права в пространството}
 
