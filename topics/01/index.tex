@@ -154,8 +154,8 @@
     Координатите на пресечната точка $B_a = a \cap BB'$ (ортогоналната проекция на $B$ върху $a$) намираме от системата
     \begin{displaymath}
       \begin{cases}
-        3x + 4y + 2 = 0 \mid (\;\cdot \; 3) \\
-        4x - 3y - 3 = 0 \mid (\;\cdot \; 4)
+        3x + 4y + 2 = 0 \mid (\times 3) \\
+        4x - 3y - 3 = 0 \mid (\times 4)
       \end{cases}
       \sim
       \begin{cases}
@@ -212,7 +212,7 @@
     \item Координатите на пресечната точка $T = a \cap b$ намираме от системата
     \begin{displaymath}
       \begin{cases}
-        3x + 4y + 2 = 0 \mid (\;\cdot \; 3) \\
+        3x + 4y + 2 = 0 \mid (\times 3) \\
         5x - 12y + 1 = 0
       \end{cases}
       \sim
@@ -588,7 +588,320 @@
 
 \subsection{Права в пространството}
 
+\begin{exercise}
+  В пространството е зададена ортонормирана координатна система $K = Oxyz$. Спрямо нея кръстосаните прави $g$ и $h$ имат скаларни параметрични уравнения
+  \begin{align*}
+    g: \begin{cases}
+      x = 1 + 2\lambda \\
+      y = 4 + 4\lambda \\
+      z = 4 + \lambda
+    \end{cases},
+    \lambda \in \R
+    &&
+    h: \begin{cases}
+      x = -1 \\
+      y = -1 - 5\mu \\
+      z = 1 + 3\mu
+    \end{cases},
+    \mu \in \R.
+  \end{align*}
+
+  Да се намери (скаларно) параметрично уравнение на трансверзалата $t$ на $g$ и $h$, за която:
+  \begin{enumerate}[label=\alph*)]
+    \item Точката $A(1, 1, 1)$ лежи върху $t$
+    \item $t$ лежи в равнината $\alpha: 2x + y - 3z + 6 = 0$
+    \item $t$ е успоредна на правата
+    \begin{displaymath}
+      a: \begin{cases}
+        x + 5y + 4z - 3 = 0 \\
+        2x - 5y - 4z + 1 = 0
+      \end{cases}
+    \end{displaymath}
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  Тъй като правата $t$ е трансверзала на $g$ и $h$, тя има по една обща точка с двете прави. Да означим тези точки с $G$ и $H$, т.е.
+  \begin{align*}
+    t \cap g = \{ G(x_g, y_g, z_g) \}
+    &&
+    t \cap h = \{ H(x_h, y_h, z_h) \}.
+  \end{align*}
+
+  Тъй като $G \in g$ и $H \in h$, то техните координати удовлетворяват уравненията на $g$ и $h$ за някои стойности на параметрите $\lambda$ и $\mu$, т.е.
+  \begin{align*}
+    &G(1 + 2\lambda_G, 4 + 4\lambda_G, 4 + 4\lambda_G) \\
+    &H(-1, -1 -5\mu_H, 1 + 3\mu_H).
+  \end{align*}
+
+  Тогава векторът $\V{HG}$ има координати $\V{HG}(2 + 2\lambda_G, 5 + 4\lambda_G + 5\mu_H, 3 + \lambda_G - 3\mu_H)$.
+
+  \begin{enumerate}[label=\alph*)]
+    \item За да принадлежи точката $A$ на трансверзалата $t$, искаме векторите $\V{AG}(2\lambda_G, 3 + 4\lambda_G, 3 + \lambda_G)$ и $\V{AH}(-2, -2 - 5\mu_H, 3\mu_H)$ да бъдат колинеарни, т.е. $\exists k \in \R \setminus \{ 0 \}: \V{AG} = k\V{AH}$. Разписваме това уравнение покоординатно:
+    \begin{displaymath}
+      \begin{cases}
+        2\lambda_G = -2k \mid (\times 1 / 2) \\
+        3 + 4\lambda_G = -2k - 5k\mu_H \mid \text{ изваждаме третото уравнение} \\
+        3 + \lambda_G = 3k\mu_H
+      \end{cases}
+      \sim
+      \begin{cases}
+        \lambda_G = -k \\
+        3\lambda_G = -2k - 8k\mu_H \\
+        3 + \lambda_G = 3k\mu_H
+      \end{cases}.
+    \end{displaymath}
+
+    От второто уравнение получаваме $-k = -8k\mu_H \implies \mu_H = 1 / 8 \implies H(-1, -13/8, 11/8)$.
+
+    Правата $t$ има векторно параметрично уравнение
+    \begin{displaymath}
+      t: \V{OA} + 8 \nu \V{AH}, \nu \in \R
+    \end{displaymath}
+    и, съответно, скаларно параметрично уравнение
+    \begin{displaymath}
+      t: \begin{cases}
+        x = 1 - 16\nu \\
+        y = 1 - 21 \nu \\
+        z = 1 + 3 \nu
+      \end{cases},
+      \nu \in \R.
+    \end{displaymath}
+
+    \item Намираме $\lambda_G$ и $\mu_H$ като директно заместваме координатите на $G$ и $H$ в уравнението на $\alpha$:
+    \begin{align*}
+      2(1 + 2\lambda_G) + (4 + 4\lambda_G) - 3(4 + \lambda_G) + 6 &= 0 \\
+      2 + 4\lambda_G + 4 + 4\lambda_G - 12 + 3\lambda_G + 6 &= 0 \\
+      5\lambda_G &= 0,
+    \end{align*}
+    следователно $\lambda_G = 0$ и $\Point G$ има координати $G(1, 4, 4)$.
+    \begin{align*}
+      2(-1) + (-1 - 5\mu_H) - 3(1 + 3\mu_H) + 6 &= 0 \\
+      -2 - 1 - 5\mu_H - 3 - 9\mu_H + 6 &= 0 \\
+      -14\mu_H &= 0,
+    \end{align*}
+    следователно $\mu_H = 0$ и $\Point H$ има координати $H(-1, -1, 1)$.
+
+    Правата $t$ има векторно параметрично уравнение
+    \begin{displaymath}
+      t: \V{OG} + \nu \V{GH}, \nu \in \R
+    \end{displaymath}
+    и, съответно, скаларно параметрично уравнение
+    \begin{displaymath}
+      t: \begin{cases}
+        x = 1 - 2\nu \\
+        y = 4 - 5\nu \\
+        z = 4 - 3\nu
+      \end{cases},
+      \nu \in \R.
+    \end{displaymath}
+
+    \item Първо намираме скаларно параметрично уравнение на правата $a$. Събирайки двете уравнения, получаваме
+    \begin{displaymath}
+      \begin{cases}
+        x + 5y + 4z - 3 = 0 \\
+        2x - 5y - 4z + 1 = 0 \mid \text{ прибавяме първото уравнение}
+      \end{cases}
+      \sim
+      \begin{cases}
+        4z = 3 - x - 5y = 7 / 3 - 5y \\
+        x = 2 / 3
+      \end{cases}.
+    \end{displaymath}
+
+    Параметризираме горната система чрез $\xi \in \R$, полагайки $y = 4\xi$, и получаваме
+    \begin{displaymath}
+      a: \begin{cases}
+        x = 2 / 3 \\
+        y = 4\xi \\
+        z = 7/{12} - 5\xi
+      \end{cases},
+      \xi \in \R.
+    \end{displaymath}
+
+    Означаваме направляващия вектор от горното уравнение чрез $v_a(0, 4, -5)$. За да бъдат колинеарни правите $t$ и $a$ е достатъчно двойка техни направляващи вектори да бъдат колинеарни, т.е. $\V{GH} \parallel v_a \iff \exists k \in \R \setminus \{ 0 \} : \V{GH} = k v_a$. Разписвайки това уравнение само за първата координата, получаваме
+    \begin{displaymath}
+      2 + 2\lambda_G = 0 \cdot k \implies \lambda_G = -1 \implies G(-1, 0, 3).
+    \end{displaymath}
+
+    Разполагайки с точка $G \in t$ и направляващ вектор $v_a \parallel t$, за трансверзалата $t$ получаваме векторно параметрично уравнение
+    \begin{displaymath}
+      t: \V{OG} + \nu v_a, \nu \in \R
+    \end{displaymath}
+    и, съответно, скаларно параметрично уравнение
+    \begin{displaymath}
+      t: \begin{cases}
+        x = -1 \\
+        y = 4\nu \\
+        z = 3 - 5\nu
+      \end{cases},
+      \nu \in \R.
+    \end{displaymath}
+  \end{enumerate}
+\end{solution}
+
 \subsection{Канонизиране на крива от втора степен}
+
+\begin{exercise}
+  Спрямо ортонормирана координатна система $K = Oxy$ е зададена кривата
+  \begin{displaymath}
+    c: 4x^2 - 4xy + y^2 + 2x - 16y - 8 = 0.
+  \end{displaymath}
+
+  Да се намери метрично канонично уравнение на $c$ и да намерят координатите на фокусите на $c$ спрямо $K$.
+\end{exercise}
+
+\begin{solution}
+  \begin{enumerate}
+    \item Търсим ортонормирана координатна система $K'$, в която уравнението на кривата $c$ да няма смесен квадратен член $xy$. Означаваме матрицата на квадратичната форма $4x^2 - 4xy + y^2$ с
+    \begin{displaymath}
+      A = \begin{pmatrix}
+        4 & -2 \\
+        -2 & 1
+      \end{pmatrix}.
+    \end{displaymath}
+
+    Търсим собствените вектори на $A$:
+    \begin{displaymath}
+      \begin{pmatrix}
+        4 & -2 \\
+        -2 & 1
+      \end{pmatrix}
+      \begin{pmatrix}
+        x \\ y
+      \end{pmatrix}
+      =
+      \lambda
+      \begin{pmatrix}
+        x \\ y
+      \end{pmatrix},
+    \end{displaymath}
+    което уравнение е еквивалентно на системата
+    \begin{equation}
+      \label{ex:canon:eigen}
+      \begin{cases}
+        4x - 2y = \lambda x \\
+        -2x + y = \lambda y
+      \end{cases}
+      \sim
+      \begin{cases}
+        -2y = (\lambda - 4) x \\
+        (1 - \lambda) y = 2x
+      \end{cases}
+      \sim
+      \begin{cases}
+        y = \frac {4 - \lambda} 2 x \\
+        y = \frac 2 {1 - \lambda} x.
+      \end{cases}
+    \end{equation}
+
+    За да получим нормирани собствени вектори, искаме
+    \begin{align*}
+      x^2 + y^2 &= 1 \\
+      \left(1 +  \frac 4 {{(1 - \lambda)}^2} \right) x^2 &= 1 \\
+      \frac {\lambda^2 - 2\lambda + 5} {{(1 - \lambda)}^2} x^2 &= 1.
+    \end{align*}
+    За определеност взимаме само една двойка корени
+    \begin{equation}
+      \label{ex:canon:normed_eigen}
+      x = \frac {1 - \lambda} {\sqrt{\lambda^2 - 2\lambda + 5}}
+      \text{ и }
+      y = \frac 2 {\sqrt{\lambda^2 - 2\lambda + 5}}
+    \end{equation}
+
+    Изваждайки двете уравнения в~\ref{ex:canon:eigen}, стигаме до характеристичния полином на $A$:
+    \begin{displaymath}
+      \frac {4 - \lambda} 2 - \frac 2 {1 - \lambda} = 0 \iff 4 - \lambda - 4\lambda + \lambda^2 - 4 = \lambda^2 - 5\lambda = 0,
+    \end{displaymath}
+    чиито корени са $\lambda_1 = 0$ и $\lambda_1 = 5$, а замествайки в~\ref{ex:canon:normed_eigen}, директно получаваме собствените вектори
+    \begin{align*}
+      v_1 \left(\frac 1 {\sqrt 5}, \frac 2 {\sqrt 5} \right)
+      &&
+      v_2 \left(\frac {-2} {\sqrt 5}, \frac 1 {\sqrt 5} \right).
+    \end{align*}
+
+    Желаната ротация има вида
+    \begin{displaymath}
+      R: \begin{cases}
+        x = \frac 1 {\sqrt 5} (x' - 2y') \\
+        y = \frac 1 {\sqrt 5} (2x' + y').
+      \end{cases}
+    \end{displaymath}
+
+    Спрямо новата координатна система $K'$ кривата $c$ има вида
+    \begin{displaymath}
+      c: 5y'^2 + \frac 2 {\sqrt 5} (x' - 2y') - \frac {16} {\sqrt 5} (2x' + y') - 8 = 5y'^2 - \frac {30} {\sqrt 5} x' - \frac {20} {\sqrt 5} y' - 8 = 0,
+    \end{displaymath}
+    което можем да опростим до
+    \begin{displaymath}
+      c: 5 \sqrt 5 y'^2 - 30 x' - 20 y' - 8 \sqrt 5 = 0,
+    \end{displaymath}
+
+    \item Имаме уравнения на парабола, но то не е канонично. Търсим афинна координатна система $K''$, в която параболата да е центрирана, т.е. търсим транслация
+    \begin{displaymath}
+      T: \begin{cases}
+        x' = x'' + a \\
+        y' = y'' + b,
+      \end{cases}
+    \end{displaymath}
+    така че в новата координатна система уравнението да има вида $c: y'' = 2px''$ за някое число $p$.
+
+    Правим транслацията и след това намираме подходящи стойности за параметрите $a$ и $b$:
+    \begin{align*}
+      5 \sqrt 5 y'^2 - 30 x' - 20 y' - 8 \sqrt 5 &= 0 \\
+      5 \sqrt 5 y''^2 + 10 \sqrt 5 y'' b + 5 \sqrt 5 b^2 - 30 x'' - 30a - 20 y'' - 20b - 8 \sqrt 5 &= 0 \\
+      5 \sqrt 5 y''^2 + (10 \sqrt 5 b - 20) y'' &= 30 x'' + (- 5 \sqrt 5 b^2 + 30a + 20b + 8 \sqrt 5).
+    \end{align*}
+
+    Приравняваме на нула коефициента пред $y''$ и свободния коефициент:
+    \begin{displaymath}
+      10 \sqrt 5 b - 20 = 0 \implies b = \frac 2 {\sqrt 5}
+    \end{displaymath}
+    \begin{displaymath}
+      a
+      =
+      \frac {5 \sqrt 5 b^2 - 20 b - 8 \sqrt 5} {30}
+      =
+      \frac {4 \sqrt 5 - \frac {40} {\sqrt 5} - 8 \sqrt 5} {30}
+      =
+      \frac {20 - 40 - 40} {30 \sqrt 5}
+      =
+      \frac {-60} {30 \sqrt 5}
+      =
+      \frac {-2} {\sqrt 5}.
+    \end{displaymath}
+
+    Тогава за композираната смяна на координатната система от $K''$ към $K$ получаваме
+    \begin{displaymath}
+      R \circ T: \begin{cases}
+        x = \frac 1 {\sqrt 5} \left( x'' + a - 2y'' - 2b \right) \\
+        y = \frac 1 {\sqrt 5} \left( 2x'' + 2a + y'' + b \right)
+      \end{cases}
+      \sim
+      \begin{cases}
+        x = \frac 1 {\sqrt 5} \left( x'' - 2y'' - \frac 6 {\sqrt 5} \right) \\
+        y = \frac 1 {\sqrt 5} \left( 2x'' + y'' - \frac 2 {\sqrt 5} \right)
+      \end{cases}
+    \end{displaymath}
+
+    и спрямо $K''$ параболата има уравнение
+    \begin{displaymath}
+      c: 5 \sqrt 5 y''^2 = 30x''
+      \iff
+      c: y''^2 = 2 \cdot \frac 3 {\sqrt 5}x''
+    \end{displaymath}
+
+    \item Фокусът на параболата $c$ има спрямо $K''$ координати $F \left(\frac 3 {2 \sqrt 5}, 0 \right)$. Спрямо $K$ фокусът има координати
+    \begin{displaymath}
+      R \circ T: \begin{cases}
+        x = \frac 1 {\sqrt 5} \left( \frac 3 {2 \sqrt 5} - \frac 6 {\sqrt 5} \right) = - \frac 9 {10} \\
+        y = \frac 1 {\sqrt 5} \left( \frac 3 {\sqrt 5} - \frac 2 {\sqrt 5} \right) = \frac 1 5
+      \end{cases},
+    \end{displaymath}
+
+    т.е. $F \left(-\frac 9 {10}, \frac 1 5 \right)$.
+  \end{enumerate}
+\end{solution}
 
 \printbibliography
 
