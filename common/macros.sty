@@ -1,17 +1,27 @@
 % Number sets
+\newcommand \ZPos      {\mathbb{Z}^{> 0}}
+\newcommand \ZNNeg     {\mathbb{Z}^{\geq 0}}
 \newcommand \R         {\mathbb{R}}
 
 % Modifiers
+\newcommand \Point     {\operatorname{\text{т.}}}
+\newcommand \Ray       {\V{\phantom{A}}}
+%% Vector
 \newcommand \V     [1] {\overrightarrow{#1}}
 
-% Operations
+% Operators
+%% Distance and oriented distance
 \newcommand \Dist      {\operatorname{d}}
 \newcommand \ODist     {\partial}
+%% Ideal generator
+\newcommand \Gen   [1] {\left\langle #1 \right\rangle}
+%% Absolute value, norm and scalar product
 \newcommand \Abs   [1] {\left\vert #1 \right\vert}
 \newcommand \Norm  [1] {\left\Vert #1 \right\Vert}
 \newcommand \Prod  [2] {\left\langle #1, #2 \right\rangle}
+%% Leading coefficient and GCD
+\newcommand \LC        {\operatorname{lc}}
+\newcommand \GCD       {\operatorname{gcd}}
 
 % Misc
 \newcommand \Email [1] {\href{mailto:#1}{#1}}
-\newcommand \Point     {\operatorname{\text{т.}}}
-\newcommand \Ray       {\V{\phantom{A}}}
