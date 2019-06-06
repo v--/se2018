@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage[bulgarian]{babel}
+\usepackage{tikz}
+\usepackage{amsfonts}
+
+
+\begin{document}
+
+
+
+
+
+
+\title{Въпрос 19: Хипотези и Нейман-Пирсън}
+\author{Martin Varbanov}
+\date{Юни 2019}
+\maketitle
+
+\section{Дефиниции}
+
+\subsection{Хипотези}
+
+ще въведем няколко означения \\
+
+$X_n$ - извадково пространство \\
+
+$x=(x_1,..,x_n)$ - стойности на наблюденията \\
+
+$\theta$ - параметър
+
+$H_0 : \theta = \theta_0, \theta \in \mathbb{R}$ - Основна/нулева хипотеза \\
+
+$H_1 : \theta = \theta_1, \theta \in \mathbb{R}$ - Алтернативна хипотеза \\
+
+
+
+\subsubsection{Функция на правдоподобност}
+$$L(x_1,..,x_n) = \prod_{i=1}^n f(x_i | \theta)$$
+
+
+\subsubsection{проста хипотеза}
+Когато на $H_0$ съответства точно едно разпределение $L_0(x)$ се говори за проста основна хипотеза
+
+\subsubsection{сложна хипотеза}
+когато $H_0$ не се удовлетворява от едно единствено разпределение говорим за сложна основна хипотеза
+
+
+
+
+\subsection{Грешки от 1ви и 2ри род}
+
+\begin{center}
+    \begin{tabular}{| l | l | l |}
+    \hline
+     &  Нямаме основание да отхъвлим $H_o$ & Отхвърляме $H_0$ \\ \hline
+    $H_0$ e истина & OK & Грешка от 1ви род \\ \hline
+    $H_1$ е истина & Грешка от 2ри род & ОК \\ \hline
+    \end{tabular}
+\end{center}
+
+
+\subsection{Критична област}
+Тук ще дадем дефиниция за критична област:
+
+$\overline{w} \subset X_n$ - мн-во от $(x_1,..,x_n)$, т.че $H_0$ да е вярно \\
+
+$w = X_n \ \overline{w}$ - критична област \\
+
+
+
+ВЪПРОС: ОСТАНА ДА НАПИШЕМ ЗА P-VALUE!!!
+
+\subsubsection{вероятност за грешка от 1ви род/Ниво на доверие}
+$$\alpha = P(x \in w|H_{0})=\int_{w} L_{0}(x)dx$$
+
+\subsubsection{бетата}
+$$\beta = P(x \notin w | H_{1})$$
+
+\subsubsection{Мощност}
+$$\Pi=P(x \in w | H_{1})$$
+
+\subsubsection{Оптимална критична облас}
+
+$w^{*}$ e оптимална критична област ако са изпълнени:
+$$P(x \in w | H_{0}) \leq P(x \in w^{*} | H_{0})) = \alpha,\forall w$$
+
+$$P(x \in w^{*} | H_{1}) \geq P(x \in w | H_{1})$$
+
+\section{Лема на Неймън-Пирсън}
+
+\subsection{Дефиницийки}
+Нека $w^{*}$ e оптимална критична област и: \\
+
+$$(\int ... \int)_{w^{*} \subset X_n} L_1(x_{1},...,x_n) dx_{1},..,dx_{n}=P(x \in w^{*} | H_{1})$$
+
+and
+
+$$(\int ... \int)_{w^{*} \subset X_n} L_{0}(x_1,..,x_n) dx_{1},...,dx_{n} \leq \alpha$$
+
+\section{Лема на Неймън-Пирсън}
+$M_{\alpha}$ - множество от подмножества $w \in X_{n}$, тъй че:
+$$P(x \in w | H_{0}) = \int_{w} L_0(x)dx=\alpha$$
+
+$$P(x \in w^{*} | H_{1}) = \int_{w^{*}} L_{1}(x) dx \geq \int_{w^{*}} L_{1}(x) dx, \forall w^{*} \in M_{\alpha}$$
+
+\subsection{Лема}
+
+При проверка на хипотеза:
+$$H_{0}: L(x)=L_0(x)$$
+$$H_{1}: L(x)=L_1(x)$$
+
+с ниво на съгласие $\alpha$ и $w^{*} \in M_{\alpha}$, така че да същестува константа $K=K_{\alpha}>0$, т. че да е изпълнено:
+$$L_{1} \geq K L_{0} , \forall x \in w^{*}$$
+$$L_{1} \leq K L_{0}, \forall x \notin w^{*}$$
+=> $w^{*}$ е оптимална крит. обл.
+
+
+\subsection{Доказателство:}
+Нека $w \in M_{\alpha}$ и $C=w \cap w^{*}$, a=$w^{*} \textbackslash c$, $b=w\textbackslash c$
+
+
+\begin{tikzpicture}
+ \begin{scope}[blend group=soft light]
+    \fill[red!30!white]   (10:1.2) circle (2);
+    \fill[green!30!white] (150:1.2) circle (2);
+ \end{scope}
+  \node at ( 10:2)    {a};
+  \node at ( -130:2)  {$w$};
+  \node at (150:2)    {b};
+  \node at (300:2)    {$w^{*}$};
+  \node [font=\Large] {c};
+\end{tikzpicture}
+
+
+От $w,w^{*} \in M_{\alpha}:$
+$$\alpha = \int_{w} L_{0}(x) dx = \int_{b} L_{0}(x) dx + \int_{c} L_{0}(x) dx$$
+$$\alpha = \int_{w^{*}} L_{0}(x) dx = \int_{a} L_{0}(x) dx + \int_{c} L_{0}(x) dx$$
+от това следва:
+$$\int_{b} L_{0}(x) dx = \int_{a} L_{0}(x) dx$$
+
+
+Нека сега разгледаме:
+$$\Delta = \int_{w^{*}} L_{1}(x) dx - \int_{w} L_{1}(x) dx=\int_{a} L_{1}(x) dx - \int_{b} L_{1}(x) dx$$
+
+Идеята по- долу дали следва от: \\
+$$L_{1}(x) \geq K L_{0} x, x \in w^{*} => \int_{w^{*}} L_{1}(x) dx \geq K \int_{a} L_{0}(x)dx $$
+$$L_{1}(x) \leq K L_{0} x,x \notin w^{*} => \int_{w} L_{1}(x) dx \leq K \int_{b} L_{0}(x)dx $$
+и ако умножим второ по -1 и съберем с 1вото се получава: \\
+
+
+$$\Delta = \int_{w^{*}} L_{1}(x) dx - \int_{w} L_{1}(x) dx \geq K(\int_{a} L_{1}(x) dx - \int_{b} L_{1}(x) dx )$$
+$$=> \Delta \geq 0$$
+
+от тука се вижда, че условието за оптимална критична област:
+$$P(x \in w^{*}|H_{1}) = \int_{w^{*}} L_{1}(x) dx \geq \int_{w} L_{0} (x) dx$$
+Следва, че $w^{*}$ e оптимална критична област.
+
+\subsection{Следствия}
+
+$$\frac{L_{1}(x)}{L_{0}(x)} \geq K$$
+
+
+$$P(\frac{L_{1}(x)}{L_{0}(x)} \geq K| H_{0})=\alpha $$
+
+
+$$\pi=P(x \in w^{*} | H_{1}) = \int_{w^{*}} L_{1}(x) dx$$
+
+
+
+
+
+
+\end{document}
