@@ -5,4 +5,4 @@ TOPICS := $(patsubst topics/%,topics/%/index.pdf,$(wildcard topics/*))
 all: $(TOPICS)
 
 topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
-	cd $(<D) && arara --verbose index.tex || (rm --force $(<D)/*.aux; make $@)
+	cd $(<D) && arara --verbose index.tex || rm --force $(<D)/*.aux
