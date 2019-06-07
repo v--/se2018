@@ -20,6 +20,7 @@
 
 % Misc packages
 \usepackage{enumitem}
+\usepackage{mathabx}
 \usepackage{tikz}
 
 % Custom packages
@@ -78,6 +79,106 @@
 Не е даден списък с възможни задачи, затова съм включил всички задачи, свързани с материала, които са давани на упражнения.
 
 \section{Теория (от~\cite{Notes})}
+
+\subsection{Права в равнината}
+
+Нека $K = Oxy$ е афинна координатна система в равнината $A_2$. Векторите в $A_2$ ще означаваме с $V_2$.
+
+\begin{definition}
+  Нека $l$ е права в $A_2$, нека са дадени $\Point P_0 \in l$ и направляващият за $l$ вектор $v \parallel l$. Нека $r_0 = \V{OP_0}$ и $r = \V{OP}$ са радиус-векторите на точките $\Point P_0$ и $\Point P$ спрямо $K$. Очевидно векторът $v$ е ненулев.
+
+  От тъждествата $r - r_0 = \V{P_0 P} \parallel v \iff P \in l$ и $\forall \lambda \in \R : v \parallel \lambda v$ следва, че правата $l$ удовлетворява уравнението
+  \begin{displaymath}
+    l: r = r_0 + \lambda v, \lambda \in \R,
+  \end{displaymath}
+  което наричаме \underline{векторно параметрично уравнение} на $l$ спрямо $K$.
+
+  Нека $\Point P_0$, $\Point P$ и $v$ имат координати $P_0(x_0, y_0)$, $P(x, y)$ и $v(a, b)$ спрямо $K$. Уравненията
+  \begin{displaymath}
+    l: \begin{cases}
+      x = x_0 + \lambda a \\
+      y = y_0 + \lambda b
+    \end{cases},
+    \lambda \in \R
+  \end{displaymath}
+  наричаме \underline{система скаларни параметрични уравнения} на $l$ спрямо $K$.
+\end{definition}
+
+Изхождайки от горната система, имаме $\lambda a b = b(x - x_0) = a(y - y_0)$, откъдето получаваме уравнението $l: bx + (-a)y + (-x_0 + y_0) = 0$.
+
+\begin{definition}
+  Всяко уравнение от вида $Ax + By + C = 0$, където $A, B, C \in \R$, а $A$ и $B$ не се анулират едновременно, наричаме \underline{общо уравнение} на права спрямо $K$.
+\end{definition}
+
+Вече видяхме, че от всяка система скаларни параметрични уравнение за права $l$ можем да намерим поне едно общо уравнение за $l$.
+
+\begin{proposition}
+  Всяко общо уравнение задава точно една права.
+\end{proposition}
+\begin{proof}
+  Нека е дадено общото уравнение $Ax + By + C = 0$ и точката $P_0(x_0, y_0)$, чиито координати го удовлетворяват. Нека $v \in V_2$ е ненулевият вектор с координати $v(B, -A)$. Тогава системата
+  \begin{align*}
+    l: \begin{cases}
+      x = x_0 + \lambda B \\
+      y = y_0 - \lambda A,
+    \end{cases}
+    \lambda \in \R
+  \end{align*}
+  задава права $l$. Ще покажем, че системата е еквивалентна на общото уравнение.
+
+  От една страна, всяко решение на общото уравнение удовлетворява системата, тъй като $C = -Ax_0 - By_0$ и ако за определеност допуснем, че $A \neq 0$, получаваме
+  \begin{align*}
+    Ax + By + C &= 0 \\
+    x &= -\frac C A -\frac {By} A \\
+    x &= \frac {Ax_0 + By_0} A -\frac {By} A \\
+    x &= x_0 + \frac {y_0 - y} A B.
+  \end{align*}
+
+  Полагаме $\lambda \coloneqq \frac{y_0 - y} A$, откъдето получаваме $y = y_0 - \lambda A$.
+
+  От друга страна, всяко решение на системата удовлетворява общото уравнение, тъй като
+  \begin{displaymath}
+    A (x_0 + \lambda B) + B (y_0 - \lambda A) + C
+    =
+    A x_0 + B y_0 + C
+    =
+    0.
+  \end{displaymath}
+\end{proof}
+
+\begin{definition}
+  Нека правата $l$ има спрямо $K$ общо уравнение $l: Ax + By + C = 0$. Нека още $l$ не е успоредна на оста $Oy$. Тогава $B \neq 0$ и можем да запишем общото уравнение във вида
+
+  \begin{align*}
+    l: \frac A B x + y + \frac C B = 0
+    &&\sim&&
+    l: y = \left(-\frac A B \right) x + \left(-\frac C B \right).
+  \end{align*}
+
+  Полагаме $k = -\frac A B$ и $m = -\frac C B$. Уравнението
+  \begin{displaymath}
+    l: y = kx + m
+  \end{displaymath}
+  наричаме \underline{декартово уравнение} на $l$ спрямо $K$, а коефициента $k$ наричаме \underline{ъглов коефициент} на $l$ спрямо $K$.
+\end{definition}
+
+\begin{proposition}
+  Нека координатната система $K = Oxy$ е ортонормирана, нека правата $l$ има спрямо $K$ декартово уравнение $l: y = kx + m$. Дефинираме лъчът $r\Ray : y = kx + m > 0$ върху $l$. Тогава $\tan \angle(r\Ray, Ox) = k$.
+\end{proposition}
+\begin{proof}
+  Нека $u$ е векторът с координати $u(1, k)$ спрямо $K$.
+
+  Ако $k \geq 0$, то $u \upuparrows r\Ray$ и
+  \begin{displaymath}
+     \tan \angle(r\Ray, Ox) = \tan \angle(u, Ox) = k.
+  \end{displaymath}
+
+  Ако $k < 0$, то $-u \updownarrows r\Ray$ и
+  \begin{displaymath}
+    \tan \angle(r\Ray, Ox) = \tan(\pi - \angle(-u, Ox)) = -\tan \angle(-u, Ox) = -(-k) = k.
+  \end{displaymath}
+
+\end{proof}
 
 \section{Примерни задачи (от~\cite{Notes})}
 
