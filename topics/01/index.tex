@@ -128,9 +128,9 @@
 
   От една страна, всяко решение на общото уравнение удовлетворява системата, тъй като $C = -Ax_0 - By_0$ и ако за определеност допуснем, че $A \neq 0$, получаваме
   \begin{align*}
-    Ax + By + C &= 0 \\
-    x &= -\frac C A -\frac {By} A \\
-    x &= \frac {Ax_0 + By_0} A -\frac {By} A \\
+    Ax + By + C &= 0, \\
+    x &= -\frac C A -\frac {By} A, \\
+    x &= \frac {Ax_0 + By_0} A -\frac {By} A, \\
     x &= x_0 + \frac {y_0 - y} A B.
   \end{align*}
 
@@ -177,7 +177,257 @@
   \begin{displaymath}
     \tan \angle(r\Ray, Ox) = \tan(\pi - \angle(-u, Ox)) = -\tan \angle(-u, Ox) = -(-k) = k.
   \end{displaymath}
+\end{proof}
 
+\begin{theorem}
+  Нека правите $l_1$ и $l_2$ имат спрямо $K$ общи уравнения
+  \begin{equation}\label{thm:line-position:scalar-equations}
+    l_i : A_i x + B_i y + C_i, i = 1, 2.
+  \end{equation}
+
+  Означаваме
+
+  \begin{align*}
+    L \coloneqq \begin{pmatrix}
+      A_1 & B_1 & C_1 \\
+      A_2 & B_2 & C_2
+    \end{pmatrix}
+    &&
+    \tilde L \coloneqq \begin{pmatrix}
+      A_1 & B_1 & C_1 & D_1 \\
+      A_2 & B_2 & C_2 & D_2
+    \end{pmatrix}.
+  \end{align*}
+
+  Тогава
+  \begin{enumerate}
+    \item $l_1 \equiv l_2 \iff \Rank L = \Rank \tilde L = 1$.
+    \item $l_1 \parallel l_2$, но $l_1 \nequiv l_2 \iff 1 = \Rank L < \Rank \tilde L = 2$.
+    \item $l_1$ и $l_2$ са пресекателни $\iff \Rank L = \Rank \tilde L = 2$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Да забележим, че
+  \begin{enumerate}
+    \item $L$ е подматрица на $\tilde L \implies \Rank L \leq \Rank \tilde L$.
+    \item $A_1$ и $B_1$ са коефициенти в общо уравнения на права, съответно поне един от тях е различен от нула и $\Rank L \geq 1$.
+    \item Матрицата $\tilde L$ има само два реда, следователно $\Rank \tilde L \leq 2$.
+  \end{enumerate}
+
+  Така получаваме $1 \leq \Rank L \leq \Rank \tilde L \leq 2$.
+
+  Разглеждаме матричното уравнение
+  \begin{equation}\label{thm:line-position:matrix-equation}
+    L
+    \begin{pmatrix}
+      x \\ y \\ 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      -D_1 \\ -D_2
+    \end{pmatrix},
+  \end{equation}
+  което ни дава едновременните решения на уравненията (\ref{thm:line-position:scalar-equations}).
+
+  Ако $\Rank L \neq \Rank \tilde L$, то по теоремата на Руше матричното уравнение (\ref{thm:line-position:matrix-equation}) няма решение, правите $l_1$ и $l_2$ нямат общи точки и $l_1 \parallel l_2$. Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\ref{thm:line-position:matrix-equation}) няма решения и $\Rank L \neq \Rank \tilde L$.
+
+  Ако $\Rank L = \Rank \tilde L$, то по теоремата на Руше матричното уравнение (\ref{thm:line-position:matrix-equation}) има поне едно решение. Разглеждаме два случая:
+  \begin{enumerate}
+    \item Ако $\Rank L = \Rank \tilde L = 1$, то редовете на $L$ са линейно зависими, следователно уравненията (\ref{thm:line-position:scalar-equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
+
+    Обратно, нека уравненията (\ref{thm:line-position:scalar-equations}) задават една и съща права и нека за определеност $A_1 \neq 0$. Тогава за произволна точка $P(x, y) \in l_1 \equiv l_2$ имаме
+    \begin{displaymath}
+      A_1x + B_1y + C_1 = 0
+      \implies
+      x = - \frac {B_1} {A_1} y - \frac {C_1} {A_1},
+    \end{displaymath}
+    \begin{align*}
+      A_2x + B_2y + C_2 &= 0,
+      \\
+      - A_2 \left(\frac {B_1} {A_1} y + \frac {C_1} {A_1} \right) + B_2y + C_2 &= 0,
+      \\
+      \left(B_2 - \frac {A_2} {A_1} B_1 \right) y + \left(C_2 - \frac {A_2} {A_1} C_1 \right) &= 0.
+    \end{align*}
+
+    Последното уравнение е еквивалентно на системата
+    \begin{align*}
+      B_2 = \frac {A_2} {A_1} B_1
+      &&
+      C_2 = \frac {A_2} {A_1} C_1.
+    \end{align*}
+
+    Тогава второто уравнение от (\ref{thm:line-position:scalar-equations}) има вида
+    \begin{displaymath}
+      l_2:
+      A_2 x + B_2 y + C_2 =
+      \frac {A_2} {A_1} A_1 x + \frac {A_2} {A_1} B_1 y + \frac {A_2} {A_1} C_1
+      = 0,
+    \end{displaymath}
+    откъдето виждаме, че двете уравнения са пропорционални и следователно $\Rank \tilde L = 1$.
+
+    \item Ако $\Rank L = \Rank \tilde L = 2$, то системата (\ref{thm:line-position:matrix-equation}) има максимален ранг и решението е единствено. Това е пресечната точка на $l_1$ и $l_2$.
+
+    Обратно, ако $l_1$ и $l_2$ имат само една обща точка $P$, то координатите ѝ удовлетворяват (\ref{thm:line-position:matrix-equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при $\Rank \tilde L = 1$. Следователно координатите на $P$ са единственото решение на (\ref{thm:line-position:matrix-equation}) и матрицата $L$ има максимален ранг 2.
+  \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+  Ако правата $l$ има общо уравнение $l: Ax + By + C = 0$ спрямо $K$, то всяко общо уравнение спрямо $K$ има вида $l: \lambda(Ax + By + C) = 0$ за някое $\lambda \in \R \setminus \{ 0 \}$.
+\end{corollary}
+
+\begin{definition}
+  Всеки вектор, перпендикулярен на някоя права $l$, се нарича \underline{нормален} за $l$.
+\end{definition}
+
+\begin{proposition}
+  Ако правата $l$ има общо уравнение $l: Ax + By + C = 0$ спрямо $K$, то
+  \begin{enumerate}
+    \item векторът $v(-B, A)$ е ненулев и успореден на $l$.
+    \item векторът $n(A, B)$ е ненулев и нормален за $l$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  По условие имаме, че $A$ и $B$ не е анулират едновременно, следователно $v$ и $n$ са ненулеви.
+  \begin{enumerate}
+    \item Разглеждаме $\Point P_0(x_0, y_0) \in l$ и $\Point P_1(x_0 - B, y_0 + A)$, която също принадлежи на $l$, тъй като
+    \begin{displaymath}
+      A(x_0 - B) + B(y_0 + A) + C = (Ax_0 + By_0 + C) + (-AB + AB) = 0 + 0 = 0.
+    \end{displaymath}
+     Тогава $\V{P_0 P_1} \parallel l$. Но векторът $\V{P_0 P_1}(-B, A)$ е равен на $v$, следователно $v \parallel l$.
+
+    \item Имаме
+    \begin{displaymath}
+      \Prod v n = -AB + AB = 0,
+    \end{displaymath}
+    следователно $v \perp n$ и тъй като $v \parallel l$, то $n \perp l$.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  Общото уравнение $l: \alpha x + \beta y + \gamma = 0$ на права $l$ спрямо $K$ се нарича \underline{нормално}, ако е изпълнено условието $\Norm{n(\alpha, \beta)}^2 = \alpha^2 + \beta^2 = 1$.
+\end{definition}
+
+\begin{proposition}
+  Всяка права $l$ има спрямо $K$ точно две нормални уравнения.
+\end{proposition}
+\begin{proof}
+  Нека $l$ има спрямо $K$ общо уравнение $l: Ax + By + C = 0$. Тогава всевъзможните общи уравнения на $l$ спрямо $K$ имат вида
+  \begin{displaymath}
+    l: \lambda(Ax + By + C) = 0, \lambda \in \R \setminus \{ 0 \}.
+  \end{displaymath}
+
+  Но ${(\lambda A)}^2 + {(\lambda B)}^2 = 1 \iff \lambda = \pm \frac 1 {\sqrt{A^2 + B^2}}$.
+
+  Двете нормални уравнения са
+  \begin{displaymath}
+    l: \pm \frac {Ax + By + C} {\sqrt{A^2 + B^2}} = 0.
+  \end{displaymath}
+\end{proof}
+
+\begin{theorem}
+  Нека са дадени точката $P_0(x_0, y_0)$ и правата $l$ с нормално уравнение спрямо $K$
+  \begin{displaymath}
+    l: \alpha x + \beta y + \gamma = 0.
+  \end{displaymath}
+
+  Означаваме $F(x, y) = \alpha x + \beta y + \gamma$. Тогава разстоянието между $P_0$ и $l$ е
+  \begin{displaymath}
+    \Dist(P_0, l) = \Abs{F(x_0, y_0)},
+  \end{displaymath}
+  а величината $\ODist(P, l) = F(x_0, y_0)$ се нарича \underline{ориентирано разстояние} между $P_0$ и $l$.
+\end{theorem}
+\begin{proof}
+  Нека $P_1(x_1, y_1)$ е ортогоналната проекция на $P_0$ върху $l$. Понеже $\V{P_0 P_1} \perp l$, то $\V{P_0 P_1} \parallel n(\alpha, \beta)$, следователно $\exists \lambda \in \R: \V{P_0 P_1} = \lambda n$. Тогава
+  \begin{displaymath}
+    \Dist(P_0, l)
+    =
+    \Norm{\V{P_0 P_1}}
+    =
+    \Abs{\lambda} \Norm{n}
+    =
+    \Abs{\lambda}.
+  \end{displaymath}
+
+  Намираме $\lambda$ от $\V{P_0 P_1}(x_1 - x_0, y_1 - y_0) = \lambda n(\alpha, \beta)$:
+  \begin{displaymath}
+    \begin{cases}
+      x_1 - x_0 = \lambda \alpha \\
+      y_1 - y_0 = \lambda \beta
+    \end{cases}
+    \sim
+    \begin{cases}
+      x_1 = x_0 + \lambda \alpha \\
+      y_1 = y_0 + \lambda \beta.
+    \end{cases}
+  \end{displaymath}
+
+  Заместваме в нормалното уравнение на $l$:
+  \begin{align*}
+    \alpha x_1 + \beta y_1 + \gamma &= 0,
+    \\
+    \alpha (x_0 + \lambda \alpha) + \beta (y_0 + \lambda \beta) + \gamma &= 0,
+    \\
+    (\alpha x_0 + \beta y_0 + \gamma) + \lambda(\alpha^2 + \beta^2) &= 0,
+    \\
+    F(x_0, y_0) + \lambda &= 0,
+  \end{align*}
+  откъдето следва $\lambda = -F(x_0, y_0)$ и $\Dist(P_0, l) = \Abs{\lambda} = \Abs{F(x_0, y_0)}$.
+\end{proof}
+
+\begin{definition}
+  \underline{Ъгъл между две прави} ще наричаме по-малкия от двата ъгъла, които те сключват.
+\end{definition}
+
+\begin{theorem}
+  Нека са дадени правите $l_1$ и $l_2$ с нормални уравнения спрямо $K$
+  \begin{displaymath}
+    l_i: \alpha_i x + \beta_i y + \gamma_i = 0, i = 1, 2.
+  \end{displaymath}
+
+  Тогава за ъгълът между $l_1$ и $l_2$ е $\angle(l_1, l_2) = \arccos \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2}$.
+\end{theorem}
+\begin{proof}
+  Нека векторите $n_i(\alpha_i, \beta_i)$ са нормални за $n_i, i = 1, 2$.
+
+  Разглеждаме два случая:
+  \begin{enumerate}
+    \item Ако $0 < \angle(n_1, n_2) \leq \frac {\pi} 2$, то $\angle(l_1, l_2) = \angle(n_1, n_2)$ и
+    \begin{displaymath}
+      \cos \angle (l_1, l_2)
+      =
+      \cos \angle(n_1, n_2)
+      =
+      \Abs{\cos \angle (n_1, n_2)}.
+    \end{displaymath}
+
+    \item Ако $\frac {\pi} 2 < \angle(n_1, n_2) \leq \pi$, то $\angle(l_1, l_2) = \pi - \angle(n_1, n_2)$
+    \begin{displaymath}
+      \cos \angle (l_1, l_2)
+      =
+      \cos (\pi - \angle(n_1, n_2))
+      =
+      -\cos \angle(n_1, n_2)
+      =
+      \Abs{\cos \angle (n_1, n_2)}.
+    \end{displaymath}
+  \end{enumerate}
+
+  И в двата случая имаме
+  \begin{displaymath}
+    \cos \angle(l_1, l_2)
+    =
+    \Abs{\cos \angle(n_1, n_2)}
+    =
+    \frac {\Abs {\Prod {n_1} {n_2}}} {\Norm{n_1} \Norm{n_2}}
+    =
+    \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2}
+  \end{displaymath}
+  и
+  \begin{displaymath}
+    \angle(l_1, l_2)
+    =
+    \arccos \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2}.
+  \end{displaymath}
 \end{proof}
 
 \section{Примерни задачи (от~\cite{Notes})}
@@ -219,7 +469,7 @@
 
     И така, $l$ има общо уравнение $l: 3x + 4y + 5 = 0$.
 
-    \item Правата $m$ е перпендикулярна на $b$, следователно нормалните вектори на $b$ (например $N_b(5, -12)$) са колинеарни с $m$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in m \iff \V{BP} \parallel N_b$ намираме общото уравнение
+    \item Правата $m$ е перпендикулярна на $b$, следователно нормалните вектори на $b$ (например $n_b(5, -12)$) са колинеарни с $m$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in m \iff \V{BP} \parallel n_b$ намираме общото уравнение
     \begin{displaymath}
       m: \det
       \begin{pmatrix}
@@ -241,7 +491,7 @@
       \text{ или } AB: x + y + 1 = 0.
     \end{displaymath}
 
-    \item Нека $B'$ има спрямо $K$ координати $B'(x', y')$. Първо намираме правата $BB'$ от условието $BB' \perp a$, което е еквивалентно на $BB' \parallel N_a(3, 4)$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in BB' \iff \V{BP} \parallel N_a$ намираме общото уравнение
+    \item Нека $B'$ има спрямо $K$ координати $B'(x', y')$. Първо намираме правата $BB'$ от условието $BB' \perp a$, което е еквивалентно на $BB' \parallel n_a(3, 4)$. Нека $\Point P$ има координати $(x, y)$ спрямо $K$. От условието $P \in BB' \iff \V{BP} \parallel n_a$ намираме общото уравнение
     \begin{displaymath}
       BB': \det
       \begin{pmatrix}
@@ -289,10 +539,10 @@
 
     \item Разстоянието $\Dist(A, a)$ намираме от ориентираното разстояние $\ODist(A, a)$:
     \begin{displaymath}
-      \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {N_a}},
+      \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {n_a}},
     \end{displaymath}
 
-    където $F_a(x, y) = 3x + 4y + 2$ е лявата част на зададеното общо уравнение на $a$, а $N_a(3, 4)$ е съответният нормален вектор. Директно пресмятаме разстоянието и получаваме
+    където $F_a(x, y) = 3x + 4y + 2$ е лявата част на зададеното общо уравнение на $a$, а $n_a(3, 4)$ е съответният нормален вектор. Директно пресмятаме разстоянието и получаваме
     \begin{displaymath}
       \Dist(A, a) = \frac {\Abs{3 \cdot 1 + 4 \cdot (-2) + 2}} 5 = \frac 3 5.
     \end{displaymath}
@@ -305,9 +555,9 @@
       u_2&: 14x + 112y + 21 = 0.
     \end{align*}
 
-    \item Ъгълът между $a$ и $b$ намираме чрез нормалните им вектори $N_a(3, 5)$ и $N_b(5, -12)$:
+    \item Ъгълът между $a$ и $b$ намираме чрез нормалните им вектори $n_a(3, 5)$ и $n_b(5, -12)$:
     \begin{displaymath}
-      \angle(a, b) = \arccos \frac {\Abs{\Prod{N_a} {N_b}}} {\Norm{N_a} \Norm{N_b}} = \arccos \Abs {- \frac {33} {65}} = \arccos \frac {33} {65}
+      \angle(a, b) = \arccos \frac {\Abs{\Prod{n_a} {n_b}}} {\Norm{n_a} \Norm{n_b}} = \arccos \Abs {- \frac {33} {65}} = \arccos \frac {33} {65}
     \end{displaymath}
 
     \item Координатите на пресечната точка $T = a \cap b$ намираме от системата
@@ -401,9 +651,9 @@
 \begin{solution}
   \mbox{}
   \begin{enumerate}
-    \item Намираме координатите на ортогоналната проекция $M_a$ на точката $M$ върху $a$, използвайки нормален за $a$ вектор $N_a(1, 1)$.
+    \item Намираме координатите на ортогоналната проекция $M_a$ на точката $M$ върху $a$, използвайки нормален за $a$ вектор $n_a(1, 1)$.
 
-    От условието $N_a \parallel \V{M M_a}$ намираме ограничението
+    От условието $n_a \parallel \V{M M_a}$ намираме ограничението
     \begin{displaymath}
       M_a(x, y): \det
       \begin{pmatrix}
@@ -521,9 +771,9 @@
       \boxed{x - 3y - z + 4 = 0}.
     \end{multline*}
 
-    \item Правата $h$ е успоредна на нормалния за $\alpha$ вектор на $N_\alpha(1, -3, -1)$, следователно тя има векторно параметрично уравнение
+    \item Правата $h$ е успоредна на нормалния за $\alpha$ вектор на $n_\alpha(1, -3, -1)$, следователно тя има векторно параметрично уравнение
     \begin{displaymath}
-      h: \V{OD} + \lambda N_\alpha, \lambda \in \R
+      h: \V{OD} + \lambda n_\alpha, \lambda \in \R
     \end{displaymath}
     и, съответно, скаларно параметрично уравнение
     \begin{displaymath}
@@ -604,9 +854,9 @@
       \mu \in \R.
     \end{displaymath}
 
-    \item Тъй като вече разполагаме с координатите на ортогонално симетричната на $D$ относно $\alpha$ точка $D'$ и нормалният за $\alpha$ вектор $N_\beta(1, 1, -1)$, можем да намерим векторно параметрично уравнения на правата $l'$:
+    \item Тъй като вече разполагаме с координатите на ортогонално симетричната на $D$ относно $\alpha$ точка $D'$ и нормалният за $\alpha$ вектор $n_\beta(1, 1, -1)$, можем да намерим векторно параметрично уравнения на правата $l'$:
     \begin{displaymath}
-      l': \V{OD'} + \nu N_\beta, \nu \in \R
+      l': \V{OD'} + \nu n_\beta, \nu \in \R
     \end{displaymath}
     и, съответно, скаларното параметрично уравнение
     \begin{displaymath}
@@ -658,7 +908,7 @@
       = (x - 3) - (-1)(z - 4) = \boxed{x + z - 7 = 0}.
     \end{displaymath}
 
-    \item Имаме, че $\Point D'(-2, 3, 4) \in l'$ и векторът $N_\beta(1, 1, -1)'$ е направляващ за $l'$, а $v(1, 0, 1)$ е направляващ за $m$. Нека $\Point P$ има спрямо $K$ координати $(x, y, z)$. Тогава $\Point P \in \pi_2$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $N_\beta$ и $v$, т.е.
+    \item Имаме, че $\Point D'(-2, 3, 4) \in l'$ и векторът $n_\beta(1, 1, -1)'$ е направляващ за $l'$, а $v(1, 0, 1)$ е направляващ за $m$. Нека $\Point P$ има спрямо $K$ координати $(x, y, z)$. Тогава $\Point P \in \pi_2$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $n_\beta$ и $v$, т.е.
     \begin{displaymath}
       \pi_2: \det
       \begin{pmatrix}
@@ -669,7 +919,7 @@
       = (x + 2) + (y - 3)(-1) - (z - 4) - (y - 3) = \boxed{x - 2y - z + 12 = 0}.
     \end{displaymath}
 
-    \item Аналогично на $\pi_2$, имаме, че $\Point P \in \pi_3$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $N_\beta$ и $N_\alpha(1, -3, -1)$
+    \item Аналогично на $\pi_2$, имаме, че $\Point P \in \pi_3$ точно тогава, когато са колинеарни векторите $\V{D'P}$, $n_\beta$ и $n_\alpha(1, -3, -1)$
     \begin{multline*}
       \pi_3: \det
       \begin{pmatrix}
