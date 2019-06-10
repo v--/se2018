@@ -76,11 +76,11 @@
 
 \subsection{Задачи}
 
-Не е даден списък с възможни задачи, затова съм включил всички задачи, свързани с материала, които са давани на упражнения.
+Не е даден списък с възможни задачи, затова съм включил всички видове задачи, свързани с материала, които са давани на упражнения.
 
 \section{Теория (от~\cite{Notes})}
 
-\subsection{Права в равнината}
+\subsection{Прави в равнината}
 
 Нека $K = Oxy$ е афинна координатна система в равнината $A_2$. Векторите в $A_2$ ще означаваме с $V_2$.
 
@@ -107,7 +107,7 @@
 Изхождайки от горната система, имаме $\lambda a b = b(x - x_0) = a(y - y_0)$, откъдето получаваме уравнението $l: bx + (-a)y + (-x_0 + y_0) = 0$.
 
 \begin{definition}
-  Всяко уравнение от вида $Ax + By + C = 0$, където $A, B, C \in \R$, а $A$ и $B$ не се анулират едновременно, наричаме \underline{общо уравнение} на права спрямо $K$.
+  Уравнение от вида $l: Ax + By + C = 0$, където $A, B, C \in \R$, а $A$ и $B$ не се анулират едновременно, наричаме \underline{общо уравнение на правата} $l$ спрямо $K$.
 \end{definition}
 
 Вече видяхме, че от всяка система скаларни параметрични уравнение за права $l$ можем да намерим поне едно общо уравнение за $l$.
@@ -162,8 +162,17 @@
   наричаме \underline{декартово уравнение} на $l$ спрямо $K$, а коефициента $k$ наричаме \underline{ъглов коефициент} на $l$ спрямо $K$.
 \end{definition}
 
+\begin{definition}
+  \mbox{}
+  \begin{enumerate}
+    \item \underline{Ъгъл между две кръстосани прави} ще наричаме по-малкия от двата ъгъла, които те сключват.
+    \item \underline{Ъгъл между два свободни вектора} ще наричаме по-малкия от двата ъгъла между два произволни техни представители с общо начало.
+    \item \underline{Ъгъл между два лъча} с общо начало ще наричаме по-малкия от двата ъгъла, които те сключват.
+  \end{enumerate}
+\end{definition}
+
 \begin{proposition}
-  Нека координатната система $K = Oxy$ е ортонормирана, нека правата $l$ има спрямо $K$ декартово уравнение $l: y = kx + m$. Дефинираме лъчът $r\Ray : y = kx + m > 0$ върху $l$. Тогава $\tan \angle(r\Ray, Ox) = k$.
+  Нека координатната система $K = Oxy$ е ортонормирана, нека правата $l$ има спрямо $K$ декартово уравнение $l: y = kx + m$. Дефинираме лъчът $r\Ray : y = kx + m \geq 0$ върху $l$. Тогава $\tan \angle(r\Ray, Ox) = k$.
 \end{proposition}
 \begin{proof}
   Нека $u$ е векторът с координати $u(1, k)$ спрямо $K$.
@@ -189,13 +198,13 @@
 
   \begin{align*}
     L \coloneqq \begin{pmatrix}
-      A_1 & B_1 & C_1 \\
-      A_2 & B_2 & C_2
+      A_1 & B_1 \\
+      A_2 & B_2
     \end{pmatrix}
     &&
     \tilde L \coloneqq \begin{pmatrix}
-      A_1 & B_1 & C_1 & D_1 \\
-      A_2 & B_2 & C_2 & D_2
+      A_1 & B_1 & C_1 \\
+      A_2 & B_2 & C_2
     \end{pmatrix}.
   \end{align*}
 
@@ -224,7 +233,7 @@
     \end{pmatrix}
     =
     \begin{pmatrix}
-      -D_1 \\ -D_2
+      -C_1 \\ -C_2
     \end{pmatrix},
   \end{equation}
   което ни дава едновременните решения на уравненията (\ref{thm:line-position:scalar-equations}).
@@ -280,7 +289,7 @@
 \end{definition}
 
 \begin{proposition}
-  Ако правата $l$ има общо уравнение $l: Ax + By + C = 0$ спрямо $K$, то
+  Ако правата $l$ има общо уравнение $l: Ax + By + C = 0$ спрямо $K$ и $K$ е ортонормирана, то
   \begin{enumerate}
     \item векторът $v(-B, A)$ е ненулев и успореден на $l$.
     \item векторът $n(A, B)$ е ненулев и нормален за $l$.
@@ -295,7 +304,7 @@
     \end{displaymath}
      Тогава $\V{P_0 P_1} \parallel l$. Но векторът $\V{P_0 P_1}(-B, A)$ е равен на $v$, следователно $v \parallel l$.
 
-    \item Имаме
+    \item Тъй като координатната система $K$ е ортонормирана, имаме
     \begin{displaymath}
       \Prod v n = -AB + AB = 0,
     \end{displaymath}
@@ -304,11 +313,11 @@
 \end{proof}
 
 \begin{definition}
-  Общото уравнение $l: \alpha x + \beta y + \gamma = 0$ на права $l$ спрямо $K$ се нарича \underline{нормално}, ако е изпълнено условието $\Norm{n(\alpha, \beta)}^2 = \alpha^2 + \beta^2 = 1$.
+  Общото уравнение $l: \alpha x + \beta y + \gamma = 0$ на права $l$ спрямо ортонормирана $K$ се нарича \underline{нормално}, ако е изпълнено условието $\Norm{n(\alpha, \beta)}^2 = \alpha^2 + \beta^2 = 1$.
 \end{definition}
 
 \begin{proposition}
-  Всяка права $l$ има спрямо $K$ точно две нормални уравнения.
+  Всяка права има спрямо $K$ точно две нормални уравнения.
 \end{proposition}
 \begin{proof}
   Нека $l$ има спрямо $K$ общо уравнение $l: Ax + By + C = 0$. Тогава всевъзможните общи уравнения на $l$ спрямо $K$ имат вида
@@ -325,7 +334,7 @@
 \end{proof}
 
 \begin{theorem}
-  Нека са дадени точката $P_0(x_0, y_0)$ и правата $l$ с нормално уравнение спрямо $K$
+  Нека са дадени точката $P_0(x_0, y_0)$ и правата $l$ с нормално уравнение спрямо ортонормирана $K$
   \begin{displaymath}
     l: \alpha x + \beta y + \gamma = 0.
   \end{displaymath}
@@ -374,12 +383,8 @@
   откъдето следва $\lambda = -F(x_0, y_0)$ и $\Dist(P_0, l) = \Abs{\lambda} = \Abs{F(x_0, y_0)}$.
 \end{proof}
 
-\begin{definition}
-  \underline{Ъгъл между две прави} ще наричаме по-малкия от двата ъгъла, които те сключват.
-\end{definition}
-
 \begin{theorem}
-  Нека са дадени правите $l_1$ и $l_2$ с нормални уравнения спрямо $K$
+  Нека са дадени правите $l_1$ и $l_2$ с нормални уравнения спрямо ортонормирана $K$
   \begin{displaymath}
     l_i: \alpha_i x + \beta_i y + \gamma_i = 0, i = 1, 2.
   \end{displaymath}
@@ -430,9 +435,79 @@
   \end{displaymath}
 \end{proof}
 
+\subsection{Равнини в пространството}
+
+Нека $K = Oxyz$ е афинна координатна система в пространството $A_3$. Векторите в $A_3$ ще означаваме с $V_3$.
+
+Тук само ще формулираме нужните теореми, тъй като доказателствата са напълно аналогични на тези за прави в равнината.
+
+\begin{definition}
+  Уравнение от вида $\pi: Ax + By + Cz + D = 0$, където $A, B, C, D \in \R$, а $A$, $B$ и $C$ не се анулират едновременно, наричаме \underline{общо уравнение на равнината} $\pi$ спрямо $K$.
+\end{definition}
+
+\begin{proposition}
+  Всяка равнина има поне едно общо уравнение спрямо $K$ и всяко общо уравнение задава точно една равнина спрямо $K$.
+\end{proposition}
+
+\begin{theorem}
+  Нека правите $\alpha_1$ и $\alpha_2$ имат спрямо $K$ общи уравнения
+  \begin{equation}\label{thm:line-position:scalar-equations}
+    \pi_i : A_i x + B_i y + C_i z + D_i, i = 1, 2.
+  \end{equation}
+
+  Означаваме
+
+  \begin{align*}
+    L \coloneqq \begin{pmatrix}
+      A_1 & B_1 & C_1 \\
+      A_2 & B_2 & C_2
+    \end{pmatrix}
+    &&
+    \tilde L \coloneqq \begin{pmatrix}
+      A_1 & B_1 & C_1 & D_1 \\
+      A_2 & B_2 & C_2 & D_2
+    \end{pmatrix}.
+  \end{align*}
+
+  Тогава
+  \begin{enumerate}
+    \item $\pi_1 \equiv \pi_2 \iff \Rank L = \Rank \tilde L = 1$.
+    \item $\pi_1 \parallel \pi_2$, но $\pi_1 \nequiv \pi_2 \iff 1 = \Rank L < \Rank \tilde L = 2$.
+    \item $\pi_1$ и $\pi_2$ са пресекателни $\iff \Rank L = \Rank \tilde L = 2$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+  Всеки вектор, перпендикулярен на някоя равнина $\pi$, се нарича \underline{нормален} за $\pi$.
+\end{definition}
+
+\begin{proposition}
+  Ако равнината $\pi$ има общо уравнение $\pi: Ax + By + Cz + D = 0$ спрямо $K$ и $K$ е ортонормирана, то векторът $n(A, B, C)$ е ненулев и нормален за $l$.
+\end{proposition}
+
+\begin{definition}
+  Общото уравнение $\pi: \alpha x + \beta y + \gamma z + \delta = 0$ на равнина $\pi$ спрямо ортонормирана $K$ се нарича \underline{нормално}, ако е изпълнено условието $\Norm{n(\alpha, \beta, \gamma)}^2 = \alpha^2 + \beta^2 + \gamma^2 = 1$.
+\end{definition}
+
+\begin{proposition}
+  Всяка равнина има спрямо ортонормирана $K$ точно две нормални уравнения.
+\end{proposition}
+
+\begin{theorem}
+  Нека са дадени точката $P_0(x_0, y_0, z_0)$ и равнината $\pi$ с нормално уравнение спрямо ортонормирана $K$
+  \begin{displaymath}
+    \pi: \alpha x + \beta y + \gamma z + \delta = 0.
+  \end{displaymath}
+
+  Означаваме $F(x, y, z) = \alpha x + \beta y + \gamma z + \delta$. Тогава разстоянието между $P_0$ и $\pi$ е
+  \begin{displaymath}
+    \Dist(P_0, \pi) = \Abs{F(x_0, y_0, z_0)},
+  \end{displaymath}
+  а величината $\ODist(P, \pi) = F(x_0, y_0, z_0)$ се нарича \underline{ориентирано разстояние} между $P_0$ и $\pi$.
+\end{theorem}
 \section{Примерни задачи (от~\cite{Notes})}
 
-\subsection{Права в равнината}
+\subsection{Прави в равнината}
 
 \begin{exercise}
   Точките $A$ и $B$ и правите $a$ и $b$ имат спрямо ортонормирана координатна система $K = Oxy$ координати $A(1, -2)$, $B(0, -1)$ и общи уравнения
@@ -724,7 +799,7 @@
   \end{enumerate}
 \end{solution}
 
-\subsection{Равнина в пространството}
+\subsection{Равнини в пространството}
 
 \begin{exercise}
   В пространството е зададена ортонормирана координатна система $K = Oxyz$. Спрямо нея точките $A$, $B$, $C$ и $D$ имат координати
@@ -937,7 +1012,7 @@
   \end{enumerate}
 \end{solution}
 
-\subsection{Права в пространството}
+\subsection{Прави в пространството}
 
 \begin{exercise}
   В пространството е зададена ортонормирана координатна система $K = Oxyz$. Спрямо нея кръстосаните прави $g$ и $h$ имат скаларни параметрични уравнения
@@ -1091,7 +1166,7 @@
   \end{enumerate}
 \end{solution}
 
-\subsection{Канонизиране на крива от втора степен}
+\subsection{Канонизиране на криви от втора степен}
 
 \begin{exercise}
   Спрямо ортонормирана координатна система $K = Oxy$ е зададена кривата
