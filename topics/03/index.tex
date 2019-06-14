@@ -18,6 +18,9 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 
+% Misc packages
+\usepackage{polynom} % Polynomial long division
+
 % Custom packages
 \usepackage{../../common/macros}
 \usepackage{../../common/theorems}
@@ -29,7 +32,7 @@
 \title{Тема 3}
 \subtitle{Полиноми на една променлива. Теорема за деление с остатък. Най-голям общ делител на полиноми - тъждество на Безу и алгоритъм на Евклид. Зависимост между корени и коефициенти на полиноми (формули на Виет).}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
-\date{6 юни 2019}
+\date{15 юни 2019}
 
 \begin{document}
 
@@ -272,7 +275,7 @@
 \end{proof}
 
 \begin{definition}
-  Казваме, че един полином $d \in F[x]$ е \underline{най-голям общ делител} (НОД) на $p \in F[x]$ и $q \in F[x]$, ако $d$ дели $p$ и $q$ и ако всеки общ делител на $p$ и $q$ дели $d$. За определеност взимаме $d$ да бъде унитарен и пишем $d = \GCD(p, q)$.
+  Казваме, че един полином $d \in F[x]$ е \underline{най-голям общ делител} (НОД) на $p \in F[x]$ и $q \in F[x]$, ако $d$ дели $p$ и $q$ и ако всеки общ делител на $p$ и $q$ дели $d$. Ако не е казано иначе, за определеност взимаме $d$ да бъде унитарен и пишем $d = \GCD(p, q)$.
 
   Казваме, че полиномите $p$ и $q$ са \underline{взаимно прости}, ако $\GCD(p, q) = 1$.
 
@@ -314,7 +317,7 @@
       \item Ако $r \neq 0$ и $\deg r < \deg p_{k-1}$, полагаме $f_k \coloneqq r$ и алгоритъмът преминава към стъпка $k + 1$.
     \end{enumerate}
 
-  Твърдим, че така построената редица е крайна с дължина $m$ и освен това $f_m = \LC(p_m) \GCD(p, q)$.
+  Твърдим, че така построената редица е крайна с дължина $m$ и освен това $\GCD(p, q) = f_m$.
 \end{theorem}
 \begin{proof}
   Тъй като построяваме редица със строго намаляващи степени (с евентуално изключение $\deg p_{-1} < \deg p_0$), тази редица непременно е крайна. Нека $m$ е дължината ѝ.
@@ -333,7 +336,7 @@
   \begin{displaymath}
     p_1 = p - qs = g h_1 - g h_2 s = g (h_1 - h_2 s),
   \end{displaymath}
-  следователно $g$ дели $p_1$. Със същото разсъждение и с индукция по $i = 1, \ldots, m$ стигаме до извода, че $g$ дели $p_i$, в частност $g$ дели $p_m$. Следователно $p_m$ е, с точност до ненулев множител, НОД на $p$ и $q$, т.е. $p_m = \LC(p_m) \GCD(p, q)$.
+  следователно $g$ дели $p_1$. Със същото разсъждение и с индукция по $i = 1, \ldots, m$ стигаме до извода, че $g$ дели $p_i$, в частност $g$ дели $p_m$. Следователно $p_m = \GCD(p, q)$.
 \end{proof}
 
 \begin{theorem}[Формули на Виет]
@@ -401,7 +404,87 @@
   \end{align*}
 \end{proof}
 
-% \section{Примерни задачи (от~\cite{Knapp})}
+\section{Примерни задачи (от~\cite{PolynomialExercises})}
+
+\subsection{Най-голям общ делител на полиноми}
+
+\begin{exercise}
+  \mbox{}
+  \begin{enumerate}
+    \item Да се намери най-големият общ делител $d(x)$ на полиномите
+    \begin{align*}
+      f(x) &\coloneqq x^3 + x^2 + x + 1, \\
+      g(x) &\coloneqq x^2 - x + 2.
+    \end{align*}
+
+    \item Да се намерят полиноми $u(x)$ и $v(x)$, за които е изпълнено тъждеството на Безу
+    \begin{displaymath}
+      d(x) = f(x) u(x) + g(x) v(x).
+    \end{displaymath}
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \mbox{}
+  \begin{enumerate}
+    \item Делим $f(x)$ на $g(x)$:
+    \begin{displaymath}
+      \polylongdiv {x^3 + x^2 + x + 1} {x^2 - x + 2},
+    \end{displaymath}
+
+    Делим $g(x)$ на $f_1(x) \coloneqq x - 3$:
+    \begin{displaymath}
+      \polylongdiv {x^2 - x + 2} {x - 3},
+    \end{displaymath}
+
+    Полиномът $f_2(x) \coloneqq 8$ дели $f_1(x)$, следователно $d(x) = f_2(x) = \GCD(f, g) = 8$ и $f(x)$ и $g(x)$ са взаимно прости.
+
+    \item Изразяваме остатъците от деленето при алгоритъма на Евклид:
+    \begin{align*}
+      f_1(x)
+      &=
+      f(x) - (x + 2) g(x),
+      \\
+      d(x)
+      &=
+      g(x) - (x + 2) f_1(x)
+      =
+      g(x) - (x + 2) [f(x) - (x + 2) g(x)]
+      = \\ &=
+      (x + 2) f(x) + [{(x + 2)}^2 + 1] g(x)
+      =
+      \boxed{(x + 2) f(x) + (x^2 + 4x + 5) g(x)}.
+    \end{align*}
+  \end{enumerate}
+\end{solution}
+
+\subsection{Формули на Виет}
+
+\begin{exercise}
+  За кои стойности на параметъра $p \in \R$ корените $x_1, \ldots, x_4$ на полинома
+  \begin{displaymath}
+    f(x) = x^4 - 8x^3 + 22x^2 + px + 16
+  \end{displaymath}
+  изпълняват равенството $x_1 + x_2 + x_3 = x_4$?
+\end{exercise}
+\begin{solution}
+  Заместваме $x_4 = x_1 + x_2 + x_3$ във формулите на Виет:
+  \begin{align*}
+    8 &= (x_1 + x_2 + x_3) + x_4 = 2x_4 = 8
+    \\&\implies
+    x_4 = 4,
+    \\ \\
+    22 &= x_1 x_2 + x_1 x_3 + x_1 x_4 + x_2 x_3 + x_2 x_4 + x_3 x_4 = x_1 x_2 + x_1 x_3 + x_2 x_3 + (x_1 + x_2 + x_3) x_4
+    \\&\implies
+    x_1 x_2 + x_1 x_3 + x_2 x_3 = 6,
+    \\ \\
+    -p &= x_1 x_2 x_3 + x_1 x_2 x_4 + x_1 x_3 x_4 + x_2 x_3 x_4 = x_1 x_2 x_3 + (x_1 x_2 + x_1 x_3 + x_2 x_3) x_4 \\&\implies
+    x_1 x_2 x_3 = -p - 24,
+    \\ \\
+    16 &= (x_1 x_2 x_3) x_4
+    \\&\implies
+    (-p - 24) 4 = 16 \implies p = -28.
+  \end{align*}
+\end{solution}
 
 \printbibliography
 
