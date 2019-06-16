@@ -2,7 +2,7 @@
 % arara: biber
 % arara: pdflatex: { shell: true }
 
-\documentclass[numbers=endperiod, DIV=15]{scrartcl}
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
 
 % Base packages
 \usepackage[T2A]{fontenc}
@@ -38,7 +38,9 @@
 
 \maketitle
 
-\section{Анотация (от~\cite{Syllabus})}
+\section{Анотация}
+
+От~\cite{Syllabus}.
 
 \subsection{Теория}
 
@@ -64,7 +66,9 @@
   \item Прилагане на формулите на Виет за полином с числови коефициенти
 \end{enumerate}
 
-\section{Тема (от~\cite{Notes} и~\cite{Knapp})}
+\section{Теория}
+
+Някои твърдения и доказателства са взаимствани от~\cite{RoyachkiNotes} и~\cite{Knapp}.
 
 Нека $F$ е фиксирано поле. За удобство ще означаваме с $0$ и $1$ съответно нулевият и единичният елемент на полето.
 
@@ -404,7 +408,9 @@
   \end{align*}
 \end{proof}
 
-\section{Примерни задачи (от~\cite{PolynomialExercises})}
+\section{Примерни задачи}
+
+Условията на представените задачи са взети от~\cite{PolynomialExercises}.
 
 \subsection{Най-голям общ делител на полиноми}
 
@@ -486,7 +492,6 @@
   \end{align*}
 \end{solution}
 
-\section{Библиография}
 \printbibliography
 
 \end{document}

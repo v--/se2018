@@ -2,7 +2,7 @@
 % arara: biber
 % arara: pdflatex: { shell: true }
 
-\documentclass[numbers=endperiod, DIV=15]{scrartcl}
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
 
 % Base packages
 \usepackage[T2A]{fontenc}
@@ -44,7 +44,9 @@
 
 \maketitle
 
-\section{Анотация (от~\cite{Syllabus})}
+\section{Анотация}
+
+От~\cite{Syllabus}.
 
 \subsection{Теория}
 
@@ -80,7 +82,9 @@
 
 Не е даден списък с възможни задачи, затова съм включил всички видове задачи, свързани с материала, които са давани на упражнения.
 
-\section{Теория (от~\cite{Notes})}
+\section{Теория}
+
+Теорията е до голяма степен базирана на~\cite{Notes}.
 
 \subsection{Прави в равнината}
 
@@ -926,7 +930,9 @@
   \end{theorem}
 \end{definition}
 
-\section{Примерни задачи (от~\cite{Notes})}
+\section{Примерни задачи}
+
+Включил съм няколко по-обширни задачи от~\cite{Notes}.
 
 \subsection{Прави в равнината}
 
@@ -1753,7 +1759,6 @@
   \end{enumerate}
 \end{solution}
 
-\section{Библиография}
 \printbibliography
 
 \end{document}
