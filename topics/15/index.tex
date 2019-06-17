@@ -67,7 +67,12 @@
 
   \underline{Разпределение на $\xi$} наричаме мярката
   \begin{displaymath}
-    \Prob_\xi(A) \coloneqq P(\xi \in A).
+    \Prob_\xi(A) \coloneqq \Prob(\xi \in A).
+  \end{displaymath}
+
+  Две случайни величини $\xi$ и $\eta$ наричаме \underline{независими}, ако за всички $A, B \in \F$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi \in A, \eta \in B) = \Prob_\xi(A) \Prob_\eta(B).
   \end{displaymath}
 
   Случайната величина $\xi$ наричаме \underline{дискретна} и казваме, че $\xi$ има \underline{дискретно разпределение}, ако тя приема крайно или изброимо много стойности $x_1, x_2, \ldots$ с вероятности съответно
@@ -154,8 +159,10 @@
   Произведението $c \xi$ за $c \in \R$ приема или само една стойност при $c = 0$, или същият брой стойности като $\xi$, следователно $c \xi$ също е дискретна случайна величина.
 \end{proof}
 
+До края на темата ще считаме, че работим над вероятностното пространство $(\Omega, \F, \Prob)$.
+
 \begin{definition}
-  Нека $\xi$ е дискретна случайна величина над $(\Omega, \F, \Prob)$ със стойности $x_1, x_2, \ldots$. Дефинираме \underline{очакване на $\xi$} чрез
+  Нека $\xi$ е дискретна случайна величина със стойности $x_1, x_2, \ldots$. Дефинираме \underline{очакване на $\xi$} чрез
   \begin{displaymath}
     \Expect(\xi) \coloneqq \sum_k x_k \Prob(\xi = x_k) = \sum_{\omega \in \Omega} \xi(\omega) P(\{ \omega \}).
   \end{displaymath}
@@ -178,32 +185,26 @@
   Оттук директно следва $\Expect(x) = \Expect(\Ind_x) = x$.
 \end{note}
 
-\begin{proposition}\label{thm:lotus}
-  Ако $\xi$ е (реална) случайна величина над $(\Omega, \F, \Prob)$ със стойности $x_1, x_2, \ldots$ и $\psi: \Complex \to \Complex$ е измерима функция, то $\psi(\xi)$ е (комплексна) случайна и е изпълнено
+\begin{proposition}\label{thm:expect-independent}
+  За независими дискретни случайни величини $\xi$ и $\eta$ с крайно очакване е изпълнено
   \begin{displaymath}
-    \Expect(\psi(\xi))
-    =
-    \sum_k \psi(x_k) P(\xi = x_k),
+    \Expect(\xi \eta) = \Expect(\xi) \Expect(\eta).
   \end{displaymath}
-  при условие, че горният ред а абсолютно сходящ.
 \end{proposition}
-
-\begin{note}
-  Допускаме $\phi$ да бъде комплексна функция, тъй като това ни е необходимо за дефинирането на характеристични функции.
-\end{note}
-
 \begin{proof}
-  Образът на крайно или измеримо множество е най-много измеримо, затова $\psi(\xi)$ приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на $\psi(\xi)$ са $y_1, y_2, \ldots$. Праобразите $\psi^{-1}(y_i)$ на $y_i, i = 1, 2, \ldots$ са крайни или изброими, непресичащи се и $\Image(\xi) = \cup_i \psi^{-1}(y_i)$. Имаме
+  Нека $x_1, x_2, \ldots$ и $y_1, y_2, \ldots$ са стойностите съответно на $\xi$ и $\eta$. Тогава
   \begin{multline*}
-    \Expect(\psi(\xi))
+    \Expect(\xi) \Expect(\eta)
     =
-    \sum_i y_i P(\psi(\xi) = y_i)
+    \left( \sum_i x_i \Prob(\xi = x_i) \right) \left( \sum_j y_j \Prob(\eta = y_j) \right)
     =
-    \sum_i y_i \sum_{x \in \psi^{-1}(y_i)} P(\xi = x)
+    \sum_{k=1}^\infty \sum_{m=1}^k x_m y_{k-m} \Prob(\xi = x_m) \Prob(\eta = y_{k-m})
     = \\ =
-    \sum_i \sum_{x \in \psi^{-1}(y_i)} \psi(x) P(\xi = x)
+    \sum_{k=1}^\infty \sum_{m=1}^k x_m y_{k-m} \Prob(\xi = x_m, \eta = y_{k-m})
     =
-    \sum_k \psi(x_k) P(\xi = x_k).
+    \sum_{i, j} x_i y_j \Prob(\xi = x_i, \eta = y_j)
+    =
+    \Expect(\xi \eta).
   \end{multline*}
 \end{proof}
 
@@ -241,9 +242,36 @@
   Видяхме и това, че дискретните случайни величини с крайно очакване са затворени относно събиране и умножение с число, с което доказваме, че те образуват линейно подпространство на всички дискретни случайни величини.
 \end{proof}
 
-Доказаните в твърдения~\ref{thm:lotus} и~\ref{thm:expect-linear} свойства на очакването значително опростяват работата с него.
+\begin{proposition}\label{thm:lotus}
+  Ако $\xi$ е (реална) дискретна случайна величина със стойности $x_1, x_2, \ldots$ и $\psi: \Complex \to \Complex$ е измерима функция, то $\psi(\xi)$ е (комплексна) случайна и е изпълнено
+  \begin{displaymath}
+    \Expect(\psi(\xi))
+    =
+    \sum_k \psi(x_k) P(\xi = x_k),
+  \end{displaymath}
+  при условие, че горният ред а абсолютно сходящ.
+\end{proposition}
 
-До края на темата ще считаме, че работим над вероятностното пространство $(\Omega, \F, \Prob)$.
+\begin{note}
+  Допускаме $\phi$ да бъде комплексна функция, тъй като това ни е необходимо за дефинирането на характеристични функции.
+\end{note}
+
+\begin{proof}
+  Образът на крайно или измеримо множество е най-много измеримо, затова $\psi(\xi)$ приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на $\psi(\xi)$ са $y_1, y_2, \ldots$. Праобразите $\psi^{-1}(y_i)$ на $y_i, i = 1, 2, \ldots$ са крайни или изброими, непресичащи се и $\Image(\xi) = \cup_i \psi^{-1}(y_i)$. Имаме
+  \begin{multline*}
+    \Expect(\psi(\xi))
+    =
+    \sum_i y_i P(\psi(\xi) = y_i)
+    =
+    \sum_i y_i \sum_{x \in \psi^{-1}(y_i)} P(\xi = x)
+    = \\ =
+    \sum_i \sum_{x \in \psi^{-1}(y_i)} \psi(x) P(\xi = x)
+    =
+    \sum_k \psi(x_k) P(\xi = x_k).
+  \end{multline*}
+\end{proof}
+
+Доказаните в твърдения~\ref{thm:expect-independent},~\ref{thm:expect-linear} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
   \underline{Дисперсия на случайната величина $\xi$} наричаме
@@ -266,7 +294,7 @@
   Случайни величини с дисперсия единица наричаме \underline{нормирани}, тъй като дисперсията играе ролята на норма в пространството на случайни величини с краен втори момент.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{thm:lower-order-moments}
   Ако $\Expect(\xi^n)$ съществува, съществуват и моментите от по-нисък ред $\Expect(\xi^k), k = 0, \ldots, n - 1$.
 \end{proposition}
 \begin{proof}
@@ -322,14 +350,14 @@
       \PGF_{\xi + \eta}(z) = \PGF_\xi(z) \PGF_\eta(z)
     \end{displaymath}
 
-    \item $P(\xi = k) = \frac {\PGF_\xi^{(k)}} {k!} (0)$, където $\PGF_\xi^{(k)}$ е $k$-тата производна на $\PGF_\xi$.
+    \item $P(\xi = m) = \frac {\PGF_\xi^{(m)}} {m!} (0)$, където $\PGF_\xi^{(m)}$ е $m$-тата производна на $\PGF_\xi$.
     \item Ако пораждащите функции на две целочислени дискретни случайни величини съвпадат, самите случайни величини съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
   \mbox{}
   \begin{enumerate}
-    \item $\PGF_\xi(z)$ се дефинира чрез степенен ред. За да докажем, че тя е аналитична в някоя област, е достатъчно да покажем сходимост на степенния ред в тази област. Използваме това, че за произволно събитие $A$ имаме $0 \leq \Prob(A) \leq 1$, и оценяваме сумата отгоре
+    \item $\PGF_\xi(z)$ се дефинира чрез степенен ред. За да докажем, че тя е аналитична в някоя област, е достатъчно да покажем сходимост на степенния ред в тази област. Използваме това, че за произволно събитие $A$ имаме $0 \leq \Prob(A) \leq 1$, и оценяваме редът отгоре
     \begin{displaymath}
       \Abs{\PGF_\xi(z)}
       =
@@ -358,50 +386,49 @@
       \PGF_\xi(z) \PGF_\eta(z).
     \end{displaymath}
 
-    \item От аналитичността на $\PGF_\xi$ следва, че съществуват производни от произволен ред в някоя околност на $0$, при това стойността на тези производни в $0$ е равна на коефициентите пред съответните степени. Така получаваме
-
+    \item Разглеждаме степенния ред на $\PGF_\xi$:
     \begin{displaymath}
-      \PGF^{(k)}_\xi(0) = \frac {P(\xi = k)} {k!}
-      \implies
-      P(\xi = k) = k! \PGF^{(k)}_\xi(0).
+      \PGF_\xi(z)
+      =
+      \sum_{k=0}^\infty z^k \Prob(\xi = k)
+      =
+      \sum_{k=0}^{m-1} z^k \Prob(\xi = k) + z^m \Prob(\xi = m) + \sum_{k=m+1}^\infty z^k \Prob(\xi = k).
     \end{displaymath}
+
+    Аналитичността на $\PGF_\xi$ ни позволява да диференцираме очакването почленно. След $m$-кратно диференциране получаваме
+    \begin{displaymath}
+      \PGF_\xi^{(m)}(z)
+      =
+      \sum_{k=0}^{m-1} k! \cdot 0 \Prob(\xi = k) + m! \Prob(\xi = m) + \sum_{k=m+1}^\infty (k-m) \cdots (k-1) k z^{k-m} \Prob(\xi = k).
+    \end{displaymath}
+
+    Следователно $\PGF_\xi^{(m)}(0) = m! \Prob(\xi = m)$.
 
     \item Директно следва от изразяването на стойностите на $\xi$ и $\eta$ чрез производните на пораждащите ги функции.
   \end{enumerate}
 \end{proof}
 
 \begin{theorem}[Свойства на пораждащите моментите функции]
-  Нека $\xi$ и $\eta$ са независими дискретни случайни величини и нека стойностите на $\xi$ са $x_1, x_2, \ldots$.
+  Нека $\xi$ и $\eta$ са независими дискретни случайни величини.
 
   За пораждащите моментите функции $\MGF_\xi$ и $\MGF_\eta$ са изпълнени следните свойства
   \begin{enumerate}
-    \item $\MGF_\xi(0) = 1$ и ако тя е дефинирана и в някоя околност на $0$, пораждащата моментите функция е непрекъсната в тази околност.
+    \item В общия случай пораждащата моментите функция съществува само в $0$. Ако тя съществува в околност на $0$, то тя е гладка в тази околност, съществуват всички моменти и е изпълнено $\Expect(\xi^m) = \MGF_\xi^{(m)} (0)$ за $m = 1, 2, \ldots$.
 
     \item Ако пораждащите моментите функции на $\xi$, $\eta$ и $\xi + \eta$ съществуват в точка $t \in \R$, имаме
     \begin{displaymath}
       \MGF_{\xi + \eta}(t) = \MGF_\xi(t) \MGF_\eta(t).
     \end{displaymath}
 
-    \item Ако $\xi^n$ има краен $n$-ти момент, $n$-тата производна на $\MGF_\xi$ съществува в $0$ и е изпълнено $\Expect(\xi^n) = \MGF_\xi^{(n)} (0)$.
-
     \item Ако $\MGF_\xi$ и $\MGF_\eta$ имат обща дефиниционна област, в която те съвпадат, то $\xi$ и $\eta$ също съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
+  Нека стойностите на $\xi$ са $x_1, x_2, \ldots$.
+
   \mbox{}
   \begin{enumerate}
-    \item Директно пресмятаме $\MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1$. Ще покажем непрекъснатост. Ако допуснем, че $\MGF_\xi$ е дефинирана в околността $U$ на $0$, за $t \in U$ и достатъчно малко $u \in \R$, така че $t + u \in U$, имаме
-    \begin{displaymath}
-      \Abs{\MGF_\xi(t + h) - \MGF_\xi(t)}
-      =
-      \Abs{\Expect(e^{(t + h)\xi}) - \Expect(e^{t\xi})}
-      =
-      \Abs{\Expect(e^{t\xi} (e^{h\xi} - 1))}
-      \underset {h \to 0} \longrightarrow
-      0.
-    \end{displaymath}
-
-    \item Тъй като $\xi$ и $\eta$ са независими, за произволно $t \in \R$ величините $e^{t\xi}$ и $e^{t\eta}$ са независими и
+    \item Ако пораждащите моментите функции съществуват в $t \in \R$, тъй като $\xi$ и $\eta$ са независими, случайните величини $e^{t\xi}$ и $e^{t\eta}$ също са независими и
     \begin{displaymath}
       \MGF_{\xi + \eta}(t)
       =
@@ -414,56 +441,91 @@
       \MGF_\xi(t) \MGF_\eta(t).
     \end{displaymath}
 
-    \item Нека моментът $\Expect \xi^n$ съществува. Тогава съществуват и моментите от по-нисък ред и теоремата на Тейлър ни дава
+    \item Пораждащата моментите функция винаги съществува в $0$, тъй като $\MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1$.
+
+    Нека $\MGF_\xi$ съществува в околност $U$ на $0$. Без ограничение на общността ще считаме, че $U$ е ограничена. Полагаме $\tau \coloneqq \min(-\inf U, \sup_U)$. Тогава сумата $\MGF_\xi(-\tau) + \MGF_\xi(\tau)$ е крайна. Развиваме тази сума в ред на Тейлър:
     \begin{displaymath}
-      \MGF_\xi(t)
+      \MGF_\xi(-\tau) + \MGF_\xi(\tau)
       =
-      \Expect(e^{t\xi})
+      \Expect(e^{-\tau\xi} + e^{\tau\xi})
       =
-      \Expect \left( \sum_{k=0}^n \frac {\xi^k} {k!} t^k + o(t^{n+1}) \right)
+      \Expect\left( 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} \right)
       =
-      \sum_{k=0}^n \frac {\Expect(\xi^k)} {k!} t^k + o(t^{n+1}).
+      2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{displaymath}
 
-    След като диференцираме $n$ пъти по $t$ полученият израз, получаваме
-    \begin{displaymath}
-      \sum_{k=0}^{n-1} 0 \cdot \Expect(\xi^k) + \Expect(\xi^n) + o(t)
-      =
-      \Expect(\xi^n) + o(t).
-    \end{displaymath}
-    След граничен преход оттук следва, че $\MGF^{(n)}(t)$ съществува в $0$ и $\MGF^{(n)}_\xi(0) = \Expect(\xi^n)$.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От $\Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}})$ се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower-order-moments} съществуват и всички нечетни моменти.
+
+    Остава да докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{t\xi})$ в областта $\frac 1 {2^m} U = \{ \frac t {2^m} U \mid t \in U \}$.
+
+    Разглеждаме очакването на $m$-тата производна $\xi^m e^{t \xi}$ на $e^{t \xi}$ по $t$. Налице са условията за почленно диференциране на ред:
+    \begin{enumerate}
+      \item За $m > 0$ прилагаме неравенството на Коши-Буняковски-Шварц, за да докажем, че $\Expect \left( \xi^m e^{t \xi} \right)$ съществува за $t \in \frac 1 {2^m} U$:
+      \begin{multline*}
+        {\left(\Expect \left( \xi^m e^{t \xi} \right) \right)}^2
+        =
+        {\left(\sum_k x_k^m e^{t x_k} \Prob(\xi = x_k) \right)}^2
+        = \\ =
+        {\left(\sum_k (x_k^m \sqrt{\Prob(\xi = x_k)}) (e^{t x_k} \sqrt{\Prob(\xi = x_k)}) \right)}^2
+        \leq \\ \leq
+        \sum_k x_k^{2m} \Prob(\xi = x_k)
+        \sum_k e^{2t x_k} \Prob(\xi = x_k)
+        = \\ =
+        \Expect(\xi^{2m})
+        \Expect(e^{2t \xi})
+        =
+        \Expect(\xi^{2m})
+        \Char_\xi(2t).
+      \end{multline*}
+
+      \item Функцията $x \mapsto x^m e^{t x}$ е диференцируема по $t$ за всяко $x \in \Image(\xi)$.
+      \item Производната на $x^m e^{t x}$ по $t$ се мажорира по абсолютна стойност от
+      \begin{displaymath}
+        \Abs{x^{m+1} e^{t x}}
+        \leq
+        {\Abs{x}}^{m+1} \Abs{e^{t x}}
+        \leq
+        {\Abs{x}}^{m+1} e^{\Abs{t x}}
+        \leq
+        {\Abs{x}}^{m+1} e^{\tau \Abs{x}},
+      \end{displaymath}
+      където мажорантата не зависи от $t$.
+    \end{enumerate}
+
+    По индукция за $m = 1, 2, \ldots$ получаваме $\MGF^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$ в $\frac 1 {2^m} U$. В частност, $\MGF^{(m)}_\xi(0) = \Expect(\xi^m e^{0 \xi}) = \Expect(\xi^m)$.
 
     \item Нека $z_1, z_2, \ldots$ е обединение на стойностите на $\xi$ и $\eta$. Ако функциите $\MGF_\xi$ и $\MGF_\eta$ съвпадат в областта си на дефиниция $U$, за $t \in U$ имаме
     \begin{align*}
-      \MGF_\xi(t) - \MGF_\xi(t) &= 0
+      \MGF_\xi(t) - \MGF_\eta(t) &= 0
       \\
-      \sum_k e^{t z_k} \Prob(\xi = z_k) - \sum_k e^{t z_k} \Prob(\xi = z_k) &= 0
+      \sum_k e^{t z_k} \Prob(\xi = z_k) - \sum_k e^{t z_k} \Prob(\eta = z_k) &= 0
       \\
-      \sum_k e^{t z_k} (\Prob(\xi = z_k) - \Prob(\xi = y_k)) &= 0.
+      \sum_k e^{t z_k} (\Prob(\xi = z_k) - \Prob(\eta = z_k)) &= 0.
     \end{align*}
     Последното равенство е изпълнено за всяко $t \in U$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
 \begin{theorem}[Свойства на характеристичните функции]
-  Нека $\xi$ и $\eta$ са независими дискретни случайни величини и нека стойностите на $\xi$ са $x_1, x_2, \ldots$.
+  Нека $\xi$ и $\eta$ са независими дискретни случайни величини.
 
   За характеристичните функции $\Char_\xi$ и $\Char_\eta$ са изпълнени следните свойства
   \begin{enumerate}
     \item $\Char_\xi$ съществува и е равномерно непрекъсната навсякъде върху реалната права.
+
+    \item Ако $\xi^n$ има краен $n$-ти момент, е изпълнено $\Expect(\xi^m) = i^{-m} \Char_\xi^{(m)} (0)$ за $m = 1, \ldots, n$.
 
     \item За всяко $t \in \R$ имаме
     \begin{displaymath}
       \Char_{\xi + \eta}(t) = \Char_\xi(t) \Char_\eta(t).
     \end{displaymath}
 
-    \item За $n$-тия момент на $\xi$ е изпълнено $\Char(\xi^n) = i^{-n} \Char_\xi^{(n)} (0)$.
-
     \item Ако $\Char_\xi$ и $\Char_\eta$ съвпадат, то $\xi$ и $\eta$ също съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  Нека стойностите на $\xi$ са $x_1, x_2, \ldots$.
+
   \begin{enumerate}
     \item За да докажем, че $\Char_\xi$ е дефинирана навсякъде в $\R$, оценяваме отгоре абсолютната стойност на $\Char_\xi$ за $t \in \R$:
     \begin{displaymath}
@@ -496,7 +558,7 @@
     \end{multline*}
 
     Фиксираме $\varepsilon > 0$. Избираме константа $c_\varepsilon \in \R$ такава, че $\Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3$.
-    Въвеждаме две множества от индекси: $A \coloneqq \{ k = 1, 2, \ldots \mid x_k \leq c_\varepsilon \}$ и $B = \ZPos \setminus A$.
+    Въвеждаме две множества от индекси: $A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \}$ и $B = \ZPos \setminus A$.
 
     Ще използваме, че за всяко $z \in \Complex$ неравенството на Йенсен ни дава
     \begin{displaymath}
@@ -556,6 +618,35 @@
 
     Числото $\delta$ зависи само от $\varepsilon$, следователно $\Char_\xi(t)$ е равномерно непрекъсната върху цялата реална права.
 
+    \item Нека съществува моментът $\Expect \xi^n$. Тогава съществуват и моментите от по-нисък ред.
+
+    Ще докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{it \xi})$.
+
+    Разглеждаме очакването на $m$-тата производна $i^m \xi^m e^{it \xi}$ на $e^{it \xi}$ по $t$. Налице условията за почленно диференциране на ред:
+    \begin{enumerate}
+      \item $\Expect \left( i^m \xi^m e^{it \xi} \right)$ съществува за $t \in \R$, тъй като
+      \begin{multline*}
+        \Abs{\Expect \left( i^m \xi^m e^{it \xi} \right)}
+        =
+        \Abs{\Expect \left( \xi^m e^{it \xi} \right)}
+        =
+        \Abs{\sum_k x_k^m e^{it x_k} \Prob(\xi = x_k)}
+        \leq
+        \sum_k \Abs{x_k^m e^{it x_k} \Prob(\xi = x_k)}
+        = \\ =
+        \sum_k \Abs{x_k^m} \Abs{e^{it x_k}} \Prob(\xi = x_k)
+        =
+        \sum_k \Abs{x_k^m} \Prob(\xi = x_k)
+        =
+        \Expect \left( {\Abs{\xi^m}} \right).
+      \end{multline*}
+      Последното очакване е крайно, тъй като $\Expect(\Abs{\xi^0}) = 1$, а за $m > 0$ по условие редът $\Expect(\xi^m)$ е абсолютно сходящ.
+      \item Функцията $x \mapsto i^m x^m e^{it x}$ е диференцируема по $t$ за всяко $x \in \Image(\xi)$.
+      \item Производната на $i^m x^m e^{it x}$ по $t$ се мажорира по абсолютна стойност от $\Abs{x^{m+1} e^{it x}} \leq {\Abs{x}}^{m+1}$, където мажорантата не зависи от $t$.
+    \end{enumerate}
+
+    По индукция за $m = 1, \ldots, n$ получаваме $\Char^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$. В частност, $\Char^{(m)}_\xi(0) = i^m \Expect(\xi^m e^{0 \xi}) = i^m \Expect(\xi^m)$.
+
     \item Тъй като $\xi$ и $\eta$ са независими, за произволно $t \in \R$ величините $e^{t\xi}$ и $e^{t\eta}$ са независими и
     \begin{displaymath}
       \Char_{\xi + \eta}(t)
@@ -568,26 +659,6 @@
       =
       \Char_\xi(t) \Char_\eta(t).
     \end{displaymath}
-
-    \item Нека моментът $\Expect \xi^n$ съществува. Тогава съществуват и моментите от по-нисък ред и теоремата на Тейлър ни дава
-    \begin{displaymath}
-      \Char_\xi(t)
-      =
-      \Expect(e^{it\xi})
-      =
-      \Expect \left( \sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + R \right)
-      =
-      \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + R,
-    \end{displaymath}
-    където $\Abs R \sim o(t^{n+1})$.
-
-    След като диференцираме $n$ пъти по $t$ полученият израз, получаваме
-    \begin{displaymath}
-      \sum_{k=0}^{n-1} 0 \cdot i^k \Expect(\xi^k) + i^n \Expect(\xi^n) + R
-      =
-      i^n \Expect(\xi^n) + R.
-    \end{displaymath}
-    След граничен преход оттук следва, че $\Char^{(n)}(t)$ съществува в $0$ и $\Char^{(n)}_\xi(0) = i^{-n} \Expect(\xi^n)$.
 
     \item Нека $z_1, z_2, \ldots$ е обединение на стойностите на $\xi$ и $\eta$. Ако функциите $\Char_\xi$ и $\Char_\eta$ съвпадат, имаме
     \begin{align*}
