@@ -75,7 +75,7 @@
     p_k = P(\xi = x_k), k = 1, 2, \ldots.
   \end{displaymath}
 
-  Множеството от стойности на $\xi$ ще бележим с $\Image_\xi \coloneqq \{ x_1, x_2, \ldots \}$.
+  Множеството от стойности на $\xi$ ще бележим с $\Image(\xi) \coloneqq \{ x_1, x_2, \ldots \}$.
 \end{definition}
 
 \begin{theorem}\label{thm:rv-iff-pf}
@@ -101,24 +101,24 @@
     =
     \Prob(\cup_k \{ \omega \in \Omega \mid \xi(\omega) = x_k \})
     = \\ =
-    \Prob(\{ \omega \in \Omega \mid \xi(\omega) \in \Image_\xi \})
+    \Prob(\{ \omega \in \Omega \mid \xi(\omega) \in \Image(\xi) \})
     =
-    \Prob(\xi \in \Image_\xi)
+    \Prob(\xi \in \Image(\xi))
     =
     1.
   \end{multline*}
 
-  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}. Полагаме $\Image_\xi \coloneqq \{ p_1, p_2, \ldots \}$ и дефинираме функцията
+  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}. Полагаме $\Image(\xi) \coloneqq \{ p_1, p_2, \ldots \}$ и дефинираме функцията
   \begin{displaymath}
     \xi(\omega) \coloneqq \begin{cases}
-      \omega, \omega \in \Image_\xi \\
+      \omega, \omega \in \Image(\xi) \\
       0, \text{ иначе},
     \end{cases}
   \end{displaymath}
   която е измерима над $(\R, \BorelAlgebra(\R))$, тъй като за $B \in \BorelAlgebra(\R)$ имаме
   \begin{enumerate}
-    \item Ако $0 \in \Image_\xi$ или $0 \not\in B$, то $f^{-1} (B) \subseteq \Image_\xi$ е крайно или изброимо безкрайно множество, следователно $f^{-1} (B) \in \BorelAlgebra(\R)$.
-    \item Ако $0 \not\in \Image_\xi$ и $0 \in B$, имаме
+    \item Ако $0 \in \Image(\xi)$ или $0 \not\in B$, то $f^{-1} (B) \subseteq \Image(\xi)$ е крайно или изброимо безкрайно множество, следователно $f^{-1} (B) \in \BorelAlgebra(\R)$.
+    \item Ако $0 \not\in \Image(\xi)$ и $0 \in B$, имаме
     \begin{displaymath}
       f^{-1} (B)
       =
@@ -126,7 +126,7 @@
       =
       f^{-1} (\{ 0 \}) \cup f^{-1} (B \setminus \{ 0 \})
       =
-      (\R \setminus \Image_\xi) \cup f^{-1} (B \setminus \{ 0 \}),
+      (\R \setminus \Image(\xi)) \cup f^{-1} (B \setminus \{ 0 \}),
     \end{displaymath}
     което е обединение на две борелови множества, следователно $f^{-1} (B) \in \BorelAlgebra(\R)$.
   \end{enumerate}
@@ -149,7 +149,7 @@
 \begin{proof}
   Ще докажем само затвореността относно операциите, тъй като останалите аксиоми за линейно пространство са изпълнени по тривиални причини.
 
-  Сумата $\xi + \eta$ на две дискретни случайни величини приема стойности $x + y$ за $x \in \Image_\xi$ и $y \in \Image_\eta$, които са не повече от изброимо много, следователно $\xi + \eta$ също е дискретна случайна величина.
+  Сумата $\xi + \eta$ на две дискретни случайни величини приема стойности $x + y$ за $x \in \Image(\xi)$ и $y \in \Image(\eta)$, които са не повече от изброимо много, следователно $\xi + \eta$ също е дискретна случайна величина.
 
   Произведението $c \xi$ за $c \in \R$ приема или само една стойност при $c = 0$, или същият брой стойности като $\xi$, следователно $c \xi$ също е дискретна случайна величина.
 \end{proof}
@@ -193,7 +193,7 @@
 \end{note}
 
 \begin{proof}
-  Образът на крайно или измеримо множество е най-много измеримо, затова $\psi(\xi)$ приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на $\psi(\xi)$ са $y_1, y_2, \ldots$. Праобразите $\psi^{-1}(y_i)$ на $y_i, i = 1, 2, \ldots$ са крайни или изброими, непресичащи се и $\Image_\xi = \cup_i \psi^{-1}(y_i)$. Имаме
+  Образът на крайно или измеримо множество е най-много измеримо, затова $\psi(\xi)$ приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на $\psi(\xi)$ са $y_1, y_2, \ldots$. Праобразите $\psi^{-1}(y_i)$ на $y_i, i = 1, 2, \ldots$ са крайни или изброими, непресичащи се и $\Image(\xi) = \cup_i \psi^{-1}(y_i)$. Имаме
   \begin{multline*}
     \Expect(\psi(\xi))
     =
@@ -441,7 +441,7 @@
       \\
       \sum_k e^{t z_k} (\Prob(\xi = z_k) - \Prob(\xi = y_k)) &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко $t \in U$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image_\xi \cup \Image_\eta$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image_\xi = \Image_\eta$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
+    Последното равенство е изпълнено за всяко $t \in U$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
@@ -597,7 +597,7 @@
       \\
       \sum_k e^{i t z_k} (\Prob(\xi = z_k) - \Prob(\xi = y_k)) &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко $t \in \Complex$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image_\xi \cup \Image_\eta$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image_\xi = \Image_\eta$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
+    Последното равенство е изпълнено за всяко $t \in \Complex$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
