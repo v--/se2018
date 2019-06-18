@@ -29,7 +29,7 @@
 \title{Тема 15}
 \subtitle{Случайни величини с дискретни разпределения - дискретно равномерно, биномно, геометрично, поасоново разпределения. Задачи, в които възникват.}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
-\date{15 юни 2019}
+\date{18 юни 2019}
 
 \begin{document}
 
@@ -37,7 +37,7 @@
 
 \section{Анотация}
 
-От~\cite{Syllabus}.
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
 
 \subsection{Теория}
 
@@ -289,9 +289,9 @@
 
   Числото $\Expect(\xi^n)$ наричаме \underline{$n$-ти момент на $\xi$}, а $\Expect \left( {(\xi - \Expect(\xi))}^n \right)$ наричаме \underline{$n$-ти централен момент на $\xi$}.
 
-  Дисперсията всъщност е просто вторият централен момент.
+  Дисперсията всъщност е просто вторият централен момент. Коренът на дисперсията се нарича стандартно отклонение и често се бележи със $\sigma_\xi$.
 
-  Случайни величини с дисперсия единица наричаме \underline{нормирани}, тъй като дисперсията играе ролята на норма в пространството на случайни величини с краен втори момент.
+  Случайни величини със стандартно отклонение единица наричаме \underline{нормирани}, тъй като стандартно отклонение играе ролята на норма в пространството на случайни величини с краен втори момент.
 \end{definition}
 
 \begin{proposition}\label{thm:lower-order-moments}
@@ -345,12 +345,12 @@
   За пораждащата функция $\PGF_\xi$ са изпълнени следните свойства
   \begin{enumerate}
     \item $\PGF_\xi(z)$ е аналитична функция поне в $-1 < z < 1$.
+    \item $P(\xi = m) = \frac {\PGF_\xi^{(m)}} {m!} (0)$, където $\PGF_\xi^{(m)}$ е $m$-тата производна на $\PGF_\xi$.
     \item Ако пораждащите функции на $\xi$, $\eta$ и $\xi + \eta$ съществуват в точка $z \in \R$, имаме
     \begin{displaymath}
       \PGF_{\xi + \eta}(z) = \PGF_\xi(z) \PGF_\eta(z)
     \end{displaymath}
 
-    \item $P(\xi = m) = \frac {\PGF_\xi^{(m)}} {m!} (0)$, където $\PGF_\xi^{(m)}$ е $m$-тата производна на $\PGF_\xi$.
     \item Ако пораждащите функции на две целочислени дискретни случайни величини съвпадат, самите случайни величини съвпадат.
   \end{enumerate}
 \end{theorem}
@@ -373,19 +373,6 @@
     \end{displaymath}
     Последният ред е сходящ при $\Abs z < 1$.
 
-    \item Тъй като $\xi$ и $\eta$ са независими, за произволно $z \in \R$ величините $z^\xi$ и $z^\eta$ са независими и
-    \begin{displaymath}
-      \PGF_{\xi + \eta}(z)
-      =
-      \Expect(z^{\xi + \eta})
-      =
-      \Expect(z^\xi z^\eta)
-      =
-      \Expect(z^\xi) \Expect(z^\eta)
-      =
-      \PGF_\xi(z) \PGF_\eta(z).
-    \end{displaymath}
-
     \item Разглеждаме степенния ред на $\PGF_\xi$:
     \begin{displaymath}
       \PGF_\xi(z)
@@ -403,6 +390,19 @@
     \end{displaymath}
 
     Следователно $\PGF_\xi^{(m)}(0) = m! \Prob(\xi = m)$.
+
+    \item Тъй като $\xi$ и $\eta$ са независими, за произволно $z \in \R$ величините $z^\xi$ и $z^\eta$ са независими и
+    \begin{displaymath}
+      \PGF_{\xi + \eta}(z)
+      =
+      \Expect(z^{\xi + \eta})
+      =
+      \Expect(z^\xi z^\eta)
+      =
+      \Expect(z^\xi) \Expect(z^\eta)
+      =
+      \PGF_\xi(z) \PGF_\eta(z).
+    \end{displaymath}
 
     \item Директно следва от изразяването на стойностите на $\xi$ и $\eta$ чрез производните на пораждащите ги функции.
   \end{enumerate}
@@ -428,19 +428,6 @@
 
   \mbox{}
   \begin{enumerate}
-    \item Ако пораждащите моментите функции съществуват в $t \in \R$, тъй като $\xi$ и $\eta$ са независими, случайните величини $e^{t\xi}$ и $e^{t\eta}$ също са независими и
-    \begin{displaymath}
-      \MGF_{\xi + \eta}(t)
-      =
-      \Expect(e^{t(\xi + \eta)})
-      =
-      \Expect(e^{t\xi} e^{t\eta})
-      =
-      \Expect(e^{t\xi}) \Expect(e^{t\eta})
-      =
-      \MGF_\xi(t) \MGF_\eta(t).
-    \end{displaymath}
-
     \item Пораждащата моментите функция винаги съществува в $0$, тъй като $\MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1$.
 
     Нека $\MGF_\xi$ съществува в околност $U$ на $0$. Без ограничение на общността ще считаме, че $U$ е ограничена. Полагаме $\tau \coloneqq \min(-\inf U, \sup_U)$. Тогава сумата $\MGF_\xi(-\tau) + \MGF_\xi(\tau)$ е крайна. Развиваме тази сума в ред на Тейлър:
@@ -493,6 +480,19 @@
     \end{enumerate}
 
     По индукция за $m = 1, 2, \ldots$ получаваме $\MGF^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$ в $\frac 1 {2^m} U$. В частност, $\MGF^{(m)}_\xi(0) = \Expect(\xi^m e^{0 \xi}) = \Expect(\xi^m)$.
+
+    \item Ако пораждащите моментите функции съществуват в $t \in \R$, тъй като $\xi$ и $\eta$ са независими, случайните величини $e^{t\xi}$ и $e^{t\eta}$ също са независими и
+    \begin{displaymath}
+      \MGF_{\xi + \eta}(t)
+      =
+      \Expect(e^{t(\xi + \eta)})
+      =
+      \Expect(e^{t\xi} e^{t\eta})
+      =
+      \Expect(e^{t\xi}) \Expect(e^{t\eta})
+      =
+      \MGF_\xi(t) \MGF_\eta(t).
+    \end{displaymath}
 
     \item Нека $z_1, z_2, \ldots$ е обединение на стойностите на $\xi$ и $\eta$. Ако функциите $\MGF_\xi$ и $\MGF_\eta$ съвпадат в областта си на дефиниция $U$, за $t \in U$ имаме
     \begin{align*}
