@@ -55,7 +55,9 @@
 
 \section{Теория}
 
-Теорията е представена с минимални препратки към теорията на мярката и е базирана частично на изложението в~\cite{Borovkov} и~\cite{DimitrovYanev}. За пълнота съм включил доказателства на основните свойства на пораждащи, пораждащи моментите и характеристична функции.
+Теорията е представена с минимални препратки към теорията на мярката и е базирана частично на изложението в~\cite{Borovkov} и~\cite{DimitrovYanev}. За пълнота съм включил доказателства на основните свойства на пораждащи, пораждащи моментите и характеристична функции. За да се запази простотата на изложението, не са включени понятия като функция на разпределение и функция на вероятностите.
+
+\subsection{Основни дефиниции и теореми}
 
 \begin{definition}
   \underline{(Реална) случайна величина} над вероятностното пространство $(\Omega, \F, \Prob)$ наричаме всяка измерима функция $\xi : \Omega \to \R$.
@@ -139,6 +141,8 @@
 
   Произведението $c \xi$ за $c \in \R$ приема или само една стойност при $c = 0$, или същият брой стойности като $\xi$, следователно $c \xi$ също е дискретна случайна величина.
 \end{proof}
+
+\subsection{Очакване и моменти}
 
 До края на темата ще считаме, че работим над вероятностното пространство $(\Omega, \F, \Prob)$.
 
@@ -255,47 +259,80 @@
 Доказаните в твърдения~\ref{thm:expect-independent},~\ref{thm:expect-linear} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
-  \underline{Дисперсия на случайната величина $\xi$} наричаме
+  \underline{Ковариация на случайните величини $\xi$ и $\eta$} наричаме
+  \begin{displaymath}
+    \Cov(\xi, \eta)
+    \coloneqq
+    \Expect((\xi - \Expect \xi) (\eta - \Expect \eta)).
+  \end{displaymath}
+
+  \underline{Дисперсия или вариация на случайната величина $\xi$} наричаме
   \begin{displaymath}
     \Var(\xi)
     \coloneqq
-    \Expect \left({(\xi - \Expect(\xi))}^2 \right)
+    \Cov(\xi, \xi)
     =
-    \Expect(\xi^2 - 2 \Expect(\xi) \xi + {\Expect(\xi)}^2)
+    \Expect \left({(\xi - \Expect \xi)}^2 \right)
+    =
+    \Expect(\xi^2 - 2 \xi \Expect \xi + {\Expect(\xi)}^2)
     =
     \Expect(\xi^2) - 2 {\Expect(\xi)}^2 + {\Expect(\xi)}^2
     =
     \Expect(\xi^2) - {\Expect(\xi)}^2.
   \end{displaymath}
 
-  Числото $\Expect(\xi^n)$ наричаме \underline{$n$-ти момент на $\xi$}, а $\Expect \left( {(\xi - \Expect(\xi))}^n \right)$ наричаме \underline{$n$-ти централен момент на $\xi$}.
+  Числото $\Expect(\xi^n)$ наричаме \underline{$n$-ти момент на $\xi$}, а $\Expect \left( {(\xi - \Expect \xi)}^n \right)$ наричаме \underline{$n$-ти централен момент на $\xi$}.
 
   Дисперсията всъщност е просто вторият централен момент. Коренът на дисперсията се нарича стандартно отклонение и често се бележи със $\sigma_\xi$.
 
-  Случайни величини със стандартно отклонение единица наричаме \underline{нормирани}, тъй като стандартно отклонение играе ролята на норма в пространството на случайни величини с краен втори момент.
+  Две случайни величини се наричат \underline{ортогонални}, ако ковариацията им е $0$, защото ковариацията играе ролята на скаларно произведение в пространството от случайни величини с краен втори момент $\LSpace^2$.
+
+  Случайни величини със стандартно отклонение единица наричаме \underline{нормирани}, тъй като стандартно отклонение играе ролята на норма в $\LSpace^2$.
 \end{definition}
 
-\begin{proposition}\label{thm:lower-order-moments}
-  Ако $\Expect(\xi^n)$ съществува, съществуват и моментите от по-нисък ред $\Expect(\xi^k), k = 0, \ldots, n - 1$.
+\begin{proposition}\label{thm:orthogonal-independent}
+  Ако две случайни величини са независими и имат крайно очакване, те са ортогонални.
 \end{proposition}
 \begin{proof}
-  Първо да забележим, че за $y \in (0, 1)$ имаме ${\Prob(\xi = x_k)}^y < \Prob(\xi = x_k)$. Прилагаме неравенството на Йенсен за редове:
+  Нека $\xi$ и $\eta$ са независими и имат крайно очакване. Полагаме $\xi' \coloneqq \xi - \Expect(\xi)$ и $\eta' \coloneqq \eta - \Expect(\eta)$. Тогава
+  \begin{displaymath}
+    \Cov(\xi, \eta)
+    =
+    \Expect((\xi - \mu) (\eta - \nu))
+    =
+    \Expect(\xi' \eta')
+    =
+    \Expect(\xi') \Expect(\eta')
+    =
+    0 \cdot 0
+    =
+    0.
+  \end{displaymath}
+\end{proof}
+
+\begin{proposition}\label{thm:lower-order-moments}
+  Ако $\Expect(\xi^n)$ съществува, съществуват и моментите от по-нисък ред.
+\end{proposition}
+\begin{proof}
+  Първо да забележим, че за $y \in (0, 1)$ имаме ${\Prob(\xi = x_k)}^y < \Prob(\xi = x_k)$. Ще докажем, че $\Expect({\Abs{\xi}}^{n-1})$ съществува. Прилагаме неравенството на Йенсен за редове:
   \begin{multline*}
-    \Expect(\xi^{n-1})
+    \Expect({\Abs{\xi}}^{n-1})
     \leq
-    {\Expect(\xi^{n-1})}^{\frac n {n-1}}
+    {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
     =
-    {\left( \sum_k {x_k}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
+    {\left( \sum_k {\Abs{x_k}}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
     \leq
-    \sum_k {\left({x_k}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
+    \sum_k {\left({\Abs{x_k}}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
     < \\ <
-    \sum_k {\left({x_k}^{n-1}\right)}^{\frac n {n-1}} \Prob(\xi = x_k)
+    \sum_k {\left({\Abs{x_k}}^{n-1}\right)}^{\frac n {n-1}} \Prob(\xi = x_k)
     =
-    \sum_k {x_k}^n \Prob(\xi = x_k)
+    \sum_k {\Abs{x_k}}^n \Prob(\xi = x_k)
     =
-    \Expect(\xi^n).
+    \Expect({\Abs{\xi}}^n).
   \end{multline*}
 \end{proof}
+
+\subsection{Пораждащи, пораждащи моментите и характеристични функции}
 
 \begin{definition}
   \underline{Пораждаща функция на $\xi$} наричаме
@@ -652,6 +689,67 @@
     Последното равенство е изпълнено за всяко $t \in \Complex$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
+
+\subsection{Дискретно равномерно разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \underline{дискретно равномерно разпределение} над множеството $N$ с размер $n$ и пишем $\xi \in \DUniform(N)$, ако за всяко $k \in N$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi = k) = \frac 1 n.
+  \end{displaymath}
+
+  Дефиницията е коректна, тъй като $\frac 1 n > 0$ и $\sum_{k \in N} \Prob(\xi = k) = \sum_{k \in N} \frac 1 n = \frac n n = 1$.
+
+  Алтернативно, можем да дефинираме $\xi$ чрез индикаторни случайни величина с израза
+  \begin{displaymath}
+    \xi = \sum_{k \in N} \Ind_k.
+  \end{displaymath}
+
+  За простота обикновено считаме, че $N = \{ 1, 2, \ldots, n \}$.
+\end{definition}
+
+Равномерното дискретно разпределение моделира експерименти с краен брой изходи, за които предполагаме, че са равновероятни. Такива са например разни игри - боята на случайно избрана карта за игра или броят точки, паднали се при хвърляне на зар. Друг пример идва от втората световна война, където статистици са се опитали да оценят броя $n$ произведени от Германия танкове, предполагайки, че серийните им номера са равномерно разпределени между $1$ и $n$.
+
+За пораждащата функция, очакването и дисперсията имаме
+\begin{align*}
+  \PGF_\xi(z)
+  &=
+  \Expect(z^\xi)
+  =
+  \frac 1 n \sum_{k=1}^n z^k
+  =
+  \boxed{\frac {z^{n+1} - 1} {n(z - 1)}},
+  \\
+  \Expect(\xi)
+  &=
+  \frac 1 n \sum_{k=1}^n k
+  =
+  \frac {n(n+1)} {2n}
+  =
+  \boxed{\frac {n+1} 2},
+  \\
+  \Expect(\xi^2)
+  &=
+  \frac 1 n \sum_{k=1}^n k^2
+  =
+  \frac {n(n+1)(2n+1)} {6n}
+  =
+  \boxed{\frac {(n+1)(2n+1)} 6},
+  \\
+  \Var(\xi)
+  &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
+  \frac {(n+1)(2n+1)} 6 - {\left( \frac {n+1} 2 \right)}^2
+  =
+  \frac {2(n+1)(2n+1)} {12} - \frac {3{(n+1)}^2} {12}
+  = \\ &=
+  \frac {(n+1)(4n + 2 - 3n - 3)} {12}
+  =
+  \frac {(n+1)(n-1)} {12}
+  =
+  \boxed{\frac {n^2 - 1} {12}}.
+\end{align*}
 
 \section{Задачи}
 
