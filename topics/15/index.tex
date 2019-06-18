@@ -86,7 +86,7 @@
 \begin{theorem}\label{thm:rv-iff-pf}
   Редицата $p_1, p_2, \ldots$ са е редица от вероятности на някоя дискретна случайна величина тогава и само тогава, когато са изпълнени
   \begin{enumerate}
-    \item\label{thm:rv-iff-pf.bounded} (неотрицателност) $0 \leq p_k \leq 1$ за всяко $k = 1, 2, \ldots$
+    \item\label{thm:rv-iff-pf.bounded} (неотрицателност) $0 \leq p_k$ за всяко $k = 1, 2, \ldots$
     \item\label{thm:rv-iff-pf.normed} (нормираност) $\sum_k p_k = 1$.
   \end{enumerate}
 \end{theorem}
@@ -113,39 +113,20 @@
     1.
   \end{multline*}
 
-  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}. Полагаме $\Image(\xi) \coloneqq \{ p_1, p_2, \ldots \}$ и дефинираме функцията
-  \begin{displaymath}
-    \xi(\omega) \coloneqq \begin{cases}
-      \omega, \omega \in \Image(\xi) \\
-      0, \text{ иначе},
-    \end{cases}
-  \end{displaymath}
-  която е измерима над $(\R, \BorelAlgebra(\R))$, тъй като за $B \in \BorelAlgebra(\R)$ имаме
-  \begin{enumerate}
-    \item Ако $0 \in \Image(\xi)$ или $0 \not\in B$, то $f^{-1} (B) \subseteq \Image(\xi)$ е крайно или изброимо безкрайно множество, следователно $f^{-1} (B) \in \BorelAlgebra(\R)$.
-    \item Ако $0 \not\in \Image(\xi)$ и $0 \in B$, имаме
-    \begin{displaymath}
-      f^{-1} (B)
-      =
-      f^{-1} (\{ 0 \} \cup (B \setminus \{ 0 \}))
-      =
-      f^{-1} (\{ 0 \}) \cup f^{-1} (B \setminus \{ 0 \})
-      =
-      (\R \setminus \Image(\xi)) \cup f^{-1} (B \setminus \{ 0 \}),
-    \end{displaymath}
-    което е обединение на две борелови множества, следователно $f^{-1} (B) \in \BorelAlgebra(\R)$.
-  \end{enumerate}
+  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}. Предполагаме, че това са вероятности за някакви елементарни събития $\Omega = \{ x_1, x_2, \ldots \}$.
 
-  Сега дефинираме $\Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega)$. Тази сума е добре дефинирана, тъй като $\xi$ има не повече от изброимо много ненулеви стойности $p_1, p_2, \ldots$ и редът $\sum_k p_k$ е абсолютно сходящ според~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}.
+  Дефинираме случайната величина $\xi: \Omega \to \R, \xi(x_k) \coloneqq p_k$, която е измерима над $(\Omega, \PowerSet(\Omega))$, тъй като праобразът $\xi^{-1}(A)$ на всяко борелово множество $A \in \BorelAlgebra(\R)$ е подмножество на $\Omega$.
 
-  $\Prob$ е вероятностна мярка над $(\R, \BorelAlgebra(\R))$, тъй като
+  Сега дефинираме $\Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega)$. Тази сума е добре дефинирана, тъй като редът $\sum_k p_k$ е абсолютно сходящ според~\ref{thm:rv-iff-pf.bounded} и следователно всеки подред също е абсолютно сходящ.
+
+  $\Prob$ е вероятностна мярка над $(\Omega, \PowerSet(\Omega))$, тъй като
   \begin{enumerate}
     \item $\Prob(\varnothing) = 0$,
-    \item $\Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0$ за произволно събитие $A \in \BorelAlgebra(\R)$ според свойство~\ref{thm:rv-iff-pf.bounded},
+    \item $\Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0$ за произволно събитие $A \subseteq \Omega$ според свойство~\ref{thm:rv-iff-pf.bounded},
     \item $\Prob(\cup_{i=1}^\infty A_i) = \sum_{\omega \in \cup_{i=1}^\infty A_i} \xi(\omega) = \sum_{i=1}^\infty \sum_{\omega \in A_i} \xi(\omega) = \sum_{i=1}^\infty \Prob(A_i)$,
-    \item $\Prob(A) \leq 1$ за произволно събитие $A \in \BorelAlgebra(\R)$ според доказаната адитивност и свойство~\ref{thm:rv-iff-pf.normed}.
+    \item $\Prob(A) \leq 1$ за произволно събитие $A \subseteq \Omega$ според доказаната адитивност и свойство~\ref{thm:rv-iff-pf.normed}.
   \end{enumerate}
-  Така построихме дискретна случайна величина $\xi$ над пространството $(\R, \BorelAlgebra(\R), \Prob)$ с вероятности $p_1, p_2, \ldots$.
+  Така построихме дискретна случайна величина $\xi$ над пространството $(\Omega, \PowerSet(\Omega), \Prob)$ с вероятности $p_1, p_2, \ldots$.
 \end{proof}
 
 \begin{proposition}
