@@ -690,7 +690,7 @@
   \end{enumerate}
 \end{proof}
 
-\subsection{Често срещани равномерни разпределения}
+\subsection{Често срещани дискретни разпределения}
 
 \subsubsection{Дискретно равномерно разпределение}
 
@@ -778,7 +778,7 @@
 \subsubsection{Биномно разпределение}
 
 \begin{definition}
-  Казваме, че случайната величина $\xi$ има \underline{биномно разпределение} с обем $n \in \ZPos$ и вероятност $p \in [0, 1]$ и пишем $\xi \in \DBinomial(n, p)$, ако за всяко $k = 0, 1, \ldots, n$ е изпълнено
+  Казваме, че случайната величина $\xi$ има \underline{биномно разпределение} с обем $n \in \ZPos$ и вероятност $p \in (0, 1)$ и пишем $\xi \in \DBinomial(n, p)$, ако за всяко $k = 0, 1, \ldots, n$ е изпълнено
   \begin{displaymath}
     \Prob(\xi = k) = {n \choose k} p^k {(1-p)}^{n-k}.
   \end{displaymath}
@@ -795,7 +795,7 @@
   Частният случай $\DBinomial(1, p)$ наричаме \underline{разпределение на Бернули} и бележим с $\DBernoulli(p)$.
 \end{definition}
 
-Биномното разпределение моделира брой успехи сред общо $n$ опита с еднаква вероятност $p$. Тога го прави изключително приложимо - от моделиране на количеството ръце с поне един туз при $n$ раздавания на игрални карти до моделиране на броя освободени невротрансмитери в химичните синапси на мозъка за единица време.
+Биномното разпределение моделира брой успехи сред общо $n$ независими опита с еднаква вероятност $p$. Тога го прави изключително приложимо - от моделиране на количеството ръце с поне един туз при $n$ раздавания на игрални карти до моделиране на броя освободени невротрансмитери в химичните синапси на мозъка за единица време.
 
 За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DBinomial(n, p)$ имаме
 \begingroup
@@ -805,9 +805,11 @@
   &=
   \Expect(e^{t\xi})
   =
+  \sum_{k=0}^n {n \choose k} e^{tk} p^k {(1-p)}^{n-k}
+  =
   \sum_{k=0}^n {n \choose k} {\left( e^t p \right)}^k {(1-p)}^{n-k}
   =
-  \boxed{{\left( e^t p + (1-p) \right)}^n}
+  \boxed{{\left( e^t p + (1-p) \right)}^n},
   \\
   \MGF'_\xi(t)
   &=
@@ -845,7 +847,8 @@
 
 Както става ясно от видът на пораждащата моментите функция, ако $\xi_1, \ldots, \xi_n \in \DBernoulli(p)$, то сумата им има разпределение $\DBinomial(n, p)$. Нещо повече, сумата на случайни величини с разпределения $\DBinomial(n, p)$ и $\DBinomial(m, p)$ има разпределение $\DBinomial(n + m, p)$.
 
-Без доказателства ще формулираме следните три теореми:
+Биномното разпределение е изиграло важна историческа роля, тъй като за него първо са формулирани известни гранични теореми.
+
 \begin{theorem}[Бернули, предшественик на законите за големите числа]\label{thm:bernoulli}
   Нека $\xi_1, \xi_2, \ldots$ са независими и имат разпределение $\DBinomial(n, p)$. Тогава
   \begin{displaymath}
@@ -865,6 +868,175 @@
   \end{displaymath}
   клони по вероятност към стандартно нормално разпределение при $n \to \infty$.
 \end{theorem}
+
+\subsubsection{Геометрично разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \underline{геометрични разпределение} с вероятност $p \in (0, 1)$ и пишем $\xi \in \DGeom(p)$, ако за всяко $k = 1, 2, \ldots$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi = k) = {(1-p)}^{k-1} p.
+  \end{displaymath}
+
+  Дефиницията е коректна, тъй като $\Prob(\xi = k) > 0$ за $k \in \ZPos$ и
+  \begin{displaymath}
+    \sum_{k=1}^\infty \Prob(\xi = k)
+    =
+    \sum_{k=1}^\infty {(1-p)}^{k-1} p
+    =
+    p \sum_{k=0}^\infty {(1-p)}^k
+    =
+    p \frac 1 {1-(1-p)}
+    =
+    1.
+  \end{displaymath}
+
+  Понякога се ползва алтернативна дефиниция, при която за $k = 0, 1, \ldots$
+  \begin{displaymath}
+    \Prob(\xi = k) = {(1-p)}^k p.
+  \end{displaymath}
+\end{definition}
+
+Геометричното разпределение моделира номера на първия успешен опит сред безброй независими опити с еднаква вероятност $p$ или, при алтернативната дефиниция, броя неуспехи до появата на първия успех. То също е изключително приложимо, например за намирането на очаквания брой изтеглени игрални карти преди първия туз или за оценяване на необходимото количество допълнително произведени изделия, ако целим да произведем дадено количество изделия без дефект при вероятност за дефект $p$.
+
+За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DGeom(p)$ имаме
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  e^t p \sum_{k=1}^\infty {((1-p) e^t)}^{k-1}
+  =
+  e^t p \sum_{k=0}^\infty {((1-p) e^t)}^k
+  = \\ &=
+  \boxed{\frac {p e^t} {1 - (1-p) e^t}, (1-p) e^t < 1 \iff t < -\ln(1-p)},
+  \\
+  \MGF'_\xi(t)
+  &=
+  \frac {p e^t \cdot (1 - (1-p) e^t) + p e^t \cdot (1-p) e^t} {{(1 - (1-p) e^t)}^2}
+  =
+  \boxed{\frac {p e^t} {{(1 - (1-p) e^t)}^2}, t < -\ln(1-p)},
+  \\
+  \MGF''_\xi(t)
+  &=
+  \frac {p e^t \cdot {(1 - (1-p) e^t)}^2 + p e^t \cdot 2 (1 - (1-p) e^t) (1-p) e^t} {{(1 - (1-p) e^t)}^4}
+  = \\ &=
+  \frac {p e^t (1 - (1-p) e^t) (1 - (1-p) e^t + 2 (1-p) e^t)} {{(1 - (1-p) e^t)}^4}
+  = \\ &=
+  \boxed{\frac {p e^t (1 + e^t - p e^t)} {{(1 - (1-p) e^t)}^3}, t < -\ln(1-p)}
+  \\
+  \Expect(\xi)
+  &=
+  \frac p {p^2}
+  =
+  \boxed{\frac 1 p},
+  \\
+  \Expect(\xi^2)
+  &=
+  \frac {p(2-p)} {p^3}
+  =
+  \boxed{\frac {2-p} {p^2}},
+  \\
+  \Var(\xi)
+  &=
+  \frac {2-p} {p^2} - \frac 1 {p^2}
+  =
+  \boxed{\frac {1-p} {p^2}}.
+\end{align*}
+\endgroup
+
+\begin{theorem}[Липса на памет]
+  За $\xi \in \DGeom(p)$ и положителни цели числа $n$ и $m$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi = n + m \mid \xi > n) = \Prob(\xi = m)
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  \begin{multline*}
+    \Prob(\xi = n + m \mid \xi > n)
+    =
+    \frac {\Prob(\xi = n + m, \xi > n)} {\Prob(\xi > n)}
+    =
+    \frac {\Prob(\xi = n + m)} {\Prob(\xi > n)}
+    =
+    \frac {{(1-p)}^{n+m-1} p} {\sum_{k=n+1}^\infty {(1-p)}^{k-1} p}
+    = \\ =
+    \frac {{(1-p)}^{n+m-1} p} {{(1-p)}^n p \sum_{k=0}^\infty {(1-p)}^k}
+    =
+    \frac {{(1-p)}^{m-1}} {\frac 1 {1 - p}}
+    =
+    {(1-p)}^{m-1} p
+    =
+    \Prob(\xi = m).
+  \end{multline*}
+\end{proof}
+
+\subsubsection{Поасоново разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \underline{поасоново разпределение} с интензивност $\lambda \in \RPos$ и пишем $\xi \in \DPoisson(p)$, ако за всяко $k = 0, 2, \ldots$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi = k) = \frac{e^{-\lambda} \lambda^k} {k!}.
+  \end{displaymath}
+
+  Дефиницията е коректна, тъй като $\Prob(\xi = k) > 0$ за $k \in \ZNNeg$ и
+  \begin{displaymath}
+    \sum_{k=0}^\infty \Prob(\xi = k)
+    =
+    \sum_{k=0}^\infty \frac{e^{-\lambda} \lambda^k} {k!}
+    =
+    e^{-\lambda} e^{\lambda}
+    =
+    1.
+  \end{displaymath}
+\end{definition}
+
+Ако дадено явление се случва със средна честота $\lambda$, поасоновото разпределение моделира количеството независими явления за единица време. Това го прави подходящо за широк спектър от задачи - от моделиране на броя посетители на магазин в натоварен час до моделиране на броя скокове в цените на финансов дериват.
+
+За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DPoisson(p)$ имаме
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  \sum_{k=0}^\infty \frac{e^{tk} e^{-\lambda} \lambda^k} {k!}
+  =
+  e^{-\lambda} \sum_{k=0}^\infty \frac{{(e^t \lambda)}^k} {k!}
+  =
+  e^{-\lambda} e^{e^t \lambda}
+  =
+  \boxed{e^{\lambda (e^t - 1)}},
+  \\
+  \MGF'_\xi(t)
+  &=
+  \lambda e^t e^{\lambda (e^t - 1)}
+  =
+  \boxed{\lambda e^{t + \lambda (e^t - 1)}},
+  \\
+  \MGF''_\xi(t)
+  &=
+  \lambda e^t \cdot e^{\lambda (e^t - 1)} + \lambda e^t \cdot \lambda e^t e^{\lambda (e^t - 1)}
+  =
+  \boxed{\lambda e^{t + \lambda (e^t - 1)} (1 + \lambda e^t)},
+  \\
+  \Expect(\xi)
+  &=
+  \boxed{\lambda},
+  \\
+  \Expect(\xi^2)
+  &=
+  \boxed{\lambda(1 + \lambda)},
+  \\
+  \Var(\xi)
+  &=
+  \lambda(1 + \lambda) - \lambda^2
+  =
+  \boxed{\lambda}.
+\end{align*}
+\endgroup
 
 \begin{theorem}[Поасон]\label{thm:poisson}
   Нека $\xi_1, \xi_2, \ldots$ са независими и $\xi_k$ има разпределение $\DBinomial(k, p_k)$. Ако $k p_k \underset {k \to \infty} \longrightarrow \lambda$, тогава слабата граница $\lim_{k \to \infty} \xi_k$ съществува и има разпределение $\DPoisson(\lambda)$.
