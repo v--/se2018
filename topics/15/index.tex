@@ -18,6 +18,9 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 
+% Misc packages
+\usepackage{enumitem} % For customizing enum counters
+
 % Custom packages
 \usepackage{../../common/macros}
 \usepackage{../../common/theorems}
@@ -283,9 +286,9 @@
 
   Числото $\Expect(\xi^n)$ наричаме \underline{$n$-ти момент на $\xi$}, а $\Expect \left( {(\xi - \Expect \xi)}^n \right)$ наричаме \underline{$n$-ти централен момент на $\xi$}.
 
-  Дисперсията всъщност е просто вторият централен момент. Коренът на дисперсията се нарича стандартно отклонение и често се бележи със $\sigma_\xi$.
+  Очакването всъщност е просто първият момент, а дисперсията - вторият централен момент. Коренът на дисперсията се нарича \underline{стандартно отклонение} и често се бележи със $\sigma_\xi$.
 
-  Две случайни величини се наричат \underline{ортогонални}, ако ковариацията им е $0$, защото ковариацията играе ролята на скаларно произведение в пространството $\LSpace^2$ от случайни величини с краен втори момент.
+  Две случайни величини се наричат \underline{ортогонални}, ако ковариацията им е $0$, защото ковариацията играе ролята на скаларно произведение в пространството $\LSpace^2$ от (всички, не непременно дискретни) случайни величини с краен втори момент.
 
   Случайни величини със стандартно отклонение единица наричаме \underline{нормирани}, тъй като стандартно отклонение играе ролята на норма в $\LSpace^2$.
 \end{definition}
@@ -357,7 +360,7 @@
   Дефинициите за моменти и функции от очакването се пренасят без изменение за случайни величини, които не са дискретни. Пораждащите функции, обаче, се полезни само за случайни величини, които приемат неотрицателни цели стойности.
 \end{note}
 
-\begin{theorem}[Свойства на пораждащите функции]
+\begin{theorem}[Свойства на пораждащите функции]\label{thm:pgf-props}
   Нека $\xi$ и $\eta$ са независими целочислени случайни величини със стойности $0, 1, \ldots$ (възможно е $P(\xi = k) > 0$ само за краен брой $k$).
 
   За пораждащата функция $\PGF_\xi$ са изпълнени следните свойства
@@ -426,7 +429,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Свойства на пораждащите моментите функции]
+\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf-props}
   Нека $\xi$ и $\eta$ са независими дискретни случайни величини.
 
   За пораждащите моментите функции $\MGF_\xi$ и $\MGF_\eta$ са изпълнени следните свойства
@@ -524,7 +527,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Свойства на характеристичните функции]
+\begin{theorem}[Свойства на характеристичните функции]\label{thm:char-props}
   Нека $\xi$ и $\eta$ са независими дискретни случайни величини.
 
   За характеристичните функции $\Char_\xi$ и $\Char_\eta$ са изпълнени следните свойства
@@ -692,7 +695,7 @@
 
 \subsection{Често срещани дискретни разпределения}
 
-\subsubsection{Дискретно равномерно разпределение}
+\subsubsection{Дискретно равномерно разпределение}\label{dist:unif}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \underline{дискретно равномерно разпределение} над множеството $N$ с размер $n$ и пишем $\xi \in \DUniform(N)$, ако за всяко $k \in N$ е изпълнено
@@ -775,7 +778,7 @@
 \end{align*}
 \endgroup
 
-\subsubsection{Биномно разпределение}
+\subsubsection{Биномно разпределение}\label{dist:geom}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \underline{биномно разпределение} с обем $n \in \ZPos$ и вероятност $p \in (0, 1)$ и пишем $\xi \in \DBinomial(n, p)$, ако за всяко $k = 0, 1, \ldots, n$ е изпълнено
@@ -869,7 +872,9 @@
   клони по вероятност към стандартно нормално разпределение при $n \to \infty$.
 \end{theorem}
 
-\subsubsection{Геометрично разпределение}
+В.ж. също~\ref{thm:poisson}.
+
+\subsubsection{Геометрично разпределение}\label{dist:geom}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \underline{геометрични разпределение} с вероятност $p \in (0, 1)$ и пишем $\xi \in \DGeom(p)$, ако за всяко $k = 1, 2, \ldots$ е изпълнено
@@ -890,9 +895,9 @@
     1.
   \end{displaymath}
 
-  Понякога се ползва алтернативна дефиниция, при която за $k = 0, 1, \ldots$
+  Понякога се ползва алтернативна дефиниция, при която $\eta = \xi - 1$ и за $k = 0, 1, \ldots$
   \begin{displaymath}
-    \Prob(\xi = k) = {(1-p)}^k p.
+    \Prob(\eta = k) = {(1-p)}^k p.
   \end{displaymath}
 \end{definition}
 
@@ -914,13 +919,13 @@
   \\
   \MGF'_\xi(t)
   &=
-  \frac {p e^t \cdot (1 - (1-p) e^t) + p e^t \cdot (1-p) e^t} {{(1 - (1-p) e^t)}^2}
+  \frac {p e^t \cdot (1 - (1-p) e^t) - p e^t \cdot (-(1-p)) e^t} {{(1 - (1-p) e^t)}^2}
   =
   \boxed{\frac {p e^t} {{(1 - (1-p) e^t)}^2}, t < -\ln(1-p)},
   \\
   \MGF''_\xi(t)
   &=
-  \frac {p e^t \cdot {(1 - (1-p) e^t)}^2 + p e^t \cdot 2 (1 - (1-p) e^t) (1-p) e^t} {{(1 - (1-p) e^t)}^4}
+  \frac {p e^t \cdot {(1 - (1-p) e^t)}^2 - p e^t \cdot 2 (1 - (1-p) e^t) (-(1-p)) e^t} {{(1 - (1-p) e^t)}^4}
   = \\ &=
   \frac {p e^t (1 - (1-p) e^t) (1 - (1-p) e^t + 2 (1-p) e^t)} {{(1 - (1-p) e^t)}^4}
   = \\ &=
@@ -940,6 +945,8 @@
   \\
   \Var(\xi)
   &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
   \frac {2-p} {p^2} - \frac 1 {p^2}
   =
   \boxed{\frac {1-p} {p^2}}.
@@ -972,7 +979,9 @@
   \end{multline*}
 \end{proof}
 
-\subsubsection{Поасоново разпределение}
+В.ж. също~\ref{ex:se-summer2014}.
+
+\subsubsection{Поасоново разпределение}\label{dist:poisson}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \underline{поасоново разпределение} с интензивност $\lambda \in \RPos$ и пишем $\xi \in \DPoisson(p)$, ако за всяко $k = 0, 2, \ldots$ е изпълнено
@@ -1032,6 +1041,8 @@
   \\
   \Var(\xi)
   &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
   \lambda(1 + \lambda) - \lambda^2
   =
   \boxed{\lambda}.
@@ -1042,7 +1053,168 @@
   Нека $\xi_1, \xi_2, \ldots$ са независими и $\xi_k$ има разпределение $\DBinomial(k, p_k)$. Ако $k p_k \underset {k \to \infty} \longrightarrow \lambda$, тогава слабата граница $\lim_{k \to \infty} \xi_k$ съществува и има разпределение $\DPoisson(\lambda)$.
 \end{theorem}
 
+Както става ясно от видът на пораждащата моментите функция, ако $\xi_m \in \DPoisson(\lambda_m), m = 1, \ldots, n$, то сумата им има разпределение $\DPoisson\left(\sum_{m=1}^n \lambda_m \right)$.
+
+В.ж. също~\ref{ex:se-summer2016}.
+
 \section{Задачи}
+
+\begin{exercise}[\cite{SESummer2014}]\label{ex:se-summer2014}
+  Дадена е редица от независими опити с два изхода: успех и неуспех. Вероятността за успех е $p \in (0, 1)$. Опитите се провеждат до първа поява на успех. Случайната величина $X$ е равна на броя на неуспехите. Да се намери:
+  \begin{enumerate}[label=\alph*)]
+    \item Разпределението на случайната величина $X$
+    \item Пораждащата функция на $X$
+    \item Математическото очакване и дисперсията на $X$
+    \item За $k \geq 0$ да се намери $\Prob(k \geq 0)$
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \mbox{}
+  \begin{enumerate}[label=\alph*)]
+    \item Това е именно алтернативната формулировка на геометричното разпределение, която споменахме в~\ref{dist:geom}, т.е. $\Prob(X = k) = {(1-p)}^k p$.
+
+    Ако вече разполагаме с информацията за геометричното разпределение от~\ref{dist:geom} и $\xi$ има разпределение $\DGeom(p)$ спрямо оригиналната дефиниция, тогава $X = \xi - 1$ и директно получаваме
+    \begin{align*}
+      \PGF_X(k) &= \PGF_\xi(k-1), \\
+      \Expect_X(k) &= \Expect_\xi(k) - 1 = \frac 1 p - 1 = \frac {1-p} p, \\
+      \Var_X(k) &= \Var_\xi(k) = \frac {1-p} {p^2}.
+    \end{align*}
+
+    Можем да изведем търсените характеристики и директно
+    \item Пресмятаме пораждащата функция:
+    \begin{displaymath}
+      \PGF_X(z)
+      =
+      \sum_{k=0}^\infty {((1-p) z)}^k p
+      =
+      p \sum_{k=0}^\infty {((1-p) z)}^k
+      =
+      \boxed{\frac p {1 - (1-p)z}, \Abs{(1-p) z} < 1 \iff \Abs z < \frac 1 {1-p}},
+    \end{displaymath}
+    при което $\MGF_X(t) = \PGF_X(e^t) = \boxed{\frac p {1 - (1-p)e^t}, t < -\ln(1-p)}$.
+
+    \item Пресмятаме очакването и дисперсията, използвайки намерената пораждаща моментите функция:
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+      \MGF'_X(t)
+      &=
+      \boxed{\frac {p (1-p) e^t} {{(1-(1-p)e^t)}^2}, t < -\ln(1-p)}
+      \\
+      \MGF''_X(t)
+      &=
+      \frac {p (1-p) e^t \cdot {(1-(1-p)e^t)}^2 - p (1-p) e^t \cdot 2 (1-(1-p)e^t) (-(1-p)) e^t} {{(1-(1-p)e^t)}^4}
+      = \\ &=
+      \frac {p (1-p) e^t (1-(1-p)e^t+2(1-p)e^t)} {{(1-(1-p)e^t)}^3}
+      = \\ &=
+      \boxed{\frac {p (1-p) e^t(1+(1-p)e^t)} {{(1-(1-p)e^t)}^3}, t < -\ln(1-p)}.
+      \\
+      \Expect(X)
+      &=
+      \MGF'_X(0)
+      =
+      \frac {1-p} p,
+      \\
+      \Expect(X^2)
+      &=
+      \MGF''_X(0)
+      =
+      \frac {p(1-p)(2-p)} {p^3}
+      =
+      \frac {(1-p)(2-p)} {p^2},
+      \\
+      \Var(X)
+      &=
+      \Expect(X^2) - {\Expect(X)}^2
+      =
+      \frac {(1-p)(2-p)} {p^2} - \frac {{(1-p)}^2} {p^2}
+      =
+      \boxed{\frac {1-p} {p^2}}.
+    \end{align*}
+    \endgroup
+
+    \item За $m = 0, 1, \ldots$ имаме
+    \begin{displaymath}
+      \Prob(X \geq m)
+      =
+      \sum_{k=m}^\infty {(1-p)}^k p
+      =
+      {(1-p)}^m p \sum_{k=0}^\infty {(1-p)}^k
+      =
+      \frac {{(1-p)}^m p} {\frac 1 {1-(1-p)}}
+      =
+      \boxed{{(1-p)}^m}.
+    \end{displaymath}
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}[\cite{SESummer2016}]\label{ex:se-summer2016}
+  Нека $X$ е случайна величина с разпределение на Поасон с параметър $\lambda > 0$:
+  \begin{align*}
+    X \in \DPoisson(\lambda),
+    &&
+    \Prob(X = x) = e^{-\lambda} \frac {x^\lambda} {x!}, x = 0, 1, 2, \ldots.
+  \end{align*}
+
+  \begin{enumerate}[label=\alph*)]
+    \item Намерете математическото очакване $\Expect X$ и дисперсията $\Var X$ на случайната величина $X$.
+    \item Нека случайните величини $X_1$ и $X_2$ са независими и с разпределение на Поасон с параметри съответно $\lambda_1 > 0$ и $\lambda_2 > 0$:
+    \begin{align*}
+      X_1 \in \DPoisson(\lambda_1),
+      &&
+      X_2 \in \DPoisson(\lambda_2).
+    \end{align*}
+
+    Намерете разпределението на сумата им
+    \begin{displaymath}
+      S_2 = X_1 + X_2.
+    \end{displaymath}
+
+    \item Нека $X_1, X_2, \ldots, X_n$ са независими наблюдения над случайна величина $X \in \DPoisson(\lambda), \lambda > 0$ и нека сумата им е $S_n = X_1 + X_2 + \cdots + X_n$.
+
+    Намерете значимостта ($p$-value) на статистиката $S_n$ при проверката на основна и алтернативни хипотези:
+    \begin{align*}
+      &H_0: \lambda = 3 \\
+      &H_1: \lambda = 6
+    \end{align*}
+    при $n = 4$ и $S_4 = 15$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{note}
+  За тази задача е дадена таблица за разпределението на Поасон за $x = 0, 1, \ldots, 24$ и $\lambda = 3, 6, \ldots, 21, 24$.
+\end{note}
+
+\begin{solution}
+  \mbox{}
+  \begin{enumerate}[label=\alph*)]
+    \item В~\ref{dist:poisson} сме намерили, че $\Expect(X) = \Var(X) = \lambda$.
+    \item Според теорема~\ref{thm:char-props} $\MGF_{X_1 + X_2}$ определя напълно разпределението на $X_1 + X_2$. Използваме пораждащата моментите функция от~\ref{dist:poisson}, за да намерим
+    \begin{displaymath}
+      \MGF_{X_1 + X_2}
+      =
+      \MGF_{X_1} \cdot \MGF_{X_2}
+      =
+      e^{\lambda_1 (e^t - 1)} \cdot e^{\lambda_2 (e^t - 1)}
+      =
+      e^{(\lambda_1 + \lambda_2) (e^t - 1)},
+    \end{displaymath}
+    което е пораждаща моментите функция на $\DPoisson(\lambda_1 + \lambda_2)$ разпределение.
+
+    \item От предната подточка знаем, че $S_n \in \DPoisson(n \lambda)$. Тогава значимостта на наблюдението $S_4 = 15$ при нулева хипотеза $\lambda = 3$ е
+    \begin{displaymath}
+      \Prob(S_4 \geq 15 \mid 4\lambda = 12)
+      =
+      1 - \Prob(S_4 \leq 14 \mid 4\lambda = 12)
+      \approx
+      1 - 0.772
+      =
+      0.228.
+    \end{displaymath}
+
+    При ниво на значимост $\alpha = 0.05$ бихме имали основание да отхвърлим нулевата хипотеза.
+  \end{enumerate}
+\end{solution}
 
 \printbibliography
 
