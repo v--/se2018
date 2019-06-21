@@ -1,0 +1,277 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Misc packages
+\usepackage{enumitem} % Customization of enum counters
+\usepackage{ulem} % Line-breaking underlines
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Тема 16}
+\subtitle{Случайни величини с непрекъснати разпределения. Нормално разпределение. Равномерно разпределение, експоненциално разпределение или гама разпределение. Задачи, в които възникват.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{21 юни 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Анотация}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\subsection{Теория}
+
+\begin{enumerate}
+  \item Дефиниция на непрекъснато разпределение на случайна величина
+  \item Вероятностна плътност и свойствата ѝ - неотрицателност и нормираност
+  \item Дефиниция на моментите на непрекъсната случайна величина
+  \item Дефиниция и свойства (без доказателства) на пораждаща моментите/характеристична функция (по избор)
+  \item Дефиниция, коректност, мотивиращ пример, пораждаща моментите/характеристична функция, очакване и дисперсия на нормално разпределение и още едно избрано от комисията непрекъснато разпределение
+\end{enumerate}
+
+\subsection{Задачи}
+
+Не е даден списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
+
+\section{Теория}
+
+Теорията е представена с минимални препратки към теорията на мярката и е базирана частично на изложението в~\cite{Borovkov} и~\cite{DimitrovYanev}. За пълнота съм включил доказателства на основните свойства на пораждащи моментите и характеристична функции.
+
+\subsection{Основни дефиниции и теореми}
+
+\begin{definition}
+  \uline{(Реална) случайна величина} над вероятностното пространство $(\Omega, \F, \Prob)$ наричаме всяка измерима функция $\xi : \Omega \to \R$.
+
+  Условието за измеримост на $\xi$ може да се запише така: за всяко борелово множество $B \in \BorelAlgebra(\R)$ имаме
+  \begin{displaymath}
+    \xi^{-1} (B) = \{ \omega \in \Omega \mid \xi(\omega) \in B \} \in \F.
+  \end{displaymath}
+
+  \uline{Разпределение на $\xi$} наричаме мярката
+  \begin{displaymath}
+    \Prob_\xi(A) \coloneqq \Prob(\xi \in A).
+  \end{displaymath}
+
+  Две случайни величини $\xi$ и $\eta$ наричаме \uline{независими}, ако за всички $A, B \in \F$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi \in A, \eta \in B) = \Prob_\xi(A) \Prob_\eta(B).
+  \end{displaymath}
+
+  \uline{Функция на разпределение} на случайната величина $\xi$ наричаме
+  \begin{displaymath}
+    F_\xi(x) \coloneqq \Prob(\xi \leq x).
+  \end{displaymath}
+
+  Случайната величина $\xi$ наричаме \uline{(абсолютно) непрекъсната} и казваме, че $\xi$ има \uline{(абсолютно) непрекъснато разпределение}, ако функцията ѝ на разпределение е локално абсолютно непрекъсната в $\R$, т.е. абсолютно непрекъсната във всеки затворен интервал. Известно е, че абсолютно непрекъснатите в затворен интервал $[a, b]$ функции са точно тези, които са диференцируеми почти навсякъде в интервала, производните им в $[a, b]$ са интегруеми по Риман и за $x \in [a, b]$ е изпълнено
+  \begin{displaymath}
+    F_\xi(x) = \int_a^x F'_\xi(x) + F_\xi(a).
+  \end{displaymath}
+
+  Функцията $f_\xi: \R \mapsto \R$ наричаме \underline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само по изброимо много точки и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
+\end{definition}
+
+\begin{proposition}[Основни свойства на функцията на разпределение]\label{thm:cdf-props}
+  Функцията $F_\xi$ е функция на разпределение на някаква (не непременно абсолютно непрекъсната) случайна величина $\xi$ тогава и само тогава, когато са изпълнени
+  \begin{enumerate}
+    \item $F_\xi(x) \leq F_\xi(y), x < y$ (монотонност)
+    \item $F_\xi(x)$ е непрекъсната отдясно
+    \item $\lim_{x \downarrow -\infty} F_\xi(x) = 0$
+    \item $\lim_{x \uparrow \infty} F_\xi(x) = 1$
+  \end{enumerate}
+\end{proposition}
+
+Твърдение~\ref{thm:cdf-props} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
+
+\begin{proof}[Доказателство на твърдение~\ref{thm:cdf-props}]
+  ($\implies$)
+  \begin{enumerate}
+    \item За всички $x < y$
+    \begin{multline*}
+      F_\xi(x)
+      =
+      \Prob(\xi \leq x)
+      =
+      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      =
+      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \} \cap \{ \omega \in \Omega \mid \xi(\omega) \leq y \})
+      \leq \\ \leq
+      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq y \})
+      =
+      \Prob(\xi \leq y)
+      =
+      F_\xi(y).
+    \end{multline*}
+
+    \item От монотонността на вероятностната мярка имаме
+    \begin{multline*}
+      \lim_{h \downarrow 0} F_\xi(x + h)
+      =
+      \lim_{h \downarrow 0} \Prob(\xi \leq x + h)
+      =
+      \lim_{h \downarrow 0} \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x + h \})
+      =
+      \Prob(\cup_{h \geq 0} \{ \omega \in \Omega \mid \xi(\omega) \leq x + h \})
+      = \\ =
+      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      =
+      \Prob(\xi \leq x)
+      =
+      F_\xi(x).
+    \end{multline*}
+
+    \item От монотонността на вероятностната мярка имаме
+    \begin{multline*}
+      \lim_{x \uparrow \infty} F_\xi(x)
+      =
+      \lim_{x \uparrow \infty} \Prob(\xi \leq x)
+      =
+      \lim_{x \uparrow \infty} \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      =
+      \Prob(\cup_{x \uparrow \infty} \{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      = \\ =
+      \Prob(\cup_{x \uparrow \infty} \{ \omega \in \Omega \mid \xi(\omega) \leq 1 \})
+      =
+      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq \infty \})
+      =
+      \Prob(\Omega)
+      =
+      1.
+    \end{multline*}
+
+    \item $\lim_{x \uparrow \infty} F_\xi(x) = 0$ се доказва напълно аналогично на $\lim_{x \uparrow \infty} F_\xi(x) = 1$.
+  \end{enumerate}
+
+  ($\impliedby$) Нека функцията $F_\xi$ удовлетворява условията на теоремата. Дефинираме
+  \begin{align*}
+    \xi: \R \to \R,     &&& \Prob: \BorelAlgebra(\R) \to [0, 1], \\
+    \xi(x) \coloneqq x, &&& \Prob((a, b]) \coloneqq F_\xi \left(\lim_{h \downarrow 0} b + h \right) - F_\xi(a), a < b \in \R.
+  \end{align*}
+
+  Интервалите от вида $(a, b]$ пораждат бореловата $\sigma$-алгебра $\BorelAlgebra(\R)$. Ще пропуснем доказателството на това, че $\Prob$ е вероятностна мярка над $(\R, \BorelAlgebra(\R))$.
+
+  Тогава $\xi$ е измерима функция над $(\R, \BorelAlgebra(\R), \Prob)$ и освен това
+  \begin{displaymath}
+    \Prob(\xi \leq x)
+    =
+    \Prob((-\infty, x])
+    =
+    F_\xi(x)~\forall x \in \R.
+  \end{displaymath}
+
+  С други думи, построихме вероятностно пространство и случайна величина $\xi$, чиято функцията на разпределение е $F_\xi$.
+\end{proof}
+
+\begin{theorem}\label{thm:density-props}
+  Интегруемата по Риман функция $f_\xi: \R \to \R$ е плътност на някаква абсолютно непрекъсната случайна величина $\xi$ тогава и само тогава, когато са изпълнени
+  \begin{enumerate}
+    \item $f_\xi(x) \geq 0$ почти навсякъде (неотрицателност)
+    \item $\int_\R f_\xi(x) dx = 1$ (нормираност)
+  \end{enumerate}
+\end{theorem}
+
+Тъй като от теорема~\ref{thm:density-props} плътността на една непрекъсната случайна величина определя функцията ѝ на разпределение, понякога разпределение на непрекъсната случайна величина се нарича плътността ѝ.
+
+\begin{proof}[Доказателство на теорема~\ref{thm:density-props}]
+  ($\implies$) Нека $f_\xi$ е плътност на $\xi$.
+  \begin{enumerate}
+    \item За всяка точка $x \in \R$, в която $F_\xi$ е диференцируема, имаме $f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0$ поради монотонността на $F_\xi$
+    \item За произволно $c > 0$ функцията $F_\xi$ е абсолютно непрекъсната в $[-c, c]$. Следователно
+    \begin{displaymath}
+      \int_\R f_\xi(x) dx
+      =
+      \lim_{c \uparrow \infty} \int_{-c}^c f_\xi(x) dx
+      =
+      \lim_{c \uparrow \infty} F_\xi(c) - \lim_{c \to \infty} F_\xi(-c)
+      =
+      1 - 0.
+    \end{displaymath}
+  \end{enumerate}
+
+  ($\impliedby$) Нека $f_\xi: \R \to \R$ е неотрицателна, интегруема по Риман и нормирана. Дефинираме функцията $F_\xi(x) \coloneqq \int_{-\infty}^x f_\xi(t) dt$. Ще покажем, че за $F_\xi$ са изпълнени свойствата на функция на разпределение:
+  \begin{enumerate}
+    \item Ако $x < y$, от адитивността на римановия интеграл и неотрицателността на $f_\xi$ следва
+    \begin{displaymath}
+      F_\xi(x)
+      =
+      \int_{-\infty}^x f_\xi(t) dt
+      \leq
+      \int_{-\infty}^x f_\xi(t) dt + \int_x^y f_\xi(t) dt
+      =
+      \int_{-\infty}^y f_\xi(t) dt
+      =
+      F_\xi(y).
+    \end{displaymath}
+
+    \item $F_\xi$ е непрекъсната отдясно, тъй като
+    \begin{displaymath}
+      \lim_{h \downarrow 0} F_\xi(x + h)
+      =
+      \lim_{h \downarrow 0} \int_{-\infty}^{x + h} f_\xi(t) dt
+      =
+      \int_{-\infty}^x f_\xi(t) dt + \lim_{h \downarrow 0} \int_x^{x + h} f_\xi(t) dt
+      =
+      \int_{-\infty}^x f_\xi(t) dt
+      =
+      F_\xi(x).
+    \end{displaymath}
+
+    \item От предположението за нормираност имаме
+    \begin{displaymath}
+      \lim_{x \uparrow \infty} F_\xi(x)
+      =
+      \lim_{x \uparrow \infty} \int_{-\infty}^x f_\xi(x) dx
+      =
+      \int_\R f_\xi(x) dx = 1.
+    \end{displaymath}
+
+    \item Директно пресмятаме
+    \begin{displaymath}
+      \lim_{x \downarrow -\infty} \int_{-\infty}^x f_\xi(x) dx
+      =
+      \int_{-\infty}^{-\infty} f_\xi(x) dx
+      =
+      0.
+    \end{displaymath}
+  \end{enumerate}
+
+  Видяхме, че $F_\xi$ удовлетворява свойствата на функция на разпределение и по~\ref{thm:cdf-props} съществува случайна величина $\xi$, чиято плътност е $f_\xi$.
+
+  Освен това $F_\xi$ е абсолютно непрекъсната във всеки затворен интервал $[a, b]$, тъй като тя има интегруема производна почти навсякъде и за $x \in [a, b]$ е изпълнено
+  \begin{displaymath}
+    F_\xi(x)
+    =
+    \int_{-\infty}^x f_\xi(x) dx
+    =
+    \int_{-\infty}^a f_\xi(x) dx + \int_a^x f_\xi(x) dx
+    =
+    F_\xi(a) + \int_a^x f_\xi(x) dx.
+  \end{displaymath}
+\end{proof}
+
+\printbibliography
+
+\end{document}

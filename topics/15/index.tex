@@ -91,17 +91,17 @@
   Множеството от стойности на $\xi$ ще бележим с $\Image(\xi) \coloneqq \{ x_1, x_2, \ldots \}$.
 \end{definition}
 
-\begin{theorem}\label{thm:rv-iff-pf}
+\begin{theorem}\label{thm:pmf-props}
   Редицата $p_1, p_2, \ldots$ са е редица от вероятности на някоя дискретна случайна величина тогава и само тогава, когато са изпълнени
   \begin{enumerate}
-    \item\label{thm:rv-iff-pf.bounded} (неотрицателност) $0 \leq p_k$ за всяко $k = 1, 2, \ldots$
-    \item\label{thm:rv-iff-pf.normed} (нормираност) $\sum_k p_k = 1$.
+    \item\label{thm:pmf-props.bounded} $0 \leq p_k$ за всяко $k = 1, 2, \ldots$ (неотрицателност)
+    \item\label{thm:pmf-props.normed} $\sum_k p_k = 1$ (нормираност).
   \end{enumerate}
 \end{theorem}
 
-Теорема~\ref{thm:rv-iff-pf} ни дава обосновка да задаваме дискретни случайни величини изцяло чрез редици от вероятности без да задаваме вероятностни пространства. По тази причина понякога разпределение на дискретна случайна величина наричаме не съответната вероятностна мярка, а редицата от вероятностите.
+Теорема~\ref{thm:pmf-props} ни дава обосновка да задаваме дискретни случайни величини изцяло чрез редици от вероятности, т.е. без изрично да задаваме вероятностни пространства. По тази причина понякога разпределение на дискретна случайна величина наричаме не съответната вероятностна мярка, а редицата от вероятностите.
 
-\begin{proof}
+\begin{proof}[Доказателство на теорема~\ref{thm:pmf-props}]
   ($\implies$) Нека $\xi$ е дискретна случайна величина над вероятностното пространство $(\Omega, \F, \Prob)$ със стойности $x_1, x_2, \ldots$ и вероятности $p_1, p_2, \ldots$.
 
   Тъй като $\Prob: \F \to [0, 1]$ е вероятностна мярка, директно получаваме $p_k = \Prob(\xi = x_k) \in [0, 1]$ за всяко $k = 1, 2, \ldots$ и
@@ -121,18 +121,18 @@
     1.
   \end{multline*}
 
-  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:rv-iff-pf.bounded} и~\ref{thm:rv-iff-pf.normed}. Предполагаме, че това са вероятности за някакви елементарни събития $\Omega = \{ x_1, x_2, \ldots \}$.
+  ($\impliedby$) Нека редицата $p_1, p_2, \ldots$ удовлетворява условията~\ref{thm:pmf-props.bounded} и~\ref{thm:pmf-props.normed}. Предполагаме, че това са вероятности за някакви елементарни събития $\Omega = \{ \omega_1, \omega_2, \ldots \}$.
 
-  Дефинираме случайната величина $\xi: \Omega \to \R, \xi(x_k) \coloneqq p_k$, която е измерима над $(\Omega, \PowerSet(\Omega))$, тъй като праобразът $\xi^{-1}(A)$ на всяко борелово множество $A \in \BorelAlgebra(\R)$ е подмножество на $\Omega$.
+  Дефинираме случайната величина $\xi: \Omega \to \R, \xi(\omega_k) \coloneqq p_k$, която е измерима над $(\Omega, \PowerSet(\Omega))$, тъй като праобразът $\xi^{-1}(A)$ на всяко борелово множество $A \in \BorelAlgebra(\R)$ е подмножество на $\Omega$.
 
-  Сега дефинираме $\Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega)$. Тази сума е добре дефинирана, тъй като редът $\sum_k p_k$ е абсолютно сходящ според~\ref{thm:rv-iff-pf.bounded} и следователно всеки подред също е абсолютно сходящ.
+  Сега дефинираме $\Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega)$. Тази сума е добре дефинирана, тъй като редът $\sum_k p_k$ е абсолютно сходящ според~\ref{thm:pmf-props.bounded} и следователно всеки подред също е абсолютно сходящ.
 
   $\Prob$ е вероятностна мярка над $(\Omega, \PowerSet(\Omega))$, тъй като
   \begin{enumerate}
     \item $\Prob(\varnothing) = 0$,
-    \item $\Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0$ за произволно събитие $A \subseteq \Omega$ според свойство~\ref{thm:rv-iff-pf.bounded},
+    \item $\Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0$ за произволно събитие $A \subseteq \Omega$ според свойство~\ref{thm:pmf-props.bounded},
     \item $\Prob(\cup_{i=1}^\infty A_i) = \sum_{\omega \in \cup_{i=1}^\infty A_i} \xi(\omega) = \sum_{i=1}^\infty \sum_{\omega \in A_i} \xi(\omega) = \sum_{i=1}^\infty \Prob(A_i)$,
-    \item $\Prob(A) \leq 1$ за произволно събитие $A \subseteq \Omega$ според доказаната адитивност и свойство~\ref{thm:rv-iff-pf.normed}.
+    \item $\Prob(A) \leq 1$ за произволно събитие $A \subseteq \Omega$ според доказаната адитивност и свойство~\ref{thm:pmf-props.normed}.
   \end{enumerate}
   Така построихме дискретна случайна величина $\xi$ над пространството $(\Omega, \PowerSet(\Omega), \Prob)$ с вероятности $p_1, p_2, \ldots$.
 \end{proof}
