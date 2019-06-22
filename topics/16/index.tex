@@ -843,7 +843,7 @@
 \subsubsection{Нормално разпределение}\label{dist:normal}
 
 \begin{definition}
-  Казваме, че случайната величина $\xi$ има \uline{нормално разпределение} с очакване $\mu \in \R$ и стандартно отклонение $\sigma > 0$ и пишем $\xi \in \DNormal(\mu, \sigma^2)$, ако функцията на разпределение има вида
+  Казваме, че случайната величина $\xi$ има \uline{нормално разпределение} с очакване $\mu \in \R$ и стандартно отклонение $\sigma > 0$ и пишем $\xi \in \DNormal(\mu, \sigma^2)$, ако плътността има вида
   \begin{displaymath}
     f_\xi(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}}.
   \end{displaymath}
@@ -879,7 +879,7 @@
   \varphi(x).
 \end{displaymath}
 
-Получихме, че $\xi \in \DNormal(0, 1)$ има стандартно нормално разпределение. Затова е достатъчно да намерим пораждащата моментите функция, очакването и дисперсията стандартното нормално разпределение:
+Получихме, че $\xi \in \DNormal(0, 1)$ има стандартно нормално разпределение. Затова е достатъчно да намерим пораждащата моментите функция, очакването и дисперсията само на стандартното нормално разпределение:
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -982,6 +982,287 @@
   \end{displaymath}
   при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
 \end{theorem}
+
+\subsubsection{Равномерно разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ е \uline{равномерно разпределена} в интервала $[a, b]$ пишем $\xi \in \DUniform(a, b)$, ако плътността има вида
+  \begin{displaymath}
+    f_\xi(x)
+    =
+    \begin{cases}
+      \frac 1 {b-a}, x \in [a, b]
+      0, & x \not\in [a, b]
+    \end{cases}
+  \end{displaymath}
+
+  Дефиницията на плътност е коректна, тъй като за $x \in [a, b]$ е в сила $f_\xi(x) = \frac 1 {b-a} > 0$ и
+  \begin{displaymath}
+    \int_\R f_\xi(x) dx
+    =
+    \int_a^b \frac 1 {b-a} dx
+    =
+    1.
+  \end{displaymath}
+\end{definition}
+
+Равномерното разпределение има две основни приложения:
+\begin{enumerate}
+  \item За Монте-Карло симулации на непрекъснати разпределения, чиято функция на разпределение има проста за пресмятане обратна.
+  \item За моделиране експерименти с континуум от възможни изходи, за които предполагаме, че са равновероятни. Например попадението на материална точка в даден паралелепипед.
+\end{enumerate}
+
+За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DUniform(a, b)$ имаме
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  \frac 1 {b-a} \int_a^b e^{tx} dx
+  =
+  \boxed{\begin{cases}
+    1, &t = 0 \\
+    \frac {e^{tb} - e^{ta}} {t(b-a)}, &t \neq 0
+  \end{cases}}
+  \\
+  \Expect(\xi)
+  &=
+  \frac 1 {b-a} \int_a^b x dx
+  =
+  \frac {b^2 - a^2} {2(b-a)}
+  =
+  \frac {(b-a)(b+a)} {2(b-a)}
+  =
+  \boxed{\frac {a + b} 2},
+  \\
+  \Expect(\xi^2)
+  &=
+  \frac 1 {b-a} \int_a^b x^2 dx
+  =
+  \frac {b^3 - a^3} {3(b-a)}
+  =
+  \frac {(b-a)(b^2+ba+a^2)} {3(b-a)}
+  =
+  \boxed{\frac {b^2+ba+a^2} 3},
+  \\
+  \Var(\xi)
+  &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
+  \frac {b^2+ba+a^2} 3 - {\left(\frac {a+b} 2 \right)}^2
+  =
+  \frac {4(b^2+ba+a^2)} {12} - \frac {3 (a^2+2ab+b^2)} {12}
+  = \\ &=
+  \frac {b^2-2ba+a^2} {12}
+  =
+  \boxed{\frac {{(b-a)}^2} {12}}.
+\end{align*}
+\endgroup
+
+\subsubsection{Експоненциално разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \uline{експоненциално разпределение} с интензивност $\lambda > 0$ и пишем $\xi \in \DExp(\lambda)$, ако плътността има вида
+  \begin{displaymath}
+    f_\xi(x) = \begin{cases}
+      \lambda e^{-\lambda x}, & x \geq 0 \\
+      0, &x < 0.
+    \end{cases}
+  \end{displaymath}
+
+  Дефиницията на плътност е коректна, тъй като $f_\xi(x) \geq 0~\forall x \in \R$ и
+  \begin{displaymath}
+    \int_\R \varphi(x) dx
+    =
+    \int_0^\infty \lambda e^{-\lambda x} dx
+    =
+    -\int_0^\infty e^{-\lambda x} d(-\lambda x)
+    =
+    -(\lim_{x \to \infty} e^{-\lambda x} - 1)
+    =
+    1.
+  \end{displaymath}
+
+  Понякога се използва алтернативна параметризация, където плътността има вида
+  \begin{displaymath}
+    f_\xi(x) = \begin{cases}
+      \frac 1 \lambda e^{-\frac x \lambda}, & x \geq 0 \\
+      0, &x < 0.
+    \end{cases}
+  \end{displaymath}
+\end{definition}
+
+Експоненциалното разпределение моделира време на изчакване. Това включва време за чакане на градски транспорт, време до настъпване на застрахователно събитие или време за полуразпад на радиоактивно вещество. Предимство на експоненциалното разпределение за тези модели е свойството липса на памет, описано в теорема~\ref{thm:memorylessness}.
+
+За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на $\xi \in \DExp(\lambda)$ имаме
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  F_\xi(x)
+  &=
+  \int_{-\infty}^x f_\xi(y) dy
+  =
+  \int_0^x \lambda e^{-\lambda y} dy
+  =
+  -\int_0^x e^{-\lambda y} d(-\lambda y)
+  =
+  -(e^{-\lambda x} - 1)
+  =
+  \boxed{1 - e^{-\lambda x}},
+  \\
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  \int_0^\infty e^{tx} \cdot \lambda e^{-\lambda x} dx
+  =
+  \frac \lambda {t-\lambda} \int_0^\infty e^{x(t-\lambda)} d[x(t-\lambda)]
+  = \\ &=
+  \frac \lambda {t-\lambda} (\lim_{x \to \infty} e^{x(t-\lambda)} - 1)
+  =
+  \frac \lambda {\lambda-t}
+  =
+  {\left(\frac {\lambda-t} \lambda \right)}^{-1}
+  =
+  \boxed{{\left(1 - \frac t \lambda \right)}^{-1}, t < \lambda},
+  \\
+  \MGF'_\xi(t)
+  &=
+  \boxed{\frac 1 \lambda {\left(1 - \frac t \lambda \right)}^{-2}, t < \lambda},
+  \\
+  \MGF''_\xi(t)
+  &=
+  \boxed{\frac 2 {\lambda^2} {\left(1 - \frac t \lambda \right)}^{-3}, t < \lambda},
+  \\
+  \Expect(\xi)
+  &=
+  \MGF'_\xi(0)
+  =
+  \boxed{\frac 1 \lambda},
+  \\
+  \Expect(\xi^2)
+  &=
+  \MGF''_\xi(0)
+  =
+  \boxed{\frac 2 {\lambda^2}},
+  \\
+  \Var(\xi)
+  &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
+  \frac 2 {\lambda^2} - \frac 1 {\lambda^2}
+  =
+  \frac 1 {\lambda^2}.
+\end{align*}
+\endgroup
+
+\begin{theorem}[Липса на памет]\label{thm:memorylessness}
+  За $\xi \in \DExp(\lambda)$ и $x, y > 0$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi > x + y \mid \xi > x) = \Prob(\xi > y).
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  \begin{multline*}
+    \Prob(\xi > x + y \mid \xi > x)
+    =
+    \frac {\Prob(\xi > x + y, \xi > x)} {\Prob(\xi > x)}
+    =
+    \frac {\Prob(\xi > x + y)} {\Prob(\xi > x)}
+    =
+    \frac {1-F_\xi(x+y)} {1-F_\xi(x)}
+    = \\ =
+    \frac {e^{-\lambda(x+y)}} {e^{-\lambda x}}
+    =
+    e^{-\lambda y}
+    =
+    1-F_\xi(y)
+    =
+    \Prob(\xi > y).
+  \end{multline*}
+\end{proof}
+
+\subsubsection{Гама разпределение}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \uline{гама разпределение} с мащаб $\alpha > 0$ и интензивност $\beta > 0$ и пишем $\xi \in \DGamma(\alpha, \beta)$, ако плътността има вида
+  \begin{displaymath}
+    f_\xi(x) = \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)},
+  \end{displaymath}
+  където $\Gamma(x)$ е $\Gamma$-функцията на Ойлер.
+
+  Дефиницията на плътност е коректна, тъй като $f_\xi(x) \geq 0~\forall x \in \R$ и
+  \begin{displaymath}
+    \frac 1 {\Gamma(\alpha)} \int_\R {\beta^\alpha x^{\alpha-1} e^{-\beta x}} dx
+    =
+    \frac 1 {\Gamma(\alpha)} \int_\R {{(\beta x)}^{\alpha-1} e^{-\beta x}} d(\beta x)
+    =
+    \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
+    =
+    1.
+  \end{displaymath}
+
+  Понякога се използва алтернативна параметризация с $k = \alpha$ и $\theta = \beta^{-1}$, където плътността има вида
+  \begin{displaymath}
+    f_\xi(x) = \frac {\theta^{-k} x^{k-1} e^{-\frac x \theta}} {\Gamma(k)}.
+  \end{displaymath}
+\end{definition}
+
+Гама разпределението обобщава други често срещани разпределения като $\DExp$ и $\DChiSq$. Като такова то наследява и разширява техни приложения, например за моделиране на време между $n > 1$ последователни нервни импулса, но гама разпределението има и самостоятелни приложения, например за статистически анализ на асиметрично-разпределени данни.
+
+За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DGamma(\alpha, \beta)$ имаме
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  \int_\R e^{tx} \cdot \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)} dx
+  =
+  \frac {\beta^\alpha} {\Gamma(\alpha)} \int_\R x^{\alpha-1} e^{-x(\beta-t)} dx
+  = \\ &=
+  \frac {\beta^\alpha} {(\beta-t) \cdot \Gamma(\alpha)} \int_\R \frac {{[(\beta-t)x]}^{\alpha-1}} {{(\beta-t)}^{\alpha-1}} e^{-(\beta-t)x} d[(\beta-t)x]
+  = \\ &=
+  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac 1 {\Gamma(\alpha)} \int_\R {[(\beta-t)x]}^{\alpha-1} e^{-(\beta-t)x} d[(\beta-t)x]
+  = \\ &=
+  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
+  =
+  {\left(\frac {\beta-t} \beta \right)}^{-\alpha}
+  =
+  \boxed{{\left(1 - \frac t \beta \right)}^{-\alpha}, t < \beta},
+  \\
+  \MGF'_\xi(t)
+  &=
+  \boxed{\frac \alpha \beta {\left(1 - \frac t \beta \right)}^{-\alpha-1}, t < \beta},
+  \\
+  \MGF''_\xi(t)
+  &=
+  \boxed{\frac {\alpha(\alpha+1)} {\beta^2} {\left(1 - \frac t \beta \right)}^{-\alpha-2}, t < \beta},
+  \\
+  \Expect(\xi)
+  &=
+  \MGF'_\xi(0)
+  =
+  \boxed{\frac \alpha \beta},
+  \\
+  \Expect(\xi^2)
+  &=
+  \MGF''_\xi(0)
+  =
+  \boxed{\frac {\alpha(\alpha+1)} {\beta^2}},
+  \\
+  \Var(\xi)
+  &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
+  \frac {\alpha(\alpha+1)} {\beta^2} - \frac {\alpha^2} {\beta^2}
+  =
+  \frac \alpha {\beta^2}.
+\end{align*}
+\endgroup
 
 \printbibliography
 
