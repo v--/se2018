@@ -91,7 +91,7 @@
     F_\xi(x) = \int_a^x F'_\xi(x) + F_\xi(a).
   \end{displaymath}
 
-  Функцията $f_\xi: \R \mapsto \R$ наричаме \underline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
+  Функцията $f_\xi: \R \mapsto \R$ наричаме \uline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
 \end{definition}
 
 \begin{note}
@@ -514,6 +514,37 @@
   \end{multline*}
 \end{proof}
 
+\begin{definition}
+  Ако една случайна величина има крайна дисперсия, можем да я~\uline{стандартизираме}, разглеждайки вместо нея
+  \begin{displaymath}
+    \overline \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\Var(\xi)}}.
+  \end{displaymath}
+\end{definition}
+
+\begin{proposition}
+  Стандартизираните случайни величини са винаги центрирани и нормирани.
+\end{proposition}
+\begin{proof}
+  Ако $\xi$ е произволна случайна величина с крайна дисперсия, имаме
+  \begin{align*}
+    \Expect(\overline \xi)
+    &=
+    \frac 1 {\sqrt{\Var(\xi)}} \Expect(\xi - \Expect\xi)
+    =
+    0
+    \\
+    \Var(\overline \xi)
+    &=
+    \frac 1 {\Var(\xi)} \Expect({\left[ \xi - \Expect\xi - \Expect(\xi - \Expect\xi) \right]}^2) = 0
+    =
+    \frac 1 {\Var(\xi)} \Expect({(\xi - \Expect\xi)}^2)
+    =
+    \frac {\Var(\xi)} {\Var(\xi)}
+    =
+    1.
+  \end{align*}
+\end{proof}
+
 \subsection{Пораждащи моментите и характеристични функции}
 
 \begin{definition}
@@ -806,6 +837,151 @@
     Последното равенство е изпълнено за всяко $t \in \R$ точно когато $f_\xi(x) = f_\eta(x)$ почти за всяко $x \in \R$. Следователно $\xi$ и $\eta$ имат еднакво разпределение.
   \end{enumerate}
 \end{proof}
+
+\subsection{Често срещани непрекъснати разпределения}
+
+\subsubsection{Нормално разпределение}\label{dist:normal}
+
+\begin{definition}
+  Казваме, че случайната величина $\xi$ има \uline{нормално разпределение} с очакване $\mu \in \R$ и стандартно отклонение $\sigma > 0$ и пишем $\xi \in \DNormal(\mu, \sigma^2)$, ако функцията на разпределение има вида
+  \begin{displaymath}
+    f_\xi(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}}.
+  \end{displaymath}
+
+  Дефиницията на плътност е коректна, тъй като $f_\xi(x) \geq 0~\forall x \in \R$ и от $\int_\R e^{-x^2} dx = \sqrt \pi$ получаваме
+  \begin{displaymath}
+    \int_\R \varphi(x) dx
+    =
+    \int_\R \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}} dx
+    =
+    \frac 1 {\sqrt{\pi}} \int_\R e^{-{\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)}^2} d\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)
+    =
+    \frac {\sqrt{\pi}} {\sqrt{\pi}}
+    =
+    1.
+  \end{displaymath}
+
+  Разпределението на $\xi$ наричаме \uline{стандартно нормално}, ако $\mu = 0$ и $\sigma = 1$. Обикновено плътността и функцията на разпределение на стандартното нормално разпределение се бележат съответно с $\varphi(x)$ и $\Phi(x)$.
+\end{definition}
+
+Поради различните варианти на централната гранична теорема, нормалното разпределение е гранично за средно аритметичното на независими случайни величини от много други разпределения. Това го прави най-широко приложимото вероятностно разпределение. На практика нормалното разпределение се използва за приближено описание на всякакъв род данни - от анализ на резултати от социологически проучвания до моделиране на финансови пазари или термална радиация.
+
+Нека $\eta \in \DNormal(\mu, \sigma^2)$ и $\xi \coloneqq \frac {\xi - \mu} \sigma$. Тъй като $\eta = \sigma \xi + \mu$, от твърдение~\ref{thm:transformation-density} получаваме, че плътността на $\xi$ е
+\begin{displaymath}
+  f_\xi(x)
+  =
+  \sigma \cdot f_\eta(\sigma x + \mu)
+  =
+  \sigma \cdot \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(\sigma x + \mu -\mu)}^2} {2\sigma^2}}
+  =
+  \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2}
+  =
+  \varphi(x).
+\end{displaymath}
+
+Получихме, че $\xi \in \DNormal(0, 1)$ има стандартно нормално разпределение. Затова е достатъчно да намерим пораждащата моментите функция, очакването и дисперсията стандартното нормално разпределение:
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  \MGF_\xi(t)
+  &=
+  \Expect(e^{t\xi})
+  =
+  \int_\R e^{tx} \cdot \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2} dx
+  =
+  \frac 1 {\sqrt{2\pi}} \int_\R e^{tx -\frac {x^2} 2} dx
+  =
+  \frac 1 {\sqrt{2\pi}} \int_\R e^{- \frac 1 2 (x^2 - 2tx + t^2) + \frac 1 2 t^2} dx
+  = \\ &=
+  \frac {e^{t^2}} {\sqrt \pi} \int_\R e^{- {\left(\frac {x - t} {\sqrt 2} \right)}^2 + \frac 1 2 t^2} d\left( \frac {x - t} {\sqrt 2} \right)
+  =
+  \boxed{e^{\frac {t^2} 2}},
+  \\
+  \MGF'_\xi(t)
+  &=
+  \boxed{t e^{\frac {t^2} 2}},
+  \\
+  \MGF''_\xi(t)
+  &=
+  1 \cdot e^{\frac {t^2} 2} + t \cdot t e^{\frac {t^2} 2}
+  =
+  \boxed{(1 + t^2) e^{\frac {t^2} 2}}
+  \\
+  \Expect(\xi)
+  &=
+  \MGF'_\xi(0)
+  =
+  \boxed{0},
+  \\
+  \Expect(\xi^2)
+  &=
+  \MGF''_\xi(0)
+  =
+  \boxed{1}
+  \\
+  \Var(\xi)
+  &=
+  \Expect(\xi^2) - {\Expect(\xi)}^2
+  =
+  1 - 0
+  =
+  \boxed{1}.
+\end{align*}
+\endgroup
+
+Тогава за оригиналната случайна величина $\eta \in \DNormal(\mu, \sigma^2)$ имаме
+\begin{align*}
+  \Expect(\eta) &= \Expect(\sigma \xi + \mu) = \sigma \Expect(\eta) + \mu = \boxed{\mu}, \\
+  \Var(\eta) &= \Var(\sigma \xi + \mu) = \sigma^2 \Var(\xi) = \boxed{\sigma^2}.
+\end{align*}
+
+Получихме, че произволна нормална случайна величина $\eta \in \DNormal(\mu, \sigma^2)$ има очакване $\mu$ и дисперсия $\sigma^2$, които отговарят на съответните параметри. Стандартизираните нормални случайни величини тогава винаги имат стандартно нормално разпределение.
+
+Освен това, от вида на пораждащата моментите функция на $\eta$
+\begin{displaymath}
+  \MGF_\eta(t)
+  =
+  \Expect(e^{t\eta})
+  =
+  \Expect(e^{t(\sigma\xi + \mu)})
+  =
+  \Expect(e^{(\sigma t) \xi}) e^{t\mu}
+  =
+  e^{t\mu} \MGF_\xi(\sigma t)
+  =
+  \boxed{e^{t\mu} e^{\frac {\sigma^2 t^2} 2}}
+\end{displaymath}
+става ясно, че сумата на две нормални случайни величини $\xi_k \in \DNormal(\mu_k, \sigma_k^2), k = 1, 2$ е отново нормална с параметри $\xi_1 + \xi_2 \in \DNormal(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$.
+
+Ако $\xi_1, \ldots, \xi_n$ са стандартни нормални, сумата им има разпределение $\DNormal(0, n)$. За да бъде сумата стандартна нормална, стандартизираме чрез
+\begin{displaymath}
+  \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
+\end{displaymath}
+
+При $n \to \infty$ това свойство се обобщава за различни по рода си разпределения, както може да бъде видяно от следните теореми
+
+\begin{theorem}[Централна гранична теорема за еднакво разпределени случайни величини]
+  Нека $\xi_1, \xi_2, \ldots$ са независими и еднакво разпределени случайни величини с крайна дисперсия. Без ограничение на общността считаме, че те са стандартизирани.
+
+  Тогава случайната величина
+  \begin{displaymath}
+    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
+  \end{displaymath}
+  при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
+\end{theorem}
+
+\begin{theorem}[Централна гранична теорема с условие на Ляпунов]
+  Нека $\xi_1, \xi_2, \ldots$ са независими случайни величини с крайни дисперсии. Без ограничение на общността считаме, че те са стандартизирани.
+  Ако за някое $\delta > 2$ е изпълнено условието на Ляпунов,
+  \begin{displaymath}
+    \lim_{n \to \infty} \frac 1 {n^{\frac \delta 2}} \sum_{k=1}^n \Expect \left( {\Abs{\xi_k}}^\delta \right) = 0,
+  \end{displaymath}
+  тогава случайната величина
+  \begin{displaymath}
+    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
+  \end{displaymath}
+  при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
+\end{theorem}
 
 \printbibliography
 
