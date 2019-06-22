@@ -514,6 +514,299 @@
   \end{multline*}
 \end{proof}
 
+\subsection{Пораждащи моментите и характеристични функции}
+
+\begin{definition}
+  \uline{Пораждаща моментите функция на $\xi$} наричаме
+  \begin{displaymath}
+    \MGF_\xi (t) \coloneqq \Expect(e^{t\xi}).
+  \end{displaymath}
+
+  \uline{Характеристична функция на $\xi$} наричаме
+  \begin{displaymath}
+    \Char_\xi (t) \coloneqq \Expect(e^{it\xi}).
+  \end{displaymath}
+
+  Изпълнено е $\Char_\xi(t) = \MGF_\xi(it)$.
+\end{definition}
+
+\begin{note}
+  Не сме дефинирали очакване от комплексна случайна величина, но теоретичната обосновка идва от формулите на Ойлер:
+  \begin{displaymath}
+    \Char_\xi (t)
+    =
+    \Expect(e^{it\xi})
+    =
+    \Expect(\cos(t\xi) + i\sin(t\xi))
+    =
+    \Expect(\cos(t\xi)) + i \Expect(\sin(t\xi)).
+  \end{displaymath}
+\end{note}
+
+\begin{note}
+  Дефинициите за моменти и функции от очакването се пренасят без изменение за случайни величини, които не са непрекъснати.
+\end{note}
+
+\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf-props}
+  Нека $\xi$ и $\eta$ са независими непрекъснати случайни величини.
+
+  За пораждащите моментите функции $\MGF_\xi$ и $\MGF_\eta$ са изпълнени следните свойства
+  \begin{enumerate}
+    \item В общия случай пораждащата моментите функция съществува само в $0$. Ако тя съществува в околност на $0$, то тя е гладка в тази околност, съществуват всички моменти и е изпълнено $\Expect(\xi^m) = \MGF_\xi^{(m)} (0)$ за $m = 1, 2, \ldots$.
+
+    \item Ако пораждащите моментите функции на $\xi$, $\eta$ и $\xi + \eta$ съществуват в точка $t \in \R$, имаме
+    \begin{displaymath}
+      \MGF_{\xi + \eta}(t) = \MGF_\xi(t) \MGF_\eta(t).
+    \end{displaymath}
+
+    \item Ако $\MGF_\xi$ и $\MGF_\eta$ имат обща дефиниционна област, различна от $\{ 0 \}$, в която те съвпадат, то $\xi$ и $\eta$ имат еднакво разпределение.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item Пораждащата моментите функция винаги съществува в $0$, тъй като $\MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1$.
+
+    Нека $\MGF_\xi$ съществува в околност $U$ на $0$. Без ограничение на общността ще считаме, че $U$ е ограничена. Полагаме $\tau \coloneqq \min(-\inf U, \sup_U)$. Тогава сумата $\MGF_\xi(-\tau) + \MGF_\xi(\tau)$ е крайна. Развиваме тази сума в ред на Тейлър:
+    \begin{displaymath}
+      \MGF_\xi(-\tau) + \MGF_\xi(\tau)
+      =
+      \Expect(e^{-\tau\xi} + e^{\tau\xi})
+      =
+      \Expect\left( 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} \right)
+      =
+      2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
+    \end{displaymath}
+
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От $\Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}})$ се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower-order-moments} съществуват и всички нечетни моменти.
+
+    Остава да докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{t\xi})$ в областта $\frac 1 {2^m} U = \{ \frac t {2^m} U \mid t \in U \}$.
+
+    Разглеждаме очакването на $m$-тата производна $\xi^m e^{t \xi}$ на $e^{t \xi}$ по $t$. Налице са условията за диференциране под знака на интеграла:
+    \begin{enumerate}
+      \item За $m > 0$ прилагаме неравенството на Коши-Буняковски-Шварц, за да докажем, че $\Expect \left( \xi^m e^{t \xi} \right)$ съществува за $t \in \frac 1 {2^m} U$:
+      \begin{multline*}
+        {\left(\Expect \left( \xi^m e^{t \xi} \right) \right)}^2
+        =
+        {\left(\int_\R x^m e^{t x} f_\xi(x) \right)}^2
+        = \\ =
+        {\left(\int_\R \left(x^m \sqrt{f_\xi(x)} \right) \left(e^{t x} \sqrt{f_\xi(x)} \right) dx \right)}^2
+        \leq \\ \leq
+        \int_\R x^{2m} f_\xi(x) dx
+        \int_\R e^{2tx} f_\xi(x) dx
+        = \\ =
+        \Expect(\xi^{2m})
+        \Expect(e^{2t \xi})
+        =
+        \Expect(\xi^{2m})
+        \MGF_\xi(2t).
+      \end{multline*}
+
+      \item Функцията $x \mapsto x^m e^{t x}$ е диференцируема по $t$ за всяко $x \in \R$.
+      \item Производната на $x^m e^{t x}$ по $t$ се мажорира по абсолютна стойност от
+      \begin{displaymath}
+        \Abs{x^{m+1} e^{t x}}
+        \leq
+        {\Abs{x}}^{m+1} \Abs{e^{t x}}
+        \leq
+        {\Abs{x}}^{m+1} e^{\Abs{t x}}
+        \leq
+        {\Abs{x}}^{m+1} e^{\tau \Abs{x}},
+      \end{displaymath}
+      където мажорантата не зависи от $t$.
+    \end{enumerate}
+
+    По индукция за $m = 1, 2, \ldots$ получаваме $\MGF^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$ в $\frac 1 {2^m} U$. В частност, $\MGF^{(m)}_\xi(0) = \Expect(\xi^m e^{0 \xi}) = \Expect(\xi^m)$.
+
+    \item Ако пораждащите моментите функции съществуват в $t \in \R$, тъй като $\xi$ и $\eta$ са независими, случайните величини $e^{t\xi}$ и $e^{t\eta}$ също са независими и
+    \begin{displaymath}
+      \MGF_{\xi + \eta}(t)
+      =
+      \Expect(e^{t(\xi + \eta)})
+      =
+      \Expect(e^{t\xi} e^{t\eta})
+      =
+      \Expect(e^{t\xi}) \Expect(e^{t\eta})
+      =
+      \MGF_\xi(t) \MGF_\eta(t).
+    \end{displaymath}
+
+    \item Ако функциите $\MGF_\xi$ и $\MGF_\eta$ съвпадат в областта си на дефиниция $U$, за $t \in U$ имаме
+    \begin{align*}
+      \MGF_\xi(t) - \MGF_\eta(t) &= 0
+      \\
+      \int_\R e^{tx} f_\xi(x) - \int_\R e^{tx} f_\eta(x) dx &= 0
+      \\
+      \int_\R e^{tx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+    \end{align*}
+    Последното равенство е изпълнено за всяко $t \in U$ точно когато $f_\xi(x) = f_\eta(x)$ почти за всяко $x \in \R$. Следователно $\xi$ и $\eta$ имат еднакво разпределение.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Свойства на характеристичните функции]\label{thm:char-props}
+  Нека $\xi$ и $\eta$ са независими дискретни случайни величини.
+
+  За характеристичните функции $\Char_\xi$ и $\Char_\eta$ са изпълнени следните свойства
+  \begin{enumerate}
+    \item $\Char_\xi$ съществува и е равномерно непрекъсната навсякъде върху реалната права.
+
+    \item Ако $\xi^n$ има краен $n$-ти момент, е изпълнено $\Expect(\xi^m) = i^{-m} \Char_\xi^{(m)} (0)$ за $m = 1, \ldots, n$.
+
+    \item За всяко $t \in \R$ имаме
+    \begin{displaymath}
+      \Char_{\xi + \eta}(t) = \Char_\xi(t) \Char_\eta(t).
+    \end{displaymath}
+
+    \item Ако $\Char_\xi$ и $\Char_\eta$ съвпадат, то $\xi$ и $\eta$ имат еднакво разпределение.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item За да докажем, че $\Char_\xi$ е дефинирана навсякъде в $\R$, оценяваме отгоре абсолютната стойност на $\Char_\xi$ за $t \in \R$:
+    \begin{displaymath}
+      \Abs{\Char_\xi(t)}
+      =
+      \Abs{\Expect(e^{it\xi})}
+      =
+      \Abs{\int_\R e^{itx} f_\xi(x) dx}
+      \leq
+      \int_\R \Abs{e^{itx}} f_\xi(x) dx
+      =
+      \int_\R f_\xi(x) dx
+      =
+      1.
+    \end{displaymath}
+
+    За да докажем и равномерната непрекъснатост в $\R$, първо оценяваме отгоре израза
+    \begin{multline*}
+      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      =
+      \Abs{\Expect(e^{i(t + h)\xi}) - \Expect(e^{it\xi})}
+      = \\ =
+      \Abs{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
+      =
+      \Abs{\int_\R e^{itx} (e^{ihx} - 1) f_\xi(x) dx}
+      \leq \\ \leq
+      \int_\R \Abs{e^{itx}} \Abs{(e^{ihx} - 1)} f_\xi(x) dx
+      =
+      \int_\R \Abs{(e^{ihx} - 1)} f_\xi(x) dx.
+    \end{multline*}
+
+    Ще използваме, че за всяко $z \in \Complex$ неравенството на Йенсен ни дава
+    \begin{displaymath}
+      \Abs{e^{iz} - 1}
+      =
+      \Abs{i \int_0^z e^{it} dt}
+      \leq
+      \int_0^{\Abs{z}} \Abs{e^{it}} dt
+      =
+      \int_0^{\Abs{z}} dt
+      =
+      \Abs{z}.
+    \end{displaymath}
+
+    Фиксираме $\varepsilon > 0$. Избираме константа $c_\varepsilon > 0$ такава, че $\Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3$.
+    Разглеждаме две множества: $A \coloneqq (-c_\varepsilon, c_\varepsilon)$ и $B \coloneqq \R \setminus A$.
+
+    За $x \in A$ имаме
+    \begin{displaymath}
+      \int_A \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \leq
+      \int_A \Abs{h x} f_\xi(x) dx
+      \leq
+      c_\varepsilon \Abs h \int_A f_\xi(x) dx
+      \leq
+      c_\varepsilon \Abs h.
+    \end{displaymath}
+
+    За $x \in B$ имаме
+    \begin{displaymath}
+      \int_B \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \leq
+      \int_B \left( \Abs{e^{ihx}} + 1 \right) f_\xi(x) dx
+      \leq
+      2 \int_B f_\xi(x) dx
+      <
+      \frac {2\varepsilon} 3.
+    \end{displaymath}
+
+    За целия интеграл тогава получаваме
+    \begin{displaymath}
+      \int_\R \Abs{e^{ihx} - 1} f_\xi(x) dx
+      <
+      c_\varepsilon \Abs{h} + 2 \varepsilon.
+    \end{displaymath}
+
+    Полагаме $\delta = \frac \varepsilon {3 c_\varepsilon}$.
+
+    Тогава за $\Abs h < \delta$ имаме
+    \begin{displaymath}
+      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      <
+      c_\varepsilon \Abs{h} + \frac {2\varepsilon} 3
+      <
+      \frac {\varepsilon} 3 + \frac {2\varepsilon} 3
+      =
+      \varepsilon.
+    \end{displaymath}
+
+    Числото $\delta$ зависи само от $\varepsilon$, следователно $\Char_\xi(t)$ е равномерно непрекъсната върху цялата реална права.
+
+    \item Нека съществува моментът $\Expect \xi^n$. Тогава съществуват и моментите от по-нисък ред.
+
+    Ще докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{it \xi})$.
+
+    Разглеждаме очакването на $m$-тата производна $i^m \xi^m e^{it \xi}$ на $e^{it \xi}$ по $t$. Налице са условията за диференциране под знака на интеграла:
+    \begin{enumerate}
+      \item $\Expect \left( i^m \xi^m e^{it \xi} \right)$ съществува за $t \in \R$, тъй като
+      \begin{multline*}
+        \Abs{\Expect \left( i^m \xi^m e^{it \xi} \right)}
+        =
+        \Abs{\Expect \left( \xi^m e^{it \xi} \right)}
+        =
+        \Abs{\int_\R x^m e^{itx} f_\xi(x) dx}
+        \leq
+        \int_\R \Abs{x^m e^{itx} f_\xi(x)} dx
+        = \\ =
+        \int_\R \Abs{x^m} \Abs{e^{itx}} f_\xi(x) dx
+        =
+        \int_\R \Abs{x^m} f_\xi(x) dx
+        =
+        \Expect \left( {\Abs{\xi^m}} \right).
+      \end{multline*}
+      Последното очакване е крайно, тъй като $\Expect(\Abs{\xi^0}) = 1$, а за $m > 0$ по условие интегралът $\Expect(\xi^m)$ е абсолютно сходящ.
+      \item Функцията $x \mapsto i^m x^m e^{it x}$ е диференцируема по $t$ за всяко $x \in \Image(\xi)$.
+      \item Производната на $i^m x^m e^{it x}$ по $t$ се мажорира по абсолютна стойност от $\Abs{x^{m+1} e^{it x}} \leq {\Abs{x}}^{m+1}$, където мажорантата не зависи от $t$.
+    \end{enumerate}
+
+    По индукция за $m = 1, \ldots, n$ получаваме $\Char^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$. В частност, $\Char^{(m)}_\xi(0) = i^m \Expect(\xi^m e^{0 \xi}) = i^m \Expect(\xi^m)$.
+
+    \item Тъй като $\xi$ и $\eta$ са независими, за произволно $t \in \R$ величините $e^{t\xi}$ и $e^{t\eta}$ са независими и
+    \begin{displaymath}
+      \Char_{\xi + \eta}(t)
+      =
+      \Expect(e^{it(\xi + \eta)})
+      =
+      \Expect(e^{it\xi} e^{it\eta})
+      =
+      \Expect(e^{it\xi}) \Expect(e^{it\eta})
+      =
+      \Char_\xi(t) \Char_\eta(t).
+    \end{displaymath}
+
+    \item Ако функциите $\MGF_\xi$ и $\MGF_\eta$ съвпадат, имаме
+    \begin{align*}
+      \Char_\xi(t) - \Char_\eta(t) &= 0
+      \\
+      \int_\R e^{itx} f_\xi(x) - \int_\R e^{itx} f_\eta(x) dx &= 0
+      \\
+      \int_\R e^{itx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+    \end{align*}
+    Последното равенство е изпълнено за всяко $t \in \R$ точно когато $f_\xi(x) = f_\eta(x)$ почти за всяко $x \in \R$. Следователно $\xi$ и $\eta$ имат еднакво разпределение.
+  \end{enumerate}
+\end{proof}
+
 \printbibliography
 
 \end{document}

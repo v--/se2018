@@ -454,7 +454,7 @@
       \MGF_{\xi + \eta}(t) = \MGF_\xi(t) \MGF_\eta(t).
     \end{displaymath}
 
-    \item Ако $\MGF_\xi$ и $\MGF_\eta$ имат обща дефиниционна област, в която те съвпадат, то $\xi$ и $\eta$ също съвпадат.
+    \item Ако $\MGF_\xi$ и $\MGF_\eta$ имат обща дефиниционна област, различна от $\{ 0 \}$, в която те съвпадат, то $\xi$ и $\eta$ също съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -496,7 +496,7 @@
         \Expect(e^{2t \xi})
         =
         \Expect(\xi^{2m})
-        \Char_\xi(2t).
+        \MGF_\xi(2t).
       \end{multline*}
 
       \item Функцията $x \mapsto x^m e^{t x}$ е диференцируема по $t$ за всяко $x \in \Image(\xi)$.
@@ -591,9 +591,6 @@
       \sum_k \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k).
     \end{multline*}
 
-    Фиксираме $\varepsilon > 0$. Избираме константа $c_\varepsilon \in \R$ такава, че $\Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3$.
-    Въвеждаме две множества от индекси: $A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \}$ и $B = \ZPos \setminus A$.
-
     Ще използваме, че за всяко $z \in \Complex$ неравенството на Йенсен ни дава
     \begin{displaymath}
       \Abs{e^{iz} - 1}
@@ -606,6 +603,9 @@
       =
       \Abs{z}.
     \end{displaymath}
+
+    Фиксираме $\varepsilon > 0$. Избираме константа $c_\varepsilon \in \RPos$ такава, че $\Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3$.
+    Въвеждаме две множества от индекси: $A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \}$ и $B = \ZPos \setminus A$.
 
     За $k \in A$ имаме
     \begin{displaymath}
@@ -630,7 +630,7 @@
       \frac {2\varepsilon} 3.
     \end{displaymath}
 
-    За целият ред тогава получаваме
+    За целия ред тогава получаваме
     \begin{displaymath}
       \sum_k \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
       <
@@ -656,7 +656,7 @@
 
     Ще докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{it \xi})$.
 
-    Разглеждаме очакването на $m$-тата производна $i^m \xi^m e^{it \xi}$ на $e^{it \xi}$ по $t$. Налице условията за почленно диференциране на ред:
+    Разглеждаме очакването на $m$-тата производна $i^m \xi^m e^{it \xi}$ на $e^{it \xi}$ по $t$. Налице са условията за почленно диференциране на ред:
     \begin{enumerate}
       \item $\Expect \left( i^m \xi^m e^{it \xi} \right)$ съществува за $t \in \R$, тъй като
       \begin{multline*}
@@ -702,7 +702,7 @@
       \\
       \sum_k e^{i t z_k} (\Prob(\xi = z_k) - \Prob(\xi = y_k)) &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко $t \in \Complex$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
+    Последното равенство е изпълнено за всяко $t \in \R$ точно когато $\Prob(\xi = z) = \Prob(\xi = z)$ за всяко $z \in \Image(\xi) \cup \Image(\eta)$. Следователно $\xi$ и $\eta$ приемат едни и същи стойности $\Image(\xi) = \Image(\eta)$ с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
