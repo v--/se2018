@@ -86,13 +86,17 @@
     F_\xi(x) \coloneqq \Prob(\xi \leq x).
   \end{displaymath}
 
-  Случайната величина $\xi$ наричаме \uline{(абсолютно) непрекъсната} и казваме, че $\xi$ има \uline{(абсолютно) непрекъснато разпределение}, ако функцията ѝ на разпределение е локално абсолютно непрекъсната в $\R$, т.е. абсолютно непрекъсната във всеки затворен интервал. Известно е, че абсолютно непрекъснатите в затворен интервал $[a, b]$ функции са точно тези, които са диференцируеми почти навсякъде в интервала, производните им в $[a, b]$ са интегруеми по Риман и за $x \in [a, b]$ е изпълнено
+  Случайната величина $\xi$ наричаме \uline{абсолютно непрекъсната} и казваме, че $\xi$ има \uline{абсолютно непрекъснато разпределение}, ако функцията ѝ на разпределение е локално абсолютно непрекъсната в $\R$, т.е. абсолютно непрекъсната във всеки затворен интервал. Известно е, че абсолютно непрекъснатите в затворен интервал $[a, b]$ функции са точно тези, които са диференцируеми почти навсякъде в интервала, производните им в $[a, b]$ са интегруеми по Риман и за $x \in [a, b]$ е изпълнено
   \begin{displaymath}
     F_\xi(x) = \int_a^x F'_\xi(x) + F_\xi(a).
   \end{displaymath}
 
-  Функцията $f_\xi: \R \mapsto \R$ наричаме \underline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само по изброимо много точки и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
+  Функцията $f_\xi: \R \mapsto \R$ наричаме \underline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
 \end{definition}
+
+\begin{note}
+  Абсолютно непрекъснатите случайни величини ще наричаме просто~\enquote{непрекъснати}. Понякога непрекъснати случайни величини се наричат такива с непрекъсната функция на разпределение, но това определение е прекалено общо и позволява т. нар. сингулярни разпределения, чиято плътност се анулира почти навсякъде.
+\end{note}
 
 \begin{proposition}[Основни свойства на функцията на разпределение]\label{thm:cdf-props}
   Функцията $F_\xi$ е функция на разпределение на някаква (не непременно абсолютно непрекъсната) случайна величина $\xi$ тогава и само тогава, когато са изпълнени
@@ -185,6 +189,8 @@
   С други думи, построихме вероятностно пространство и случайна величина $\xi$, чиято функцията на разпределение е $F_\xi$.
 \end{proof}
 
+До края на темата ще считаме, че работим над вероятностното пространство $(\Omega, \F, \Prob)$.
+
 \begin{theorem}\label{thm:density-props}
   Интегруемата по Риман функция $f_\xi: \R \to \R$ е плътност на някаква абсолютно непрекъсната случайна величина $\xi$ тогава и само тогава, когато са изпълнени
   \begin{enumerate}
@@ -193,7 +199,7 @@
   \end{enumerate}
 \end{theorem}
 
-Тъй като от теорема~\ref{thm:density-props} плътността на една непрекъсната случайна величина определя функцията ѝ на разпределение, понякога разпределение на непрекъсната случайна величина се нарича плътността ѝ.
+Тази теорема ни позволява да задаваме непрекъсната случайна величина изцяло чрез плътността ѝ, поради което плътността понякога се нарича разпределение на случайната величина.
 
 \begin{proof}[Доказателство на теорема~\ref{thm:density-props}]
   ($\implies$) Нека $f_\xi$ е плътност на $\xi$.
@@ -270,6 +276,242 @@
     =
     F_\xi(a) + \int_a^x f_\xi(x) dx.
   \end{displaymath}
+\end{proof}
+
+\begin{proposition}[Конволюция на плътности]\label{thm:convolution}
+  Сумата на две независими непрекъснати случайни величини $\xi$ и $\eta$ е непрекъсната случайна величина с плътност
+  \begin{displaymath}
+    f_{\xi + \eta} (x)
+    =
+    \int_\R f_\xi(t) f_\eta(x - t) dt
+    =
+    \int_\R f_\xi(t) f_\eta(x - t) dt.
+  \end{displaymath}
+\end{proposition}
+\begin{proof} От формулата за пълната вероятност и независимостта на $\xi$ и $\eta$ имаме
+  \begin{displaymath}
+    F_{\xi + \eta} (x)
+    =
+    \Prob(\xi + \eta \leq x)
+    =
+    \Prob(\xi \leq x - \eta)
+    =
+    \int_\R \Prob(\xi \leq x - t) f_\eta(t) dt
+    =
+    \int_\R F_\xi(x - t) f_\eta(t) dt.
+  \end{displaymath}
+
+  Аналогично се доказва
+  \begin{displaymath}
+    f_{\xi + \eta} (x)
+    =
+    \int_\R f_\xi(t) f_\eta(x - t) dt.
+  \end{displaymath}
+\end{proof}
+
+\begin{proposition}\label{thm:transformation-density}
+  Ако $\xi$ е случайна величина и функцията $\psi: \R \to \R$ е строго монотонна и диференцируема, тогава $\psi(\xi)$ е непрекъсната случайна величина с плътност
+  \begin{displaymath}
+    f_{\psi(\xi)} (x)
+    =
+    \Abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
+  \end{displaymath}
+\end{proposition}
+\begin{proof} Диференцирайки $F_{\psi(\xi)} = \Prob(\psi(\xi) \leq x) = \Prob(\xi \leq \psi^{-1}(x)) = F_\xi(\psi^{-1}(x))$ по $x$ получаваме
+  \begin{displaymath}
+    f_{\psi(\xi)} (x)
+    =
+    F'_{\psi(\xi)} (x)
+    =
+    (F_{\xi} \circ \psi^{-1})'(x)
+    =
+    \Abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
+  \end{displaymath}
+\end{proof}
+
+\subsection{Очакване и моменти}
+
+\begin{definition}
+  Нека $\xi$ е непрекъсната случайна величина. Дефинираме \uline{очакване на $\xi$} чрез
+  \begin{displaymath}
+    \Expect(\xi) \coloneqq \int_\R x f_\xi(x) dx.
+  \end{displaymath}
+  Казваме, че $\xi$ има (крайно) очакване, ако интегралът е абсолютно сходящ, т.е. $\Abs{x f_\xi}$ е интегруема функция.
+
+  Случайни величини с очакване нула наричаме \uline{центрирани}.
+
+  Очакване от константа $x \in \R$ дефинираме да бъде самата константа $x$.
+\end{definition}
+
+\begin{note}
+  Очакването се дефинира за произволна случайна величина $\xi$ се дефинира чрез интеграл по вероятностната мярка, т.е.
+  \begin{displaymath}
+    \Expect(\xi) \coloneqq \int \xi d\Prob.
+  \end{displaymath}
+
+  Нещо повече, очакването е линеен функционал над линейното пространството от всички случайни величини над $(\Omega, \F, \Prob)$.
+
+  Непрекъснатите случайни величини обаче не образуват линейно подпространство, тъй като сумата на две зависими непрекъснати случайни величини може да не бъде непрекъсната (например $\xi - \xi = 0$). Тъй като тук се ограничаваме само до непрекъснати случайни величини, ще формулираме някои свойства (например адитивност) само в частния случай, в който случайните величини са независими.
+\end{note}
+
+\begin{proposition}\label{thm:expect-product}
+  За независими непрекъснати случайни величини $\xi$ и $\eta$ с крайно очакване е изпълнено
+  \begin{displaymath}
+    \Expect(\xi \eta) = \Expect(\xi) \Expect(\eta).
+  \end{displaymath}
+\end{proposition}
+\begin{proof}
+  Прилагаме теоремата на Фубини, теоремата за средните стойности и формулата за пълната вероятност:
+  \begin{multline*}
+    \Expect(\xi \eta)
+    =
+    \int_\R z f_{\xi \eta}(z) dz
+    =
+    \int_\R z \Prob(z \leq \xi \eta < z + dz) dz
+    =
+    \int_\R \int_\R z \Prob(z \leq t \xi < z + dz) f_\eta(t) dz
+    = \\ =
+    \int_\R \int_\R z \left( F_\xi\left(\frac z t \right) - F_\xi\left(\frac z t + d\frac z t \right) \right) f_\eta(t) dt \; dz
+    =
+    \int_\R \int_\R z f_\xi \left(\frac z t \right) f_\eta(t) dt \; dz
+    = \\ =
+    \int_\R t f_\eta(t) \left(\int_\R \frac z t f_\xi \left(\frac z t \right) d\frac z t \right) dt
+    =
+    \Expect(\xi) \int_\R t f_\eta(t) dt
+    =
+    \Expect(\xi) \Expect(\eta).
+  \end{multline*}
+\end{proof}
+
+\begin{proposition}\label{thm:expect-additive}
+  Ако $\xi$ и $\eta$ са непрекъснати и независими, имаме $\Expect(\xi + \eta) = \Expect(\xi) + \Expect(\eta)$.
+\end{proposition}
+\begin{proof}
+  От твърдение~\ref{thm:convolution} знаем, че $\xi + \eta$ също има непрекъснато разпределение и плътността ѝ е конволюция на плътностите на $\xi$ и $\eta$. Тогава от теоремата на Фубини имаме
+  \begin{multline*}
+    \Expect(\xi + \eta)
+    =
+    \int_\R x f_{\xi + \eta} (x) dx
+    =
+    \int_\R x \int_\R f_\xi(x - t) f_\eta(t) dt \; dx
+    =
+    \int_\R \left( \int_\R x f_\xi(x - t) dx \right) f_\eta(t) dt
+    = \\ =
+    \int_\R \left( \int_\R (x - t + t) f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    = \\ =
+    \int_\R \left( \int_\R (x - t) f_\xi(x - t) d(x - t) + t \int_\R f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    = \\ =
+    \int_\R (\Expect(\xi) + t) f_\eta(t) dt
+    =
+    \Expect(\xi) \int_\R f_\eta(t) dt + \int_\R t f_\eta(t) dt
+    =
+    \Expect(\xi) + \Expect(\eta).
+  \end{multline*}
+\end{proof}
+
+\begin{proposition}\label{thm:lotus}
+  Нека $\xi$ е непрекъсната случайна величина с крайно очакване. Нека $\psi: \R \to \R$ е монотонна. Тогава $\psi(\xi)$ е непрекъсната случайна и е изпълнено
+  \begin{displaymath}
+    \Expect(\psi(\xi))
+    =
+    \int_\R \psi(x) f_\xi(x) dx.
+  \end{displaymath}
+\end{proposition}
+
+\begin{proof}
+  \begin{multline*}
+    \Expect(\psi(\xi))
+    =
+    \int_\R x f_{\psi(\xi)}(x) dx
+    =
+    \int_\R x \Prob(x \leq \psi(\xi) \leq x + dx) dx
+    = \\ =
+    \int_\R x \Prob(\psi^{-1}(x) \leq \xi \leq \psi^{-1}(x + dx)) dx
+    =
+    \int_\R x \left( F_\xi(\psi^{-1}(x + dx)) - F_\xi(\psi^{-1}(x)) \right) dx
+    = \\ =
+    \int_\R x f_\xi(\psi^{-1}(x)) dx
+    =
+    \int_\R \psi(x) f_\xi(x) d \psi(x)
+    =
+    \int_\R \psi(x) f_\xi(x) \psi'(x) dx.
+  \end{multline*}
+\end{proof}
+
+Доказаните в твърдения~\ref{thm:expect-product},~\ref{thm:expect-additive} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
+
+\begin{definition}
+  \uline{Ковариация на случайните величини $\xi$ и $\eta$} наричаме
+  \begin{displaymath}
+    \Cov(\xi, \eta)
+    \coloneqq
+    \Expect((\xi - \Expect \xi) (\eta - \Expect \eta)).
+  \end{displaymath}
+
+  \uline{Дисперсия или вариация на случайната величина $\xi$} наричаме
+  \begin{displaymath}
+    \Var(\xi)
+    \coloneqq
+    \Cov(\xi, \xi)
+    =
+    \Expect \left({(\xi - \Expect \xi)}^2 \right)
+    =
+    \Expect(\xi^2 - 2 \xi \Expect \xi + {\Expect(\xi)}^2)
+    =
+    \Expect(\xi^2) - 2 {\Expect(\xi)}^2 + {\Expect(\xi)}^2
+    =
+    \Expect(\xi^2) - {\Expect(\xi)}^2.
+  \end{displaymath}
+
+  Числото $\Expect(\xi^n)$ наричаме \uline{$n$-ти момент на $\xi$}, а $\Expect \left( {(\xi - \Expect \xi)}^n \right)$ наричаме \uline{$n$-ти централен момент на $\xi$}.
+
+  Очакването всъщност е просто първият момент, а дисперсията - вторият централен момент. Коренът на дисперсията се нарича \uline{стандартно отклонение} и често се бележи със $\sigma_\xi$.
+
+  Две случайни величини се наричат \uline{ортогонални}, ако ковариацията им е $0$, защото ковариацията играе ролята на скаларно произведение в пространството $\LSpace^2$ от (всички, не непременно непрекъснати) случайни величини с краен втори момент.
+
+  Случайни величини със стандартно отклонение единица наричаме \uline{нормирани}, тъй като стандартно отклонение играе ролята на норма в $\LSpace^2$.
+\end{definition}
+
+\begin{proposition}\label{thm:orthogonal-if-independent}
+  Ако две случайни величини са независими и имат крайно очакване, те са ортогонални.
+\end{proposition}
+\begin{proof}
+  Нека $\xi$ и $\eta$ са независими и имат крайни очаквания съответно $\mu$ и $\eta$. Тогава
+  \begin{displaymath}
+    \Cov(\xi, \eta)
+    =
+    \Expect((\xi - \mu) (\eta - \nu))
+    =
+    \Expect(\xi - \mu) \Expect(\eta - \nu)
+    =
+    (\mu - \mu) (\nu - \nu)
+    =
+    0 \cdot 0
+    =
+    0.
+  \end{displaymath}
+\end{proof}
+
+\begin{proposition}\label{thm:lower-order-moments}
+  Ако $\Expect(\xi^n)$ съществува, съществуват и моментите от по-нисък ред.
+\end{proposition}
+\begin{proof}
+  Първо да забележим, че за $y \in (0, 1)$ имаме ${\Prob(\xi \leq x)}^y < \Prob(\xi \leq x)$. Ще докажем, че $\Expect({\Abs{\xi}}^{n-1})$ съществува. Прилагаме неравенството на Йенсен за риманови интеграли:
+  \begin{multline*}
+    \Expect({\Abs{\xi}}^{n-1})
+    \leq
+    {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
+    =
+    {\left( \int_\R {\Abs{x_k}}^{n-1} f_\xi(x) \right)}^{\frac n {n-1}}
+    \leq
+    \int_\R {\left({\Abs{x_k}}^{n-1} f_\xi(x) \right)}^{\frac n {n-1}}
+    < \\ <
+    \int_\R {\left({\Abs{x_k}}^{n-1}\right)}^{\frac n {n-1}} f_\xi(x)
+    =
+    \int_\R {\Abs{x_k}}^n f_\xi(x)
+    =
+    \Expect({\Abs{\xi}}^n).
+  \end{multline*}
 \end{proof}
 
 \printbibliography
