@@ -996,7 +996,7 @@
   при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
 \end{theorem}
 
-\subsubsection{Равномерно разпределение}
+\subsubsection{Равномерно разпределение}\label{dist:unif}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ е \uline{равномерно разпределена} в интервала $[a, b]$ пишем $\xi \in \DUniform(a, b)$, ако плътността има вида
@@ -1074,7 +1074,7 @@
 \end{align*}
 \endgroup
 
-\subsubsection{Експоненциално разпределение}
+\subsubsection{Експоненциално разпределение}\label{dist:exp}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \uline{експоненциално разпределение} с интензивност $\lambda > 0$ и пишем $\xi \in \DExp(\lambda)$, ако плътността има вида
@@ -1197,7 +1197,7 @@
   \end{multline*}
 \end{proof}
 
-\subsubsection{Гама разпределение}
+\subsubsection{Гама разпределение}\label{dist:gamma}
 
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \uline{гама разпределение} с мащаб $\alpha > 0$ и интензивност $\beta > 0$ и пишем $\xi \in \DGamma(\alpha, \beta)$, ако плътността има вида
@@ -1276,6 +1276,209 @@
   \frac \alpha {\beta^2}.
 \end{align*}
 \endgroup
+
+\begin{proposition}\label{thm:gamma-operations}
+  \mbox{}
+  \begin{enumerate}
+    \item Ако $\gamma_k \in \DGamma(\alpha_k, \beta), k = 1, \ldots, n$, то
+    \begin{displaymath}
+      \sum_{k=1}^n \gamma_k \in \DGamma\left( \sum_{k=1}^n \alpha_k, \beta \right).
+    \end{displaymath}
+
+    \item Ако $\gamma \in \DGamma(\alpha, \beta)$ и $c \in \R$, тогава
+    \begin{displaymath}
+      c \gamma \in \DGamma\left(\alpha, \frac \beta c \right).
+    \end{displaymath}
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item Следва директно от вида на пораждащата моментите функция.
+    \item Използвайки твърдение~\ref{thm:transformation-density}, намираме плътността
+    \begin{displaymath}
+      f_{c\xi}(x)
+      =
+      \frac 1 c f_\xi\left(\frac x c \right)
+      =
+      \frac 1 c \cdot \frac {\beta^\alpha {\left(\frac x c \right)}^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)}
+      =
+      \frac {{\left(\frac \beta c \right)}^\alpha x^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)},
+    \end{displaymath}
+    която е плътност на $\DGamma\left(\alpha, \frac \beta c \right)$-разпределена случайна величина.
+  \end{enumerate}
+\end{proof}
+
+\section{Задачи}
+
+Задачите са отчасти статистически и се припокриват с други теми.
+
+\begin{exercise}[\cite{SESummer2011}]\label{ex:se-summer2011}
+  Нека $\xi \in \DExp(\lambda), \lambda > 0$, т.е. нейната вероятностна плътност е $f(x) = \frac 1 \lambda e^{-\frac x \lambda}$
+  \begin{enumerate}[label=\alph*)]
+    \item Намерете разпределението на $\eta = \min(\xi_1, \xi_2)$, където $\eta_1$ и $\eta_2$ са независими и еднакво разпределени случайни величини, както $\xi$.
+
+    \item Нека $\xi_1, \xi_2, \ldots, \xi_n$ са независими наблюдения над $\xi$. Докажете, че статистиката
+    \begin{displaymath}
+      \overline \xi_n = \frac {\xi_1 + \xi_2 + \cdots + \xi_n} n
+    \end{displaymath}
+    е ефективна оценка за параметъра $\lambda$.
+
+    \item Намерете критична област за проверка на хипотези:
+    \begin{displaymath}
+      \begin{cases}
+        H_0: &\lambda = 2 \\
+        H_1: &\lambda = 3
+      \end{cases}
+    \end{displaymath}
+    с ниво на значимост $\alpha = 0.05$ по $n = 10$ независими наблюдения над $\xi$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{note}
+  За тази задача е дадена таблица за $\DChiSq$ за квантилите $2.5\%, 5.0\%, 10.0\%, 90.0\%, 95.0\%$ и $97.5\%$ от $1$ до $25$ степени на свобода.
+\end{note}
+
+\begin{solution}
+  В~\ref{dist:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в~\ref{dist:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
+  \begin{displaymath}
+    F_\xi(x) = 1 - e^{-\frac x \lambda}.
+  \end{displaymath}
+
+  Също така ще използваме наготово, че $\Expect(\xi) = \lambda$ и $\Var(\xi) = \lambda^2$.
+
+  \begin{enumerate}[label=\alph*)]
+    \item Независимо от разпределенията на $\xi_1$ и $\xi_2$, за $\eta = \min(\xi_1, \xi_2)$ имаме
+    \begin{multline*}
+      F_\eta(x)
+      =
+      \Prob(\min(\xi_1, \xi_2) \leq x)
+      =
+      1 - \Prob(\min(\xi_1, \xi_2) > x)
+      =
+      1 - \Prob(\xi_1 > x, \xi_2 > x)
+      = \\ =
+      1 - \Prob(\xi_1 > x) \Prob(\xi_2 > x)
+      =
+      1 - (1 - \Prob(\xi_1 \leq x)) (1 - \Prob(\xi_2 \leq x))
+      =
+      1 - {(1 - F_\xi(x))}^2.
+    \end{multline*}
+
+    За експоненциалното разпределение получаваме
+    \begin{displaymath}
+      F_\eta(x)
+      =
+      1 - {(1 - F_\xi(x))}^2
+      =
+      1 - e^{- \frac {2 x} \lambda},
+    \end{displaymath}
+    т.е. $\eta \in \DExp\left(\frac \lambda 2 \right)$.
+
+    \item Да отбележим, че оценката $\overline \xi_n$ е неизместена, тъй като
+    \begin{displaymath}
+      \Expect\left( \frac 1 n \sum_{k=1}^n \xi_k \right)
+      =
+      \frac 1 n \sum_{k=1}^n \Expect(\xi_k)
+      =
+      \frac 1 n \sum_{k=1}^n \lambda
+      =
+      \frac 1 n \cdot n \lambda
+      =
+      \lambda.
+    \end{displaymath}
+
+    За да докажем, че $\xi$ е ефективна, остава да намерим границата на Рао-Крамер и да я сравним с $\Var(\overline \xi_n)$. Поради независимостта на $\xi_1, \ldots, \xi_n$ е достатъчно да пресметнем информацията на Фишер $\FisherInfo_\xi(\lambda)$ за параметъра $\lambda$ на $\xi$ и да я сравним с $\Var(\xi) = \lambda^2$.
+    \begin{align*}
+      \ln f_\xi(x)
+      &=
+      \ln \left(\frac 1 \lambda e^{-\frac x \lambda} \right)
+      =
+      -\ln \lambda -\frac x \lambda,
+      \\
+      \frac {\partial \ln f_\xi(x)} {\partial \lambda}
+      &=
+      -\frac 1 \lambda + \frac x {\lambda^2}
+      =
+      \frac {x - \lambda} {\lambda^2},
+      \\
+      \FisherInfo_\xi(\lambda)
+      &=
+      \Expect \left( {\left( \frac {\partial \ln f_\xi(\xi \mid \lambda)} {\partial \lambda} \right)}^2 \right)
+      =
+      \Expect \left( {\left( \frac {\xi - \lambda} {\lambda^2} \right)}^2 \right)
+      =
+      \frac 1 {\lambda^4} \Expect \left( {({\xi - \lambda})}^2 \right)
+      =
+      \frac {\Var(\xi)} {\lambda^4}
+      =
+      \frac {\lambda^2} {\lambda^4}
+      =
+      \frac 1 {\lambda^2}.
+    \end{align*}
+
+    Тъй като $\Var(\xi) = \frac 1 {\FisherInfo_\xi(\lambda)}$, заключаваме, че оценката $\overline \xi_n$ достига границата на Рао-Крамер и следователно тя е ефективна.
+
+    \item Търсим оптимална критична област с помощта на лемата на Нейман-Пирсън. Първо намираме логаритмичното отношение на правдоподобие само за $\xi$:
+    \begin{displaymath}
+      \ln \left(\frac {f_\xi(x \mid \lambda=3)} {f_\xi(x \mid \lambda=5)} \right)
+      =
+      \ln f_\xi(x \mid \lambda=3) - \ln f_\xi(x \mid \lambda=5)
+      =
+      - \ln 3 - \frac x 3 + \ln 5 + \frac x 5
+      =
+      \ln 5 - \ln 3 - \frac 2 {15} x.
+    \end{displaymath}
+
+    Тогава логаритмичното отношение на правдоподобие за цялата извадка ще бъде
+    \begin{displaymath}
+      \ln \left(\frac {L(x_1, \ldots, x_n \mid \lambda=3)} {L(x_1, \ldots, x_n \mid \lambda=5)} \right)
+      =
+      n \left(\ln 5 - \ln 3 - \frac 2 {15} \overline x_n \right).
+    \end{displaymath}
+
+    Уравнението
+    \begin{displaymath}
+      n \left(\ln 5 - \ln 3 - \frac 2 {15} \overline \xi_n \right) \geq c_0
+    \end{displaymath}
+
+    е еквивалентно на по-простото уравнение $\overline \xi_n \geq c$ за подходяща константа $c$. В такъв случай задачата се свежда до намиране на $\alpha$-квантил $c$ за $\overline \xi_n$, за който
+    \begin{displaymath}
+      \Prob(\overline \xi_n \geq c \mid \lambda = 3) = \alpha
+      \iff
+      \Prob(\overline \xi_n \leq c \mid \lambda = 3) = 1 - \alpha.
+    \end{displaymath}
+
+    Тъй като ни е дадена единствено таблица за $\DChiSq$ разпределение, ще използваме връзките
+    \begin{align*}
+      \DChiSq(n) = \DGamma \left(\frac n 2, \frac 1 2 \right),
+      &&
+      \DExp(\lambda) = \DGamma\left(1, \frac 1 \lambda \right),
+    \end{align*}
+    където $\DExp$ е параметризирано както в тази задача, а $\DGamma$-както в~\ref{dist:gamma}.
+
+    От твърдение~\ref{thm:gamma-operations} имаме
+    \begin{align*}
+      \overline \xi_n \in \DGamma\left( n, \frac n \lambda \right)
+      &&
+      \frac {2n} \lambda \overline \xi_n \in \DGamma\left( n, \frac 1 2 \right) = \DChiSq(2n).
+    \end{align*}
+
+    От дадената таблица намираме търсената константа $c$,
+    \begin{displaymath}
+      \Prob(\overline \xi_n \leq c \mid \lambda = 3) = 1 - \alpha = 0.95
+      \iff
+      \frac {2 \cdot 10} 3 c = \frac {20} 3 c \approx 31.41.
+      \iff
+      c \approx 4.71.
+    \end{displaymath}
+
+    Оптималната критична област е
+    \begin{displaymath}
+      \left\{ (x_1, \ldots, x_n) \in \R^n \mid \frac 1 n \sum_{k=1}^n x_k \geq c \approx 4.71 \right\}.
+    \end{displaymath}
+  \end{enumerate}
+\end{solution}
 
 \printbibliography
 

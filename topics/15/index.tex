@@ -1031,6 +1031,8 @@
 
 \section{Задачи}
 
+Задачите са отчасти статистически и се припокриват с други теми.
+
 \begin{exercise}[\cite{SESummer2014}]\label{ex:se-summer2014}
   Дадена е редица от независими опити с два изхода: успех и неуспех. Вероятността за успех е $p \in (0, 1)$. Опитите се провеждат до първа поява на успех. Случайната величина $X$ е равна на броя на неуспехите. Да се намери:
   \begin{enumerate}[label=\alph*)]
@@ -1145,10 +1147,12 @@
     \item Нека $X_1, X_2, \ldots, X_n$ са независими наблюдения над случайна величина $X \in \DPoisson(\lambda), \lambda > 0$ и нека сумата им е $S_n = X_1 + X_2 + \cdots + X_n$.
 
     Намерете значимостта ($p$-value) на статистиката $S_n$ при проверката на основна и алтернативни хипотези:
-    \begin{align*}
-      &H_0: \lambda = 3 \\
-      &H_1: \lambda = 6
-    \end{align*}
+    \begin{displaymath}
+      \begin{cases}
+        H_0: &\lambda = 3 \\
+        H_1: &\lambda = 6
+      \end{cases}
+    \end{displaymath}
     при $n = 4$ и $S_4 = 15$.
   \end{enumerate}
 \end{exercise}
