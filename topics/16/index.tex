@@ -92,6 +92,8 @@
   \end{displaymath}
 
   Функцията $f_\xi: \R \mapsto \R$ наричаме \uline{вероятностна плътност} на случайната величина $\xi$, ако $F'_\xi(x) = f_\xi(x)$ във всяка точка, в която $F_\xi$ е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като $f_\xi(x)$ се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
+
+  От критерия на Лебег за интегруемост по Риман следва, че плътностите са непрекъснато почти навсякъде.
 \end{definition}
 
 \begin{note}
@@ -283,12 +285,12 @@
   \begin{displaymath}
     f_{\xi + \eta} (x)
     =
-    \int_\R f_\xi(t) f_\eta(x - t) dt
+    \int_\R f_\xi(y) f_\eta(x - y) dy
     =
-    \int_\R f_\xi(t) f_\eta(x - t) dt.
+    \int_\R f_\xi(x - y) f_\eta(y) dy.
   \end{displaymath}
 \end{proposition}
-\begin{proof} От формулата за пълната вероятност и независимостта на $\xi$ и $\eta$ имаме
+\begin{proof} Сумата на измерими функции е измерима, следователно $\xi + \eta$ е случайна величина. Използвайки формулата за пълната вероятност и независимостта на $\xi$ и $\eta$, намираме функцията на разпределение
   \begin{displaymath}
     F_{\xi + \eta} (x)
     =
@@ -296,9 +298,48 @@
     =
     \Prob(\xi \leq x - \eta)
     =
-    \int_\R \Prob(\xi \leq x - t) f_\eta(t) dt
+    \int_\R \Prob(\xi \leq x - y) f_\eta(y) dy
     =
-    \int_\R F_\xi(x - t) f_\eta(t) dt.
+    \int_\R F_\xi(x - y) f_\eta(y) dy.
+  \end{displaymath}
+
+  Сега ще докажем, че $F_{\xi + \eta}$ е абсолютно непрекъсната във всеки интервал $[a, b]$. Нека $\varepsilon > 0$ и $\delta > 0$ са такива, че за произволни $n$ непресичащи се два по два интервали $(a_k, b_k) \subseteq [a, b]$ имаме
+  \begin{displaymath}
+    \sum_{k=1}^n \Abs{b_k - a_k} < \delta
+    \implies
+    \sum_{k=1}^n \Abs{F_\xi(b_k) - F_\xi(a_k)} < \epsilon
+  \end{displaymath}
+
+  Поради монотонността на функциите на разпределение имаме  $F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) > 0$. Освен това от адитивността на римановия интеграл имаме $F_\xi(x - y) = F_\xi(x) - F_\xi(y)$. Тогава
+  \begin{multline*}
+    \sum_{k=1}^n \Abs{F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k)}
+    =
+    \sum_{k=1}^n (F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k))
+    = \\ =
+    \sum_{k=1}^n \left(\int_\R F_\xi(b_k - y) f_\eta(y) dy - \int_\R F_\xi(a_k - y) f_\eta(t) dy \right)
+    =
+    \sum_{k=1}^n \int_\R (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
+    = \\ =
+    \sum_{k=1}^n \int_\R (F_\xi(b_k) - F_\xi(y) - F_\xi(a_k) + F_\xi(y)) f_\eta(y) dy
+    =
+    \sum_{k=1}^n \int_\R (F_\xi(b_k) - F_\xi(a_k)) f_\eta(y) dy
+    = \\ =
+    \int_\R \left(\sum_{k=1}^n (F_\xi(b_k) - F_\xi(a_k)) \right) f_\eta(y) dy
+    <
+    \varepsilon \int_\R f_\eta(y) dy
+    =
+    \varepsilon.
+  \end{multline*}
+
+  Дотук доказахме, че $\xi + \eta$ е непрекъсната случайна величина. Остава само да намерим плътността на $F_{\xi + \eta}(x)$. Тъй като $F'_\xi = f_\xi$ и $f_\eta$ са непрекъснати почти навсякъде, произведението им също е непрекъснато почти навсякъде и правилото на Лайбниц за диференциране под знака на интеграла ни дава
+  \begin{displaymath}
+    f_{\xi + \eta} (x)
+    =
+    F'_{\xi + \eta} (x)
+    =
+    \int_\R F'_\xi(x - y) f_\eta(y) dy
+    =
+    \int_\R f_\xi(x - y) f_\eta(y) dy.
   \end{displaymath}
 
   Аналогично се доказва
@@ -611,43 +652,30 @@
 
     Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От $\Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}})$ се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower-order-moments} съществуват и всички нечетни моменти.
 
-    Остава да докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{t\xi})$ в областта $\frac 1 {2^m} U = \{ \frac t {2^m} U \mid t \in U \}$.
+    При фиксирано $n = 1, 2, \ldots$ за някаква околност на $0$, съдържаща се в $U$, за някакво $\alpha \in [0, 1]$ теоремата на Тейлър, приложена към експоненциалната функция, ни дава
+    \begin{displaymath}
+      \MGF_\xi(t)
+      =
+      \Expect(e^{t\xi})
+      =
+      \Expect\left(\sum_{k=0}^n \frac {\xi^k} {k!} t^k + \frac {{(\alpha \xi)}^{(n+1)} e^{\alpha t \xi}} {(n+1)!} t^{n+1} \right)
+      =
+      \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{\alpha}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
+    \end{displaymath}
+    където $h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \underset {t \mapsto 0} \longrightarrow 0$ поточково (по вероятност).
 
-    Разглеждаме очакването на $m$-тата производна $\xi^m e^{t \xi}$ на $e^{t \xi}$ по $t$. Налице са условията за диференциране под знака на интеграла:
-    \begin{enumerate}
-      \item За $m > 0$ прилагаме неравенството на Коши-Буняковски-Шварц, за да докажем, че $\Expect \left( \xi^m e^{t \xi} \right)$ съществува за $t \in \frac 1 {2^m} U$:
-      \begin{multline*}
-        {\left(\Expect \left( \xi^m e^{t \xi} \right) \right)}^2
-        =
-        {\left(\int_\R x^m e^{t x} f_\xi(x) \right)}^2
-        = \\ =
-        {\left(\int_\R \left(x^m \sqrt{f_\xi(x)} \right) \left(e^{t x} \sqrt{f_\xi(x)} \right) dx \right)}^2
-        \leq \\ \leq
-        \int_\R x^{2m} f_\xi(x) dx
-        \int_\R e^{2tx} f_\xi(x) dx
-        = \\ =
-        \Expect(\xi^{2m})
-        \Expect(e^{2t \xi})
-        =
-        \Expect(\xi^{2m})
-        \MGF_\xi(2t).
-      \end{multline*}
+    Получихме полином на Тейлър за функцията $\MGF_\xi(t)$. Тогава $\MGF_\xi(t)$ има $n$-та производна, при това $\MGF^{(n)}_\xi(0) = \Expect(\xi^n)$.
 
-      \item Функцията $x \mapsto x^m e^{t x}$ е диференцируема по $t$ за всяко $x \in \R$.
-      \item Производната на $x^m e^{t x}$ по $t$ се мажорира по абсолютна стойност от
-      \begin{displaymath}
-        \Abs{x^{m+1} e^{t x}}
-        \leq
-        {\Abs{x}}^{m+1} \Abs{e^{t x}}
-        \leq
-        {\Abs{x}}^{m+1} e^{\Abs{t x}}
-        \leq
-        {\Abs{x}}^{m+1} e^{\tau \Abs{x}},
-      \end{displaymath}
-      където мажорантата не зависи от $t$.
-    \end{enumerate}
+    Следователно $\MGF_\xi(t)$ има $n$-та производна, при това
+    \begin{multline*}
+      \MGF^{(n)}_\xi(t)
+      =
+      \sum_{k=0}^{n-1} \frac {\Expect(\xi^k)} {k!} k! \cdot 0 + \frac {\Expect(\xi^n)} {n!} n! + \frac {\alpha^{(n+1)} \Expect(\xi^{(n+1)} e^{\alpha t \xi})} {(n+1)!} (n+1)! t
+      = \\ =
+      \Expect(\xi^n) + \alpha^{(n+1)} \Expect(\xi^{(n+1)} e^{\alpha t \xi}) t.
+    \end{multline*}
 
-    По индукция за $m = 1, 2, \ldots$ получаваме $\MGF^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$ в $\frac 1 {2^m} U$. В частност, $\MGF^{(m)}_\xi(0) = \Expect(\xi^m e^{0 \xi}) = \Expect(\xi^m)$.
+    В частност, $\MGF^{(n)}_\xi(0) = \Expect(\xi^n)$.
 
     \item Ако пораждащите моментите функции съществуват в $t \in \R$, тъй като $\xi$ и $\eta$ са независими, случайните величини $e^{t\xi}$ и $e^{t\eta}$ също са независими и
     \begin{displaymath}
@@ -784,34 +812,19 @@
 
     Числото $\delta$ зависи само от $\varepsilon$, следователно $\Char_\xi(t)$ е равномерно непрекъсната върху цялата реална права.
 
-    \item Нека съществува моментът $\Expect \xi^n$. Тогава съществуват и моментите от по-нисък ред.
+    \item Нека съществува моментът $\Expect \xi^n$. Тогава съществуват и моментите от по-нисък ред и в някаква околност на $0$ за някакво $\alpha \in [0, 1]$ теоремата на Тейлър, приложена към експоненциалната функция, ни дава
+    \begin{displaymath}
+      \Char_\xi(t)
+      =
+      \Expect(e^{it\xi})
+      =
+      \Expect\left(\sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + \frac {{(\alpha i \xi)}^{(n+1)} e^{\alpha it \xi}} {(n+1)!} t^{n+1} \right)
+      =
+      \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{(\alpha i)}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
+    \end{displaymath}
+    където $h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \underset {t \mapsto 0} \longrightarrow 0$ поточково (по вероятност).
 
-    Ще докажем, че са налице условията за $m$-кратно почленно диференциране на реда $\Char_\xi(t) = \Expect (e^{it \xi})$.
-
-    Разглеждаме очакването на $m$-тата производна $i^m \xi^m e^{it \xi}$ на $e^{it \xi}$ по $t$. Налице са условията за диференциране под знака на интеграла:
-    \begin{enumerate}
-      \item $\Expect \left( i^m \xi^m e^{it \xi} \right)$ съществува за $t \in \R$, тъй като
-      \begin{multline*}
-        \Abs{\Expect \left( i^m \xi^m e^{it \xi} \right)}
-        =
-        \Abs{\Expect \left( \xi^m e^{it \xi} \right)}
-        =
-        \Abs{\int_\R x^m e^{itx} f_\xi(x) dx}
-        \leq
-        \int_\R \Abs{x^m e^{itx} f_\xi(x)} dx
-        = \\ =
-        \int_\R \Abs{x^m} \Abs{e^{itx}} f_\xi(x) dx
-        =
-        \int_\R \Abs{x^m} f_\xi(x) dx
-        =
-        \Expect \left( {\Abs{\xi^m}} \right).
-      \end{multline*}
-      Последното очакване е крайно, тъй като $\Expect(\Abs{\xi^0}) = 1$, а за $m > 0$ по условие интегралът $\Expect(\xi^m)$ е абсолютно сходящ.
-      \item Функцията $x \mapsto i^m x^m e^{it x}$ е диференцируема по $t$ за всяко $x \in \Image(\xi)$.
-      \item Производната на $i^m x^m e^{it x}$ по $t$ се мажорира по абсолютна стойност от $\Abs{x^{m+1} e^{it x}} \leq {\Abs{x}}^{m+1}$, където мажорантата не зависи от $t$.
-    \end{enumerate}
-
-    По индукция за $m = 1, \ldots, n$ получаваме $\Char^{(m)}_\xi(t) = i^m \Expect(\xi^m e^{t \xi})$. В частност, $\Char^{(m)}_\xi(0) = i^m \Expect(\xi^m e^{0 \xi}) = i^m \Expect(\xi^m)$.
+    Получихме полином на Тейлър за функцията $\Char_\xi(t)$. Тогава $\Char_\xi(t)$ има $n$-та производна, при това $\Char^{(n)}_\xi(0) = i^n \Expect(\xi^n)$.
 
     \item Тъй като $\xi$ и $\eta$ са независими, за произволно $t \in \R$ величините $e^{t\xi}$ и $e^{t\eta}$ са независими и
     \begin{displaymath}
