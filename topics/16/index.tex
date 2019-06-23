@@ -1034,10 +1034,22 @@
   \item За моделиране експерименти с континуум от възможни изходи, за които предполагаме, че са равновероятни. Например попадението на материална точка в даден паралелепипед.
 \end{enumerate}
 
-За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DUniform(a, b)$ имаме
+За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на $\xi \in \DUniform(a, b)$ имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
+  F_\xi(x)
+  &=
+  \int_{-\infty}^x f_\xi(x) dx
+  =
+  \begin{dcases}
+    0, &x \leq a \\
+    \frac 1 {b-a} \int_a^x dx = \frac {x-a} {b-a}, &a < x < b \\
+    \frac {b-a} {b-a} = 1, &x \geq b
+  \end{dcases}
+  =
+  \frac {\max(a, \min(b, x))-a} {b-a}.
+  \\
   \MGF_\xi(t)
   &=
   \Expect(e^{t\xi})
@@ -1485,6 +1497,123 @@
     Оптималната критична област е
     \begin{displaymath}
       \left\{ (x_1, \ldots, x_n) \in \R^n \mid \frac 1 n \sum_{k=1}^n x_k \geq c \approx 4.71 \right\}.
+    \end{displaymath}
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}[\cite{SEAutumn2016}]\label{ex:se-autumn2016}
+  Нека случайната величина $X$ е равномерно разпределена в $(0, a)$, а $Y$ е равномерно разпределена в $(0, b)$.
+  \begin{enumerate}[label=\alph*)]
+    \item Ако $X$ и $Y$ са независими, намерете математическото очакване и дисперсията на $2X - 3Y$.
+    \item Ако $X$ и $Y$ са такива, че корелационният им коефициент $\Corr(X, Y) = 0.8$, намерете математическото очакване и дисперсията на $2X - 3Y$.
+    \item Ако $X$ и $Y$ са независими случайни величини, намерете вероятността $X - Y < 2$.
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \mbox{}
+  \begin{enumerate}[label=\alph*)]
+    \item В~\ref{dist:unif} сме намерили, че за $\xi \in \DUniform(\alpha, \beta)$ имаме $\Expect(X) = \frac {\alpha + \beta} 2$ и $\Var(\xi) = \frac {{(\beta - \alpha)}^2} {12}$. Тогава
+    \begin{align*}
+      \Expect(X) = \frac a 2,
+      &&
+      \Var(X) = \frac {a^2} {12},
+      \\
+      \Expect(Y) = \frac b 2,
+      &&
+      \Var(Y) = \frac {b^2} {12}.
+    \end{align*}
+
+    Тогава
+    \begin{align*}
+      \Expect(2X - 3Y)
+      &=
+      2\Expect(X) - 3\Expect(Y)
+      =
+      \boxed{\frac {2a - 3b} 2},
+      \\
+      \Var(2X - 3Y)
+      &=
+      4\Var(X) + 2 \cdot 6 \Cov(X, Y) + 9\Var(Y)
+      =
+      4\Var(X) + 9\Var(Y)
+      =
+      \boxed{\frac {4a^2 + 9b^2} {12}}.
+    \end{align*}
+
+    \item Независимо от това дали $X$ и $Y$ са корелирани или не, очакването на техните линейни комбинации не се променя. За дисперсията на $2X - 3Y$ имаме
+    \begin{multline*}
+      \Var(2X - 3Y)
+      =
+      4\Var(X) + 2 \cdot 6 \Cov(X, Y) + 9\Var(Y)
+      = \\ =
+      4\Var(X) + 12 \cdot \frac 4 5 + 9\Var(Y)
+      =
+      \boxed{\frac {4a^2 + 9b^2} {12} + \frac {48} 5}.
+    \end{multline*}
+
+    \item Ще използваме наготово от~\ref{dist:unif} функцията на разпределение $F_X(x) = \frac {\max(0, \min(a, x))} a$. Ако $X$ и $Y$ са независими, използвайки формулата за пълната вероятност, пресмятаме директно
+    \begin{multline*}
+      \Prob(X - Y < 2)
+      =
+      \Prob(X < Y + 2)
+      =
+      \int_\R F_X(y+2) f_Y(y) dy
+      =
+      \int_0^b \frac {\max(0, \min(a, y+2))} a \cdot \frac 1 b dy
+      = \\ =
+      \frac 1 {ab} \int_0^b \min(a, y+2) dy.
+    \end{multline*}
+
+    Разглеждаме три случая:
+    \begin{enumerate}[label=\arabic*)]
+      \item Ако $a < 2$, имаме
+      \begin{displaymath}
+        \Prob(X - Y < 2)
+        =
+        \frac 1 {ab} \int_0^b a dy
+        =
+        1.
+      \end{displaymath}
+
+      \item Ако $2 \leq a \leq b + 2$, имаме
+      \begin{multline*}
+        \Prob(X - Y < 2)
+        =
+        \frac 1 {ab} \left(\int_0^{a-2} (y+2) dy + \int_{a-2}^b a dy \right)
+        = \\ =
+        \frac 1 {ab} \left(\int_0^{a-2} y dy + 2 \int_0^{a-2} dy + \int_{a-2}^b a dy \right)
+        =
+        \frac 1 {ab} \left(\frac 1 2 {(a-2)}^2 + 2(a-2) + a(b-a+2) \right)
+        = \\ =
+        \frac 1 {ab} \left(\frac {a^2} 2 - 2a + 2 + 2a - 4 + ab - a^2 + 2a \right)
+        =
+        \frac 1 {ab} \left(-\frac {a^2} 2 + ab + 2a - 2 \right)
+        = \\ =
+        \frac {-a^2 + 2ab + 4a - 4} {2ab}.
+      \end{multline*}
+
+      \item Ако $a > b + 2$, имаме
+      \begin{displaymath}
+        \Prob(X - Y < 2)
+        =
+        \frac 1 {ab} \int_0^b (y+2) dy
+        =
+        \frac 1 {ab} \left( \int_0^b y dy + 2 \int_0^b dy \right)
+        =
+        \frac 1 {ab} \left(\frac {b^2} 2 + 2b \right)
+        =
+        \frac {b + 4} {2a}.
+      \end{displaymath}
+    \end{enumerate}
+
+    В крайна сметка получаваме
+
+    \begin{displaymath}
+      \Prob(X - Y < 2) = \begin{dcases}
+        1, &a < 2, \\
+        \frac {-a^2 + 2ab + 4a - 4} {2ab}, &2 \leq a \leq b + 2, \\
+        \frac {b + 4} {2a}, &a > b + 2.
+      \end{dcases}
     \end{displaymath}
   \end{enumerate}
 \end{solution}
