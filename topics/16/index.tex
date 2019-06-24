@@ -33,7 +33,7 @@
 \title{Тема 16}
 \subtitle{Случайни величини с непрекъснати разпределения. Нормално разпределение. Равномерно разпределение, експоненциално разпределение или гама разпределение. Задачи, в които възникват.}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
-\date{21 юни 2019}
+\date{23 юни 2019}
 
 \begin{document}
 
@@ -953,7 +953,7 @@
 
 Получихме, че произволна нормална случайна величина $\eta \in \DNormal(\mu, \sigma^2)$ има очакване $\mu$ и дисперсия $\sigma^2$, които отговарят на съответните параметри. Стандартизираните нормални случайни величини тогава винаги имат стандартно нормално разпределение.
 
-Освен това, от вида на пораждащата моментите функция на $\eta$
+За пораждащата моментите функция на $\eta$ получаваме
 \begin{displaymath}
   \MGF_\eta(t)
   =
@@ -965,9 +965,24 @@
   =
   e^{t\mu} \MGF_\xi(\sigma t)
   =
-  \boxed{e^{t\mu} e^{\frac {\sigma^2 t^2} 2}}
+  \boxed{e^{t\mu} e^{\frac {\sigma^2 t^2} 2}}.
 \end{displaymath}
-става ясно, че сумата на две нормални случайни величини $\xi_k \in \DNormal(\mu_k, \sigma_k^2), k = 1, 2$ е отново нормална с параметри $\xi_1 + \xi_2 \in \DNormal(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$.
+
+Оттук директно следва
+\begin{proposition}\label{thm:normal-operations}
+  \mbox{}
+  \begin{enumerate}
+    \item Ако $\xi_k \in \DNormal(\mu_k, \sigma_k^2), k = 1, \ldots, n$, то
+    \begin{displaymath}
+      \sum_{k=1}^n \xi_k \in \DNormal\left( \sum_{k=1}^n \mu_k, \sum_{k=1}^n \sigma_k^2 \right).
+    \end{displaymath}
+
+    \item Ако $\xi \in \DNormal(\mu, \sigma^2)$ и $c \in \R$, тогава
+    \begin{displaymath}
+      c \xi \in \DNormal(c \mu, c^2 \sigma^2).
+    \end{displaymath}
+  \end{enumerate}
+\end{proposition}
 
 Ако $\xi_1, \ldots, \xi_n$ са стандартни нормални, сумата им има разпределение $\DNormal(0, n)$. За да бъде сумата стандартна нормална, стандартизираме чрез
 \begin{displaymath}
@@ -981,7 +996,7 @@
 
   Тогава случайната величина
   \begin{displaymath}
-    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
+    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k
   \end{displaymath}
   при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
 \end{theorem}
@@ -994,7 +1009,7 @@
   \end{displaymath}
   тогава случайната величина
   \begin{displaymath}
-    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
+    \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k
   \end{displaymath}
   при $n \to \infty$ клони по вероятност към стандартно нормално разпределение.
 \end{theorem}
