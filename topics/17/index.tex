@@ -1,0 +1,300 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Misc packages
+\usepackage{ulem} % Line-breaking underlines
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Тема 17}
+\subtitle{Марковски вериги с дискретно време. Класификация на състоянията. Ергодична теорема. Приложения.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{24 юни 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Теория}
+
+Теорията е базирана на~\cite{Lectures}, но някои неща са взаимствани от~\cite{Borovkov}.
+
+\subsection{Анотация}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\begin{enumerate}
+  \item Дефиниция за марковска верига
+  \item Уравнения на Чепмен-Колмогоров
+  \item Класификация на състоянията - критерии за преходност и възвратност, ергодичност
+  \item Гранични вероятности
+  \item Стационарни гранични разпределения
+  \item Ергодична теорема
+\end{enumerate}
+
+\subsection{Основни понятия}
+
+Ще считаме, че е фиксирано някакво вероятностно пространство $(\Omega, \F, \Prob)$.
+
+\begin{definition}
+  \uline{Случаен процес с дискретно време} наричаме редица от случайни величини $\{ \xi_0, \xi_2, \ldots \}$.
+
+  Ще предполагаме, че всички $\xi_0, \xi_2, \ldots$ са дискретни със стойности неотрицателни цели числа.
+
+  Ако $\xi_n = i$, ще казваме, че \uline{процесът е в състояние $i$ в момента $n$}.
+
+  Вероятността $\Prob(\xi_n = j \mid \xi_{n-1} = i)$ наричаме \uline{вероятност за преход} от $i$ към $j$ в момента $n$. Ако вероятностите за преход не зависят от момента, казваме, че процесът е \uline{стационарен}.
+
+  Процесът $\{ \xi_0, \xi_2, \ldots \}$ наричаме \uline{марковска верига}, ако за произволно цяло число $n > 1$ и състояния $j_0, \ldots, j_n$ е изпълнено
+  \begin{displaymath}
+    \Prob(\xi_n = j_n \mid \xi_{n-1} = j_{n-1}, \xi_{n-2} = j_{n-2}, \ldots, \xi_0 = j_0) = \Prob(\xi_n = j_n \mid \xi_{n-1} = j_{n-1}).
+  \end{displaymath}
+
+  Ако означим $\sigma(\xi_k) \coloneqq \{ \xi_k^{-1}(B) \mid B \in \BorelAlgebra(\R) \}$, горното условие може да се запише и чрез
+  \begin{displaymath}
+    \Prob(\xi_n = j_n \mid \SigmaAlgebra(\xi_{n-1}), \SigmaAlgebra(\xi_{n-2}), \ldots, \SigmaAlgebra(\xi_0)) = \Prob(\xi_n = j_n \mid \SigmaAlgebra(\xi_{n-1})).
+  \end{displaymath}
+\end{definition}
+
+\begin{note}
+  Предполагаме, че случайните величини $\xi_0, \xi_2, \ldots$ могат да приемат за стойности произволни положителни цели числа. Затова ще работим с безкрайни вектори и матрици. Поради нормираността на вероятностната мярка, обаче, работата с тези вектори и матрици няма да ни създава проблеми.
+\end{note}
+
+С $V$ ще означаваме линейното пространство от редици от положителни цели числа, а с $V \times V$ пространството от безкрайни матрици от положителни цели числа.
+
+Ще разгледаме само стационарни марковски вериги, за които са зададени вектор от начални вероятности $B = (b_0, b_1, \ldots) \in V$ и матрица на преходите
+\begin{displaymath}
+  P = \begin{pmatrix}
+    p_{00} & p_{01} & p_{02} & \ldots \\
+    p_{10} & p_{11} & p_{12} & \ldots \\
+    p_{20} & p_{21} & p_{22} & \ldots \\
+    \vdots & \vdots & \vdots & \ddots
+  \end{pmatrix} \in V \times V,
+\end{displaymath}
+така че са изпълнени $\Prob(\xi_0 = i) = b_i$ и $\Prob(\xi_1 = j \mid \xi_0 = i) = p_{ij}$ за произволни $i < j \in \ZPos$.
+
+\begin{definition}
+  Векторът $v \in V$ наричаме \uline{стохастичен}, ако елементите му се сумират до единица. Матрицата $A \in V \times V$ наричаме \uline{(дясно) стохастична}, ако всеки неин ред е стохастичен.
+\end{definition}
+
+\begin{note}
+  Горната дефиниция се пренася без изменения върху крайномерни линейни пространства.
+\end{note}
+
+\begin{proposition}
+  Вектор-редът $B$ от начални вероятности и матрицата на преходите $P$ на една марковска верига са стохастични.
+\end{proposition}
+\begin{proof}
+  Тъй като векторът $B$ напълно описва разпределението на $\xi_0$, елементите му се сумират до единица.
+
+  За фиксирано число $i$ дефинираме събитието $A_i \coloneqq \{ \omega \in \Omega \mid \xi_0(\omega) = i \}$. Тогава $i$-тият ред на матрицата $P$ напълно описва условното разпределение
+  \begin{displaymath}
+    \Prob(\xi_1 = j \mid A_i)
+    =
+    \Prob(\xi_1 = j \mid \xi_0 = i).
+  \end{displaymath}
+
+  Следователно
+  \begin{displaymath}
+    \sum_{j=0}^\infty p_{ij}
+    =
+    \sum_{j=0}^\infty \Prob(\xi_1 = j \mid \xi_0 = i)
+    =
+    \sum_{j=0}^\infty \Prob(\xi_1 = j \mid A_i)
+    =
+    1.
+  \end{displaymath}
+\end{proof}
+
+\subsection{Уравнения на Чепмен-Колмогоров}
+
+Нека е дадена марковска верига с начални вероятности $B$ и матрица на преходите $P$.
+
+Означаваме с $p^{(n)}_{ij}$ вероятността да преминем от състояние $i$ в състояние $j$ за $n$ стъпки, т.е.
+\begin{displaymath}
+  p^{(n)}_{ij} \coloneqq \Prob(\xi_n = j \mid \xi_0 = i).
+\end{displaymath}
+
+\begin{lemma}\label{thm:transition-power}
+  За произволно цяло $n > 0$ е изпълнено, че $n$-кратната степен $P^n$ на матрицата $P$ има елементи $p_{ij}^{(n)}$.
+\end{lemma}
+\begin{proof}
+  Ще докажем теоремата по индукция. Случаят $n = 1$ е тривиален, тъй като $P$ по определение е матрицата от преходни вероятности за една стъпка.
+
+  Нека предположим, че теоремата е вярна за $P^{n-1}$. Вероятността да преминем от състояние $i$ към състояние $j$ за $n$ стъпки тогава е сумата на вероятностите по всички траектории. От формулата за пълната вероятност имаме
+  \begin{multline*}
+    p^{(n)}_{ij}
+    =
+    \Prob(\xi_n = j \mid \xi_0 = i)
+    =
+    \sum_{k=0}^\infty \Prob(\xi_n = j \mid \xi_{n-1} = k, \xi_0 = i) \Prob(\xi_{n-1} = k \mid \xi_0 = i)
+    = \\ =
+    \sum_{k=0}^\infty \Prob(\xi_n = j \mid \xi_{n-1} = k) \Prob(\xi_{n-1} = k \mid \xi_0 = i)
+    =
+    \sum_{k=0}^\infty p_{kj} p^{(n-1)}_{ik}
+    =
+    \sum_{k=0}^\infty p^{(n-1)}_{ik} p_{kj}.
+  \end{multline*}
+
+  Но това по определение са именно елементите на матрицата $P^{n-1} P$. Следователно матрицата $P^n$ има елементи $p^{(n)}_{ij}$.
+\end{proof}
+
+\begin{note}
+  Лемата важи и за $n = 0$, в който случай получаваме единичната матрица. Вероятностната интерпретация на този факт е, че всяко състояние с вероятност $1$ достига себе си за $0$ стъпки.
+\end{note}
+
+\begin{theorem}[Уравнения на Чепмен-Колмогоров]\label{thm:chapman-kolmogorov}
+  За произволни цели $m, n \geq 0$ е изпълнено
+  \begin{displaymath}
+    p^{(n+m)}_{ij} = \sum_{k=0}^\infty p^{(n)}_{ik} p^{(m)}_{kj}
+  \end{displaymath}
+  за всеки две състояния $i, j \geq 0$.
+\end{theorem}
+\begin{proof}
+  От свойствата на матричното умножение имаме $P^{n+m} = P^n P^m$. Лема~\ref{thm:transition-power} ни казва, че това е просто матричен запис на уравненията от условието.
+\end{proof}
+
+\begin{corollary}
+  Безусловната вероятност $\Prob(\xi_n = i)$ за това да се намираме в състояние $i$ в момента $n$ е $i$-тата координата на вектора $B P^n$.
+\end{corollary}
+\begin{proof}
+  От формулата за пълната вероятност имаме
+  \begin{displaymath}
+    \Prob(\xi_n = i)
+    =
+    \sum_{k=1}^\infty \Prob(\xi_n = i \mid \xi_0 = k) \Prob(\xi_0 = k)
+    =
+    \sum_{k=1}^\infty p^{(n)}_{ki} s_k
+    =
+    \sum_{k=1}^\infty b_k p^{(n)}_{ki},
+  \end{displaymath}
+  което по определение е именно $i$-тата координата на вектор-реда $B P^n$.
+\end{proof}
+
+\subsection{Класификация на състоянията}
+
+За състояние $i$ въвеждаме означенията
+\begin{align*}
+  f_i^{(n)} &\coloneqq \Prob(\xi_n = i, \xi_{n-1} \neq i \ldots, \xi_1 \neq i \mid \xi_0 = i), \\
+  f_i &\coloneqq \sum_{n=0}^\infty f_i^{(n)},
+\end{align*}
+
+където $f_i^{(0)} = 1$. Стойността $f_i$ е вероятността излизайки от състояние $i$ някога пак да се върнем в него. В теорема~\ref{thm:trans-iff-divergent} ще видим, че $f_i \in [0, 1]$.
+
+\begin{definition}
+  \mbox{}
+  \begin{enumerate}
+    \item Състоянието $j$ се нарича \uline{достижимо} от състоянието $i$, ако $p^{(n)}_{ij} > 0$ за някое $n > 0$.
+    \item Състоянията $i$ и $j$ се наричат \uline{съобщаващи се}, ако те са достижими едно от друго. Пишем $i \Communicates j$.
+    \item Една марковска верига се нарича \uline{неразложима}, ако всеки две нейни състояния са съобщаващи се.
+    \item Състоянието $i$ се нарича \uline{поглъщащо}, ако никое друго състояние не може да бъде достигнато от него.
+    \item Състоянието $i$ се нарича \uline{възвратно}, ако $f_i = 1$.
+    \item Състоянието $i$ се нарича \uline{преходно}, ако $f_i < 1$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Релацията $\Communicates$ е релация на еквивалентност в множеството от състояния.
+\end{proposition}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item $i \Communicates i$, тъй като всяко състояние достига себе си за $0$ стъпки.
+    \item Ако $i \Communicates j$, то по определение $j \Communicates i$.
+    \item Ако $i \Communicates j$ и $j \Communicates k$, тогава от уравненията на Чепмен-Колмогоров следва, че $i \Communicates k$.
+  \end{enumerate}
+\end{proof}
+
+Това ни позволява да разбием множеството състояния на непресичащи се класове.
+
+\begin{corollary}
+  Една марковска верига е неразложима точно когато има точно един клас съобщаващи се състояния.
+\end{corollary}
+
+\begin{theorem}\label{thm:trans-iff-divergent}
+  Състоянието $i$ е преходно, точно когато редът $\sum_{n=1}^\infty p^{(n)}_{ii}$ е сходящ. В противен случай, състоянието е преходно.
+\end{theorem}
+\begin{proof}
+  Разглеждаме пораждащите функции за редиците $f_i^{(1)}, f_i^{(2)}, \ldots$ и $p_{ii}^{(1)}, p_{ii}^{(2)}, \ldots$:
+  \begin{align*}
+    f(z) \coloneqq \sum_{n=1}^\infty f_i^{(n)} z^n,
+    &&
+    p(z) \coloneqq \sum_{n=1}^\infty p_{ii}^{(n)} z^n.
+  \end{align*}
+
+  По формулата за пълната вероятност за $n > 0$ имаме
+  \begin{multline*}
+    p_{ii}^{(n)}
+    =
+    \Prob(\xi_n = i \mid \xi_0 = i)
+    = \\ =
+    \sum_{k=1}^n \Prob(\xi_n = i \mid \xi_k = i, \xi_{k-1} \neq i, \ldots, \xi_1 \neq i, \xi_0 = i) \Prob(\xi_k = i, \xi_{k-1} \neq i, \ldots, \xi_1 \neq i \mid \xi_0 = i)
+    = \\ =
+    \sum_{k=1}^n \Prob(\xi_n = i \mid \xi_k = i) \Prob(\xi_k = i, \xi_{k-1} \neq i, \ldots, \xi_1 \neq i \mid \xi_0 = i)
+    =
+    \sum_{k=1}^n p_{ii}^{(n-k)} f_i^{(k)}.
+  \end{multline*}
+
+  Тогава
+  \begin{multline*}
+    p(z)
+    =
+    \sum_{n=1}^\infty p_{ii}^{(n)} z^n
+    =
+    \sum_{n=1}^\infty p_{ii}^{(n)} z^n
+    =
+    \sum_{n=1}^\infty z^n \sum_{k=1}^n p_{ii}^{(n-k)} f_i^{(k)}
+    =
+    \sum_{n=1}^\infty \sum_{k=1}^n (p_{ii}^{(n-k)} z^{n-k}) (f_i^{(k)} z^k)
+    = \\ =
+    \sum_{n=1}^\infty f_i^{(n)} z^n \left( 1 + \sum_{k=1}^\infty p_{ii}^{(n-k)} z^{n-k} \right)
+    =
+    \sum_{n=1}^\infty f_i^{(n)} z^n (1 + p(z))
+    =
+    f(z) (1 + p(z)).
+  \end{multline*}
+
+  Получихме
+  \begin{displaymath}
+    f(z) = \frac {p(z)} {1 + p(z)}.
+  \end{displaymath}
+
+  Редът
+  \begin{displaymath}
+    \sum_{n=1}^\infty p^{(n)}_{ii} = \lim_{z \to 1} p(z)
+  \end{displaymath}
+  е разходящ точно тогава, когато $\lim_{z \to 1} f(z) = 1$.
+
+  От друга страна, горният ред схожда към някаква константа $c$ точно когато
+  \begin{displaymath}
+    \sum_{n=1}^\infty f_i^{(n)} = \frac c {1 + c} \in < 1,
+  \end{displaymath}
+  т.е. когато състоянието $i$ е преходно.
+\end{proof}
+
+\printbibliography
+
+\end{document}
