@@ -1,0 +1,350 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Misc packages
+\usepackage{enumitem} % Customization of enum counters
+\usepackage{ulem} % Line-breaking underlines
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Тема 18}
+\subtitle{Поасонов процес. Характеризационни свойства. Приложения.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{26 юни 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Теория}
+
+Теорията е базирана на~\cite{Lectures}, но някои неща са взаимствани от~\cite{Borovkov}.
+
+\subsection{Анотация}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\begin{enumerate}
+  \item Дефиниция за броящ процес
+  \item Дефиниция за Поасонов процес
+  \item Връзка с експоненциално разпределение
+  \item Характеризационни свойства - разпределение на времето за чакане и условни разпределения на времето и моментите на появяване
+  \item Пример с интерпретация на горепосочените свойства
+  \item Нехомогенен и сложен Поасонов процес
+\end{enumerate}
+
+\subsection{Основни понятия}
+
+Ще считаме, че е фиксирано някакво вероятностно пространство $(\Omega, \F, \Prob)$ и множество $\mathcal{N}$ от целочислени случайни величини с неотрицателни стойности над това пространство.
+
+\begin{definition}
+  \uline{Броящ процес} наричаме монотонната с вероятност $1$ функция $N: \RNNeg \to \mathcal{N}$, чиито аргументи обикновено интерпретираме като време и бележим с $t$, а стойностите $N(t)$ като брой настъпили събития за време $t$.
+
+  \uline{Нарастване} на процеса с $h > 0$ в момента $t$ наричаме разликите $N(t+h) - N(t)$. Ако всички нараствания за един процес са независими, казваме, че процесът е с \uline{независими нараствания}. Ако нарастванията $N(t_1+h) - N(t_1)$ и $N(t_2+h) - N(t_2)$ не зависят от $h>0$, т.е. имат еднакво разпределение за всички $h>0$, казваме, че процесът $N(t)$ е със \uline{стационарни нараствания}.
+\end{definition}
+
+\begin{definition}
+  Ще дадем три еквивалентни определения за \uline{Поасонов процес}.
+
+  \begin{enumerate}
+    \item\label{def:pp-1} Броящият процес $N(t), t \geq 0$ наричаме \uline{Поасонов със степен $\lambda > 0$}, ако са изпълнени
+    \begin{enumerate}
+      \item $N(0) = 0$
+      \item $N(t)$ е процес с независими нараствания
+      \item Нарастванията $N(t+h)-N(t)$ имат Поасоново разпределение със степен $h\lambda$, т.е.
+      \begin{displaymath}
+        \Prob(N(t+h)-N(t) = k)
+        =
+        \frac{e^{-h\lambda} {(h\lambda)}^k} {k!}.
+      \end{displaymath}
+    \end{enumerate}
+
+    \item\label{def:pp-2} Броящият процес $N(t), t \geq 0$ наричаме \uline{Поасонов със степен $\lambda > 0$}, ако са изпълнени
+    \begin{enumerate}
+      \item $N(0) = 0$
+      \item $N(t)$ е процес със стационарни и независими нараствания
+      \item $\frac {\Prob(N(h) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda$
+      \item $\frac {\Prob(N(h) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0$
+    \end{enumerate}
+
+    \item\label{def:pp-3} Нека $\xi_1, \xi_2, \ldots$ са независими случайни величини с разпределение $\DExp(\lambda)$, т.е.
+    \begin{displaymath}
+      f_{\xi_n}(t) =
+      \begin{cases}
+        \lambda e^{-\lambda t}, &t \geq 0 \\
+        0, &t < 0
+      \end{cases},
+      n = 1, 2, \ldots.
+    \end{displaymath}
+
+    Полагаме
+    \begin{align*}
+      S_0 &\coloneqq 0, \\
+      S_n &\coloneqq \sum_{k=1}^n \xi_k.
+    \end{align*}
+
+    Очевидно $S_n \in \DGamma(n, \lambda), n > 0$, т.е.
+    \begin{displaymath}
+      f_{S_n}(t)
+      =
+      \begin{dcases}
+        \frac {\lambda^n t^{n-1} e^{-\lambda t}} {\Gamma(n)} = \lambda e^{-\lambda t} \frac {{(\lambda t)}^{n-1}} {(n-1)!}, &t \geq 0, \\
+        0, &t < 0,
+      \end{dcases}
+      n = 1, 2, \ldots.
+    \end{displaymath}
+
+    Броящият процес $N(t)$, за който е изпълнено
+    \begin{displaymath}
+      N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
+    \end{displaymath}
+    се нарича \uline{Поасонов процес със степен $\lambda$}, а случайните величини $\xi_n, n = 1, 2, \ldots$ наричаме \uline{времена на чакане за поява на $n$-тото събитие}.
+  \end{enumerate}
+\end{definition}
+
+\begin{note}
+  \mbox{}
+  \begin{enumerate}
+    \item И при двете определения поасоновият процес $N(t)$ има стационарни нараствания.
+    \item Параметърът $\lambda$ се нарича степен на процеса, тъй като $\Expect(N(t)) = \lambda t$.
+  \end{enumerate}
+\end{note}
+
+\begin{theorem}
+  Трите определения са еквивалентни.
+\end{theorem}
+\begin{proof}
+  (\ref{def:pp-1} $\implies$~\ref{def:pp-2}) Нека първо броящият процес $N(t)$ удовлетворява първото определение.
+
+  Тогава
+  \begin{displaymath}
+    \frac {\Prob(N(h) = 1)} h
+    =
+    \frac 1 h \frac {e^{-\lambda h} {(\lambda h)}^1} {1!}
+    =
+    \lambda e^{-\lambda h}
+    \underset {h \mapsto 0} \longrightarrow
+    \lambda.
+  \end{displaymath}
+  и
+  \begin{multline*}
+    \frac {\Prob(N(h) \geq 1)} h
+    =
+    \frac {1 - \Prob(N(h) < 2)} h
+    =
+    \frac {1 - \Prob(N(h) = 1) - \Prob(N(h) = 0)} h
+    = \\ =
+    \frac {1 - \lambda h e^{-\lambda h} - e^{-\lambda h}} h
+    =
+    \frac {1 - e^{-\lambda h}} h - \lambda e^{-\lambda h}
+    =
+    - \frac {e^{-\lambda (0 + h)} - e^{-\lambda 0}} h - \lambda e^{-\lambda h}
+    \underset {h \mapsto 0} \longrightarrow
+    -(-\lambda) e^{-\lambda 0} - \lambda e^{-\lambda 0}
+    =
+    0.
+  \end{multline*}
+
+  (\ref{def:pp-2} $\implies$~\ref{def:pp-1}) Обратно, ако $N(t)$ удовлетворява второто определение, получаваме диференциалното уравнение
+  \begin{align*}
+    \frac {\partial \Prob(N(t) = 0)} {\partial t}
+    =&
+    \lim_{h \to 0} \frac {\Prob(N(t+h) = 0) - \Prob(N(t) = 0)} h
+    = \\ =&
+    \lim_{h \to 0} \frac {\Prob(N(t+h) - N(t) = 0, N(t) - N(0) = 0) - \Prob(N(t) = 0)} h
+    = \\ =&
+    \lim_{h \to 0} \frac {\Prob(N(h) = 0, N(t) = 0) - \Prob(N(t) = 0)} h
+    = \\ =&
+    \Prob(N(t) = 0) \lim_{h \to 0} \frac {\Prob(N(h) = 0) - 1} h
+    = \\ =&
+    \Prob(N(t) = 0) \lim_{h \to 0} \frac {1 - \Prob(N(h) = 1) - \Prob(N(h) \geq 1) - 1} h
+    = \\ =&
+    - \Prob(N(t) = 0) \lim_{h \to 0} \frac {\Prob(N(h) = 1) + \Prob(N(h) \geq 1)} h
+    = \\ =&
+    - \Prob(N(t) = 0) \cdot (\lambda + 0)
+    = \\ =&
+    -\lambda \Prob(N(t) = 0).
+  \end{align*}
+
+  Като се има предвид началното условие $\Prob(N(0) = 0) = 1$, това уравнение има решение
+  \begin{displaymath}
+   \Prob(N(t) = 0) = e^{-\lambda t}.
+  \end{displaymath}
+
+  За $n > 0$ формулата за пълната вероятност ни дава
+  \begin{align*}
+    \Prob(N(t+h) = n)
+    =&
+    \sum_{k=0}^n \Prob(N(t+h) = n, N(t) = k)
+    = \\ =&
+    \sum_{k=0}^n \Prob(N(t+h) - N(t) = n - k, N(t) = k)
+    = \\ =&
+    \sum_{k=0}^n \Prob(N(h) = n - k, N(t) = k)
+    = \\ =&
+    \sum_{k=0}^n \Prob(N(h) = n - k) \Prob(N(t) = k)
+    = \\ =&
+    \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k),
+  \end{align*}
+  откъдето намираме производната по $t$
+  \begin{align*}
+    \frac {\partial \Prob(N(t) = n)} {\partial t}
+    =&
+    \lim_{h \to 0} \frac {\Prob(N(t+h) = n) - \Prob(N(t) = n)} h
+    = \\ =&
+    \lim_{h \to 0} \frac 1 h \left( \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k) - \Prob(N(t) = n) \right)
+    = \\ =&
+    \lim_{h \to 0} \frac 1 h [\Prob(N(t) = n) [\Prob(N(h) = 0) - 1] + \Prob(N(h) = 1) \Prob(N(t) = n - 1) + \cdots]
+    = \\ =&
+    \lim_{h \to 0} \frac {\Prob(N(t) = n) [\Prob(N(h) = 0) - 1]} h + \lambda \Prob(N(t) = n - 1) + 0
+    = \\ (\text{L'Hospital}) =&
+    \lim_{h \to 0} \frac {\Prob(N(t) = n) \cdot [-\lambda \Prob(N(h) = 0)]} 1 + \lambda \Prob(N(t) = n - 1) + 0
+    = \\ =&
+    -\lambda \Prob(N(t) = n) + \lambda \Prob(N(t) = n - 1).
+  \end{align*}
+
+  Тогава
+  \begin{align*}
+    \frac {\partial \Prob(N(t) = n)} {\partial t}
+    =&
+    -\lambda \Prob(N(t) = n) + \lambda \Prob(N(t) = n - 1),
+    \\
+    e^{\lambda t} \frac {\partial \Prob(N(t) = n)} {\partial t}
+    =&
+    -\lambda e^{\lambda t} \Prob(N(t) = n) + \lambda e^{\lambda t} \Prob(N(t) = n - 1)
+    \\
+    e^{\lambda t} \left(\frac {\partial \Prob(N(t) = n)} {\partial t} + \lambda \Prob(N(t) = n) \right)
+    =&
+    \lambda e^{\lambda t} \Prob(N(t) = n - 1),
+    \\
+    \frac {\partial [e^{\lambda t} \Prob(N(t) = n)]} {\partial t}
+    =&
+    \lambda e^{\lambda t} \Prob(N(t) = n - 1).
+  \end{align*}
+
+  За $n = 1$ интегрираме уравнението и получаваме
+  \begin{align*}
+    \frac {\partial [e^{\lambda t} \Prob(N(t) = 1)]} {\partial t}
+    =&
+    \lambda e^{\lambda t} \Prob(N(t) = 0)
+    =
+    \lambda e^{\lambda t} e^{-\lambda t}
+    =
+    \lambda,
+    \\
+    e^{\lambda t} \Prob(N(t) = 1)
+    =&
+    \lambda t + C,
+    \\
+    \Prob(N(t) = 1)
+    =&
+    \lambda t e^{-\lambda t} + C.
+  \end{align*}
+
+  Понеже $\Prob(N(0) = 1) = 0$, имаме $C = 0$ и
+  \begin{displaymath}
+    \boxed{\Prob(N(t) = 1) = \lambda t e^{-\lambda t}}.
+  \end{displaymath}
+
+  С индукция по $n$ получаваме функцията на вероятностите на познатото Поасоново разпределение със степен $\lambda t$
+  \begin{align*}
+    \frac {\partial [e^{\lambda t} \Prob(N(t) = n)]} {\partial t}
+    =&
+    \lambda e^{\lambda t} \Prob(N(t) = n - 1)
+    =
+    \lambda e^{\lambda t} e^{-\lambda t} \frac {{(\lambda t)}^{n-1}} {(n-1)!}
+    =
+    \frac {\lambda^n} {(n-1)!} t^{n-1},
+    \\
+    e^{\lambda t} \Prob(N(t) = n)
+    =&
+    \frac {{(\lambda t)}^n} {n!} + C,
+    \\
+    \Prob(N(t) = n)
+    =&
+    e^{-\lambda t} \frac {{(\lambda t)}^n} {n!} + C.
+  \end{align*}
+
+  Понеже $\Prob(N(0) = n) = \delta_{n,0}$, имаме $C = 0$ и
+  \begin{displaymath}
+    \boxed{\Prob(N(t) = n) = e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}.
+  \end{displaymath}
+
+  (\ref{def:pp-1} $\implies$~\ref{def:pp-3}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите $t$ и $t+h$, т.е.
+  \begin{displaymath}
+    \Prob(N(t) < N(t+h))
+    =
+    \Prob(0 < N(t+h) - N(t))
+    =
+    \Prob(0 < N(h))
+    =
+    1 - \Prob(N(h) = 0)
+    =
+    1 - e^{-\lambda h}.
+  \end{displaymath}
+
+  Виждаме, времето за чакане за настъпване на събитие между моментите $t$ и $t+h$ е експоненциално разпределено и не зависи от $t$, т.е. времената за чакане са независими.
+
+  (\ref{def:pp-1} $\implies$~\ref{def:pp-3}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите $t$ и $t+h$, т.е.
+  \begin{displaymath}
+    \Prob(N(t) < N(t+h))
+    =
+    \Prob(0 < N(t+h) - N(t))
+    =
+    \Prob(0 < N(h))
+    =
+    1 - \Prob(N(h) = 0)
+    =
+    1 - e^{-\lambda h}.
+  \end{displaymath}
+
+  Виждаме, времето за чакане за настъпване на събитие между моментите $t$ и $t+h$ е експоненциално разпределено и не зависи от $t$, т.е. времената за чакане са независими.
+
+  (\ref{def:pp-3} $\implies$~\ref{def:pp-1}) Сега приемаме третото определение и разглеждаме вероятността да са се случили $n$ събития до момента $t$
+  \begin{multline*}
+    \Prob(N(t) = n)
+    =
+    \Prob(\max \{ m \geq 0 \mid S_m \leq t \} = n)
+    =
+    \Prob(S_n \leq t < S_{n+1})
+    =
+    \Prob(S_n \leq t < S_n + \xi_{n+1})
+    = \\ =
+    \int_0^t \Prob(t < x + \xi_{n+1}) f_{S_n} (x) dx
+    =
+    \int_0^t (1 - F_{\xi_{n+1}} (t - x)) \cdot f_{S_n} (x) dx
+    =
+    \int_0^t e^{-\lambda (t-x)} \cdot \lambda e^{-\lambda x} \frac {{(\lambda x)}^{n-1}} {(n-1)!} dx
+    = \\ =
+    e^{-\lambda t} \frac 1 {(n-1)!} \int_0^t {(\lambda x)}^{n-1} d(\lambda x)
+    =
+    \boxed{e^{-\lambda t} \frac {{(\lambda t)}^n} {(n-1)!}},
+  \end{multline*}
+  което е точно функция на вероятностите на Поасоново разпределение със степен $\lambda t$.
+\end{proof}
+
+\printbibliography
+
+\end{document}
