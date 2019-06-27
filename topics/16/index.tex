@@ -1236,15 +1236,20 @@
 \begin{definition}
   Казваме, че случайната величина $\xi$ има \uline{гама разпределение} с мащаб $\alpha > 0$ и степен $\beta > 0$ и пишем $\xi \in \DGamma(\alpha, \beta)$, ако плътността има вида
   \begin{displaymath}
-    f_\xi(x) = \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)},
+    f_\xi(x)
+    =
+    \begin{dcases}
+      \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)}, &x \geq 0, \\
+      0, &x < 0,
+    \end{dcases}
   \end{displaymath}
   където $\Gamma(x)$ е $\Gamma$-функцията на Ойлер.
 
   Дефиницията на плътност е коректна, тъй като $f_\xi(x) \geq 0~\forall x \in \R$ и
   \begin{displaymath}
-    \frac 1 {\Gamma(\alpha)} \int_\R {\beta^\alpha x^{\alpha-1} e^{-\beta x}} dx
+    \frac 1 {\Gamma(\alpha)} \int_0^\infty {\beta^\alpha x^{\alpha-1} e^{-\beta x}} dx
     =
-    \frac 1 {\Gamma(\alpha)} \int_\R {{(\beta x)}^{\alpha-1} e^{-\beta x}} d(\beta x)
+    \frac 1 {\Gamma(\alpha)} \int_0^\infty {{(\beta x)}^{\alpha-1} e^{-\beta x}} d(\beta x)
     =
     \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
     =
@@ -1253,11 +1258,16 @@
 
   Понякога се използва алтернативна параметризация с $k = \alpha$ и $\theta = \beta^{-1}$, където плътността има вида
   \begin{displaymath}
-    f_\xi(x) = \frac {\theta^{-k} x^{k-1} e^{-\frac x \theta}} {\Gamma(k)}.
+    f_\xi(x)
+    =
+    \begin{dcases}
+      \frac {\theta^{-k} x^{k-1} e^{-\frac x \theta}} {\Gamma(k)}, &x \geq 0, \\
+      0, &x < 0,
+    \end{dcases}
   \end{displaymath}
 \end{definition}
 
-Гама разпределението обобщава други често срещани разпределения като $\DExp$ и $\DChiSq$. Като такова то наследява и разширява техни приложения, например за моделиране на време между $n > 1$ последователни нервни импулса, но гама разпределението има и самостоятелни приложения, например за статистически анализ на асиметрично-разпределени данни.
+Гама разпределението обобщава други често срещани разпределения, тъй като като $\DGamma(1, \lambda) = \DExp(\lambda)$ и $\DGamma(n/2, 1/2) = \DChiSq(n)$. Като такова то наследява и разширява техни приложения, например за моделиране на време между $n > 1$ последователни нервни импулса, но гама разпределението има и самостоятелни приложения, например за статистически анализ на асиметрично-разпределени данни.
 
 За пораждащата моментите функция, очакването и дисперсията на $\xi \in \DGamma(\alpha, \beta)$ имаме
 \begingroup
@@ -1267,13 +1277,13 @@
   &=
   \Expect(e^{t\xi})
   =
-  \int_\R e^{tx} \cdot \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)} dx
+  \int_0^\infty e^{tx} \cdot \frac {\beta^\alpha x^{\alpha-1} e^{-\beta x}} {\Gamma(\alpha)} dx
   =
-  \frac {\beta^\alpha} {\Gamma(\alpha)} \int_\R x^{\alpha-1} e^{-x(\beta-t)} dx
+  \frac {\beta^\alpha} {\Gamma(\alpha)} \int_0^\infty x^{\alpha-1} e^{-x(\beta-t)} dx
   = \\ &=
-  \frac {\beta^\alpha} {(\beta-t) \cdot \Gamma(\alpha)} \int_\R \frac {{[(\beta-t)x]}^{\alpha-1}} {{(\beta-t)}^{\alpha-1}} e^{-(\beta-t)x} d[(\beta-t)x]
+  \frac {\beta^\alpha} {(\beta-t) \cdot \Gamma(\alpha)} \int_0^\infty \frac {{[(\beta-t)x]}^{\alpha-1}} {{(\beta-t)}^{\alpha-1}} e^{-(\beta-t)x} d[(\beta-t)x]
   = \\ &=
-  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac 1 {\Gamma(\alpha)} \int_\R {[(\beta-t)x]}^{\alpha-1} e^{-(\beta-t)x} d[(\beta-t)x]
+  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac 1 {\Gamma(\alpha)} \int_0^\infty {[(\beta-t)x]}^{\alpha-1} e^{-(\beta-t)x} d[(\beta-t)x]
   = \\ &=
   {\left(\frac \beta {\beta-t} \right)}^\alpha \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
   =
@@ -1329,7 +1339,7 @@
   \mbox{}
   \begin{enumerate}
     \item Следва директно от вида на пораждащата моментите функция.
-    \item Използвайки твърдение~\ref{thm:transformation-density}, намираме плътността
+    \item Използвайки твърдение~\ref{thm:transformation-density}, намираме плътността за $x \geq 0$
     \begin{displaymath}
       f_{c\xi}(x)
       =
