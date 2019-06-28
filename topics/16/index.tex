@@ -297,14 +297,7 @@
     \int_\R F_\xi(x - y) f_\eta(y) dy.
   \end{displaymath}
 
-  Сега ще докажем, че $F_{\xi + \eta}$ е абсолютно непрекъсната във всеки интервал $[a, b]$. Нека $\varepsilon > 0$ и $\delta > 0$ са такива, че за произволни $n$ непресичащи се два по два интервали $(a_k, b_k) \subseteq [a, b]$ имаме
-  \begin{displaymath}
-    \sum_{k=1}^n \Abs{b_k - a_k} < \delta
-    \implies
-    \sum_{k=1}^n \Abs{F_\xi(b_k) - F_\xi(a_k)} < \epsilon
-  \end{displaymath}
-
-  Поради монотонността на функциите на разпределение имаме $F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0$. Тогава
+  Сега ще докажем, че $F_{\xi + \eta}$ е абсолютно непрекъсната във всеки интервал $[a, b]$. Нека $\varepsilon > 0$ и $\delta = \frac \varepsilon \sup_\R(f_\xi)$. За произволни $n$ непресичащи се два по два интервала $(a_k, b_k) \subseteq [a, b]$ поради монотонността на функциите на разпределение имаме $F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0$. Тогава
   \begin{multline*}
     \sum_{k=1}^n \Abs{F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k)}
     =
@@ -312,17 +305,17 @@
     = \\ =
     \sum_{k=1}^n \left(\int_\R F_\xi(b_k - y) f_\eta(y) dy - \int_\R F_\xi(a_k - y) f_\eta(y) dy \right)
     = \\ =
-    \sum_{k=1}^n \left(\int_\R f_\eta(y) dy - \int_\R F_\xi(a_k - y) f_\eta(y) dy \right)
-    =
     \sum_{k=1}^n \int_\R (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
-    = \\ =
+    =
     \sum_{k=1}^n \int_\R \int_{a_k - y}^{b_k - y} f_\xi(z) dz \cdot f_\eta(y) dy
-    \leq
+    \leq \\ \leq
     \sup_\R(f_\xi) \sum_{k=1}^n (b_k - y - a_k + y) \int_\R f_\eta(y) dy
-    = \\ =
+    =
     \sup_\R(f_\xi) \sum_{k=1}^n (b_k - a_k)
     <
-    \delta \sup_\R(f_\xi).
+    \delta \sup_\R(f_\xi)
+    =
+    \varepsilon.
   \end{multline*}
 
   Дотук доказахме, че $\xi + \eta$ е непрекъсната случайна величина. Остава само да намерим плътността на $F_{\xi + \eta}(x)$. Тъй като $F'_\xi = f_\xi$ и $f_\eta$ са непрекъснати почти навсякъде, произведението им също е непрекъснато почти навсякъде и правилото на Лайбниц за диференциране под знака на интеграла ни дава
