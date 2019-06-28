@@ -41,7 +41,7 @@
 
 \section{Теория}
 
-Теорията е базирана на~\cite{Lectures}, но някои неща са взаимствани от~\cite{Borovkov}.
+Теорията е базирана на~\cite{Lectures}.
 
 \subsection{Анотация}
 
@@ -63,7 +63,7 @@
 \begin{definition}
   \uline{Броящ процес} наричаме монотонната с вероятност $1$ функция $N: \RNNeg \to \mathcal{N}$, чиито аргументи обикновено интерпретираме като време и бележим с $t$, а стойностите $N(t)$ като брой настъпили събития за време $t$.
 
-  \uline{Нарастване} на процеса с $h > 0$ в момента $t$ наричаме разликите $N(t+h) - N(t)$. Ако всички нараствания за един процес са независими, казваме, че процесът е с \uline{независими нараствания}. Ако нарастванията $N(t_1+h) - N(t_1)$ и $N(t_2+h) - N(t_2)$ не зависят от $h>0$, т.е. имат еднакво разпределение за всички $h>0$, казваме, че процесът $N(t)$ е със \uline{стационарни нараствания}.
+  \uline{Нарастване} на процеса с $h > 0$ в момента $t$ наричаме разликите $N(t+h) - N(t)$. Ако всички нараствания за един процес са независими, казваме, че процесът е с \uline{независими нараствания}. Ако разпределенията на нарастванията $N(t_1+h) - N(t_1)$ и $N(t_2+h) - N(t_2)$ зависят само от $h>0$, казваме, че процесът $N(t)$ е със \uline{стационарни нараствания}.
 \end{definition}
 
 \begin{definition}
@@ -454,6 +454,108 @@
   \item Наредените времена на заявките са равновероятни.
   \item Поради липсата на памет на процеса, вероятността за нови повреди не се влияе от броя заявки до момента.
 \end{enumerate}
+
+\subsection{Обобщения}
+
+\subsubsection{Сложен Поасонов процес}
+
+\begin{definition}
+  Ако $N(t)$ е Поасонов процес и $\eta_1, \eta_2, \ldots$ са независими помежду си и от $N(t)$ неотрицателни целочислени случайни величини с еднакво разпределение с, процесът
+  \begin{displaymath}
+    X(t) = \sum_{k=1}^{N(t)} \eta_k, t \geq 0,
+  \end{displaymath}
+  се нарича \uline{сложен Поасонов}.
+\end{definition}
+
+\begin{note}
+  Ако $\eta_k$ са изродени в $1$ случайни величини, получаваме обикновения Поасонов процес. Сложният Поасонов процес ни позволява лесно да моделираме настъпването на цели групи от събития, например пристигане на групи от хора с влак.
+\end{note}
+
+\begin{theorem}[Тъждество на Валд]
+  За очакването и дисперсията на сложен Поасонов процес имаме
+  \begin{align*}
+    \Expect(X(t)) = \Expect(N(t)) \Expect(\xi_1),
+    &&
+    \Var(X(t)) = \Expect(N(t)) \Expect(\xi_1^2).
+  \end{align*}
+\end{theorem}
+\begin{proof}
+  \begin{align*}
+    \Expect(X(t))
+    &=
+    \Expect\left( \sum_{k=1}^{N(t)} \eta_k \right)
+    =
+    \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \eta_k \mid N(t) = n \right) \Prob(N(t) = n)
+    =
+    \sum_{n=0}^\infty \Prob(N(t) = n) \sum_{k=1}^n \Expect(\eta_k)
+    = \\ &=
+    \Expect(\eta_1) \sum_{n=0}^\infty n \Prob(N(t) = n)
+    =
+    \boxed{\Expect(\eta_1) \Expect(N(t))},
+    \\
+    \Expect({X(t)}^2)
+    &=
+    \Expect\left( {\left(\sum_{k=1}^{N(t)} \eta_k \right)}^2 \right)
+    =
+    \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \right)
+    =
+    \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \mid N(t) = n \right) \Prob(N(t) = n)
+    = \\ &=
+    \sum_{n=0}^\infty \left( \sum_{k=1}^n \sum_{m=1}^n \Expect(\eta_k \eta_m) \right) \Prob(N(t) = n)
+    =
+    \sum_{n=0}^\infty \left( n \Expect(\eta_1^2) + n (n-1) {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
+    = \\ &=
+    \sum_{n=0}^\infty n \left( \Expect(\eta_1^2) - {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n) + \sum_{n=0}^\infty n^2 \left( {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
+    = \\ &=
+    \boxed{\Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2)},
+    \\
+    \Var(X(t))
+    &=
+    \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2) - {\Expect(\eta_1)}^2 {\Expect(N(t))}^2
+    = \\ &=
+    \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Var(N(t))
+    =
+    (\Var(\eta_1) + {\Expect(\eta_1)}^2) \lambda t
+    =
+    \lambda t \Expect(\eta_1^2)
+    =
+    \boxed{\Expect(N(t)) \Expect(\eta_1^2)}.
+  \end{align*}
+\end{proof}
+
+\subsubsection{Нехомогенен Поасонов процес}
+
+Ако допуснем степента $\lambda(t)$ да варира с времето нарастванията няма да бъдат стационарни и ще получим следното обобщение на определение~\ref{def:pp-2} за обикновения Поасонов процес:
+\begin{definition}
+  Броящият процес $N(t), t \geq 0$ наричаме \uline{нехомогенен Поасонов със степен $\lambda(t) \geq 0$}, ако са изпълнени
+  \begin{enumerate}
+    \item $N(0) = 0$
+    \item $N(t)$ е процес с независими нараствания
+    \item $\frac {\Prob(N(t+h) - N(t) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda(t)$
+    \item $\frac {\Prob(N(t+h) - N(t) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0$
+  \end{enumerate}
+
+  За удобство полагаме
+  \begin{displaymath}
+    \Lambda(t) \coloneqq \int_0^t \lambda(x) dx.
+  \end{displaymath}
+\end{definition}
+
+Формулираме следното обобщение на свойствата на обикновения Поасонов процес, чиито доказателства са аналогични:
+\begin{theorem}
+  Нека $N(t)$ е нехомогенен Поасонов процес със степен $\lambda(t)$. Тогава
+  \begin{enumerate}
+    \item $N(t) \in \DPoisson(\Lambda(t))$.
+    \item Моментът $S_n$ на появяване на $n$-тото събитие има плътност
+    \begin{displaymath}
+      f_{S_n}(t) = \lambda(t) e^{-\Lambda(t)} \frac {{(\Lambda(t))}^{n-1}} {(n-1)!}
+    \end{displaymath}
+  \end{enumerate}
+\end{theorem}
+
+\begin{note}
+  Нехомогенния Поасонов процес ни позволява да моделираме, например, пристигането на посетители в магазин, което се променя драстично в течение на деня.
+\end{note}
 
 \printbibliography
 
