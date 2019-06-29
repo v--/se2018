@@ -1,0 +1,111 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Misc packages
+\usepackage{ulem} % Line-breaking underlines
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{[WIP] Тема 20}
+\subtitle{Точкови и интервални оценки за параметрите на нормалното разпределение.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{29 юни 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Теория}
+
+Теорията е базирана на~\cite{DimitrovYanev}.
+
+\subsection{Анотация}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\begin{enumerate}
+  \item Определения за точкови и интервални оценки
+  \item Свойства на точковите оценки
+  \item Неравенство на Рао-Крамер
+  \item Доверителни интервали за параметрите на нормалното разпределение
+\end{enumerate}
+
+\subsection{Основни понятия}
+
+Считаме, че е зададено вероятностно пространство $(\Omega, \F, \Prob)$.
+
+\begin{definition}[Извадки]
+  Нека $\xi$ е случайна величина над $(\Omega, \F, \Prob)$. Множеството от елементарни събития $\Omega$ в статистиката често се нарича \uline{генерална съвкупност}
+
+  \begin{itemize}
+    \item Ако случайните величини $\xi_1, \ldots, \xi_n$ са независими две по две и имат същото разпределение като $\xi$, казваме, че $\xi_1, \ldots, \xi_n$ са \uline{наблюдения над $\xi$} и че те са \uline{проста извадка с обем $n$} над генералната съвкупност $\Omega$.
+    \item \uline{Функция на правдоподобие $l(x_1, \ldots, x_n)$ на извадката $\xi_1, \ldots, \xi_n$} наричаме, в непрекъснатия случай, съвместната плътност или, в дискретния случай, съвместната функция на вероятностите. При извадки от независими случайни величини, функцията на правдоподобие е просто произведение на съответните плътности или функции на вероятностите.
+    \item \uline{Извадково} пространство, съответстващо на извадката $\xi_1, \ldots, \xi_n$, наричаме множеството $\SampleSpace \subseteq \R^n$ от стойности на случайния вектор $(\xi_1, \ldots, \xi_n)$.
+    \item \uline{Реализации} на извадката наричаме вектори от $\SampleSpace$. Те моделират истинските данни в математическата статистика, съпоставяйки ги на~\enquote{теоретичната} извадка $(\xi_1, \ldots, \xi_n)$.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}[Оценки]
+  Нека $\xi_1, \ldots \xi_n$ е проста извадка над случайната величина $\xi$, чието разпределение не ни е известно. Целта ни е на базата на тази извадка да оценим някакви числени характеристики $\theta = (\theta_1, \ldots, \theta_n)$ на $\xi$, които напълно да определят разпределението на $\xi$. Обикновено $\theta$ е вектор от моменти на $\xi$ или, в параметричната статистика, $\theta$ е някой от параметрите на класът от разпределения, на който се предполага, че принадлежи $\xi$. Условна вероятност при условие, че $\theta$ е \uline{истинската} стойност на вектора, бележим с
+  \begin{displaymath}
+    \Prob(\cdot \mid \theta).
+  \end{displaymath}
+
+  \begin{itemize}
+    \item \uline{Статистика} наричаме всяка измерима функция на извадката. По определение статистиките са случайни величини.
+
+    \item Ако $\theta$ е някаква числена характеристика на $\xi$ и статистиката $t_n = t_n(x_1, \ldots, x_n)$ не зависи от $\theta$, казваме, че $t_n$ е \uline{точкова оценка за $\theta$}.
+
+
+    \item Стойността $t_n - \Expect(t_n \mid \theta)$ наричаме \uline{случайна грешка}, а стойността $\Expect(t_n \mid \theta) - \theta$ наричаме \uline{систематична грешка} или \uline{изместване} на оценката. Разликата
+    \begin{displaymath}
+      t_n - \theta = t_n - \Expect(t_n \mid \theta) + \Expect(t_n \mid \theta) - \theta
+    \end{displaymath}
+    се разпада на систематична и случайна грешка.
+
+    \item Точковата оценка $t_n$ за $\theta$ наричаме \uline{неизместена}, ако $\Expect(t_n \mid \theta) = \theta$, и асимптотично неизместена, ако $\Expect(t_n \mid \theta) \underset {n \mapsto \infty} \longrightarrow \theta$.
+
+    \item Точковата оценка $t_n$ за $\theta$ наричаме \uline{състоятелна}, ако $t_n \underset {n \mapsto \infty} \longrightarrow \theta$ по вероятност, т.е.
+    \begin{displaymath}
+      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \underset {n \mapsto \infty} \longrightarrow 0~\forall \varepsilon > 0.
+    \end{displaymath}
+
+    Оценката наричаме силно състоятелна, ако сходимостта е почти сигурна, т.е.
+    \begin{displaymath}
+      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \underset {n \mapsto \infty} \longrightarrow 0~\forall \varepsilon > 0.
+    \end{displaymath}
+
+    \item Ако векторът $\theta$ е едномерен (т.е. $\theta$ е число), \uline{интервална оценка} с ниво на доверие $\gamma$ за $\theta$ наричаме двойка точкови оценки $a_n$ и $b_n$ за $\theta$, за които
+    \begin{displaymath}
+      \Prob(a_n \leq \theta \leq b_n \mid \theta) = \gamma
+    \end{displaymath}
+    независимо от стойността на $\theta$.
+  \end{itemize}
+\end{definition}
+
+\printbibliography
+
+\end{document}
