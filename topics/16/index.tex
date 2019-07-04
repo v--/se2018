@@ -554,7 +554,7 @@
 \begin{definition}
   Ако една случайна величина има крайна дисперсия, можем да я~\uline{стандартизираме}, разглеждайки вместо нея
   \begin{displaymath}
-    \overline \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\Var(\xi)}}.
+    \hat \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\Var(\xi)}}.
   \end{displaymath}
 \end{definition}
 
@@ -564,13 +564,13 @@
 \begin{proof}
   Ако $\xi$ е произволна случайна величина с крайна дисперсия, имаме
   \begin{align*}
-    \Expect(\overline \xi)
+    \Expect(\hat \xi)
     &=
     \frac 1 {\sqrt{\Var(\xi)}} \Expect(\xi - \Expect\xi)
     =
     0
     \\
-    \Var(\overline \xi)
+    \Var(\hat \xi)
     &=
     \frac 1 {\Var(\xi)} \Expect({\left[ \xi - \Expect\xi - \Expect(\xi - \Expect\xi) \right]}^2) = 0
     =
