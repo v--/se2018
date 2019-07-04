@@ -1,11 +1,14 @@
+\newcounter{counter:thm}
+\newcounter{counter:ex}
+
 \theoremstyle{plain}
-\newtheorem{proposition}             {Твърдение}
-\newtheorem{corollary}               {Следствие}
-\newtheorem{lemma}                   {Лема}
-\newtheorem{theorem}                 {Теорема}
+\newtheorem{proposition}  [counter:thm] {Твърдение}
+\newtheorem{corollary}    [counter:thm] {Следствие}
+\newtheorem{lemma}        [counter:thm] {Лема}
+\newtheorem{theorem}      [counter:thm] {Теорема}
 
 \theoremstyle{definition}
-\newtheorem{exercise}                {Задача}
-\newtheorem*{definition}             {Определение}
-\newtheorem*{solution}               {Решение}
-\newtheorem*{note}                   {Бележка}
+\newtheorem{exercise}     [counter:ex] {Задача}
+\newtheorem*{definition}               {Определение}
+\newtheorem*{solution}                 {Решение}
+\newtheorem*{note}                     {Бележка}
