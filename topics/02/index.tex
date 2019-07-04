@@ -1,0 +1,194 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Misc packages
+\usepackage{polynom} % Polynomial long division
+\usepackage{ulem} % Line-breaking underlines
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{Тема 2 [WIP]}
+\subtitle{Симетрични оператори в крайномерни евклидови пространства. Основни свойства. Теорема за диагонализация.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{4 юли 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Теория}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\subsection{Анотация}
+
+Някои твърдения и доказателства са взаимствани от~\cite{Knapp} и~\cite{RoyachkiNotes}.
+
+\begin{enumerate}
+  \item Определение за симетричен оператор и матрица на симетричен оператор
+  \item Всички характеристични корени на симетричен оператор са реални числа
+  \item Всеки два вектора, съответстващи на различни собствени стойности, са ортогонални
+  \item Съществува ортонормиран базис на пространството, в който матрицата на симетричен оператор е диагонална
+\end{enumerate}
+
+\subsection{Основни понятия}
+
+Нека $V_n$ е фиксирано $n$-мерно евклидово пространство над полето $\R$, т.е. $\R$-линейно пространство снабдено със скаларно произведение $\Prod \cdot \cdot$.
+
+\begin{definition}
+  \mbox{}
+  \begin{enumerate}
+    \item Линейният оператор $L: V_n \to V_n$ наричаме \uline{симетричен} или \uline{самоспрегнат}, ако за произволен вектор $x \in V_n$ е изпълнено равенството
+    \begin{displaymath}
+      \Prod x {L(x)} = \Prod {L(x)} x.
+    \end{displaymath}
+
+    \item Квадратната матрица $A \in \R^{n \times n}$ наричаме \uline{симетрична}, ако $A = A^T$.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+  Симетричните оператори имат симетрични матрици.
+\end{theorem}
+\begin{proof}
+  Нека $e_1, \ldots, e_n$ е (нареден) ортонормиран базис на $V_n$, нека $L: V_n \to V_n$ е линеен оператор и нека $A = {(a)}_{i,j}$ е матрицата на $L$ спрямо $e_1, \ldots, e_n$.
+
+  Да отбележим първо, че действието на оператора върху произволен вектор се определя напълно от действието му върху базисните вектори.
+
+  За произволни базисни вектори $e_i$ и $e_j$ имаме
+  \begin{align*}
+    \Prod {e_i} {L(e_j)}
+    =
+    \Prod {e_i} {\sum_{k=1}^n a_{k,j} e_k}
+    =
+    \sum_{k=1}^n a_{k,j} \Prod {e_i} {e_k}
+    =
+    \sum_{k=1}^n a_{k,j} \delta_{i,k}
+    =
+    a_{i,j}.
+  \end{align*}
+
+  ($\implies$) Ако операторът $L$ е симетричен, за произволни базисни вектори получаваме
+  \begin{displaymath}
+    a_{i,j}
+    =
+    \Prod {e_i} {L(e_j)}
+    =
+    \Prod {L(e_i)} {e_j}
+    =
+    \Prod {e_j} {L(e_i)}
+    =
+    a_{j,i}.
+  \end{displaymath}
+  Следователно матрицата $A$ е симетрична.
+
+  ($\impliedby$) Обратно, ако матрицата $A$ е симетрична, за произволни базисни вектори получаваме
+  \begin{displaymath}
+    \Prod {e_i} {L(e_j)}
+    =
+    a_{i,j}
+    =
+    a_{j,i}
+    =
+    \Prod {e_j} {L(e_i)}
+    =
+    \Prod {L(e_i)} {e_j}.
+  \end{displaymath}
+  Следователно операторът $L$ е симетричен.
+\end{proof}
+
+\subsection{Собствени стойности на симетрични оператори}
+
+Тъй като в общия случай корените на характеристичния полином на линеен оператор могат да не бъдат реални числа, ще работим с по-базови понятия от собствени стойности и собствени вектори, тъй като не разполагаме с необходимия апарат за комплексни линейни пространства. В частност,~\enquote{имитираме} комплексно скаларно произведение.
+
+\begin{theorem}
+  Корените на характеристичния полином $\det(L - \lambda I)$ на симетричен оператор $L:V_n \to V_n$ са реални числа.
+\end{theorem}
+
+\begin{proof}
+  Нека $\lambda \in \Complex$ е корен на характеристичния полином $\det(L - \lambda I)$. Ще покажем, че $\lambda \in \R$.
+
+  Нека $A = {(a)}_{i,j}$ е матрица на оператора $L$ спрямо базиса $e_1, \ldots, e_n$ на $V_n$. Тогава съществува ненулев комплексен вектор $x = (x_1, \ldots, x_n) \in \Complex^n$, такъв че
+  \begin{displaymath}
+    (A - \lambda I) x = x,
+  \end{displaymath}
+  което е еквивалентно на равенството
+  \begin{displaymath}
+    A x = \lambda x
+  \end{displaymath}
+  и на системата
+  \begin{displaymath}
+    \sum_{j=1}^n a_{i,j} x_j = \lambda x_i, i = 1, \ldots, n.
+  \end{displaymath}
+
+  За фиксирано $i$ умножаваме двете страни на равенството с комплексно спрегнатото $\CConj{x_i}$ на $x_i$ и сумираме по $i$, за да получим
+  \begin{align*}
+    \sum_{j=1}^n a_{i,j} x_j
+    &=
+    \lambda x_i~\mid~\cdot \; \CConj{x_i}
+    \\
+    \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    &=
+    \lambda x_i \CConj{x_i} = \lambda \Abs{x_i}^2~~\mid \sum_{i=1}^n \cdot
+    \\
+    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    &=
+    \lambda \sum_{i=1}^n \Abs{x_i}^2.
+  \end{align*}
+
+  Поради симетричността на матрицата $A$ е изпълнено
+  \begin{displaymath}
+    \CConj{a_{i,j} \CConj{x_i} x_j}
+    =
+    a_{j,i} x_i \CConj{x_j},~i, j = 1, \ldots, n,
+  \end{displaymath}
+  следователно
+  \begin{displaymath}
+    \CConj{\lambda \sum_{i=1}^n \Abs{x_i}^2}
+    =
+    \CConj{\sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j}
+    =
+    \sum_{i=1}^n \sum_{j=1}^n \CConj{a_{i,j} \CConj{x_i} x_j}
+    =
+    \sum_{i=1}^n \sum_{j=1}^n a_{j,i} \CConj{x_j} x_i
+    =
+    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    =
+    \lambda \sum_{i=1}^n \Abs{x_i}^2.
+  \end{displaymath}
+
+  Тъй като $\sum_{i=1}^n \Abs{x_i}^2 > 0$, получаваме, че $\lambda = \CConj{\lambda}$ и $\lambda \in \R$.
+\end{proof}
+
+\subsection{Спектрална теорема}
+
+\begin{theorem}[Спектрална теорема]
+  Собствените вектори на симетричен оператор образуват ортонормиран базис във $V_n$.
+\end{theorem}
+
+\printbibliography
+
+\end{document}
