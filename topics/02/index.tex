@@ -19,7 +19,6 @@
 \usepackage{mathtools}
 
 % Misc packages
-\usepackage{polynom} % Polynomial long division
 \usepackage{ulem} % Line-breaking underlines
 
 % Custom packages
@@ -33,7 +32,7 @@
 \title{Тема 2}
 \subtitle{Симетрични оператори в крайномерни евклидови пространства. Основни свойства. Теорема за диагонализация.}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
-\date{4 юли 2019}
+\date{5 юли 2019}
 
 \begin{document}
 
@@ -229,6 +228,196 @@
 \begin{corollary}
   Симетричните оператори над $V_n$ имат диагонални матрици спрямо базисите си от собствени стойности.
 \end{corollary}
+
+\section{Задачи}
+
+\subsection{Анотация}
+
+\begin{enumerate}
+  \item За даден симетричен оператор да се намерят ортонормиран базис на пространството, в който матрицата му е диагонална, както и самата матрица.
+\end{enumerate}
+
+\subsection{Диагонализация на симетричен оператор}
+
+\begin{exercise}[\cite{SEAutumn2011}]
+  Спрямо ортонормиран базис на евклидовото пространство $\R^3$, линейният оператор $\varphi: \R^3 \to \R^3$ има матрица
+  \begin{displaymath}
+    A = \begin{pmatrix}
+      1 & p & 0 \\
+      p & 0 & 2 \\
+      0 & 2 & -1
+    \end{pmatrix},
+  \end{displaymath}
+  зависеща от реален параметър $p$. Да се пресметнат стойностите на реалния параметър $p$, за които характеристичният полином $f_\varphi(x)$ на $\varphi$ изпълнява равенството $f_\varphi(2) = 10$. За получените стойности на $p$ да се намери ортонормиран базис $e_1, e_2, e_3$ в $\R^3$, в който матрицата $D$ на $\varphi$ е диагонална, както и тази диагонална матрица $D$.
+\end{exercise}
+\begin{solution}
+  Първо намираме характеристичния полином на $\varphi$:
+  \begin{align*}
+    f_\varphi(\lambda)
+    &=
+    \det(A - \lambda I)
+    = \\ &=
+    \det \begin{pmatrix}
+      1 - \lambda & p & 0 \\
+      p & -\lambda & 2 \\
+      0 & 2 & -1-\lambda
+    \end{pmatrix}
+    = \\ &=
+    (1-\lambda) (-\lambda) (-1-\lambda) + 0 + 0 - 0 - (1-\lambda) 2^2 - (-1-\lambda) p^2
+    = \\ &=
+    \lambda (1 - \lambda) (1 + \lambda) + 4 (\lambda - 1) + (\lambda + 1) p^2
+    = \\ &=
+    -\lambda^3 + (5 + p^2) \lambda + (p^2 - 4).
+  \end{align*}
+
+  Получаваме следното уравнение за $p$:
+  \begin{displaymath}
+    f_\varphi(2) = -2^3 + 2 (5+p^2) + (p^2-4) = 3 p^2 - 2 = 10,
+  \end{displaymath}
+  което има решения $p = \pm 2$.
+
+  Тъй като $p$ участва в характеристичния полином само чрез квадрата си $p^2$, и в двата случая за характеристичния полином получаваме
+  \begin{displaymath}
+    f_\varphi(\lambda) = -\lambda^3 + 9 \lambda = -\lambda(\lambda^2 - 9) = \boxed{-\lambda (\lambda - 3) (\lambda + 3)}.
+  \end{displaymath}
+
+  Собствените стойности са $\lambda_1 = 0$, $\lambda_2 = 3$ и $\lambda_3 = -3$.
+
+  Както ще се убедим по-късно, матрицата $D$ на $\varphi$ спрямо наредения базис от собствени вектори, съответстващи на намерените собствени стойности, е
+  \begin{displaymath}
+    \begin{pmatrix}
+      \lambda_1 & 0 & 0 \\
+      0 & \lambda_2 & 0 \\
+      0 & 0 & \lambda_3
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 & 0 & 0 \\
+      0 & 3 & 0 \\
+      0 & 0 & -3.
+    \end{pmatrix}
+  \end{displaymath}
+
+  Съответстващите собствени вектори $e_k, k = 1, 2, 3$ намираме от системата
+  \begingroup
+  \allowdisplaybreaks
+  \begin{align*}
+    A e_k &= 0 \cdot e_k,
+    \\
+    \begin{pmatrix}
+      1 & \pm 2 & 0 \\
+      \pm 2 & 0 & 2 \\
+      0 & 2 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      e_{1,k} \\ e_{2,k} \\ e_{3,k}
+    \end{pmatrix}
+    &=
+    \lambda_k
+    \begin{pmatrix}
+      e_{1,k} \\ e_{2,k} \\ e_{3,k}
+    \end{pmatrix}.
+  \end{align*}
+  \endgroup
+
+  От първото уравнение следва
+  \begin{align*}
+    e_{1,k} \pm 2 e_{2,k} &= \lambda e_{1,k},
+    \\
+    \pm 2 e_{2,k} &= (\lambda - 1) e_{1,k},
+    \\
+    e_{2,k} &= \pm \frac {\lambda - 1} 2 e_{1,k},
+  \end{align*}
+  а от третото следва
+  \begin{align*}
+    2e_{2,k} - e_{3,k} &= \lambda e_{3,k},
+    \\
+    2 e_{2,k} &= (\lambda + 1) e_{3,k},
+    \\
+    e_{3,k} &= \frac 2 {\lambda + 1} e_{2,k},
+    \\
+    e_{3,k} &= \pm \frac {\lambda - 1} {\lambda + 1} e_{1,k}.
+  \end{align*}
+
+  Тъй като искаме собствените вектори да бъдат нормирани, имаме ограничението
+  \begin{multline*}
+    {\Norm{e_k}}^2
+    =
+    \Prod{e_k} {e_k}
+    =
+    {e_{1,k}}^2 + {\left(\pm \frac {\lambda - 1} 2 e_{1,k} \right)}^2 + {\left(\pm \frac {\lambda - 1} {\lambda + 1} e_{1,k} \right)}^2
+    =
+    {e_{1,k}}^2 \left[1 + {\left(\frac {\lambda - 1} 2 \right)}^2 + {\left(\frac {\lambda - 1} {\lambda + 1} \right)}^2 \right]
+    =
+    1.
+  \end{multline*}
+
+  За конкретните собствени стойности получаваме
+  \begin{align*}
+    {e_{1,1}}^2 \left[1 + {\left( - \frac 1 2 \right)}^2 + {(-1)}^2 \right] &= \frac 9 4 {e_{1,1}}^2 = 1 \implies e_{1,1} = \frac 2 3 \implies e_{2,1} = \mp \frac 1 3 \implies e_{3,1} = \mp \frac 2 3,
+    \\
+    {e_{1,2}}^2 \left[1 + 1^2 + {\left( \frac 1 2 \right)}^2 \right] &= \frac 9 4 {e_{2,1}}^2 = 1 \implies e_{1,2} = \frac 2 3 \implies e_{2,2} = \pm \frac 2 3 \implies e_{3,2} = \pm \frac 1 3,
+    \\
+    {e_{1,3}}^2 \left(1 + {(-2)}^2 + 2^2 \right) &= 9 \cdot {e_{1,3}^2} = 1 \implies e_{1,3} = \frac 1 3 \implies e_{2,3} = \mp \frac 2 3 \implies e_{2,3} = \pm \frac 2 3.
+  \end{align*}
+
+  Следователно базисите от собствени стойности за $p = \pm 2$ има матрица
+  \begin{displaymath}
+    E = \begin{bmatrix} e_1 \mid e_2 \mid e_3 \end{bmatrix} = \frac 1 3 \begin{pmatrix}
+          2 &     2 &     1 \\
+      \mp 1 & \pm 2 & \mp 2 \\
+      \mp 2 & \pm 1 & \pm 2
+    \end{pmatrix}.
+  \end{displaymath}
+
+  Остана да се уверим, че $A E = E D$. Наистина,
+  \begingroup
+  \allowdisplaybreaks
+  \begin{align*}
+    A E
+    &=
+    \frac 1 3
+    \begin{pmatrix}
+      1 & \pm 2 & 0 \\
+      \pm 2 & 0 & 2 \\
+      0 & 2 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+          2 &     2 &     1 \\
+      \mp 1 & \pm 2 & \mp 2 \\
+      \mp 2 & \pm 1 & \pm 2
+    \end{pmatrix}
+    = \\ &=
+    \frac 1 3
+    \begin{pmatrix}
+      2 - 2     & 2 + 4         & 1 - 4 \\
+      \pm 4 \mp 4 & \pm 6       & \pm 2 \pm 4 \\
+      \mp 2 \pm 2 & \pm 4 \mp 1 & \mp 4 \mp 2
+    \end{pmatrix}
+    = \\ &=
+    \frac 1 3
+    \begin{pmatrix}
+      0 & 6     & -3 \\
+      0 & \pm 6 & \pm 6 \\
+      0 & \pm 3 & \mp 6
+    \end{pmatrix}
+    = \\ &=
+    \frac 1 3
+    \begin{pmatrix}
+          2 &     2 &     1 \\
+      \mp 1 & \pm 2 & \mp 2 \\
+      \mp 2 & \pm 1 & \pm 2
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 & 0 & 0 \\
+      0 & 3 & 0 \\
+      0 & 0 & -3
+    \end{pmatrix}
+    =
+    E D.
+  \end{align*}
+  \endgroup
+\end{solution}
 
 \printbibliography
 
