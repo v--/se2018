@@ -58,6 +58,7 @@
   \item Формули за сума, произведение, частно и съставна функция на две диференцируеми функции
   \item Производни на степенна, показателна и основните тригонометрични функции
   \item Формула за производна на обратна функция
+  \item Използване на формулата за производна на обратна функция за намиране на производните на $\ln x$ и $\arcsin x$.
   \item Дефиниция за примитивна функция
   \item Разликата на две примитивни функции е константа
 \end{enumerate}
@@ -96,8 +97,27 @@
 \begin{note}
   Определенията за точки на сгъстяване и за граница на редица се пренасят без изменение за произволни топологични пространства. Сходимостта, обаче, не е непременно еднозначна, ако пространството не е Хаусдорфово.
 
-  Следващите определение вече са специфични за реалните числа.
+  Следващите определение и твърдения вече са специфични за реалните числа.
 \end{note}
+
+\begin{proposition}\label{thm:sum-prod-limit}
+  Ако редиците $\{ a_k \} \subseteq D$ и $\{ b_k \} \subseteq D$ клонят към съответно $a$ и $b$, редиците $\{ a_k + b_k \}$ и $\{ a_k b_k \}$ клонят към съответно $a + b$ и $ab$.
+\end{proposition}
+\begin{proof}
+  Нека $U_a$ и $U_b$ са околности на $a$ и на $b$. Нека $n$ е най-големият индекс, за който $a_n \not\in U_a$, а $m$ е най-големият индекс, за който $b_m \not\in U_b$.
+
+  Тогава $U_a + U_b = \{ x + y \mid x \in U_a, y \in U_b \}$ е околност на $a + b$ и, освен това, тя съдържа всички членове на редицата
+  \begin{displaymath}
+    {\{ a_k + b_k \}}_{k > \max{n, m}},
+  \end{displaymath}
+  следователно цялата редица
+  \begin{displaymath}
+    {\{ a_k + b_k \}}_{k > 0}
+  \end{displaymath}
+  клони към $a + b$.
+
+  Аналогично се доказва и другото твърдение на теоремата.
+\end{proof}
 
 \begin{definition}
   Нека редицата $\{ a_k \}$ е неограничена, т.е. всяка околност на $0$ съдържа само краен брой нейни елементи. Казваме, че редицата \uline{клони към безкрайност} и пишем
@@ -149,11 +169,34 @@
 
   (Коши $\implies$ Хайне). Нека $f: D \to \R$ клони към $A$ в точката $a$ според определението на Коши.
 
-  Нека $U$ е произволна околност на $A$ и нека числото $\varepsilon > 0$ е такова, че интервалът $(A - \varepsilon, A + \varepsilon)$, който също е околност на $A$, се съдържа в $U$. От определението на Коши за сходимост съществува число $\delta > 0$, за което за произволно $x \in \R$ неравенството $\Abs{x - a} < \delta$ да влече $\Abs{f(x) - A} < \varepsilon$.
+  Нека $U$ е произволна околност на $A$ и нека числото $\varepsilon > 0$ е такова, че интервалът $(A - \varepsilon, A + \varepsilon)$, който също е околност на $A$, се съдържа в $U$. От определението на Коши за сходимост съществува число $\delta > 0$, за което за произволно $x \in \R$ неравенството $0 < \Abs{x - a} < \delta$ да влече $\Abs{f(x) - A} < \varepsilon$.
 
   Нека редицата $\{ a_k \}$ клони към $a$ и нека $n$ е най-големият индекс, за който $\Abs{a - a_n} \geq \delta$, или $n = 0$, ако няма такива членове. Тогава подредицата ${\{ a_k \}}_{k>n}$ също клони към $a$, а редицата ${\{ f(a_k) \}}_{k>n}$ се съдържа изцяло в околността $(A - \varepsilon, A + \varepsilon) \subseteq U$ на $a$.
 
   Но това означава, че редицата ${\{ f(a_k) \}}_{k>0}$ клони към $A$ и следователно е изпълнено определението на Хайне за сходимост.
+\end{proof}
+
+\begin{proposition}\label{thm:limit-linear-mult}
+  Нека $a$ е точка на сгъстяване на $D \subseteq \R$. Ако $f: D \to \R$ клони към $A$ в точката $a$ и $g: D \to \R$ клони към $B$ в точката $a$, тогава
+  \begin{enumerate}
+    \item За произволна константа $c \in \R$
+    \begin{displaymath}
+      \lim_{x \to a} [c f(x)] = c A.
+    \end{displaymath}
+
+    \item Граничният преход е адитивен
+    \begin{displaymath}
+      \lim_{x \to a} [f(x) + g(x)] = A + B.
+    \end{displaymath}
+
+    \item Граничният преход е мултипликативен
+    \begin{displaymath}
+      \lim_{x \to a} [f(x) \cdot g(x)] = A \cdot B.
+    \end{displaymath}
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Следва директно от твърдение~\label{thm:sum-prod-limit}.
 \end{proof}
 
 \begin{definition}[Едностранна сходимост по Хайне]
@@ -184,7 +227,7 @@
 \end{definition}
 
 \begin{definition}[Непрекъснатост по Коши]
-  Нека $D \subseteq \R$ и $a \in D$ е точка на сгъстяване на $D$. Казваме, че \uline{функцията $f: D \to \infty$ е непрекъсната в точката $a$}, ако за всяко положително число $\varepsilon > 0$ съществува $\delta > 0$, така че за всяко $x \in \R$ при $\Abs{x - a} < \delta$ да е изпълнено $\Abs{f(x) - f(a)} < \varepsilon$.
+  Нека $D \subseteq \R$ и $a \in D$ е точка на сгъстяване на $D$. Казваме, че \uline{функцията $f: D \to \infty$ е непрекъсната в точката $a$}, ако за всяко положително число $\varepsilon > 0$ съществува $\delta > 0$, така че за всяко $x \in \R$ при $0 < \Abs{x - a} < \delta$ да е изпълнено $\Abs{f(x) - f(a)} < \varepsilon$.
 \end{definition}
 
 \begin{note}
@@ -226,6 +269,22 @@
   Ако множеството $D$ не е отворено, за функцията $f(x)$ с дефиниционна област $D$ не възможно да се определят леви или десни производни в някои точки. Затова обикновено, когато говорим за диференцируемост, искаме функцията да бъде дефинирана в отворено множество.
 \end{note}
 
+\begin{proposition}
+  Нека $D \subseteq \R$ и функцията $f: D \to \R$ е диференцируема в точка $a \in D$. Тогава $f(x)$ е и непрекъсната в $a$.
+\end{proposition}
+\begin{proof}
+  Производната $f'(a)$ е крайно число, следователно от твърдение~\ref{thm:sum-prod-limit} получаваме
+  \begin{displaymath}
+    \lim_{h \to 0} [f(a+h) - f(a)]
+    =
+    \lim_{h \to 0} \frac {f(a+h) - f(a)} h \cdot \lim_{h \to 0} h
+    =
+    f'(a) \cdot 0
+    =
+    0.
+  \end{displaymath}
+\end{proof}
+
 \begin{theorem}[Механична интерпретация на производна]
   Нека $T > 0$ и функцията $f: [0, T] \to \R$ е диференцируема в точка $t \in (0, T)$. Ако пътят, изминат от материална частица за време $x$, се описва чрез функцията $f(x)$, тогава моментната скорост във времето $t$ е равна на $f'(t)$.
 \end{theorem}
@@ -241,7 +300,7 @@
   \begin{theorem}[Геометрична интерпретация на производна]
     Нека $D \subseteq \R$ и функцията $f: D \to \R$ е диференцируема в точка $a \in D$. Разглеждаме графиката $\Gamma_f = \{ (x, f(x)) \mid x \in D \}$ на $f(x)$ като параметрична крива в равнината.
 
-    За някое достатъчно малко число $h \in \R$ разглеждаме секущата $d_h$ през точките с координати $(a, f(a))$ и $(a+h, f(a+h))$ (фиг.~\ref{fig:secant}). Декартовите уравнения на тези секущи при $h \to 0$ клонят към декартово уравнение на допирателна права $d$ към $\Gamma_f$ в точката $a$.
+    За някое достатъчно малко по абсолютна стойност число $h \in \R$ разглеждаме секущата $d_h$ през точките с координати $(a, f(a))$ и $(a+h, f(a+h))$ (фиг.~\ref{fig:secant}). Декартовите уравнения на тези секущи при $h \to 0$ клонят към декартово уравнение на допирателна права $d$ към $\Gamma_f$ в точката $a$.
 
     Твърдим, че декартовото уравнение на тази допирателна права е
     \begin{displaymath}
@@ -287,6 +346,238 @@
   \end{align*}
 
   С граничен предох при $h \to 0$ получаваме уравнението от твърдението на теоремата.
+\end{proof}
+
+\begin{theorem}
+  Ако функциите $f(x)$ и $g(x)$ са едновременно диференцируеми в точка $a$, имаме
+  \begin{enumerate}
+    \item $(f+g)'(a) = f'(a) + g'(a)$
+    \item $(f \cdot g)'(a) = f'(a) g(a) + f'(a) g(a)$
+    \item $(\frac f g)'(a) = \frac{f'(a) g(a) - f(a) g'(a)} {{g(a)}^2}$
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item От адитивността на граничния преход (твърдение~\ref{thm:limit-linear-mult}) директно следва
+    \begin{multline*}
+      (f+g)'(a)
+      =
+      \lim_{h \to 0} \frac {(f+g)(a+h) - (f+g)(a)} h
+      = \\ =
+      \lim_{h \to 0} \frac {f(a+h)-f(a)} h + \lim_{h \to 0} \frac{g(a+h) - g(a)} h
+      =
+      f'(a) + g'(a).
+    \end{multline*}
+
+    \item Използваме мултипликативността на граничния преход от твърдение~\ref{thm:limit-linear-mult}, за да получим
+    \begin{align*}
+      (f \cdot g)'(a)
+      &=
+      \lim_{h \to 0} \frac {(f \cdot g)(a+h) - (f \cdot g)(a)} h
+      = \\ &=
+      \lim_{h \to 0} \frac {f(a+h) g(a+h) - f(a+h) g(a) + f(a+h) g(a) - f(a) g(a)} h
+      = \\ &=
+      \lim_{h \to 0} \frac {f(a+h) g(a+h) - f(a+h) g(a)} h + \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a)} h
+      = \\ &=
+      \lim_{h \to 0} f(a+h) \cdot \lim_{h \to 0} \frac {g(a+h) + g(a)} h + \lim_{h \to 0} \frac {f(a+h) - f(a)} h \cdot g(a)
+      = \\ &=
+      f(a) g'(a) - f'(a) g(a).
+    \end{align*}
+
+    \item Отново използваме свойствата от твърдение~\ref{thm:limit-linear-mult}, за да получим
+    \begin{align*}
+      \left( \frac f g \right)'(a)
+      &=
+      \lim_{h \to 0} \frac {\left(\frac f g \right)(a+h) - \left(\frac f g \right)(a)} h
+      = \\ &=
+      \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a+h)} {h \cdot g(a) \cdot g(a+h)}
+      = \\ &=
+      \lim_{h \to 0} \frac 1 {g(a) \cdot g(a+h)} \cdot \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a+h)} h
+      = \\ &=
+      \frac 1 {{g(a)}^2} \left( \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a)} h - \lim_{h \to 0} \frac {f(a) g(a+h) - f(a) g(a)} h \right)
+      = \\ &=
+      \frac 1 {{g(a)}^2} \left( g(a) \lim_{h \to 0} \frac {f(a+h) - f(a)} h - f(a) \lim_{h \to 0} \frac {g(a+h) - g(a)} h \right)
+      = \\ &=
+      \frac {f'(a) g(a) - f(a) g'(a)} {{g(a)}^2}.
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{thm:chain-rule}
+  Ако функцията $g(x)$ е диференцируема в точка $a$ и $f(x)$ е диференцируема в точка $g(a)$, имаме
+  \begin{displaymath}
+    (f \circ g)'(a) = (f' \circ g)(a) \cdot g'(a).
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  Ще разгледаме два случая.
+
+  \begin{enumerate}
+    \item Ако $g'(a) = 0$, поради непрекъснатостта на $f(x)$ в точка $g(a)$ имаме
+    \begin{displaymath}
+      \lim_{h \to 0} \frac {f(g(a+h)) - f(g(a))} h
+      =
+      0
+      =
+      f'(g(a)) \cdot 0
+      =
+      f'(g(a)) \cdot g'(a).
+    \end{displaymath}
+
+    \item Ако $g'(a) \neq 0$, можем да считаме, че $g(a+h) - g(a) \neq 0$ за достатъчно малки по абсолютна стойност $h \in \R$. Тогава
+    \begin{multline*}
+      \lim_{h \to 0} \frac {f(g(a+h)) - f(g(a))} h
+      =
+      \lim_{h \to 0} \frac {f(g(a+h)) - f(g(a))} {g(a+h) - g(a)} \cdot \frac {g(a+h) - g(a)} h
+      = \\ =
+      \lim_{h \to 0} \frac {f(g(a) + \Delta_h) - f(g(a))} {\Delta_h} \cdot \frac {g(a+h) - g(a)} h
+      =
+      f'(g(a)) \cdot g'(a),
+    \end{multline*}
+    където $\Delta_h \coloneqq g(a+h) - g(a) \underset {h \to 0} \longrightarrow 0$, тъй като $g(x)$ е непрекъсната в $a$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+  \mbox{}
+  \begin{enumerate}
+    \item Константните функции $f(x) = c, c \in \R$ са диференцируеми навсякъде и имат производни $0$.
+    \item Степенните функции $f(x) = x^n, n = 1, 2, \ldots$ са диференцируеми навсякъде в $\R$ и имат производни $f'(x) = n x^{n-1}$.
+    \item Показателните функции $f(x) = \alpha^x, \alpha > 0$ са диференцируеми навсякъде в $\R$ и имат производни $f'(x) = \ln \alpha \cdot \alpha^x$.
+    \item Функциите $\sin(x)$ и $\cos(x)$ са диференцируеми навсякъде в $\R$ и имат производни $\sin'(x) = \cos(x)$ и $\cos'(x) = -\sin(x)$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \mbox{}
+  \begin{enumerate}
+    \item За $f(x) = c, c \in \R$ пресмятаме
+    \begin{displaymath}
+      f'(x) = \lim_{h \to 0} \frac {c - c} h = 0.
+    \end{displaymath}
+
+    \item За $f(x) = x^n, n = 1, 2, \ldots$ използваме биномната теорема, за да пресметнем
+    \begin{multline*}
+      f'(x)
+      =
+      \lim_{h \to 0} \frac {{(x+h)}^n - x^n} h
+      =
+      \lim_{h \to 0} \frac {\sum_{k=0}^n {n \choose k} x^k h^{n-k} - x^n} h
+      = \\ =
+      \lim_{h \to 0} \frac {\sum_{k=0}^{n-2} {n \choose k} x^k h^{n-k} + n \cdot x^{n-1} \cdot h^1 + 1 \cdot x^n \cdot h^0 - x^n} h
+      = \\ =
+      \lim_{h \to 0} \sum_{k=0}^{n-2} {n \choose k} x^k h^{n-k-1} + n x^{n-1}
+      =
+      n x^{n-1}.
+    \end{multline*}
+
+    \item За $f(x) = \alpha^x, \alpha > 0$ пресмятаме
+    \begin{displaymath}
+      f'(x)
+      =
+      \lim_{h \to 0} \frac {\alpha^{x+h} - \alpha^x} h
+      =
+      \alpha^x \lim_{h \to 0} \frac {\alpha^h - 1} h
+      =
+      f'(0) \alpha^x.
+    \end{displaymath}
+
+    Остава само да намерим производната на $f(x) = \alpha^x$ в нулата. За целта временно се ограничаваме до $\alpha = e$ и използваме определението
+    \begin{displaymath}
+      e^x \coloneqq \lim_{n \to \infty} {\left( 1 + \frac x n \right)}^n.
+    \end{displaymath}
+
+    Така получаваме
+    \begin{multline*}
+      f'(0)
+      =
+      \lim_{h \to 0} \frac {e^h - 1} h
+      =
+      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} {\left( 1 + \frac h n \right)}^n - 1 \right)
+      =
+      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^n - 1 \right)
+      = \\ =
+      \lim_{h \to 0} \frac 1 h \lim_{n \to \infty} \left( 1 + h + \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^n - 1 \right)
+      = \\ =
+      1 + \lim_{h \to 0} h \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} \frac {h^{k-2}} {n^k} = 1.
+    \end{multline*}
+
+    Следователно производната на $e^x$ е $e^x$ и по теорема~\ref{thm:chain-rule} за $f(x) = \alpha^x = e^{\ln \alpha \cdot x}$ имаме
+    \begin{displaymath}
+      f'(x)
+      =
+      e^{\ln \alpha \cdot x} \cdot \ln \alpha \cdot 1
+      =
+      \ln \alpha \cdot \alpha^x.
+    \end{displaymath}
+
+    \item Преди да пресметнем производните на $\sin(x)$ и $\cos(x)$, нека се убедим в два факта:
+    \begin{enumerate}
+      \item $\sin(x)$ и $\cos(x)$ са непрекъснати функции в $\R$. Наистина,
+      \begin{align*}
+        \Abs{\sin(x+h) - \sin(x)}
+        &=
+        \Abs{\sin(x+h) + \sin(-x)}
+        = \\ &=
+        2 \Abs{\sin\left(\frac h 2 \right) \cos \left( x+ \frac h 2 \right)}
+        \leq \\ &\leq
+        2 \Abs{\sin\left(\frac h 2 \right)}
+        \leq \\ &=
+        2 \Abs{\frac h 2}
+        =
+        \Abs{h}.
+      \end{align*}
+
+      Тогава за всяко $\varepsilon > 0$ е достатъчно да изберем $\delta < \varepsilon$, за да бъде изпълнено
+      \begin{displaymath}
+        \Abs{\sin(y) - \sin(x)} < \varepsilon
+      \end{displaymath}
+      при $0 < \Abs{y - x} < \delta$.
+
+      Като следствие, $\cos(x) = \sin(\pi / 2 - x)$ също е непрекъсната.
+
+      \item $\sin'(0)$ съществува и е равна на единица. Наистина, за $h \in [0, \pi / 2]$ имаме
+      \begin{align*}
+        \tan(x) &\geq x \geq \sin(x),
+        \\
+        \frac {\cos(x)} {\sin(x)} &\leq \frac 1 x \leq \frac 1 {\sin(x)},~~~~\mid \cdot \sin(x)
+        \\
+        \cos(x) &\leq \frac {\sin(x)} x \leq 1,
+      \end{align*}
+      откъдето следва
+      \begin{displaymath}
+        1
+        =
+        \lim_{h \to 0} \cos(h)
+        \leq
+        \lim_{h \to 0} \frac {\sin(h)} h
+        \leq
+        \sin'(0)
+        \leq
+        1.
+      \end{displaymath}
+    \end{enumerate}
+
+    За $\sin(x)$ пресмятаме
+    \begin{multline*}
+      \sin'(x)
+      =
+      \lim_{h \to 0} \frac {\sin(x+h) - \sin(x)} h
+      =
+      \lim_{h \to 0} \frac {\sin(x+h) + \sin(-x)} h
+      = \\ =
+      \lim_{h \to 0} \frac {2 \sin(h / 2) \cos(x+h/2)} h
+      =
+      \lim_{h \to 0} \cos \left(x + \frac h 2 \right) \cdot \lim_{h \to 0} \frac {\sin(h / 2)} {h/2}
+      =
+      \cos(x) \cdot 1.
+    \end{multline*}
+
+    Тогава за $\cos(x)$ получаваме
+    \begin{displaymath}
+      \cos'(x) = \sin'(\pi / 2 - x) = \cos(\pi / 2 - x) \cdot (-1) = -\sin(x).
+    \end{displaymath}
+  \end{enumerate}
 \end{proof}
 
 \printbibliography
