@@ -1,0 +1,193 @@
+% arara: pdflatex: { shell: true, interaction: nonstopmode }
+% arara: biber
+% arara: pdflatex: { shell: true }
+
+\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+
+% Base packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[pdfencoding=unicode]{hyperref}
+\usepackage{biblatex}
+\usepackage[style=german]{csquotes}
+
+% Base math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Misc packages
+\usepackage{ulem} % Line-breaking underlines
+
+% Custom packages
+\usepackage{../../common/macros}
+\usepackage{../../common/theorems}
+
+% Bibliography
+\addbibresource{./references.bib}
+
+% Document
+\title{[WIP] Тема 5}
+\subtitle{Теореми за средните стойности (Рол, Лагранж и Коши). Формула на Тейлър.}
+\author{Янис Василев, \Email{ianis@ivasilev.net}}
+\date{6 юли 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Теория}
+
+Теорията е разписана без външни източници.
+
+\subsection{Анотация}
+
+Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+
+\begin{enumerate}
+  \item Теоремата на Рол с доказателство, базирано на теоремата на Вайерщрас
+  \item Теоремите за средните стойности на Лагранж и Коши
+  \item Формула на Тейлър с остатъчен член във формата на Лагранж и Коши
+\end{enumerate}
+
+\subsection{Помощни теореми}
+
+\begin{definition}
+  Нека $D \subseteq \R$ и $f: D \to \R$ е произволна функция.
+
+  \begin{enumerate}
+    \item Казваме, че \uline{функцията $f(x)$ има локален максимум в точка $a \in D$}, ако за някаква околност $U_a$ на $a$ е изпълнено $f(a) \geq f(u)~\forall u \in U_a$.
+
+    \item Казваме, че \uline{функцията $f(x)$ има локален минимум в точка $a \in D$}, ако за някаква околност $U_a$ на $a$ е изпълнено $f(a) \leq f(u)~\forall u \in U_a$.
+
+    \item Ако $f(x)$ има или локален максимум, или локален минимум в точка $a$, казваме, че \uline{$f(x)$ има локален екстремум в тока $a$}.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Вайерщрас]
+  Нека $a < b$ и функцията $f: [a, b] \to \R$ е непрекъсната. Тогава $f(x)$ достига в $[a, b]$ своите минимум и максимум.
+\end{theorem}
+\begin{proof}
+  Нека $M \coloneqq \sup_{x \in [a, b]} f(x)$. Тогава съществува редица $\{ a_k \} \subseteq [a, b]$, за която съответната редица от функционални стойности $\{ f(a_k) \}$ клони към $M$.
+
+  Тъй като интервалът $[a, b]$ е ограничен, редицата също $\{ a_k \}$ е ограничена и според теоремата на Болцано-Вайерщрас, тя има сходяща подредица.
+
+  Нека $\{ a_{k_i} \}$ е една сходяща подредица на $\{ a_k \}$. Тъй като интервалът $[a, b]$ е затворен, границата $\alpha$ на редицата $\{ a_{k_i} \}$ лежи в този интервал.
+
+  Понеже $f(x)$ е непрекъсната, имаме
+  \begin{displaymath}
+    \lim_{i \to \infty} f(a_{k_i}) = f(\alpha) = M,
+  \end{displaymath}
+  където последното равенство получихме от еднозначността на сходимостта на редици.
+\end{proof}
+
+\begin{theorem}[Ферма]
+  Нека $D \subseteq \R$ и функцията $f: D \to \R$ е диференцируема в точката $a \in D$. Необходимо условия за това $f(x)$ да има локален екстремум в $a$ е производната $f'(a)$ да се анулира.
+\end{theorem}
+\begin{proof}
+  Нека без ограничение на общността $f(x)$ да има локален минимум в $a$. Тогава
+  \begin{displaymath}
+    f'(a) = \lim_{h \downarrow 0} \frac {f(a+h) - f(a)} h \geq 0,
+  \end{displaymath}
+  тъй като $f(a+h) \geq f(a)$ за достатъчно малко $h > 0$. Обратно,
+  \begin{displaymath}
+    f'(a) = \lim_{h \uparrow 0} \frac {f(a+h) - f(a)} h \leq 0,
+  \end{displaymath}
+  тъй като $f(a+h) \geq f(a)$ за достатъчно малко по абсолютна стойност $h < 0$.
+
+  Заключаваме, че $f'(a) = 0$.
+\end{proof}
+
+\subsection{Теореми за средните стойности}
+
+\begin{theorem}[Рол]
+  Нека $a < b$, а $f: [a, b] \to \R$ е непрекъсната в $[a, b]$ и диференцируема в $(a, b)$. Ако $f(a) = f(b)$, съществува точка $c \in (a, b)$, такава че $f'(c) = 0$.
+\end{theorem}
+\begin{proof}
+  Разглеждаме три случая:
+  \begin{enumerate}
+    \item Нека $f(x) \equiv f(a)$ е тъждествено константа. Тогава избираме $c$ да бъде произволна точка от $(a, b)$, тъй като $f'(x) = 0$ за всяко $x \in [a, b]$.
+    \item Нека $f(x) > f(a)$ за някое $x$. Според теоремата на Вайерщрас, функцията $f(x)$ достига своя максимум $M_f$ в интервала $[a, b]$ и според допускането ни имаме $M_f > f(a)$. При това този максимум се достига непременно във вътрешността на интервала. Нека $c \in (a, b)$ е точка, за която $f(c) = M_f$. Тъй като $M_f$ е локален екстремум, по теоремата на Ферма имаме $f'(c) = 0$.
+    \item Нека $f(x)$ не е тъждествено константа и $f(x) \leq f(a)~\forall x \in [a, b]$. Тогава прилагаме вече доказания случай към функцията $-f(x)$ и получаваме константа $c \in (a, b)$, за която $f'(c) = -f'(c) = 0$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Теорема на Лагранж за крайните нараствания]
+  Нека $a < b$, а $f: [a, b] \to \R$ е непрекъсната в $[a, b]$ и диференцируема в $(a, b)$. Тогава съществува точка $c \in (a, b)$, такава че
+  \begin{displaymath}
+    f'(c) = \frac {f(b) - f(a)} {b-a}.
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  Разглеждаме спомагателната функция
+  \begin{displaymath}
+    g(x) \coloneqq f(x) - \frac {f(b) - f(a)} {b-a} x,
+  \end{displaymath}
+  за която имаме
+  \begin{displaymath}
+    g(a)
+    =
+    f(a) - \frac {f(b) - f(a)} {b-a} a
+    =
+    \frac {b \cdot f(a) - a \cdot f(b)} {b-a}
+    =
+    f(b) - \frac {f(b) - f(a)} {b-a} b
+    =
+    g(b).
+  \end{displaymath}
+
+  Освен това $g(x)$ е непрекъсната в $[a, b]$ като сума на непрекъснати в $[a, b]$ функции и диференцируема в $(a, b)$ като сума на диференцируеми в $(a, b)$ функции. Това ни позволява да приложим теоремата на Рол към $g(x)$, за да получим константа $c$, за която
+
+  \begin{displaymath}
+    0 = g'(c) = f'(c) - \frac {f(b) - f(a)} {b-a}.
+  \end{displaymath}
+
+  Но тогава
+  \begin{displaymath}
+    f'(c) = \frac {f(b) - f(a)} {b-a}.
+  \end{displaymath}
+\end{proof}
+
+\begin{theorem}[Теорема на Коши]
+  Нека $a < b$, а $f: [a, b] \to \R$ и $g: [a, b] \to \R$ са непрекъснати в $[a, b]$ и диференцируеми в $(a, b)$ и нека $g'(x) \neq 0$ за $x \in (a, b)$. Тогава съществува точка $c \in (a, b)$, такава че
+  \begin{displaymath}
+    \frac {f'(c)} {g'(c)} = \frac {f(b) - f(a)} {g(b) - g(a)}.
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+  Да отбележим първо, че $g'(x) \neq 0$ в $(a, b)$ влече, че условията на теоремата на Рол не са изпълнена за $g(x)$ и следователно $g(a) \neq g(b)$.
+
+  Разглеждаме спомагателната функция
+  \begin{displaymath}
+    h(x) \coloneqq f(x) - \frac {f(b) - f(a)} {g(b) - g(a)} g(x),
+  \end{displaymath}
+  за която имаме
+  \begin{displaymath}
+    h(a)
+    =
+    f(a) - \frac {f(b) - f(a)} {g(b) - g(a)} g(a)
+    =
+    \frac {f(a) \cdot g(b) - f(b) \cdot g(a)} {g(b)-g(a)}
+    =
+    f(b) - \frac {f(b) - f(a)} {g(b) - g(a)} g(b)
+    =
+    h(b).
+  \end{displaymath}
+
+  Функцията $h(x)$ е непрекъсната в $[a, b]$ като линейна комбинация на непрекъснати в $[a, b]$ функции и диференцируема в $(a, b)$ като линейна комбинация на диференцируеми в $(a, b)$ функции. Това ни позволява да приложим теоремата на Рол към $h(x)$, за да получим константа $c$, за която
+
+  \begin{displaymath}
+    0 = h'(c) = f'(c) - \frac {f(b) - f(a)} {g(b) - g(a)} g'(c).
+  \end{displaymath}
+
+  Но тогава
+  \begin{displaymath}
+    \frac {f'(c)} {g'(c)} = \frac {f(b) - f(a)} {g(b) - g(a)}.
+  \end{displaymath}
+\end{proof}
+
+\printbibliography
+
+\end{document}
