@@ -102,7 +102,7 @@
 
     Стойността $\pi \coloneqq 1 - \beta$ наричаме \uline{мощност} на теста.
 
-    \item \uline{Критична област} $W_\alpha$ с ниво на значимост $\alpha$ наричаме произволно множество $W_\alpha \subsetneq \SampleSpace$ от реализации на извадката с $\Prob(W \mid H_0) = \alpha$, попадайки в което \uline{отхвърляме} нулевата хипотеза.
+    \item \uline{Критична област} $W_\alpha$ с ниво на значимост $\alpha$ наричаме произволно множество $W_\alpha \subsetneq \SampleSpace$ от реализации на извадката с $\Prob(\V{\xi_n} \in W \mid H_0) = \alpha$, попадайки в което \uline{отхвърляме} нулевата хипотеза.
 
     Всяка критична област задава критерия
     \begin{displaymath}
@@ -114,7 +114,7 @@
 
     \item Нека са зададени хипотезите $H_0$ и $H_1$ и е фиксирано ниво на значимост $\alpha$. Критичната област
     \begin{displaymath}
-      W_\alpha^* \coloneqq \Argmax_{W_\alpha \subsetneq \SampleSpace} \Prob(\SampleSpace \setminus W_\alpha \mid H_1),
+      W_\alpha^* \coloneqq \Argmax_{W_\alpha \subsetneq \SampleSpace} \Prob(\V{\xi_n} \in W_\alpha \mid H_1),
     \end{displaymath}
     осигуряваща най-голяма мощност на теста, наричаме~\uline{оптимална критична област}.
 
@@ -173,27 +173,29 @@
 \begin{proof}
   Ще докажем теоремата само за абсолютно непрекъснати разпределения. В общия случай римановите интеграли могат да се заменят с интеграли по вероятностни мерки, съответстващи на двете хипотези.
 
-  Нека $U_\alpha$ е произволна друга критична област за същия тест с ниво на съгласие $\alpha$. Ще докажем, че $\Prob(U_\alpha \mid H_1) \geq \Prob(W_\alpha \mid H_1)$. Поради адитивността на вероятностните мерки имаме
+  Нека $U_\alpha$ е произволна друга критична област за същия тест с ниво на съгласие $\alpha$. Означаваме $Q(A) \coloneqq \Prob(\V{\xi_n} \in A)$.
+
+   Ще докажем, че $Q(U_\alpha \mid H_1) \geq Q(W_\alpha \mid H_1)$. Поради адитивността на вероятностните мерки имаме
   \begin{align*}
-    &\hspace{0.45cm}\Prob(U_\alpha \mid H_1) - \Prob(W_\alpha \mid H_1)
+    &\hspace{0.45cm}Q(W_\alpha \mid H_1) - Q(U_\alpha \mid H_1)
     = \\ &=
-    \Prob((U_\alpha \cap W_\alpha) \cup (U_\alpha \setminus W_\alpha) \mid H_1) - \Prob((U_\alpha \cap W_\alpha) \cup (W_\alpha \setminus U_\alpha) \mid H_1)
+    Q((U_\alpha \cap W_\alpha) \cup (W_\alpha \setminus U_\alpha) \mid H_1) - Q((U_\alpha \cap W_\alpha) \cup (U_\alpha \setminus W_\alpha) \mid H_1)
     = \\ &=
-    \Prob(U_\alpha \cap W_\alpha \mid H_1) + \Prob(U_\alpha \setminus W_\alpha \mid H_1) - \Prob(U_\alpha \cap W_\alpha \mid H_1) - \Prob(W_\alpha \setminus U_\alpha \mid H_1)
+    Q(U_\alpha \cap W_\alpha \mid H_1) + Q(W_\alpha \setminus U_\alpha \mid H_1) - Q(U_\alpha \cap W_\alpha \mid H_1) - Q(U_\alpha \setminus W_\alpha \mid H_1)
     = \\ &=
-    \Prob(U_\alpha \setminus W_\alpha \mid H_1) - \Prob(W_\alpha \setminus U_\alpha \mid H_1)
+    Q(W_\alpha \setminus U_\alpha \mid H_1) - Q(U_\alpha \setminus W_\alpha \mid H_1)
     = \\ &=
-    \int_{U_\alpha \setminus W_\alpha} l_1(x) dx + \int_{W_\alpha \setminus U_\alpha} (-l_1(x)) dx
+    \int_{W_\alpha \setminus U_\alpha} l_1(x) dx + \int_{U_\alpha \setminus W_\alpha} (-l_1(x)) dx
     \geq \\ &\geq
-    \frac 1 c \int_{U_\alpha \setminus W_\alpha} l_0(x) dx + \frac 1 c \int_{W_\alpha \setminus U_\alpha} (-l_0(x)) dx
+    \frac 1 c \int_{W_\alpha \setminus U_\alpha} l_0(x) dx + \frac 1 c \int_{U_\alpha \setminus W_\alpha} (-l_0(x)) dx
     = \\ &=
-    \frac 1 c \left( \int_{U_\alpha \setminus W_\alpha} l_0(x) dx - \int_{W_\alpha \setminus U_\alpha} l_0(x) dx \right)
+    \frac 1 c \left( \int_{W_\alpha \setminus U_\alpha} l_0(x) dx - \int_{U_\alpha \setminus W_\alpha} l_0(x) dx \right)
     = \\ &=
-    \frac 1 c [\Prob(U_\alpha \setminus W_\alpha \mid H_0) - \Prob(W_\alpha \setminus U_\alpha \mid H_0)]
+    \frac 1 c [Q(W_\alpha \setminus U_\alpha \mid H_0) - Q(U_\alpha \setminus W_\alpha \mid H_0)]
     = \\ &=
-    \frac 1 c [\Prob(U_\alpha \cap W_\alpha \mid H_0) + \Prob(U_\alpha \setminus W_\alpha \mid H_0) - \Prob(U_\alpha \cap W_\alpha \mid H_0) - \Prob(W_\alpha \setminus U_\alpha \mid H_0)]
+    \frac 1 c [Q(U_\alpha \cap W_\alpha \mid H_0) + Q(W_\alpha \setminus U_\alpha \mid H_0) - Q(U_\alpha \cap W_\alpha \mid H_0) - Q(U_\alpha \setminus W_\alpha \mid H_0)]
     = \\ &=
-    \frac 1 c [\Prob(U_\alpha \mid H_0) - \Prob(W_\alpha \mid H_0)]
+    \frac 1 c [Q(W_\alpha \mid H_0) - Q(U_\alpha \mid H_0)]
     = \\ &=
     \frac 1 c (\alpha - \alpha)
     =
