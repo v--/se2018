@@ -158,7 +158,7 @@
 
   Тъй като $q \neq 0$, то $s - \hat s = 0 \iff \hat r - r = 0$. Ако сега допуснем, че $\hat r \neq r$ (и следователно $\hat s \neq s$), получаваме, че $\deg[(s - \hat s) q] = \deg(s - \hat s) + m > m$. Но по условие $\deg(\hat r - r) \leq \max(\deg \hat r, \deg r) < m$. Тъй като степента на полинома в двете страни на равенството трябва да бъде равна, получаваме противоречие от допускането, че $\hat r \neq r$. Следователно $r = \hat r$ и $s = \hat s$.
 
-  Сега ще докажем съществуване. Ако $n < m$, полагаме $s(x) \coloneqq 0$ и $r(x) \coloneqq p(x)$. Нека $n \geq m$. Ще докажем теоремата с индукция по $n$. Случаят $n = 0$ е тривиален, тъй като тогава полагаме $s(x) \coloneqq \frac {b_0} {a_0}$ и $r(x) \coloneqq 0$. Да предположим, че теоремата е вярна за всички полиноми с $\deg < n$ и да означим $g(x) \coloneqq \frac {a_n} {b_n} x^{n-m} q(x)$.
+  Сега ще докажем съществуване. Ако $n < m$, полагаме $s(x) \coloneqq 0$ и $r(x) \coloneqq p(x)$. Нека $n \geq m$. Ще докажем теоремата с индукция по $n$. Случаят $n = 0$ е тривиален, тъй като тогава полагаме $s(x) \coloneqq \frac {b_0} {a_0}$ и $r(x) \coloneqq 0$. Да предположим, че теоремата е вярна за всички полиноми с $\deg < n$ и да означим $g(x) \coloneqq \frac {a_n} {b_m} x^{n-m} q(x)$.
 
   Тъй като $\deg(p) = \deg(g)$ и $\LC(p) = \LC(g)$, то $\deg(p - g) < \deg(p) = n$ и индукционното предположение ни дава полиноми $\hat s$ и $\hat r$, такива че $p - g = \hat s q + \hat r$ и $\hat r = 0$ или $\deg(\hat r) < m$. Но ние имаме
   \begin{displaymath}
@@ -166,7 +166,7 @@
     =
     g(x) + \hat s(x) q(x) + \hat r(x)
     =
-    \left( \frac {a_n} {b_n} x^{n-m} + \hat s(x) \right) q(x) + \hat r(x).
+    \left( \frac {a_n} {b_m} x^{n-m} + \hat s(x) \right) q(x) + \hat r(x).
   \end{displaymath}
 
   Полагаме $s(x) \coloneqq \hat s(x) + \frac {a_n} {b_m} x^{n-m}$ и $r(x) \coloneqq \hat r(x)$. Очевидно $\deg(r) = \deg(\hat r) < m$. С това и съществуването е доказано.
