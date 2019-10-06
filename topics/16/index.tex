@@ -533,19 +533,19 @@
   Ако $\Expect(\xi^n)$ съществува, съществуват и моментите от по-нисък ред.
 \end{proposition}
 \begin{proof}
-  Първо да забележим, че за $y \in (0, 1)$ имаме ${\Prob(\xi \leq x)}^y < \Prob(\xi \leq x)$. Ще докажем, че $\Expect({\Abs{\xi}}^{n-1})$ съществува. Прилагаме неравенството на Йенсен за риманови интеграли:
+  Първо да забележим, че за $y \in (0, 1)$ имаме ${\Prob(\xi \leq x)}^y < \Prob(\xi \leq x)$. Ще докажем, че $\Expect({\Abs{\xi}}^{n-1})$ съществува. Тъй като вероятностната мярка е нормирана, можем да приложим неравенството на Йенсен и да получим:
   \begin{multline*}
     \Expect({\Abs{\xi}}^{n-1})
     \leq
     {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
     =
-    {\left( \int_\R {\Abs{x_k}}^{n-1} f_\xi(x) \right)}^{\frac n {n-1}}
+    {\left( \int_\R {\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
     \leq
-    \int_\R {\left({\Abs{x_k}}^{n-1} f_\xi(x) \right)}^{\frac n {n-1}}
-    < \\ <
-    \int_\R {\left({\Abs{x_k}}^{n-1}\right)}^{\frac n {n-1}} f_\xi(x)
+    \int_\R {\left({\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
+    \leq \\ \leq
+    \int_\R {\left({\Abs{x_k}}^{n-1} \right)}^{\frac n {n-1}} f_\xi(x) dx
     =
-    \int_\R {\Abs{x_k}}^n f_\xi(x)
+    \int_\R {\Abs{x_k}}^n f_\xi(x) dx
     =
     \Expect({\Abs{\xi}}^n).
   \end{multline*}
