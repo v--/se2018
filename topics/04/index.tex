@@ -495,11 +495,11 @@
       =
       \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} {\left( 1 + \frac h n \right)}^n - 1 \right)
       =
-      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^n - 1 \right)
+      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^k - 1 \right)
       = \\ =
-      \lim_{h \to 0} \frac 1 h \lim_{n \to \infty} \left( 1 + h + \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^n - 1 \right)
+      \lim_{h \to 0} \frac 1 h \lim_{n \to \infty} \left( 1 + h + \sum_{k=2}^n {n \choose k} {\left(\frac h n \right)}^k - 1 \right)
       = \\ =
-      1 + \lim_{h \to 0} h \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} \frac {h^{k-2}} {n^k} = 1.
+      1 + \lim_{h \to 0} \lim_{n \to \infty} \sum_{k=2}^n {n \choose k} \frac {h^{k-1}} {n^k} = 1.
     \end{multline*}
 
     Следователно производната на $e^x$ е $e^x$ и по теорема~\ref{thm:chain-rule} за $f(x) = \alpha^x = e^{\ln \alpha \cdot x}$ имаме
