@@ -1,15 +1,17 @@
-; pdflatex
-index.aux
-index.log
-index.out
 index.pdf
 
-; biblatex
-index.bbl
-index.bcf
-index.blg
-index.nav
-index.run.xml
-index.snm
-index.toc
-index.vrb
+; pdflatex
+*.aux
+*.log
+*.out
+*.fls
+*.toc
+
+; latexmk
+*.fdb_latexmk
+
+; biber
+*.bbl
+*.bcf
+*.blg
+*.run.xml
