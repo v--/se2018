@@ -1,26 +1,17 @@
-\documentclass[numbers=endperiod, DIV=15, bibliography=totocnumbered]{scrartcl}
+\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
 
-% Base packages
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[bulgarian]{babel}
-\usepackage[pdfencoding=unicode]{hyperref}
-\usepackage{biblatex}
-\usepackage[style=german]{csquotes}
-
-% Base math packages
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{mathtools}
+\usepackage{../../common/base_math_packages}
+\usepackage{../../common/fonts}
+\usepackage{../../common/base_packages}
+\usepackage{../../common/macros}
+\usepackage{../../common/theorem_styles}
 
 % Custom packages
 \usepackage{../../common/macros}
-\usepackage{../../common/theorems}
+\usepackage{../../common/theorem_styles}
 
 % Misc packages
 \usepackage{enumitem} % Customization of enum counters
-\usepackage{ulem} % Line-breaking underlines
 
 % Bibliography
 \addbibresource{./references.bib}
@@ -54,47 +45,47 @@
 
 \subsection{Основни понятия}
 
-Ще считаме, че е фиксирано някакво вероятностно пространство $(\Omega, \F, \Prob)$ и множество $\mathcal{N}$ от целочислени случайни величини с неотрицателни стойности над това пространство.
+Ще считаме, че е фиксирано някакво вероятностно пространство \( (\Omega, \F, \Prob) \) и множество \( \mathcal{N} \) от целочислени случайни величини с неотрицателни стойности над това пространство.
 
 \begin{definition}
-  \uline{Броящ процес} наричаме монотонната с вероятност $1$ функция $N: \RNNeg \to \mathcal{N}$, чиито аргументи обикновено интерпретираме като време и бележим с $t$, а стойностите $N(t)$ като брой настъпили събития за време $t$.
+  \underLine{Броящ процес} наричаме монотонната с вероятност \( 1 \) функция \( N: \RNNeg \to \mathcal{N} \), чиито аргументи обикновено интерпретираме като време и бележим с \( t \), а стойностите \( N(t) \) като брой настъпили събития за време \( t \).
 
-  \uline{Нарастване} на процеса с $h > 0$ в момента $t$ наричаме разликите $N(t+h) - N(t)$. Ако всички нараствания за един процес са независими, казваме, че процесът е с \uline{независими нараствания}. Ако разпределенията на нарастванията $N(t_1+h) - N(t_1)$ и $N(t_2+h) - N(t_2)$ зависят само от $h>0$, казваме, че процесът $N(t)$ е със \uline{стационарни нараствания}.
+  \underLine{Нарастване} на процеса с \( h > 0 \) в момента \( t \) наричаме разликите \( N(t+h) - N(t) \). Ако всички нараствания за един процес са независими, казваме, че процесът е с \underLine{независими нараствания}. Ако разпределенията на нарастванията \( N(t_1+h) - N(t_1) \) и \( N(t_2+h) - N(t_2) \) зависят само от \( h>0 \), казваме, че процесът \( N(t) \) е със \underLine{стационарни нараствания}.
 \end{definition}
 
 \begin{definition}
-  Ще дадем три еквивалентни определения за \uline{Поасонов процес}.
+  Ще дадем три еквивалентни определения за \underLine{Поасонов процес}.
 
   \begin{enumerate}
-    \item\label{def:pp-1} Броящият процес $N(t), t \geq 0$ наричаме \uline{Поасонов със степен $\lambda > 0$}, ако са изпълнени
+    \item\label{def:pp-1} Броящият процес \( N(t), t \geq 0 \) наричаме \underLine{Поасонов със степен \( \lambda > 0 \)}, ако са изпълнени
     \begin{enumerate}
-      \item $N(0) = 0$
-      \item $N(t)$ е процес с независими нараствания
-      \item Нарастванията $N(t+h)-N(t)$ имат Поасоново разпределение със степен $h\lambda$, т.е.
-      \begin{displaymath}
+      \item \( N(0) = 0 \)
+      \item \( N(t) \) е процес с независими нараствания
+      \item Нарастванията \( N(t+h)-N(t) \) имат Поасоново разпределение със степен \( h\lambda \), т.е.
+      \begin{align*}
         \Prob(N(t+h)-N(t) = k)
         =
         \frac{e^{-h\lambda} {(h\lambda)}^k} {k!}.
-      \end{displaymath}
+      \end{align*}
     \end{enumerate}
 
-    \item\label{def:pp-2} Броящият процес $N(t), t \geq 0$ наричаме \uline{Поасонов със степен $\lambda > 0$}, ако са изпълнени
+    \item\label{def:pp-2} Броящият процес \( N(t), t \geq 0 \) наричаме \underLine{Поасонов със степен \( \lambda > 0 \)}, ако са изпълнени
     \begin{enumerate}
-      \item $N(0) = 0$
-      \item $N(t)$ е процес със стационарни и независими нараствания
-      \item $\frac {\Prob(N(h) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda$
-      \item $\frac {\Prob(N(h) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0$
+      \item \( N(0) = 0 \)
+      \item \( N(t) \) е процес със стационарни и независими нараствания
+      \item \( \frac {\Prob(N(h) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda \)
+      \item \( \frac {\Prob(N(h) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0 \)
     \end{enumerate}
 
-    \item\label{def:pp-3} Нека $\xi_1, \xi_2, \ldots$ са независими случайни величини с разпределение $\DExp(\lambda)$, т.е.
-    \begin{displaymath}
+    \item\label{def:pp-3} Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \DExp(\lambda) \), т.е.
+    \begin{align*}
       f_{\xi_n}(t) =
       \begin{cases}
         \lambda e^{-\lambda t}, &t \geq 0 \\
         0, &t < 0
       \end{cases},
       n = 1, 2, \ldots.
-    \end{displaymath}
+    \end{align*}
 
     Полагаме
     \begin{align*}
@@ -102,8 +93,8 @@
       S_n &\coloneqq \sum_{k=1}^n \xi_k.
     \end{align*}
 
-    Очевидно $S_n \in \DGamma(n, \lambda), n > 0$, т.е.
-    \begin{displaymath}
+    Очевидно \( S_n \in \DGamma(n, \lambda), n > 0 \), т.е.
+    \begin{align*}
       f_{S_n}(t)
       =
       \begin{dcases}
@@ -111,21 +102,21 @@
         0, &t < 0,
       \end{dcases}
       n = 1, 2, \ldots.
-    \end{displaymath}
+    \end{align*}
 
-    Броящият процес $N(t)$, за който е изпълнено
-    \begin{displaymath}
+    Броящият процес \( N(t) \), за който е изпълнено
+    \begin{align*}
       N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
-    \end{displaymath}
-    се нарича \uline{Поасонов процес със степен $\lambda$}, случайните величини $S_0, S_1, S_2, \ldots$ наричаме времена на появява на $n$-тото събитие, а $\xi_1, \xi_2, \ldots$ наричаме \uline{времена на чакане за поява на $n$-тото събитие}.
+    \end{align*}
+    се нарича \underLine{Поасонов процес със степен \( \lambda \)}, случайните величини \( S_0, S_1, S_2, \ldots \) наричаме времена на появява на \( n \)-тото събитие, а \( \xi_1, \xi_2, \ldots \) наричаме \underLine{времена на чакане за поява на \( n \)-тото събитие}.
   \end{enumerate}
 \end{definition}
 
 \begin{note}
   \mbox{}
   \begin{enumerate}
-    \item И при двете определения поасоновият процес $N(t)$ има стационарни нараствания.
-    \item Параметърът $\lambda$ се нарича степен на процеса, тъй като $\Expect(N(t)) = \lambda t$.
+    \item И при двете определения поасоновият процес \( N(t) \) има стационарни нараствания.
+    \item Параметърът \( \lambda \) се нарича степен на процеса, тъй като \( \Expect(N(t)) = \lambda t \).
   \end{enumerate}
 \end{note}
 
@@ -133,10 +124,10 @@
   Трите определения са еквивалентни.
 \end{theorem}
 \begin{proof}
-  (\ref{def:pp-1} $\implies$~\ref{def:pp-2}) Нека първо броящият процес $N(t)$ удовлетворява първото определение.
+  (\ref{def:pp-1} \( \implies \)~\ref{def:pp-2}) Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
 
   Тогава
-  \begin{displaymath}
+  \begin{align*}
     \frac {\Prob(N(h) = 1)} h
     =
     \frac 1 h \frac {e^{-\lambda h} {(\lambda h)}^1} {1!}
@@ -144,27 +135,27 @@
     \lambda e^{-\lambda h}
     \underset {h \mapsto 0} \longrightarrow
     \lambda.
-  \end{displaymath}
+  \end{align*}
   и
-  \begin{multline*}
+  \begin{align*}
     \frac {\Prob(N(h) \geq 1)} h
-    =
+    &=
     \frac {1 - \Prob(N(h) < 2)} h
-    =
+    = \\ &=
     \frac {1 - \Prob(N(h) = 1) - \Prob(N(h) = 0)} h
-    = \\ =
+    = \\ &=
     \frac {1 - \lambda h e^{-\lambda h} - e^{-\lambda h}} h
-    =
+    = \\ &=
     \frac {1 - e^{-\lambda h}} h - \lambda e^{-\lambda h}
-    =
+    = \\ &=
     - \frac {e^{-\lambda (0 + h)} - e^{-\lambda 0}} h - \lambda e^{-\lambda h}
     \underset {h \mapsto 0} \longrightarrow
     -(-\lambda) e^{-\lambda 0} - \lambda e^{-\lambda 0}
     =
     0.
-  \end{multline*}
+  \end{align*}
 
-  (\ref{def:pp-2} $\implies$~\ref{def:pp-1}) Обратно, ако $N(t)$ удовлетворява второто определение, получаваме диференциалното уравнение
+  (\ref{def:pp-2} \( \implies \)~\ref{def:pp-1}) Обратно, ако \( N(t) \) удовлетворява второто определение, получаваме диференциалното уравнение
   \begin{align*}
     \frac {\partial \Prob(N(t) = 0)} {\partial t}
     =&
@@ -185,12 +176,12 @@
     -\lambda \Prob(N(t) = 0).
   \end{align*}
 
-  Като се има предвид началното условие $\Prob(N(0) = 0) = 1$, това уравнение има решение
-  \begin{displaymath}
+  Като се има предвид началното условие \( \Prob(N(0) = 0) = 1 \), това уравнение има решение
+  \begin{align*}
    \Prob(N(t) = 0) = e^{-\lambda t}.
-  \end{displaymath}
+  \end{align*}
 
-  За $n > 0$ формулата за пълната вероятност ни дава
+  За \( n > 0 \) формулата за пълната вероятност ни дава
   \begin{align*}
     \Prob(N(t+h) = n)
     =&
@@ -204,10 +195,10 @@
     = \\ =&
     \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k),
   \end{align*}
-  откъдето намираме производната по $t$
+  откъдето намираме производната по \( t \)
   \begin{align*}
-    \frac {\partial \Prob(N(t) = n)} {\partial t}
-    =&
+    &\frac {\partial \Prob(N(t) = n)} {\partial t}
+    = \\ =&
     \lim_{h \to 0} \frac {\Prob(N(t+h) = n) - \Prob(N(t) = n)} h
     = \\ =&
     \lim_{h \to 0} \frac 1 h \left( \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k) - \Prob(N(t) = n) \right)
@@ -215,7 +206,7 @@
     \lim_{h \to 0} \frac 1 h [\Prob(N(t) = n) [\Prob(N(h) = 0) - 1] + \Prob(N(h) = 1) \Prob(N(t) = n - 1) + \cdots]
     = \\ =&
     \lim_{h \to 0} \frac {\Prob(N(t) = n) [\Prob(N(h) = 0) - 1]} h + \lambda \Prob(N(t) = n - 1) + 0
-    = \\ (\text{L'Hospital}) =&
+    = \\ \overset {\text{L'Hospital}} =&
     \lim_{h \to 0} \frac {\Prob(N(t) = n) \cdot [-\lambda \Prob(N(h) = 0)]} 1 + \lambda \Prob(N(t) = n - 1) + 0
     = \\ =&
     -\lambda \Prob(N(t) = n) + \lambda \Prob(N(t) = n - 1).
@@ -240,7 +231,7 @@
     \lambda e^{\lambda t} \Prob(N(t) = n - 1).
   \end{align*}
 
-  За $n = 1$ интегрираме уравнението и получаваме
+  За \( n = 1 \) интегрираме уравнението и получаваме
   \begin{align*}
     \frac {\partial [e^{\lambda t} \Prob(N(t) = 1)]} {\partial t}
     =&
@@ -259,12 +250,12 @@
     \lambda t e^{-\lambda t} + C.
   \end{align*}
 
-  Понеже $\Prob(N(0) = 1) = 0$, имаме $C = 0$ и
-  \begin{displaymath}
+  Понеже \( \Prob(N(0) = 1) = 0 \), имаме \( C = 0 \) и
+  \begin{align*}
     \boxed{\Prob(N(t) = 1) = \lambda t e^{-\lambda t}}.
-  \end{displaymath}
+  \end{align*}
 
-  С индукция по $n$ получаваме функцията на вероятностите на познатото Поасоново разпределение със степен $\lambda t$
+  С индукция по \( n \) получаваме функцията на вероятностите на познатото Поасоново разпределение със степен \( \lambda t \)
   \begin{align*}
     \frac {\partial [e^{\lambda t} \Prob(N(t) = n)]} {\partial t}
     =&
@@ -283,170 +274,170 @@
     e^{-\lambda t} \frac {{(\lambda t)}^n} {n!} + C.
   \end{align*}
 
-  Понеже $\Prob(N(0) = n) = \delta_{n,0}$, имаме $C = 0$ и
-  \begin{displaymath}
+  Понеже \( \Prob(N(0) = n) = \delta_{n,0} \), имаме \( C = 0 \) и
+  \begin{align*}
     \boxed{\Prob(N(t) = n) = e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}.
-  \end{displaymath}
+  \end{align*}
 
-  (\ref{def:pp-1} $\implies$~\ref{def:pp-3}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите $t$ и $t+h$, т.е.
-  \begin{displaymath}
+  (\ref{def:pp-1} \( \implies \)~\ref{def:pp-3}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
+  \begin{align*}
     \Prob(N(t) < N(t+h))
-    =
+    &=
     \Prob(0 < N(t+h) - N(t))
-    =
+    = \\ &=
     \Prob(0 < N(h))
-    =
+    = \\ &=
     1 - \Prob(N(h) = 0)
-    =
+    = \\ &=
     1 - e^{-\lambda h}.
-  \end{displaymath}
+  \end{align*}
 
-  Виждаме, времето за чакане за настъпване на събитие между моментите $t$ и $t+h$ е експоненциално разпределено и не зависи от $t$, т.е. времената за чакане са независими.
+  Виждаме, времето за чакане за настъпване на събитие между моментите \( t \) и \( t+h \) е експоненциално разпределено и не зависи от \( t \), т.е. времената за чакане са независими.
 
-  (\ref{def:pp-3} $\implies$~\ref{def:pp-1}) Сега приемаме третото определение и разглеждаме вероятността да са се случили $n$ събития до момента $t$
-  \begin{multline*}
+  (\ref{def:pp-3} \( \implies \)~\ref{def:pp-1}) Сега приемаме третото определение и разглеждаме вероятността да са се случили \( n \) събития до момента \( t \)
+  \begin{align*}
     \Prob(N(t) = n)
-    =
+    &=
     \Prob(\max \{ m \geq 0 \mid S_m \leq t \} = n)
-    =
+    = \\ &=
     \Prob(S_n \leq t < S_{n+1})
-    =
+    = \\ &=
     \Prob(S_n \leq t < S_n + \xi_{n+1})
-    = \\ =
+    = \\ &=
     \int_0^t \Prob(t < x + \xi_{n+1}) f_{S_n} (x) dx
-    =
+    = \\ &=
     \int_0^t (1 - F_{\xi_{n+1}} (t - x)) \cdot f_{S_n} (x) dx
-    =
+    = \\ &=
     \int_0^t e^{-\lambda (t-x)} \cdot \lambda e^{-\lambda x} \frac {{(\lambda x)}^{n-1}} {(n-1)!} dx
-    = \\ =
+    = \\ &=
     e^{-\lambda t} \frac 1 {(n-1)!} \int_0^t {(\lambda x)}^{n-1} d(\lambda x)
-    =
+    = \\ &=
     \boxed{e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}},
-  \end{multline*}
-  което е точно функция на вероятностите на Поасоново разпределение със степен $\lambda t$.
+  \end{align*}
+  което е точно функция на вероятностите на Поасоново разпределение със степен \( \lambda t \).
 \end{proof}
 
 От експоненциалното разпределение се наследява следното свойство:
 \begin{proposition}[Липса на памет]
-  За Поасонов процес $N(t)$ със степен $\lambda > 0$ е изпълнено
-  \begin{displaymath}
+  За Поасонов процес \( N(t) \) със степен \( \lambda > 0 \) е изпълнено
+  \begin{align*}
     \Prob(N(t+h) > n + m \mid N(t) > n)
     =
     \Prob(N(h) > m)
-  \end{displaymath}
+  \end{align*}
 \end{proposition}
 \begin{proof}
-  \begin{multline*}
+  \begin{align*}
     \Prob(N(t+h) = n + m \mid N(t) = n)
-    =
+    &=
     \frac {\Prob(N(t+h) = n + m, N(t) = n)} {\Prob(N(t) = n)}
-    =
+    = \\ &=
     \frac {\Prob(N(t+h) - N(t) = m, N(t) = n)} {\Prob(N(t) = n)}
-    = \\ =
+    = \\ &=
     \frac {\Prob(N(h) = m, N(t) = n)} {\Prob(N(t) = n)}
-    =
+    = \\ &=
     \frac {\Prob(N(h) = m) \Prob(N(t) = n)} {\Prob(N(t) = n)}
-    =
+    = \\ &=
     \Prob(N(h) = m).
-  \end{multline*}
+  \end{align*}
 \end{proof}
 
 \subsection{Условни разпределения за времето на появяване}
 
-Считаме, че е фиксиран някакъв Поасонов процес $N(t)$ със степен $\lambda > 0$.
+Считаме, че е фиксиран някакъв Поасонов процес \( N(t) \) със степен \( \lambda > 0 \).
 
 \begin{definition}
-  Ако $\eta_1, \ldots, \eta_n$ са наблюдения над случайна величина $\eta$, \uline{наредени статистики} наричаме елементите на вариационния ред $\eta_{(1)} \leq \cdots \leq \eta_{(n)}$.
+  Ако \( \eta_1, \ldots, \eta_n \) са наблюдения над случайна величина \( \eta \), \underLine{наредени статистики} наричаме елементите на вариационния ред \( \eta_{(1)} \leq \cdots \leq \eta_{(n)} \).
 \end{definition}
 
 \begin{proposition}
-  Ако $\eta_1, \ldots, \eta_n$ са независими наблюдения над непрекъсната случайна величина $\eta$, съвместната плътност на наредените им статистики има вида
-  \begin{displaymath}
+  Ако \( \eta_1, \ldots, \eta_n \) са независими наблюдения над непрекъсната случайна величина \( \eta \), съвместната плътност на наредените им статистики има вида
+  \begin{align*}
     f_{\eta_{(1)}, \ldots, \eta_{(n)}} (x_1, \ldots, x_n)
     =
     \begin{cases}
       n! f_{\eta_{1}, \ldots, \eta_{n}} (x_1, \ldots, x_n), &x_1 < \cdots < x_n, \\
       0, &\text{ иначе}
     \end{cases}
-  \end{displaymath}
+  \end{align*}
 \end{proposition}
 \begin{proof}
-  Ако числата $x_1, \ldots, x_n$ не са наредени, не е възможно наредените статистики да приемат тази комбинация от стойности и затова съвместната им плътност се анулира.
+  Ако числата \( x_1, \ldots, x_n \) не са наредени, не е възможно наредените статистики да приемат тази комбинация от стойности и затова съвместната им плътност се анулира.
 
-  Ако те са наредени, съвместната плътност на съответните наредени статистики ще се различава от съвместната плътност на наблюденията с нормираща константа. Тъй като има $n$! начина да наредим $n$ различни числа, тази нормираща константа е $n$!.
+  Ако те са наредени, съвместната плътност на съответните наредени статистики ще се различава от съвместната плътност на наблюденията с нормираща константа. Тъй като има \( n \)! начина да наредим \( n \) различни числа, тази нормираща константа е \( n \)!.
 \end{proof}
 
 \begin{note}
-  В частния случай, когато $\eta \in \DUniform(0, t)$, съвместната плътност на наредените статистики ще бележим с $u_t(x_1, \ldots, x_n)$. Тази плътност има вида
-  \begin{displaymath}
+  В частния случай, когато \( \eta \in \DUniform(0, t) \), съвместната плътност на наредените статистики ще бележим с \( u_t(x_1, \ldots, x_n) \). Тази плътност има вида
+  \begin{align*}
     u_t(x_1, \ldots, x_n)
     =
     \begin{cases}
       n! t^{-n}, &x_1 < \cdots < x_n, \\
       0, &\text{ иначе}
     \end{cases}
-  \end{displaymath}
+  \end{align*}
 \end{note}
 
-\begin{theorem} Условната съвместна плътност $f_{S_1, \ldots, S_n}(x_1, \ldots, x_n \mid N(t) = n)$ на $n$ последователни момента на появяване до момента $t$ съвпада с $u_t(x_1, \ldots, x_n)$.
+\begin{theorem} Условната съвместна плътност \( f_{S_1, \ldots, S_n}(x_1, \ldots, x_n \mid N(t) = n) \) на \( n \) последователни момента на появяване до момента \( t \) съвпада с \( u_t(x_1, \ldots, x_n) \).
 \end{theorem}
 \begin{proof}
   Първо да забележим, че
-  \begin{displaymath}
+  \begin{align*}
     f_{S_1, \ldots, S_n}(x_1, \ldots, x_n \mid N(t) = n)
     =
     \begin{dcases}
       \frac {f_{S_1, \ldots, S_n, S_{n+1}}(x_1, \ldots, x_n, t)} {\Prob(N(t) = n)}, &x_n < t \\
       0, &\text{ иначе}
     \end{dcases}
-  \end{displaymath}
+  \end{align*}
 
-  Тъй като $S_{k-1} = S_k - \xi_k, k > 1$, за $x_1 < \cdots < x_n < t$ имаме
-  \begin{multline*}
+  Тъй като \( S_{k-1} = S_k - \xi_k, k > 1 \), за \( x_1 < \cdots < x_n < t \) имаме
+  \begin{align*}
     f_{S_1, \ldots, S_n}(x_1, \ldots, x_n \mid N(t) = n)
-    =
+    &=
     \frac {f_{\xi_1, \xi_2, \ldots, \xi_n}(x_1, x_2 - x_1, \ldots, x_n - x_{n-1}, t - x_n)} {\Prob(N(t) = n)}
-    = \\ =
+    = \\ &=
     \frac {f_{\xi_1}(x_1) f_{\xi_1}(x_2 - x_1) \ldots f_{\xi_{n-1}}(x_n - x_{n-1}) f_{\xi_n}(t - x_n)} {\Prob(N(t) = n)}
-    = \\ =
+    = \\ &=
     \frac {\lambda^n e^{-\lambda x_1} e^{-\lambda(x_2 - x_1)} \ldots e^{-\lambda(x_n - x_{n-1})} e^{-\lambda(t - x_n)}} {e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}
-    =
+    = \\ &=
     \frac {n!} {t^n} e^{- \lambda (-t + t - x_n + x_n \ldots x_2 - x_1 + x_1)}
     =
     \frac {n!} {t^n}
     =
     u_t(x_1, \ldots, x_n).
-  \end{multline*}
+  \end{align*}
 \end{proof}
 
 \subsection{Приложения}
 
 \subsubsection{Моделиране на надеждност}
 
-Машинен елемент се поврежда средно три пъти годишно и моментално се заменя с нов. Нека случайните величини $\xi_1, \xi_2, \ldots$ описват времената на живот на последователно използвани елементи.
+Машинен елемент се поврежда средно три пъти годишно и моментално се заменя с нов. Нека случайните величини \( \xi_1, \xi_2, \ldots \) описват времената на живот на последователно използвани елементи.
 
-Предполагаме, че те са експоненциално разпределени с параметър $3$. Тогава времето на повреда на $n$-тия машинен елемент се описва от случайните величини $S_n = \xi_1 + \cdots + \xi_n$, а
-\begin{displaymath}
+Предполагаме, че те са експоненциално разпределени с параметър \( 3 \). Тогава времето на повреда на \( n \)-тия машинен елемент се описва от случайните величини \( S_n = \xi_1 + \cdots + \xi_n \), а
+\begin{align*}
   N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \}
-\end{displaymath}
+\end{align*}
 е Поасонов процес.
 
 Този модел ни позволява да отговаряме на много въпроси, сред които:
 \begin{enumerate}
-  \item Количеството повредени машинни елемента за три години имат разпределение $N(3) \in \DPoisson(9)$. За три години се очакват средно $9$ повреди със стандартно отклонение $3$, а вероятността да се повредят цели $12$ елемента е
-  \begin{displaymath}
+  \item Количеството повредени машинни елемента за три години имат разпределение \( N(3) \in \DPoisson(9) \). За три години се очакват средно \( 9 \) повреди със стандартно отклонение \( 3 \), а вероятността да се повредят цели \( 12 \) елемента е
+  \begin{align*}
     \Prob(N(3) = 12) = e^{-9} \frac {9^{12}} {12!} \approx 0.07.
-  \end{displaymath}
+  \end{align*}
 
-  \item Наредените времена за повреда на последните $n$ машинни елементи са равновероятни.
+  \item Наредените времена за повреда на последните \( n \) машинни елементи са равновероятни.
   \item Поради липсата на памет на процеса, вероятността за нови повреди не се влияе от зачестяване на броя повреди за единица време.
 \end{enumerate}
 
 \subsubsection{Моделиране на интернет трафик}
 
-Можем да използваме Поасонов процес, за да моделираме броя заявки към даден сървър. Ако за една секунда се случват средно $1000$ заявки, използваме Поасонов процес с параметър $\lambda = 1000$.
+Можем да използваме Поасонов процес, за да моделираме броя заявки към даден сървър. Ако за една секунда се случват средно \( 1000 \) заявки, използваме Поасонов процес с параметър \( \lambda = 1000 \).
 \begin{enumerate}
-  \item Редно е да очакваме $\Expect(N(90)) \pm 2\sqrt{\Var(N(90))} = 90000 \pm 600$ заявки за минута и половина.
+  \item Редно е да очакваме \( \Expect(N(90)) \pm 2\sqrt{\Var(N(90))} = 90000 \pm 600 \) заявки за минута и половина.
   \item Наредените времена на заявките са равновероятни.
   \item Поради липсата на памет на процеса, вероятността за нови повреди не се влияе от броя заявки до момента.
 \end{enumerate}
@@ -456,15 +447,15 @@
 \subsubsection{Сложен Поасонов процес}
 
 \begin{definition}
-  Ако $N(t)$ е Поасонов процес и $\eta_1, \eta_2, \ldots$ са независими помежду си и от $N(t)$ неотрицателни целочислени случайни величини с еднакво разпределение с, процесът
-  \begin{displaymath}
+  Ако \( N(t) \) е Поасонов процес и \( \eta_1, \eta_2, \ldots \) са независими помежду си и от \( N(t) \) неотрицателни целочислени случайни величини с еднакво разпределение с, процесът
+  \begin{align*}
     X(t) = \sum_{k=1}^{N(t)} \eta_k, t \geq 0,
-  \end{displaymath}
-  се нарича \uline{сложен Поасонов}.
+  \end{align*}
+  се нарича \underLine{сложен Поасонов}.
 \end{definition}
 
 \begin{note}
-  Ако $\eta_k$ са изродени в $1$ случайни величини, получаваме обикновения Поасонов процес. Сложният Поасонов процес ни позволява лесно да моделираме настъпването на цели групи от събития, например пристигане на групи от хора с влак.
+  Ако \( \eta_k \) са изродени в \( 1 \) случайни величини, получаваме обикновения Поасонов процес. Сложният Поасонов процес ни позволява лесно да моделираме настъпването на цели групи от събития, например пристигане на групи от хора с влак.
 \end{note}
 
 \begin{theorem}[Тъждество на Валд]
@@ -480,25 +471,25 @@
     \Expect(X(t))
     &=
     \Expect\left( \sum_{k=1}^{N(t)} \eta_k \right)
-    =
+    = \\ &=
     \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \eta_k \mid N(t) = n \right) \Prob(N(t) = n)
-    =
+    = \\ &=
     \sum_{n=0}^\infty \Prob(N(t) = n) \sum_{k=1}^n \Expect(\eta_k)
     = \\ &=
     \Expect(\eta_1) \sum_{n=0}^\infty n \Prob(N(t) = n)
-    =
+    = \\ &=
     \boxed{\Expect(\eta_1) \Expect(N(t))},
     \\
     \Expect({X(t)}^2)
     &=
     \Expect\left( {\left(\sum_{k=1}^{N(t)} \eta_k \right)}^2 \right)
-    =
+    = \\ &=
     \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \right)
-    =
+    = \\ &=
     \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \mid N(t) = n \right) \Prob(N(t) = n)
     = \\ &=
     \sum_{n=0}^\infty \left( \sum_{k=1}^n \sum_{m=1}^n \Expect(\eta_k \eta_m) \right) \Prob(N(t) = n)
-    =
+    = \\ &=
     \sum_{n=0}^\infty \left( n \Expect(\eta_1^2) + n (n-1) {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
     = \\ &=
     \sum_{n=0}^\infty n \left( \Expect(\eta_1^2) - {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n) + \sum_{n=0}^\infty n^2 \left( {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
@@ -510,42 +501,42 @@
     \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2) - {\Expect(\eta_1)}^2 {\Expect(N(t))}^2
     = \\ &=
     \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Var(N(t))
-    =
+    = \\ &=
     (\Var(\eta_1) + {\Expect(\eta_1)}^2) \lambda t
-    =
+    = \\ &=
     \lambda t \Expect(\eta_1^2)
-    =
+    = \\ &=
     \boxed{\Expect(N(t)) \Expect(\eta_1^2)}.
   \end{align*}
 \end{proof}
 
 \subsubsection{Нехомогенен Поасонов процес}
 
-Ако допуснем степента $\lambda(t)$ да варира с времето нарастванията няма да бъдат стационарни и ще получим следното обобщение на определение~\ref{def:pp-2} за обикновения Поасонов процес:
+Ако допуснем степента \( \lambda(t) \) да варира с времето нарастванията няма да бъдат стационарни и ще получим следното обобщение на определение~\ref{def:pp-2} за обикновения Поасонов процес:
 \begin{definition}
-  Броящият процес $N(t), t \geq 0$ наричаме \uline{нехомогенен Поасонов със степен $\lambda(t) \geq 0$}, ако са изпълнени
+  Броящият процес \( N(t), t \geq 0 \) наричаме \underLine{нехомогенен Поасонов със степен \( \lambda(t) \geq 0 \)}, ако са изпълнени
   \begin{enumerate}
-    \item $N(0) = 0$
-    \item $N(t)$ е процес с независими нараствания
-    \item $\frac {\Prob(N(t+h) - N(t) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda(t)$
-    \item $\frac {\Prob(N(t+h) - N(t) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0$
+    \item \( N(0) = 0 \)
+    \item \( N(t) \) е процес с независими нараствания
+    \item \( \frac {\Prob(N(t+h) - N(t) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda(t) \)
+    \item \( \frac {\Prob(N(t+h) - N(t) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0 \)
   \end{enumerate}
 
   За удобство полагаме
-  \begin{displaymath}
+  \begin{align*}
     \Lambda(t) \coloneqq \int_0^t \lambda(x) dx.
-  \end{displaymath}
+  \end{align*}
 \end{definition}
 
 Формулираме следното обобщение на свойствата на обикновения Поасонов процес, чиито доказателства са аналогични:
 \begin{theorem}
-  Нека $N(t)$ е нехомогенен Поасонов процес със степен $\lambda(t)$. Тогава
+  Нека \( N(t) \) е нехомогенен Поасонов процес със степен \( \lambda(t) \). Тогава
   \begin{enumerate}
-    \item $N(t) \in \DPoisson(\Lambda(t))$.
-    \item Моментът $S_n$ на появяване на $n$-тото събитие има плътност
-    \begin{displaymath}
+    \item \( N(t) \in \DPoisson(\Lambda(t)) \).
+    \item Моментът \( S_n \) на появяване на \( n \)-тото събитие има плътност
+    \begin{align*}
       f_{S_n}(t) = \lambda(t) e^{-\Lambda(t)} \frac {{(\Lambda(t))}^{n-1}} {(n-1)!}
-    \end{displaymath}
+    \end{align*}
   \end{enumerate}
 \end{theorem}
 

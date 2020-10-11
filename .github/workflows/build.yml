@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install
-      run: sudo apt install tree texlive texlive-latex-extra texlive-fonts-extra texlive-lang-cyrillic biber latexmk
+      run: sudo apt install tree texlive texlive-latex-extra texlive-fonts-extra texlive-lang-cyrillic texlive-luatex biber latexmk
 
     - name: Build
       run: make
