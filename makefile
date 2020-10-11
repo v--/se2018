@@ -9,10 +9,7 @@ topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
 	$(COMPILER) $(<D)/index.tex -pdflua
 
 clean:
-	@:$(foreach topic, $(wildcard topics/*), \
-		rm -fv $(topic)/index.pdf; \
-		rm -fv $(topic)/*.{aux,log,out,fls,toc}; \
-		rm -fv $(topic)/*.fdb_latexmk; \
-		rm -fv $(topic)/*.{run.xml,bbl,bcf,blg}; \
-		rm -fv $(topic)/*.{aoc,lem,usc}; \
-	)
+	rm -fv topics/*/index.pdf
+	rm -fv topics/*/*.{aux,log,out,fls}
+	rm -fv topics/*/*.fdb_latexmk
+	rm -fv topics/*/*.{run.xml,bbl,bcf,blg}
