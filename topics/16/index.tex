@@ -178,7 +178,7 @@
   Интегруемата по Риман функция \( f_\xi: \R \to \R \) е плътност на някаква абсолютно непрекъсната случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
   \begin{enumerate}
     \item \( f_\xi(x) \geq 0 \) почти навсякъде (неотрицателност)
-    \item \( \int_\R f_\xi(x) dx = 1 \) (нормираност)
+    \item \( \int_{\R} f_\xi(x) dx = 1 \) (нормираност)
   \end{enumerate}
 \end{theorem}
 
@@ -190,7 +190,7 @@
     \item За всяка точка \( x \in \R \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
     \item За произволно \( c > 0 \) функцията \( F_\xi \) е абсолютно непрекъсната в \( [-c, c] \). Следователно
     \begin{align*}
-      \int_\R f_\xi(x) dx
+      \int_{\R} f_\xi(x) dx
       =
       \lim_{c \uparrow \infty} \int_{-c}^c f_\xi(x) dx
       =
@@ -234,7 +234,7 @@
       =
       \lim_{x \uparrow \infty} \int_{-\infty}^x f_\xi(x) dx
       =
-      \int_\R f_\xi(x) dx = 1.
+      \int_{\R} f_\xi(x) dx = 1.
     \end{align*}
 
     \item Директно пресмятаме
@@ -266,9 +266,9 @@
   \begin{align*}
     f_{\xi + \eta} (x)
     =
-    \int_\R f_\xi(y) f_\eta(x - y) dy
+    \int_{\R} f_\xi(y) f_\eta(x - y) dy
     =
-    \int_\R f_\xi(x - y) f_\eta(y) dy.
+    \int_{\R} f_\xi(x - y) f_\eta(y) dy.
   \end{align*}
 \end{proposition}
 \begin{proof} Сумата на измерими функции е измерима, следователно \( \xi + \eta \) е случайна величина. Използвайки формулата за пълната вероятност и независимостта на \( \xi \) и \( \eta \), намираме функцията на разпределение
@@ -279,28 +279,28 @@
     = \\ &=
     \Prob(\xi \leq x - \eta)
     = \\ &=
-    \int_\R \Prob(\xi \leq x - y) f_\eta(y) dy
+    \int_{\R} \Prob(\xi \leq x - y) f_\eta(y) dy
     = \\ &=
-    \int_\R F_\xi(x - y) f_\eta(y) dy.
+    \int_{\R} F_\xi(x - y) f_\eta(y) dy.
   \end{align*}
 
-  Сега ще докажем, че \( F_{\xi + \eta} \) е абсолютно непрекъсната във всеки интервал \( [a, b] \). Нека \( \varepsilon > 0 \) и \( \delta = \frac \varepsilon \sup_\R(f_\xi) \). За произволни \( n \) непресичащи се два по два интервала \( (a_k, b_k) \subseteq [a, b] \) поради монотонността на функциите на разпределение имаме \( F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0 \). Тогава
+  Сега ще докажем, че \( F_{\xi + \eta} \) е абсолютно непрекъсната във всеки интервал \( [a, b] \). Нека \( \varepsilon > 0 \) и \( \delta = \frac \varepsilon \sup_{\R}(f_\xi) \). За произволни \( n \) непресичащи се два по два интервала \( (a_k, b_k) \subseteq [a, b] \) поради монотонността на функциите на разпределение имаме \( F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0 \). Тогава
   \begin{align*}
     \sum_{k=1}^n \Abs{F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k)}
     &=
     \sum_{k=1}^n (F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k))
     = \\ &=
-    \sum_{k=1}^n \left(\int_\R F_\xi(b_k - y) f_\eta(y) dy - \int_\R F_\xi(a_k - y) f_\eta(y) dy \right)
+    \sum_{k=1}^n \left(\int_{\R} F_\xi(b_k - y) f_\eta(y) dy - \int_{\R} F_\xi(a_k - y) f_\eta(y) dy \right)
     = \\ &=
-    \sum_{k=1}^n \int_\R (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
+    \sum_{k=1}^n \int_{\R} (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
     = \\ &=
-    \sum_{k=1}^n \int_\R \int_{a_k - y}^{b_k - y} f_\xi(z) dz \cdot f_\eta(y) dy
+    \sum_{k=1}^n \int_{\R} \int_{a_k - y}^{b_k - y} f_\xi(z) dz \cdot f_\eta(y) dy
     \leq \\ &\leq
-    \sup_\R(f_\xi) \sum_{k=1}^n (b_k - y - a_k + y) \int_\R f_\eta(y) dy
+    \sup_{\R}(f_\xi) \sum_{k=1}^n (b_k - y - a_k + y) \int_{\R} f_\eta(y) dy
     = \\ &=
-    \sup_\R(f_\xi) \sum_{k=1}^n (b_k - a_k)
+    \sup_{\R}(f_\xi) \sum_{k=1}^n (b_k - a_k)
     < \\ &<
-    \delta \sup_\R(f_\xi)
+    \delta \sup_{\R}(f_\xi)
     =
     \varepsilon.
   \end{align*}
@@ -311,16 +311,16 @@
     =
     F'_{\xi + \eta} (x)
     =
-    \int_\R F'_\xi(x - y) f_\eta(y) dy
+    \int_{\R} F'_\xi(x - y) f_\eta(y) dy
     =
-    \int_\R f_\xi(x - y) f_\eta(y) dy.
+    \int_{\R} f_\xi(x - y) f_\eta(y) dy.
   \end{align*}
 
   Аналогично се доказва
   \begin{align*}
     f_{\xi + \eta} (x)
     =
-    \int_\R f_\xi(t) f_\eta(x - t) dt.
+    \int_{\R} f_\xi(t) f_\eta(x - t) dt.
   \end{align*}
 \end{proof}
 
@@ -353,7 +353,7 @@
 \begin{definition}
   Нека \( \xi \) е непрекъсната случайна величина. Дефинираме \underLine{очакване на \( \xi \)} чрез
   \begin{align*}
-    \Expect(\xi) \coloneqq \int_\R x f_\xi(x) dx.
+    \Expect(\xi) \coloneqq \int_{\R} x f_\xi(x) dx.
   \end{align*}
   Казваме, че \( \xi \) има (крайно) очакване, ако интегралът е абсолютно сходящ, т.е. \( \Abs{x f_\xi} \) е интегруема функция.
 
@@ -384,19 +384,19 @@
   \begin{align*}
     \Expect(\xi \eta)
     &=
-    \int_\R z f_{\xi \eta}(z) dz
+    \int_{\R} z f_{\xi \eta}(z) dz
     = \\ &=
-    \int_\R z \Prob(z \leq \xi \eta < z + dz) dz
+    \int_{\R} z \Prob(z \leq \xi \eta < z + dz) dz
     = \\ &=
-    \int_\R \int_\R z \Prob(z \leq t \xi < z + dz) f_\eta(t) dz
+    \int_{\R} \int_{\R} z \Prob(z \leq t \xi < z + dz) f_\eta(t) dz
     = \\ &=
-    \int_\R \int_\R z \left( F_\xi\left(\frac z t \right) - F_\xi\left(\frac z t + d\frac z t \right) \right) f_\eta(t) dt \; dz
+    \int_{\R} \int_{\R} z \left( F_\xi\left(\frac z t \right) - F_\xi\left(\frac z t + d\frac z t \right) \right) f_\eta(t) dt \; dz
     = \\ &=
-    \int_\R \int_\R z f_\xi \left(\frac z t \right) f_\eta(t) dt \; dz
+    \int_{\R} \int_{\R} z f_\xi \left(\frac z t \right) f_\eta(t) dt \; dz
     = \\ &=
-    \int_\R t f_\eta(t) \left(\int_\R \frac z t f_\xi \left(\frac z t \right) d\frac z t \right) dt
+    \int_{\R} t f_\eta(t) \left(\int_{\R} \frac z t f_\xi \left(\frac z t \right) d\frac z t \right) dt
     = \\ &=
-    \Expect(\xi) \int_\R t f_\eta(t) dt
+    \Expect(\xi) \int_{\R} t f_\eta(t) dt
     = \\ &=
     \Expect(\xi) \Expect(\eta).
   \end{align*}
@@ -410,19 +410,19 @@
   \begin{align*}
     \Expect(\xi + \eta)
     &=
-    \int_\R x f_{\xi + \eta} (x) dx
+    \int_{\R} x f_{\xi + \eta} (x) dx
     = \\ &=
-    \int_\R x \int_\R f_\xi(x - t) f_\eta(t) dt \; dx
+    \int_{\R} x \int_{\R} f_\xi(x - t) f_\eta(t) dt \; dx
     = \\ &=
-    \int_\R \left( \int_\R x f_\xi(x - t) dx \right) f_\eta(t) dt
+    \int_{\R} \left( \int_{\R} x f_\xi(x - t) dx \right) f_\eta(t) dt
     = \\ &=
-    \int_\R \left( \int_\R (x - t + t) f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    \int_{\R} \left( \int_{\R} (x - t + t) f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
     = \\ &=
-    \int_\R \left( \int_\R (x - t) f_\xi(x - t) d(x - t) + t \int_\R f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    \int_{\R} \left( \int_{\R} (x - t) f_\xi(x - t) d(x - t) + t \int_{\R} f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
     = \\ &=
-    \int_\R (\Expect(\xi) + t) f_\eta(t) dt
+    \int_{\R} (\Expect(\xi) + t) f_\eta(t) dt
     = \\ &=
-    \Expect(\xi) \int_\R f_\eta(t) dt + \int_\R t f_\eta(t) dt
+    \Expect(\xi) \int_{\R} f_\eta(t) dt + \int_{\R} t f_\eta(t) dt
     = \\ &=
     \Expect(\xi) + \Expect(\eta).
   \end{align*}
@@ -433,7 +433,7 @@
   \begin{align*}
     \Expect(\psi(\xi))
     =
-    \int_\R \psi(x) f_\xi(x) dx.
+    \int_{\R} \psi(x) f_\xi(x) dx.
   \end{align*}
 \end{proposition}
 
@@ -441,19 +441,19 @@
   \begin{align*}
     \Expect(\psi(\xi))
     &=
-    \int_\R x f_{\psi(\xi)}(x) dx
+    \int_{\R} x f_{\psi(\xi)}(x) dx
     = \\ &=
-    \int_\R x \Prob(x \leq \psi(\xi) \leq x + dx) dx
+    \int_{\R} x \Prob(x \leq \psi(\xi) \leq x + dx) dx
     = \\ &=
-    \int_\R x \Prob(\psi^{-1}(x) \leq \xi \leq \psi^{-1}(x + dx)) dx
+    \int_{\R} x \Prob(\psi^{-1}(x) \leq \xi \leq \psi^{-1}(x + dx)) dx
     = \\ &=
-    \int_\R x \left( F_\xi(\psi^{-1}(x + dx)) - F_\xi(\psi^{-1}(x)) \right) dx
+    \int_{\R} x \left( F_\xi(\psi^{-1}(x + dx)) - F_\xi(\psi^{-1}(x)) \right) dx
     = \\ &=
-    \int_\R x f_\xi(\psi^{-1}(x)) dx
+    \int_{\R} x f_\xi(\psi^{-1}(x)) dx
     = \\ &=
-    \int_\R \psi(x) f_\xi(x) d \psi(x)
+    \int_{\R} \psi(x) f_\xi(x) d \psi(x)
     = \\ &=
-    \int_\R \psi(x) f_\xi(x) \psi'(x) dx.
+    \int_{\R} \psi(x) f_\xi(x) \psi'(x) dx.
   \end{align*}
 \end{proof}
 
@@ -530,13 +530,13 @@
     &\leq
     {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
     = \\ &=
-    {\left( \int_\R {\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
+    {\left( \int_{\R} {\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
     \leq \\ &\leq
-    \int_\R {\left({\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
+    \int_{\R} {\left({\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
     \leq \\ &\leq
-    \int_\R {\left({\Abs{x_k}}^{n-1} \right)}^{\frac n {n-1}} f_\xi(x) dx
+    \int_{\R} {\left({\Abs{x_k}}^{n-1} \right)}^{\frac n {n-1}} f_\xi(x) dx
     = \\ &=
-    \int_\R {\Abs{x_k}}^n f_\xi(x) dx
+    \int_{\R} {\Abs{x_k}}^n f_\xi(x) dx
     =
     \Expect({\Abs{\xi}}^n).
   \end{align*}
@@ -681,9 +681,9 @@
     \begin{align*}
       \MGF_\xi(t) - \MGF_\eta(t) &= 0
       \\
-      \int_\R e^{tx} f_\xi(x) - \int_\R e^{tx} f_\eta(x) dx &= 0
+      \int_{\R} e^{tx} f_\xi(x) - \int_{\R} e^{tx} f_\eta(x) dx &= 0
       \\
-      \int_\R e^{tx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+      \int_{\R} e^{tx} (f_\xi(x) - f_\eta(x)) dx &= 0.
     \end{align*}
     Последното равенство е изпълнено за всяко \( t \in U \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \R \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
@@ -715,11 +715,11 @@
       =
       \Abs{\Expect(e^{it\xi})}
       =
-      \Abs{\int_\R e^{itx} f_\xi(x) dx}
+      \Abs{\int_{\R} e^{itx} f_\xi(x) dx}
       \leq
-      \int_\R \Abs{e^{itx}} f_\xi(x) dx
+      \int_{\R} \Abs{e^{itx}} f_\xi(x) dx
       =
-      \int_\R f_\xi(x) dx
+      \int_{\R} f_\xi(x) dx
       =
       1.
     \end{align*}
@@ -732,11 +732,11 @@
       = \\ &=
       \Abs{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
       = \\ &=
-      \Abs{\int_\R e^{itx} (e^{ihx} - 1) f_\xi(x) dx}
+      \Abs{\int_{\R} e^{itx} (e^{ihx} - 1) f_\xi(x) dx}
       \leq \\ &\leq
-      \int_\R \Abs{e^{itx}} \Abs{(e^{ihx} - 1)} f_\xi(x) dx
+      \int_{\R} \Abs{e^{itx}} \Abs{(e^{ihx} - 1)} f_\xi(x) dx
       = \\ &=
-      \int_\R \Abs{(e^{ihx} - 1)} f_\xi(x) dx.
+      \int_{\R} \Abs{(e^{ihx} - 1)} f_\xi(x) dx.
     \end{align*}
 
     Ще използваме, че за всяко \( z \in \Complex \) неравенството на Йенсен ни дава
@@ -779,7 +779,7 @@
 
     За целия интеграл тогава получаваме
     \begin{align*}
-      \int_\R \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \int_{\R} \Abs{e^{ihx} - 1} f_\xi(x) dx
       <
       c_\varepsilon \Abs{h} + 2 \varepsilon.
     \end{align*}
@@ -830,9 +830,9 @@
     \begin{align*}
       \Char_\xi(t) - \Char_\eta(t) &= 0
       \\
-      \int_\R e^{itx} f_\xi(x) - \int_\R e^{itx} f_\eta(x) dx &= 0
+      \int_{\R} e^{itx} f_\xi(x) - \int_{\R} e^{itx} f_\eta(x) dx &= 0
       \\
-      \int_\R e^{itx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+      \int_{\R} e^{itx} (f_\xi(x) - f_\eta(x)) dx &= 0.
     \end{align*}
     Последното равенство е изпълнено за всяко \( t \in \R \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \R \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
@@ -848,13 +848,13 @@
     f_\xi(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}}.
   \end{align*}
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и от \( \int_\R e^{-x^2} dx = \sqrt \pi \) получаваме
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и от \( \int_{\R} e^{-x^2} dx = \sqrt \pi \) получаваме
   \begin{align*}
-    \int_\R \varphi(x) dx
+    \int_{\R} \varphi(x) dx
     =
-    \int_\R \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}} dx
+    \int_{\R} \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}} dx
     =
-    \frac 1 {\sqrt{\pi}} \int_\R e^{-{\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)}^2} d\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)
+    \frac 1 {\sqrt{\pi}} \int_{\R} e^{-{\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)}^2} d\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)
     =
     \frac {\sqrt{\pi}} {\sqrt{\pi}}
     =
@@ -887,13 +887,13 @@
   &=
   \Expect(e^{t\xi})
   = \\ &=
-  \int_\R e^{tx} \cdot \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2} dx
+  \int_{\R} e^{tx} \cdot \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2} dx
   = \\ &=
-  \frac 1 {\sqrt{2\pi}} \int_\R e^{tx -\frac {x^2} 2} dx
+  \frac 1 {\sqrt{2\pi}} \int_{\R} e^{tx -\frac {x^2} 2} dx
   = \\ &=
-  \frac 1 {\sqrt{2\pi}} \int_\R e^{- \frac 1 2 (x^2 - 2tx + t^2) + \frac 1 2 t^2} dx
+  \frac 1 {\sqrt{2\pi}} \int_{\R} e^{- \frac 1 2 (x^2 - 2tx + t^2) + \frac 1 2 t^2} dx
   = \\ &=
-  \frac {e^{t^2}} {\sqrt \pi} \int_\R e^{- {\left(\frac {x - t} {\sqrt 2} \right)}^2 + \frac 1 2 t^2} d\left( \frac {x - t} {\sqrt 2} \right)
+  \frac {e^{t^2}} {\sqrt \pi} \int_{\R} e^{- {\left(\frac {x - t} {\sqrt 2} \right)}^2 + \frac 1 2 t^2} d\left( \frac {x - t} {\sqrt 2} \right)
   = \\ &=
   \boxed{e^{\frac {t^2} 2}},
   \\
@@ -1013,7 +1013,7 @@
 
   Дефиницията на плътност е коректна, тъй като за \( x \in [a, b] \) е в сила \( f_\xi(x) = \frac 1 {b-a} > 0 \) и
   \begin{align*}
-    \int_\R f_\xi(x) dx
+    \int_{\R} f_\xi(x) dx
     =
     \int_a^b \frac 1 {b-a} dx
     =
@@ -1103,7 +1103,7 @@
 
   Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и
   \begin{align*}
-    \int_\R \varphi(x) dx
+    \int_{\R} \varphi(x) dx
     =
     \int_0^\infty \lambda e^{-\lambda x} dx
     =
@@ -1571,7 +1571,7 @@
       &=
       \Prob(X < Y + 2)
       = \\ &=
-      \int_\R F_X(y+2) f_Y(y) dy
+      \int_{\R} F_X(y+2) f_Y(y) dy
       = \\ &=
       \int_0^b \frac {\max(0, \min(a, y+2))} a \cdot \frac 1 b dy
       = \\ &=

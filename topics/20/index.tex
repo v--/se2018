@@ -211,11 +211,11 @@
     \begin{align*}
       \Expect\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)
       =
-      \int_\R \frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} l_\xi(x \mid \theta) dx
+      \int_{\R} \frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} l_\xi(x \mid \theta) dx
       =
-      \int_\R \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \frac {l_\xi(x \mid \theta)} {l_\xi(x \mid \theta)} dx
+      \int_{\R} \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \frac {l_\xi(x \mid \theta)} {l_\xi(x \mid \theta)} dx
       = \\ =
-      \frac \partial {\partial \theta} \int_\R l_\xi(x \mid \theta) dx
+      \frac \partial {\partial \theta} \int_{\R} l_\xi(x \mid \theta) dx
       =
       \frac {\partial 1} {\partial \theta}
       =
@@ -237,15 +237,15 @@
     \begin{align*}
       &~~~~\Expect\left( \frac {\partial^2 \ln l_\xi(\xi \mid \theta)} {\partial \theta^2} \mid \theta \right)
       = \\ &=
-      \int_\R \frac {\partial^2 \ln l_\xi(x \mid \theta)} {\partial \theta^2} l_\xi(x \mid \theta) dx
+      \int_{\R} \frac {\partial^2 \ln l_\xi(x \mid \theta)} {\partial \theta^2} l_\xi(x \mid \theta) dx
       = \\ &=
-      \int_\R \frac \partial {\partial \theta} \left(\frac 1 {l_\xi(x \mid \theta)} \cdot \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right) \cdot l_\xi(x \mid \theta) dx
+      \int_{\R} \frac \partial {\partial \theta} \left(\frac 1 {l_\xi(x \mid \theta)} \cdot \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right) \cdot l_\xi(x \mid \theta) dx
       = \\ &=
-      \int_\R \frac 1 {{(l_\xi(x \mid \theta))}^2} \cdot \left( \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} \cdot l_\xi(x \mid \theta) - {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \right) \cdot l_\xi(x \mid \theta) dx
+      \int_{\R} \frac 1 {{(l_\xi(x \mid \theta))}^2} \cdot \left( \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} \cdot l_\xi(x \mid \theta) - {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \right) \cdot l_\xi(x \mid \theta) dx
       = \\ &=
-      \int_\R \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} dx - \int_\R {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
+      \int_{\R} \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} dx - \int_{\R} {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
       = \\ &=
-      \frac {\partial^2} {\partial \theta^2} \int_\R l_\xi(x \mid \theta) dx - \int_\R {\left(\frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} \cdot l_\xi(x \mid \theta) \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
+      \frac {\partial^2} {\partial \theta^2} \int_{\R} l_\xi(x \mid \theta) dx - \int_{\R} {\left(\frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} \cdot l_\xi(x \mid \theta) \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
       = \\ &=
       -\FisherInfo_\xi(\theta).
     \end{align*}
