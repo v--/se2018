@@ -1,11 +1,10 @@
 index.pdf
 
-; pdflatex
+; luatex
 *.aux
 *.log
 *.out
 *.fls
-*.toc
 
 ; latexmk
 *.fdb_latexmk
