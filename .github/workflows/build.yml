@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install
-      run: sudo apt install tree texlive texlive-latex-extra texlive-fonts-extra texlive-lang-cyrillic texlive-luatex biber latexmk
-
-    - name: Build
-      run: make
+    - uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make
+          make
 
     - name: Archive
       run: zip 'Всички теми'.zip *.pdf
