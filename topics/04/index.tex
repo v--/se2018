@@ -63,7 +63,7 @@
   \begin{align*}
     \lim_{k \to \infty} a_k = a,
     &&
-    a_k \underset {k \to \infty} \longrightarrow a.
+    a_k \Conv[k \to \infty]{} a.
   \end{align*}
 
   Ако една редица има граница, казваме, че \underLine{редицата е сходяща}. Ако една редица не е сходяща, тя е \underLine{разходяща}.
@@ -129,7 +129,7 @@
   \begin{align*}
     \lim_{x \to a} f(x) = A,
     &&
-    f(x) \underset {x \to a} \longrightarrow A,
+    f(x) \Conv[x \to a]{} A,
   \end{align*}
   ако за всяка сходяща към \( a \) редица \( \{ a_k \} \subseteq D \) съответната редица от функционални стойности \( {\{ f(a_k) \}}_{k=1}^\infty \) клони към \( A \).
 \end{definition}
@@ -191,11 +191,11 @@
   \begin{align*}
     \lim_{x \uparrow a} f(x) = A,
     &&
-    f(x) \underset {k \uparrow a} \longrightarrow A,
+    f(x) \Conv[k \uparrow a]{} A,
   \end{align*}
   ако за всяка сходяща към \( a \) монотонно растяща (с изключение на краен брой членове) редица \( \{ a_k \} \subseteq D \) съответната редица от функционални стойности \( {\{ f(a_k) \}}_{k=1}^\infty \) клони към \( A \).
 
-  Аналогично определяме \underLine{дясна граница на \( f(x) \) при \( x \) клонящо към \( a \)} за монотонно намаляващи редици с означението \( f(x) \underset {k \downarrow a} \longrightarrow A \).
+  Аналогично определяме \underLine{дясна граница на \( f(x) \) при \( x \) клонящо към \( a \)} за монотонно намаляващи редици с означението \( f(x) \Conv[k \downarrow a]{} A \).
 \end{definition}
 
 \begin{definition}[Обобщена сходимост по Хайне]
@@ -210,7 +210,7 @@
 \begin{definition}[Непрекъснатост по Хайне]
   Нека \( D \subseteq \R \) и \( a \in D \) е точка на сгъстяване на \( D \). Казваме, че \underLine{функцията \( f: D \to \infty \) е непрекъсната в точката \( a \)}, ако за произволна редица \( \{ a_k \} \subseteq D \), клоняща към \( a \), съответната редица \( \{ f(a_k) \} \) от функционални стойности клони към \( f(a) \).
 
-  Ако сходимостта е лява, т.е. \( f(x) \underset {k \uparrow a} \longrightarrow f(a) \), казваме, че \underLine{\( f(x) \) е непрекъсната отляво в \( a \)}. Аналогично се определя непрекъснатост отдясно.
+  Ако сходимостта е лява, т.е. \( f(x) \Conv[k \uparrow a]{} f(a) \), казваме, че \underLine{\( f(x) \) е непрекъсната отляво в \( a \)}. Аналогично се определя непрекъснатост отдясно.
 \end{definition}
 
 \begin{definition}[Непрекъснатост по Коши]
@@ -278,7 +278,7 @@
 \begin{proof}
   Изразявайки приблизително нарастването на пътя \( f(t+h) - f(t) \approx h v(t) \) като нарастването на времето \( t \) умножено по скоростта \( v(t) \) на движение в момента \( t \), получаваме
   \begin{align*}
-    v(t) = \frac{f(t+h) - f(t)} {h} \underset {h \to 0} \longrightarrow f'(t).
+    v(t) = \frac{f(t+h) - f(t)} {h} \Conv[h \to 0]{} f'(t).
   \end{align*}
 \end{proof}
 
@@ -421,7 +421,7 @@
       = \\ &=
       f'(g(a)) \cdot g'(a),
     \end{align*}
-    където \( \Delta_h \coloneqq g(a+h) - g(a) \underset {h \to 0} \longrightarrow 0 \), тъй като \( g(x) \) е непрекъсната в \( a \).
+    където \( \Delta_h \coloneqq g(a+h) - g(a) \Conv[h \to 0]{} 0 \), тъй като \( g(x) \) е непрекъсната в \( a \).
   \end{enumerate}
 \end{proof}
 

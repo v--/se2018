@@ -475,7 +475,7 @@
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{\alpha}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \Conv[t \to 0]{} 0 \) поточково.
 
     Получихме полином на Тейлър за функцията \( \MGF_\xi(t) \). Тогава \( \MGF_\xi(t) \) има \( n \)-та производна, при това \( \MGF^{(n)}_\xi(0) = \Expect(\xi^n) \).
 
@@ -637,7 +637,7 @@
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{(\alpha i)}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \Conv[t \to 0]{} 0 \) поточково.
 
     Получихме полином на Тейлър за функцията \( \Char_\xi(t) \). Тогава \( \Char_\xi(t) \) има \( n \)-та производна, при това \( \Char^{(n)}_\xi(0) = i^n \Expect(\xi^n) \).
 
@@ -1010,7 +1010,7 @@
 \endgroup
 
 \begin{theorem}[Поасон]\label{thm:poisson}
-  Нека \( \xi_1, \xi_2, \ldots \) са независими и \( \xi_k \in \DBinomial(k, p_k), k = 1, 2, \ldots \) Ако \( k p_k \underset {k \to \infty} \longrightarrow \lambda \), тогава граница по вероятност \( \lim_{k \to \infty} \xi_k \) съществува и има разпределение \( \DPoisson(\lambda) \).
+  Нека \( \xi_1, \xi_2, \ldots \) са независими и \( \xi_k \in \DBinomial(k, p_k), k = 1, 2, \ldots \) Ако \( k p_k \Conv[k \to \infty]{} \lambda \), тогава граница по вероятност \( \lim_{k \to \infty} \xi_k \) съществува и има разпределение \( \DPoisson(\lambda) \).
 \end{theorem}
 
 Както става ясно от видът на пораждащата моментите функция, ако

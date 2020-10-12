@@ -75,16 +75,16 @@
     \end{align*}
     се разпада на систематична и случайна грешка.
 
-    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \underLine{неизместена}, ако \( \Expect(t_n \mid \theta) = \theta \), и асимптотично неизместена, ако \( \Expect(t_n \mid \theta) \underset {n \mapsto \infty} \longrightarrow \theta \).
+    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \underLine{неизместена}, ако \( \Expect(t_n \mid \theta) = \theta \), и асимптотично неизместена, ако \( \Expect(t_n \mid \theta) \Conv[n \to \infty]{} \theta \).
 
-    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \underLine{състоятелна}, ако \( t_n \underset {n \mapsto \infty} \longrightarrow \theta \) по вероятност, т.е.
+    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \underLine{състоятелна}, ако \( t_n \Conv[n \to \infty]{} \theta \) по вероятност, т.е.
     \begin{align*}
-      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \underset {n \mapsto \infty} \longrightarrow 0~\forall \varepsilon > 0.
+      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0~\forall \varepsilon > 0.
     \end{align*}
 
     Оценката наричаме~\underLine{силно състоятелна}, ако сходимостта е почти сигурна, т.е.
     \begin{align*}
-      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \underset {n \mapsto \infty} \longrightarrow 0~\forall \varepsilon > 0.
+      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0~\forall \varepsilon > 0.
     \end{align*}
 
     \item Точковата оценка \( t_n \) за \( \theta \) с изместване \( \Expect(t_n) - \theta \) има \underLine{минимална дисперсия}, ако \( \Var(t_n) \leq \Var(u_n) \) за произволна друга точкова оценка \( u_n \) със същото изместване.
@@ -316,7 +316,7 @@
     =
     k(\theta) [t_n(x_1, \ldots, x_n) + r(\theta)],
   \end{align*}
-  където \( k: \Theta \mapsto \R \) не зависи от \( x_1, \ldots, x_n \).
+  където \( k: \Theta \to \R \) не зависи от \( x_1, \ldots, x_n \).
 \end{theorem}
 \begin{proof}
   Отново ще докажем теоремата само за абсолютно непрекъснати разпределения. В общия случай римановите интеграли могат да се заменят с интеграли по вероятностни мерки, съответстващи на различните параметри \( \theta \in \Theta \).

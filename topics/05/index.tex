@@ -180,7 +180,7 @@
   \begin{align*}
     f(x) = \sum_{k=0}^n \frac {f^{(k)}(\xi)} {k!} {(x-\xi)}^k + R(x),
   \end{align*}
-  където \( R(x) \underset {x \to \xi} \longrightarrow 0 \).
+  където \( R(x) \Conv[x \to \xi]{} 0 \).
 \end{theorem}
 \begin{proof}
   Фиксираме \( \xi, x \in (a, b) \) и полагаме \( U \coloneqq [\min(\xi, x), \max(\xi, x)] \). Дефинираме спомагателната функция
@@ -215,7 +215,7 @@
     \frac {\psi(x) - \psi(\xi)} {\psi'(c)} \frac {f^{(n+1)}(c)} {n!} {(x-c)}^n.
   \end{align*}
 
-  От непрекъснатостта на \( \psi(t) \) следва, че \( R(x) \underset {x \to \xi} \longrightarrow 0 \).
+  От непрекъснатостта на \( \psi(t) \) следва, че \( R(x) \Conv[x \to \xi]{} 0 \).
 \end{proof}
 
 В зависимост от конкретния вид на функцията \( \psi(t) \), можем да получим различни форми за остатъчните членове:

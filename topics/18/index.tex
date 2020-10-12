@@ -73,8 +73,8 @@
     \begin{enumerate}
       \item \( N(0) = 0 \)
       \item \( N(t) \) е процес със стационарни и независими нараствания
-      \item \( \frac {\Prob(N(h) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda \)
-      \item \( \frac {\Prob(N(h) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0 \)
+      \item \( \frac {\Prob(N(h) = 1)} h \Conv[h \to 0]{} \lambda \)
+      \item \( \frac {\Prob(N(h) \geq 1)} h \Conv[h \to 0]{} 0 \)
     \end{enumerate}
 
     \item\label{def:pp-3} Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \DExp(\lambda) \), т.е.
@@ -133,7 +133,7 @@
     \frac 1 h \frac {e^{-\lambda h} {(\lambda h)}^1} {1!}
     =
     \lambda e^{-\lambda h}
-    \underset {h \mapsto 0} \longrightarrow
+    \Conv[h \to 0]{}
     \lambda.
   \end{align*}
   и
@@ -149,7 +149,7 @@
     \frac {1 - e^{-\lambda h}} h - \lambda e^{-\lambda h}
     = \\ &=
     - \frac {e^{-\lambda (0 + h)} - e^{-\lambda 0}} h - \lambda e^{-\lambda h}
-    \underset {h \mapsto 0} \longrightarrow
+    \Conv[h \to 0]{}
     -(-\lambda) e^{-\lambda 0} - \lambda e^{-\lambda 0}
     =
     0.
@@ -518,8 +518,8 @@
   \begin{enumerate}
     \item \( N(0) = 0 \)
     \item \( N(t) \) е процес с независими нараствания
-    \item \( \frac {\Prob(N(t+h) - N(t) = 1)} h \underset {h \mapsto 0} \longrightarrow \lambda(t) \)
-    \item \( \frac {\Prob(N(t+h) - N(t) \geq 1)} h \underset {h \mapsto 0} \longrightarrow 0 \)
+    \item \( \frac {\Prob(N(t+h) - N(t) = 1)} h \Conv[h \to 0]{} \lambda(t) \)
+    \item \( \frac {\Prob(N(t+h) - N(t) \geq 1)} h \Conv[h \to 0]{} 0 \)
   \end{enumerate}
 
   За удобство полагаме
