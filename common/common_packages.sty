@@ -5,10 +5,12 @@
 \usepackage{lualatex-math}
 
 % Internationalization
-\usepackage[style=german]{csquotes}
 \usepackage{polyglossia}
 \setdefaultlanguage{bulgarian}
 \setotherlanguage{english}
+
+\usepackage[autostyle]{csquotes}
+\DeclareQuoteAlias[quotes]{german}{bulgarian}
 
 % Citations
 \usepackage[backend=biber]{biblatex}
