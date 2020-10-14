@@ -1,83 +1,83 @@
 % Number sets
-\newcommand \Z            {\mathbb{Z}}
-\newcommand \ZPos         {\mathbb{Z}^{> 0}}
-\newcommand \ZNNeg        {\mathbb{Z}^{\geq 0}}
-\newcommand \R            {\mathbb{R}}
-\newcommand \RPos         {\mathbb{R}^{> 0}}
-\newcommand \RNNeg        {\mathbb{R}^{\geq 0}}
-\newcommand \Abs      [1] {\left\vert #1 \right\vert}
-\newcommand \Complex      {\mathbb{C}}
-\newcommand \CConj        {\overline}
+\newcommand           \Z              {\symbb{Z}}
+\newcommand           \ZPos           {\symbb{Z}^{> 0}}
+\newcommand           \ZNNeg          {\symbb{Z}^{\geq 0}}
+\newcommand           \R              {\symbb{R}}
+\newcommand           \RPos           {\symbb{R}^{> 0}}
+\newcommand           \RNNeg          {\symbb{R}^{\geq 0}}
+\newcommand           \Abs        [1] {\left\vert #1 \right\vert}
+\newcommand           \Complex        {\symbb{C}}
+\newcommand           \CConj          {\overline}
 
 % Geometry
-\newcommand \Dist         {\operatorname{d}}
-\newcommand \ODist        {\partial}
-\newcommand \Point        {\operatorname{\text{т.}}}
-\newcommand \Ray          {\V{\phantom{A}}}
-\newcommand \V        [1] {\overrightarrow{#1}}
+\DeclareMathOperator  \Dist           {d}
+\newcommand           \ODist          {\partial}
+\newcommand           \Point          {\operatorname{\text{т.}}}
+\newcommand           \Ray            {\V{\phantom{A}}}
+\newcommand           \V          [1] {\overrightarrow{#1}}
 
 % Abstract algebra
-\newcommand \Gen      [1] {\left\langle #1 \right\rangle}
-\newcommand \LC           {\operatorname{lc}}
-\newcommand \Divides      {\operatorname{\vert}}
+\DeclareMathOperator  \LC             {lc}
+\newcommand           \Gen        [1] {\left\langle #1 \right\rangle}
+\newcommand           \Divides        {\operatorname{\vert}}
 
 % Linear algebra
-\newcommand \Norm     [1] {\left\Vert #1 \right\Vert}
-\newcommand \Prod     [2] {\left\langle #1, #2 \right\rangle}
-\newcommand \Rank         {\operatorname{rank}}
-\newcommand \Span         {\operatorname{span}}
+\newcommand           \Norm       [1] {\left\Vert #1 \right\Vert}
+\newcommand           \Prod       [2] {\left\langle #1, #2 \right\rangle}
+\DeclareMathOperator  \Rank           {rank}
+\DeclareMathOperator  \Span           {span}
 
 % Set theory
-\newcommand \PowerSet     {\mathcal{P}}
-\newcommand \Ind          {\operatorname{I}}
-\newcommand \Image        {\operatorname{im}}
-\DeclareMathOperator* \Argmin {\operatorname{argmin}}
-\DeclareMathOperator* \Argmax {\operatorname{argmax}}
+\newcommand           \PowerSet       {\symcal{P}}
+\DeclareMathOperator  \Ind            {I}
+\DeclareMathOperator  \Image          {im}
+\DeclareMathOperator* \Argmin         {\operatorname{argmin}}
+\DeclareMathOperator* \Argmax         {\operatorname{argmax}}
 
 % Analysis
-\newcommand \Supp         {\operatorname{supp}}
-\newcommand \LSpace       {L}
-\newcommand \BorelAlgebra {\mathfrak{B}}
-\newcommand \Conv   [2][] {\underset {#1} {\overset {#2} \longrightarrow}}
+\DeclareMathOperator  \Supp           {supp}
+\newcommand           \LSpace         {L}
+\newcommand           \BorelAlgebra   {\mathfrak{B}}
+\newcommand           \Conv   [2][]   {\underset {#1} {\overset {#2} \longrightarrow}}
 
 % Topology
-\newcommand \Int          {\operatorname{int}}
-\newcommand \Ext          {\operatorname{ext}}
-\newcommand \Cl           {\operatorname{cl}}
+\DeclareMathOperator  \Int            {int}
+\DeclareMathOperator  \Ext            {ext}
+\DeclareMathOperator  \Cl             {cl}
 
 % Measure theory
-\newcommand \CharSet      {\chi}
-\newcommand \SigmaAlgebra {\sigma}
+\newcommand           \CharSet        {\chi}
+\newcommand           \SigmaAlgebra   {\sigma}
 
 % Probability theory
-\newcommand \Prob         {\operatorname{P}}
-\newcommand \Expect       {\mathbb{E}}
-\newcommand \Var          {\operatorname{Var}}
-\newcommand \Cov          {\operatorname{Cov}}
-\newcommand \Corr         {\operatorname{\rho}}
-\newcommand \PGF          {\operatorname{PGF}}
-\newcommand \MGF          {\operatorname{MGF}}
-\newcommand \Char         {\varphi}
-\newcommand \Communicates {\leftrightarrow}
+\DeclareMathOperator  \Prob           {P}
+\DeclareMathOperator  \Var            {Var}
+\DeclareMathOperator  \Cov            {Cov}
+\DeclareMathOperator  \PGF            {PGF}
+\DeclareMathOperator  \MGF            {MGF}
+\newcommand           \Expect         {\symbb{E}}
+\newcommand           \Corr           {\operatorname{\rho}}
+\newcommand           \Char           {\varphi}
+\newcommand           \Communicates   {\leftrightarrow}
 
 % Probability distributions
-\newcommand \DUniform     {\operatorname{Uniform}}
-\newcommand \DBinomial    {\operatorname{Binom}}
-\newcommand \DBernoulli   {\operatorname{Bernoulli}}
-\newcommand \DPoisson     {\operatorname{Poisson}}
-\newcommand \DGeom        {\operatorname{Geom}}
-\newcommand \DNormal      {\operatorname{No}}
-\newcommand \DExp         {\operatorname{Exp}}
-\newcommand \DGamma       {\operatorname{Gamma}}
-\newcommand \DChiSq       {\operatorname{\chi^2}}
-\newcommand \DStudent     {\operatorname{t}}
-\newcommand \DFisher      {\operatorname{Fisher}}
+\DeclareMathOperator  \DUniform       {Uniform}
+\DeclareMathOperator  \DBinomial      {Binom}
+\DeclareMathOperator  \DBernoulli     {Bernoulli}
+\DeclareMathOperator  \DPoisson       {Poisson}
+\DeclareMathOperator  \DGeom          {Geom}
+\DeclareMathOperator  \DNormal        {No}
+\DeclareMathOperator  \DExp           {Exp}
+\DeclareMathOperator  \DGamma         {Gamma}
+\DeclareMathOperator  \DChiSq         {\chi^2}
+\DeclareMathOperator  \DStudent       {t}
+\DeclareMathOperator  \DFisher        {Fisher}
 
 % Statistics
-\newcommand \FisherInfo   {\mathcal{I}}
-\newcommand \SampleSpace  {\mathcal{X}}
-\newcommand \Avg          {\overline}
+\newcommand           \FisherInfo     {\symcal{I}}
+\newcommand           \SampleSpace    {\symcal{X}}
+\newcommand           \Avg            {\overline}
 
 % Misc
-\newcommand \Email    [1] {\href{mailto:#1}{#1}}
-\newcommand \F            {\mathcal{F}}
+\newcommand           \Email      [1] {\href{mailto:#1}{#1}}
+\newcommand           \F              {\symcal{F}}
