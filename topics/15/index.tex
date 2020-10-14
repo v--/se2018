@@ -134,7 +134,7 @@
   Очакване от константа \( x \in \R \) дефинираме да бъде самата константа \( x \).
 \end{definition}
 
-\begin{note}
+\begin{remark}
   Формално, полагаме \( \Expect(x) \coloneqq \Expect(\Ind_x) \), където \( \Ind_x \) е индикатор за \( x \), т.е.
   \begin{align*}
     \Prob(I_x = y) = \delta_{xy} = \begin{cases}
@@ -144,7 +144,7 @@
   \end{align*}
 
   Оттук директно следва \( \Expect(x) = \Expect(\Ind_x) = x \).
-\end{note}
+\end{remark}
 
 \begin{proposition}\label{thm:expectation_of_independent_product}
   За независими дискретни случайни величини \( \xi \) и \( \eta \) с крайно очакване е изпълнено
@@ -335,7 +335,7 @@
   Изпълнено е \( \Char_\xi(t) = \MGF_\xi(it) = \PGF_\xi(e^{it}) \).
 \end{definition}
 
-\begin{note}
+\begin{remark}
   Не сме дефинирали очакване от комплексна случайна величина, но теоретичната обосновка идва от формулите на Ойлер:
   \begin{align*}
     \Char_\xi (t)
@@ -346,11 +346,11 @@
     =
     \Expect(\cos(t\xi)) + i \Expect(\sin(t\xi)).
   \end{align*}
-\end{note}
+\end{remark}
 
-\begin{note}
+\begin{remark}
   Дефинициите за моменти и функции от очакването се пренасят без изменение за случайни величини, които не са дискретни. Пораждащите функции, обаче, се полезни само за случайни величини, които приемат неотрицателни цели стойности.
-\end{note}
+\end{remark}
 
 \begin{theorem}[Свойства на пораждащите функции]\label{thm:pgf_properties}
   Нека \( \xi \) и \( \eta \) са независими целочислени случайни величини със стойности \( 0, 1, \ldots \) (възможно е \( P(\xi = k) > 0 \) само за краен брой \( k \)).
@@ -1140,9 +1140,9 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{note}
+\begin{remark}
   За тази задача е дадена таблица за разпределението на Поасон за \( x = 0, 1, \ldots, 24 \) и \( \lambda = 3, 6, \ldots, 21, 24 \).
-\end{note}
+\end{remark}
 
 \begin{solution}
   \mbox{}
