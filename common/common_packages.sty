@@ -7,13 +7,18 @@
 % Internationalization
 \usepackage{polyglossia}
 \setdefaultlanguage{bulgarian}
-\setotherlanguage{english}
+\setotherlanguages{english, russian}
 
 \usepackage[autostyle]{csquotes}
+
 \DeclareQuoteAlias[quotes]{german}{bulgarian}
 
+\addto\captionsbulgarian{%
+  \def\proofname{Доказателство}%
+}
+
 % Citations
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber, autolang=other]{biblatex}
 
 % Fonts
 \usepackage{fontspec}
