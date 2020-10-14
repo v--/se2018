@@ -91,7 +91,7 @@
   \end{itemize}
 \end{definition}
 
-\begin{proposition}\label{thm:unbiased-mean}
+\begin{proposition}\label{thm:mean_is_unbiased_estimator}
   За произволна случайна величина \( \xi \) с крайно очакване средноаритметичното
   \begin{align*}
     m_n(x_1, \ldots, x_n) \coloneqq \frac 1 n \sum_{k=1}^n x_k
@@ -102,7 +102,7 @@
   Следва директно от линейността на очакването.
 \end{proof}
 
-\begin{proposition}\label{thm:unbiased-variation}
+\begin{proposition}\label{thm:corrected_variation_is_unbiased_estimator}
   За произволна случайна величина \( \xi \) с крайна дисперсия оценката
   \begin{align*}
     s_n^2(x_1, \ldots, x_n) \coloneqq \frac 1 {n-1} \sum_{k=1}^n {(x_k - \hat \xi(x_1, \ldots, x_n))}^2
@@ -152,7 +152,7 @@
 
 \subsection{Информация на Фишър}
 
-\begin{definition}\label{def:fisher-information}
+\begin{definition}\label{def:fisher_information}
   Нека \( \theta \in \Theta \) е числена характеристика на \( \xi \), т.е. \( \theta \) е едномерен вектор с възможни стойности в \( \Theta \).
 
   Разглеждаме \underLine{логаритмичната функция на правдоподобие} \( \ln l_\xi(x \mid \theta) \). За нея ще изискаме допълнителни условия за регулярност:
@@ -297,8 +297,8 @@
 \end{theorem}
 
 Ще докажем малко по-общ резултат, който улеснява проверката и даже намирането на ефективни оценки.
-\begin{theorem}[Рао-Крамер]\label{thm:rao-cramer}
-  Нека \( \theta \) е някаква числена характеристика на \( \xi \) е \( r'(\theta) \) е диференцируема в \( \Theta \). Нека са изпълнени условията за регулярност от деф.~\ref{def:fisher-information}.
+\begin{theorem}[Рао-Крамер]\label{thm:rao_cramer}
+  Нека \( \theta \) е някаква числена характеристика на \( \xi \) е \( r'(\theta) \) е диференцируема в \( \Theta \). Нека са изпълнени условията за регулярност от деф.~\ref{def:fisher_information}.
 
   За всяка неизместена оценка \( t_n \) на \( r(\theta) \) е изпълнено
   \begin{align*}
@@ -361,7 +361,7 @@
 
 Нека \( \xi \in \DNormal(\mu, \sigma^2) \) и \( \xi_1, \ldots, \xi_n \) е проста извадка над \( \xi \).
 
-\begin{proposition}\label{thm:normal-mean-variance}
+\begin{proposition}\label{thm:normal_mean_variance_estimators_independent}
   Оценките \( m_n \) и \( s_n^2 \) за \( \DNormal(\mu, \sigma^2) \)-разпределена извадка са независими. За разпределенията им имаме
   \begin{align*}
     m_n \in \DNormal \left(\mu, \frac {\sigma^2} n \right),
@@ -456,7 +456,7 @@
 \end{definition}
 
 \begin{note}
-  Стюдентизацията има разпределение на Стюдънт, тъй като според твърдение~\ref{thm:normal-mean-variance} оценките \( m_n \) и \( s_n \) са независими.
+  Стюдентизацията има разпределение на Стюдънт, тъй като според твърдение~\ref{thm:normal_mean_variance_estimators_independent} оценките \( m_n \) и \( s_n \) са независими.
 \end{note}
 
 \subsubsection{Доверителен интервал за очакването при известна дисперсия}
@@ -494,7 +494,7 @@
 
 С \( {\DChiSq(m)}_p \) ще означаваме \( p \)-квантила на \( \DChiSq(m) \) разпределението.
 
-Тъй като според твърдение~\ref{thm:normal-mean-variance} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1) \), директно намираме \( \gamma \)-доверителния интервал
+Тъй като според твърдение~\ref{thm:normal_mean_variance_estimators_independent} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1) \), директно намираме \( \gamma \)-доверителния интервал
 \begin{align*}
   \Prob \left( {\DChiSq(n-1)}_{\frac {1-\gamma} 2} \leq (n-1) \frac {s_n^2} {\sigma^2} \leq {\DChiSq(n-1)}_{\frac {1+\gamma} 2} \right) &= \gamma,
   \\

@@ -9,7 +9,7 @@
 
 % Document
 \title{Тема 15}
-\subtitle{Случайни величини с дискретни разпределения - дискретно равномерно, биномно, геометрично, Поасоново разпределения. Задачи, в които възникват.}
+\subtitle{Случайни величини с дискретни разпределения - дискретно равномерно, биномно, геометрично, поасоново разпределения. Задачи, в които възникват.}
 \author{Янис Василев, \Email{ianis@ivasilev.net}}
 \date{20 юни 2019}
 
@@ -61,17 +61,17 @@
   Множеството от стойности на \( \xi \) ще бележим с \( \Image(\xi) \coloneqq \{ x_1, x_2, \ldots \} \).
 \end{definition}
 
-\begin{theorem}\label{thm:pmf-props}
+\begin{theorem}\label{thm:pmf_properties}
   Редицата \( p_1, p_2, \ldots \) са е редица от вероятности на някоя дискретна случайна величина тогава и само тогава, когато са изпълнени
   \begin{enumerate}
-    \item\label{thm:pmf-props.bounded} \( 0 \leq p_k \) за всяко \( k = 1, 2, \ldots \) (неотрицателност)
-    \item\label{thm:pmf-props.normed} \( \sum_k p_k = 1 \) (нормираност).
+    \item\label{thm:pmf_properties/bounded} \( 0 \leq p_k \) за всяко \( k = 1, 2, \ldots \) (неотрицателност)
+    \item\label{thm:pmf_properties/normed} \( \sum_k p_k = 1 \) (нормираност).
   \end{enumerate}
 \end{theorem}
 
-Теорема~\ref{thm:pmf-props} ни дава обосновка да задаваме дискретни случайни величини изцяло чрез редици от вероятности, т.е. без изрично да задаваме вероятностни пространства. По тази причина понякога разпределение на дискретна случайна величина наричаме не съответната вероятностна мярка, а редицата от вероятностите.
+Теорема~\ref{thm:pmf_properties} ни дава обосновка да задаваме дискретни случайни величини изцяло чрез редици от вероятности, т.е. без изрично да задаваме вероятностни пространства. По тази причина понякога разпределение на дискретна случайна величина наричаме не съответната вероятностна мярка, а редицата от вероятностите.
 
-\begin{proof}[Доказателство на теорема~\ref{thm:pmf-props}]
+\begin{proof}[Доказателство на теорема~\ref{thm:pmf_properties}]
   (\( \implies \)) Нека \( \xi \) е дискретна случайна величина над вероятностното пространство \( (\Omega, \F, \Prob) \) със стойности \( x_1, x_2, \ldots \) и вероятности \( p_1, p_2, \ldots \)
 
   Тъй като \( \Prob: \F \to [0, 1] \) е вероятностна мярка, директно получаваме \( p_k = \Prob(\xi = x_k) \in [0, 1] \) за всяко \( k = 1, 2, \ldots \) и
@@ -91,18 +91,18 @@
     1.
   \end{align*}
 
-  (\( \impliedby \)) Нека редицата \( p_1, p_2, \ldots \) удовлетворява условията~\ref{thm:pmf-props.bounded} и~\ref{thm:pmf-props.normed}. Предполагаме, че това са вероятности за някакви елементарни събития \( \Omega = \{ \omega_1, \omega_2, \ldots \} \).
+  (\( \impliedby \)) Нека редицата \( p_1, p_2, \ldots \) удовлетворява условията~\ref{thm:pmf_properties/bounded} и~\ref{thm:pmf_properties/normed}. Предполагаме, че това са вероятности за някакви елементарни събития \( \Omega = \{ \omega_1, \omega_2, \ldots \} \).
 
   Дефинираме случайната величина \( \xi: \Omega \to \R, \xi(\omega_k) \coloneqq p_k \), която е измерима над \( (\Omega, \PowerSet(\Omega)) \), тъй като праобразът \( \xi^{-1}(A) \) на всяко борелово множество \( A \in \BorelAlgebra(\R) \) е подмножество на \( \Omega \).
 
-  Сега дефинираме \( \Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega) \). Тази сума е добре дефинирана, тъй като редът \( \sum_k p_k \) е абсолютно сходящ според~\ref{thm:pmf-props.bounded} и следователно всеки подред също е абсолютно сходящ.
+  Сега дефинираме \( \Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega) \). Тази сума е добре дефинирана, тъй като редът \( \sum_k p_k \) е абсолютно сходящ според~\ref{thm:pmf_properties/bounded} и следователно всеки подред също е абсолютно сходящ.
 
   \( \Prob \) е вероятностна мярка над \( (\Omega, \PowerSet(\Omega)) \), тъй като
   \begin{enumerate}
     \item \( \Prob(\varnothing) = 0 \),
-    \item \( \Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0 \) за произволно събитие \( A \subseteq \Omega \) според свойство~\ref{thm:pmf-props.bounded},
+    \item \( \Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0 \) за произволно събитие \( A \subseteq \Omega \) според свойство~\ref{thm:pmf_properties/bounded},
     \item \( \Prob(\cup_{i=1}^\infty A_i) = \sum_{\omega \in \cup_{i=1}^\infty A_i} \xi(\omega) = \sum_{i=1}^\infty \sum_{\omega \in A_i} \xi(\omega) = \sum_{i=1}^\infty \Prob(A_i) \),
-    \item \( \Prob(A) \leq 1 \) за произволно събитие \( A \subseteq \Omega \) според доказаната адитивност и свойство~\ref{thm:pmf-props.normed}.
+    \item \( \Prob(A) \leq 1 \) за произволно събитие \( A \subseteq \Omega \) според доказаната адитивност и свойство~\ref{thm:pmf_properties/normed}.
   \end{enumerate}
   Така построихме дискретна случайна величина \( \xi \) над пространството \( (\Omega, \PowerSet(\Omega), \Prob) \) с вероятности \( p_1, p_2, \ldots \)
 \end{proof}
@@ -146,7 +146,7 @@
   Оттук директно следва \( \Expect(x) = \Expect(\Ind_x) = x \).
 \end{note}
 
-\begin{proposition}\label{thm:expect-product}
+\begin{proposition}\label{thm:expectation_of_independent_product}
   За независими дискретни случайни величини \( \xi \) и \( \eta \) с крайно очакване е изпълнено
   \begin{align*}
     \Expect(\xi \eta) = \Expect(\xi) \Expect(\eta).
@@ -171,7 +171,7 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}\label{thm:expect-linear}
+\begin{proposition}\label{thm:expectation_is_linear_linear}
   Очакването е линеен функционал над подпространството от дискретни случайни величини над \( (\Omega, \F, \Prob) \), за които очакването съществува.
 \end{proposition}
 \begin{proof}
@@ -229,7 +229,7 @@
   \end{align*}
 \end{proof}
 
-Доказаните в твърдения~\ref{thm:expect-product},~\ref{thm:expect-linear} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
+Доказаните в твърдения~\ref{thm:expectation_of_independent_product},~\ref{thm:expectation_is_linear_linear} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
   \underLine{Ковариация на случайните величини \( \xi \) и \( \eta \)} наричаме
@@ -272,7 +272,7 @@
   Случайни величини със стандартно отклонение единица наричаме \underLine{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \LSpace^2 \).
 \end{definition}
 
-\begin{proposition}\label{thm:orthogonal-if-independent}
+\begin{proposition}\label{thm:independence_implies_orthogonality}
   Ако две случайни величини са независими и имат крайно очакване, те са ортогонални.
 \end{proposition}
 \begin{proof}
@@ -292,7 +292,7 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}\label{thm:lower-order-moments}
+\begin{proposition}\label{thm:lower_order_moments_exist}
   Ако \( \Expect(\xi^n) \) съществува, съществуват и моментите от по-нисък ред.
 \end{proposition}
 \begin{proof}
@@ -352,7 +352,7 @@
   Дефинициите за моменти и функции от очакването се пренасят без изменение за случайни величини, които не са дискретни. Пораждащите функции, обаче, се полезни само за случайни величини, които приемат неотрицателни цели стойности.
 \end{note}
 
-\begin{theorem}[Свойства на пораждащите функции]\label{thm:pgf-props}
+\begin{theorem}[Свойства на пораждащите функции]\label{thm:pgf_properties}
   Нека \( \xi \) и \( \eta \) са независими целочислени случайни величини със стойности \( 0, 1, \ldots \) (възможно е \( P(\xi = k) > 0 \) само за краен брой \( k \)).
 
   За пораждащата функция \( \PGF_\xi \) са изпълнени следните свойства
@@ -421,7 +421,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf-props}
+\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf_properties}
   Нека \( \xi \) и \( \eta \) са независими дискретни случайни величини.
 
   За пораждащите моментите функции \( \MGF_\xi \) и \( \MGF_\eta \) са изпълнени следните свойства
@@ -454,7 +454,7 @@
       2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{align*}
 
-    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower-order-moments} съществуват и всички нечетни моменти.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower_order_moments} съществуват и всички нечетни моменти_exist.
 
     При фиксирано \( n = 1, 2, \ldots \) за някаква околност на \( 0 \), съдържаща се в \( U \), за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
@@ -506,7 +506,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Свойства на характеристичните функции]\label{thm:char-props}
+\begin{theorem}[Свойства на характеристичните функции]\label{thm:char_properties}
   Нека \( \xi \) и \( \eta \) са независими дискретни случайни величини.
 
   За характеристичните функции \( \Char_\xi \) и \( \Char_\eta \) са изпълнени следните свойства
@@ -813,7 +813,7 @@
   по вероятност.
 \end{theorem}
 
-\begin{theorem}[Моавър-Лаплас, предшественик на централните гранични теореми]\label{thm:moivre-laplace}
+\begin{theorem}[Моавър-Лаплас, предшественик на централните гранични теореми]\label{thm:moivre_laplace}
   Ако \( \xi \in \DBinomial(n, p) \), тогава
   \begin{align*}
     \frac {\xi - \Expect(\xi)} {\sigma_\xi}
@@ -930,12 +930,12 @@
   \end{align*}
 \end{proof}
 
-Вж. също задача~\ref{ex:se-summer2014}.
+Вж. също задача~\ref{ex:se_summer2014}.
 
 \subsubsection{Поасоново разпределение}\label{dist:poisson}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \underLine{Поасоново разпределение} със степен \( \lambda \in \RPos \) и пишем \( \xi \in \DPoisson(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \underLine{поасоново разпределение} със степен \( \lambda \in \RPos \) и пишем \( \xi \in \DPoisson(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
   \begin{align*}
     \Prob(\xi = k) = \frac{e^{-\lambda} \lambda^k} {k!}.
   \end{align*}
@@ -952,7 +952,7 @@
   \end{align*}
 \end{definition}
 
-Ако дадено явление се случва със средна честота \( \lambda \), Поасоновото разпределение моделира количеството независими явления за единица време. Това го прави подходящо за широк спектър от задачи - от моделиране на броя посетители на магазин в натоварен час до моделиране на броя скокове в цените на финансов дериват.
+Ако дадено явление се случва със средна честота \( \lambda \), поасоновото разпределение моделира количеството независими явления за единица време. Това го прави подходящо за широк спектър от задачи - от моделиране на броя посетители на магазин в натоварен час до моделиране на броя скокове в цените на финансов дериват.
 
 За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DPoisson(p) \) имаме
 \begingroup
@@ -1010,13 +1010,13 @@
 \end{align*}
 то сумата им има разпределение \( \DPoisson\left(\sum_{m=1}^n \lambda_m \right) \).
 
-Вж. също задача~\ref{ex:se-summer2016}.
+Вж. също задача~\ref{ex:se_summer2016}.
 
 \section{Задачи}
 
 В конспекта не е посочен списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
 
-\begin{exercise}[\cite{SESummer2014}]\label{ex:se-summer2014}
+\begin{exercise}[\cite{SESummer2014}]\label{ex:se_summer2014}
   Дадена е редица от независими опити с два изхода: успех и неуспех. Вероятността за успех е \( p \in (0, 1) \). Опитите се провеждат до първа поява на успех. Случайната величина \( X \) е равна на броя на неуспехите. Да се намери:
   \begin{enumerate}[label=\alph*)]
     \item Разпределението на случайната величина \( X \)
@@ -1105,7 +1105,7 @@
   \end{enumerate}
 \end{solution}
 
-\begin{exercise}[\cite{SESummer2016}]\label{ex:se-summer2016}
+\begin{exercise}[\cite{SESummer2016}]\label{ex:se_summer2016}
   Нека \( X \) е случайна величина с разпределение на Поасон с параметър \( \lambda > 0 \):
   \begin{align*}
     X \in \DPoisson(\lambda),
@@ -1148,7 +1148,7 @@
   \mbox{}
   \begin{enumerate}[label=\alph*)]
     \item В~\ref{dist:poisson} сме намерили, че \( \Expect(X) = \Var(X) = \lambda \).
-    \item Според теорема~\ref{thm:char-props} \( \MGF_{X_1 + X_2} \) определя напълно разпределението на \( X_1 + X_2 \). Използваме пораждащата моментите функция от~\ref{dist:poisson}, за да намерим
+    \item Според теорема~\ref{thm:char-props} \( \MGF_{X_1 + X__} \) определя напълно разпределението на \( X_1 + X_2 \). Използваме пораждащата моментите функция от~\ref{dist:poisson}, за да намерим
     \begin{align*}
       \MGF_{X_1 + X_2}
       =

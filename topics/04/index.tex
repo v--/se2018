@@ -70,18 +70,18 @@
   Сходящите редици \( \{ a_k \} \subseteq D \) имат единствена граница.
 \end{proposition}
 \begin{proof}
-  Нека \( a \) и \( b \) са граници на редицата \( \{ a_k \} \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности (това е Хаусдорфовото свойство на реалните числа).
+  Нека \( a \) и \( b \) са граници на редицата \( \{ a_k \} \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности (това е хаусдорфовото свойство на реалните числа).
 
   От друга страна, ако \( U_a \) и \( U_b \) са някакви околности на \( a \) и \( b \), те непременно се пресичат, тъй като и двете съдържат цялата редица с изключение на краен брой членове. Заключаваме, че \( a = b \).
 \end{proof}
 
 \begin{note}
-  Определенията за точки на сгъстяване и за граница на редица се пренасят без изменение за произволни топологични пространства. Сходимостта, обаче, не е непременно еднозначна, ако пространството не е Хаусдорфово.
+  Определенията за точки на сгъстяване и за граница на редица се пренасят без изменение за произволни топологични пространства. Сходимостта, обаче, не е непременно еднозначна, ако пространството не е хаусдорфово.
 
   Следващите определение и твърдения вече са специфични за реалните числа.
 \end{note}
 
-\begin{proposition}\label{thm:sum-prod-limit}
+\begin{proposition}\label{thm:limits_of_elementwise_sums_and_products}
   Ако редиците \( \{ a_k \} \subseteq D \) и \( \{ b_k \} \subseteq D \) клонят към съответно \( a \) и \( b \), редиците \( \{ a_k + b_k \} \) и \( \{ a_k b_k \} \) клонят към съответно \( a + b \) и \( ab \).
 \end{proposition}
 \begin{proof}
@@ -136,7 +136,7 @@
   В общия случай, функцията може не просто да не съвпада с границата си в дадена точка, а може и да не бъде дефиниране в тази точка.
 \end{note}
 
-\begin{theorem}\label{thm:heine-iff-cauchy}
+\begin{theorem}\label{thm:heine_iff_cauchy}
   Определенията на Хайне и Коши за сходимост са еквивалентни.
 \end{theorem}
 \begin{proof}
@@ -157,7 +157,7 @@
   Но това означава, че редицата \( {\{ f(a_k) \}}_{k>0} \) клони към \( A \) и следователно е изпълнено определението на Хайне за сходимост.
 \end{proof}
 
-\begin{proposition}\label{thm:limit-linear-mult}
+\begin{proposition}\label{thm:limit_is_linear_and_multiplicative}
   Нека \( a \) е точка на сгъстяване на \( D \subseteq \R \). Ако \( f: D \to \R \) клони към \( A \) в точката \( a \) и \( g: D \to \R \) клони към \( B \) в точката \( a \), тогава
   \begin{enumerate}
     \item За произволна константа \( c \in \R \)
@@ -177,7 +177,7 @@
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  Следва директно от твърдение~\ref{thm:sum-prod-limit}.
+  Следва директно от твърдение~\ref{thm:limits_of_elementwise_sums_and_products}.
 \end{proof}
 
 \begin{definition}[Едностранна сходимост по Хайне]
@@ -212,7 +212,7 @@
 \end{definition}
 
 \begin{note}
-  От теорема~\ref{thm:heine-iff-cauchy} следва, че двете определения за непрекъснатост съвпадат.
+  От теорема~\ref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат.
 \end{note}
 
 \begin{definition}
@@ -254,7 +254,7 @@
   Нека \( D \subseteq \R \) и функцията \( f: D \to \R \) е диференцируема в точка \( a \in D \). Тогава \( f(x) \) е и непрекъсната в \( a \).
 \end{proposition}
 \begin{proof}
-  Производната \( f'(a) \) е крайно число, следователно от твърдение~\ref{thm:sum-prod-limit} получаваме
+  Производната \( f'(a) \) е крайно число, следователно от твърдение~\ref{thm:limits_of_elementwise_sums_and_products} получаваме
   \begin{align*}
     \lim_{h \to 0} [f(a+h) - f(a)]
     =
@@ -339,7 +339,7 @@
 \begin{proof}
   \mbox{}
   \begin{enumerate}
-    \item От адитивността на граничния преход (твърдение~\ref{thm:limit-linear-mult}) директно следва
+    \item От адитивността на граничния преход (твърдение~\ref{thm:limit_is_linear_and_multiplicative}) директно следва
     \begin{align*}
       (f+g)'(a)
       &=
@@ -350,7 +350,7 @@
       f'(a) + g'(a).
     \end{align*}
 
-    \item Използваме мултипликативността на граничния преход от твърдение~\ref{thm:limit-linear-mult}, за да получим
+    \item Използваме мултипликативността на граничния преход от твърдение~\ref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
       &(f \cdot g)'(a)
       = \\ &=
@@ -365,7 +365,7 @@
       f(a) g'(a) - f'(a) g(a).
     \end{align*}
 
-    \item Отново използваме свойствата от твърдение~\ref{thm:limit-linear-mult}, за да получим
+    \item Отново използваме свойствата от твърдение~\ref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
       &\left( \frac f g \right)'(a)
       = \\ &=
@@ -384,7 +384,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}\label{thm:chain-rule}
+\begin{theorem}\label{thm:chain_rule}
   Ако функцията \( g(x) \) е диференцируема в точка \( a \) и \( f(x) \) е диференцируема в точка \( g(a) \), имаме
   \begin{align*}
     (f \circ g)'(a) = (f' \circ g)(a) \cdot g'(a).
@@ -482,7 +482,7 @@
       1 + \lim_{h \to 0} \lim_{n \to \infty} \sum_{k=2}^n \binom{n}{k} \frac {h^{k-1}} {n^k} = 1.
     \end{align*}
 
-    Следователно производната на \( e^x \) е \( e^x \) и по теорема~\ref{thm:chain-rule} за \( f(x) = \alpha^x = e^{\ln \alpha \cdot x} \) имаме
+    Следователно производната на \( e^x \) е \( e^x \) и по теорема~\ref{thm:chain_rule} за \( f(x) = \alpha^x = e^{\ln \alpha \cdot x} \) имаме
     \begin{align*}
       f'(x)
       =
@@ -561,7 +561,7 @@
 \end{proof}
 
 За константите важи и по-слаб вариант на обратното твърдение:
-\begin{proposition}\label{thm:zero-derivative}
+\begin{proposition}\label{thm:zero_derivative}
   Нека \( a < b \in \R \), функцията \( f: [a, b] \to \R \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и производната ѝ е тъждествено нула в \( (a, b) \). Тогава \( f(x) \) е константа.
 \end{proposition}
 \begin{note}
@@ -644,7 +644,7 @@
     0.
   \end{align*}
 
-  Според твърдение~\ref{thm:zero-derivative}, функцията \( F(x) - G(x) \) е константа. Полагаме \( c \coloneqq F(x) - G(x) \), с което доказваме теоремата.
+  Според твърдение~\ref{thm:zero_derivative}, функцията \( F(x) - G(x) \) е константа. Полагаме \( c \coloneqq F(x) - G(x) \), с което доказваме теоремата.
 \end{proof}
 
 \printbibliography

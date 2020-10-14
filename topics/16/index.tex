@@ -72,7 +72,7 @@
   Абсолютно непрекъснатите случайни величини ще наричаме просто \enquote{непрекъснати}. Понякога непрекъснати случайни величини се наричат такива с непрекъсната функция на разпределение, но това определение е прекалено общо и позволява т. нар. сингулярни разпределения, чиято плътност се анулира почти навсякъде.
 \end{note}
 
-\begin{proposition}[Основни свойства на функцията на разпределение]\label{thm:cdf-props}
+\begin{proposition}[Основни свойства на функцията на разпределение]\label{thm:cdf_properties}
   Функцията \( F_\xi \) е функция на разпределение на някаква (не непременно абсолютно непрекъсната) случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
   \begin{enumerate}
     \item \( F_\xi(x) \leq F_\xi(y), x < y \) (монотонност)
@@ -82,9 +82,9 @@
   \end{enumerate}
 \end{proposition}
 
-Твърдение~\ref{thm:cdf-props} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
+Твърдение~\ref{thm:cdf_properties} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
 
-\begin{proof}[Доказателство на твърдение~\ref{thm:cdf-props}]
+\begin{proof}[Доказателство на твърдение~\ref{thm:cdf_properties}]
   (\( \implies \))
   \begin{enumerate}
     \item За всички \( x < y \)
@@ -165,7 +165,7 @@
 
 До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \F, \Prob) \).
 
-\begin{theorem}\label{thm:density-props}
+\begin{theorem}\label{thm:density_properties}
   Интегруемата по Риман функция \( f_\xi: \R \to \R \) е плътност на някаква абсолютно непрекъсната случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
   \begin{enumerate}
     \item \( f_\xi(x) \geq 0 \) почти навсякъде (неотрицателност)
@@ -175,7 +175,7 @@
 
 Тази теорема ни позволява да задаваме непрекъсната случайна величина изцяло чрез плътността ѝ, поради което плътността понякога се нарича разпределение на случайната величина.
 
-\begin{proof}[Доказателство на теорема~\ref{thm:density-props}]
+\begin{proof}[Доказателство на теорема~\ref{thm:density_properties}]
   (\( \implies \)) Нека \( f_\xi \) е плътност на \( \xi \).
   \begin{enumerate}
     \item За всяка точка \( x \in \R \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
@@ -238,7 +238,7 @@
     \end{align*}
   \end{enumerate}
 
-  Видяхме, че \( F_\xi \) удовлетворява свойствата на функция на разпределение и по~\ref{thm:cdf-props} съществува случайна величина \( \xi \), чиято плътност е \( f_\xi \).
+  Видяхме, че \( F_\xi \) удовлетворява свойствата на функция на разпределение и по~\ref{thm:cdf_properties} съществува случайна величина \( \xi \), чиято плътност е \( f_\xi \).
 
   Освен това \( F_\xi \) е абсолютно непрекъсната във всеки затворен интервал \( [a, b] \), тъй като тя има интегруема производна почти навсякъде и за \( x \in [a, b] \) е изпълнено
   \begin{align*}
@@ -252,7 +252,7 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}[Конволюция на плътности]\label{thm:convolution}
+\begin{proposition}[Конволюция на плътности]\label{thm:density_of_sum_is_convolution}
   Сумата на две независими непрекъснати случайни величини \( \xi \) и \( \eta \) е непрекъсната случайна величина с плътност
   \begin{align*}
     f_{\xi + \eta} (x)
@@ -315,7 +315,7 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}\label{thm:transformation-density}
+\begin{proposition}\label{thm:density_of_transformed_variable}
   Ако \( \xi \) е случайна величина и функцията \( \psi: \R \to \R \) е строго монотонна и диференцируема, тогава \( \psi(\xi) \) е непрекъсната случайна величина с плътност
   \begin{align*}
     f_{\psi(\xi)} (x)
@@ -364,7 +364,7 @@
   Непрекъснатите случайни величини обаче не образуват линейно подпространство, тъй като сумата на две зависими непрекъснати случайни величини може да не бъде непрекъсната (например \( \xi - \xi = 0 \)). Тъй като тук се ограничаваме само до непрекъснати случайни величини, ще формулираме някои свойства (например адитивност) само в частния случай, в който случайните величини са независими.
 \end{note}
 
-\begin{proposition}\label{thm:expect-product}
+\begin{proposition}\label{thm:expectation_of_independent_product}
   За независими непрекъснати случайни величини \( \xi \) и \( \eta \) с крайно очакване е изпълнено
   \begin{align*}
     \Expect(\xi \eta) = \Expect(\xi) \Expect(\eta).
@@ -393,11 +393,11 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}\label{thm:expect-additive}
+\begin{proposition}\label{thm:expectation_is_additive}
   Ако \( \xi \) и \( \eta \) са непрекъснати и независими, имаме \( \Expect(\xi + \eta) = \Expect(\xi) + \Expect(\eta) \).
 \end{proposition}
 \begin{proof}
-  От твърдение~\ref{thm:convolution} знаем, че \( \xi + \eta \) също има непрекъснато разпределение и плътността ѝ е конволюция на плътностите на \( \xi \) и \( \eta \). Тогава от теоремата на Фубини имаме
+  От твърдение~\ref{thm:density_of_sum_is_convolution} знаем, че \( \xi + \eta \) също има непрекъснато разпределение и плътността ѝ е конволюция на плътностите на \( \xi \) и \( \eta \). Тогава от теоремата на Фубини имаме
   \begin{align*}
     \Expect(\xi + \eta)
     &=
@@ -448,7 +448,7 @@
   \end{align*}
 \end{proof}
 
-Доказаните в твърдения~\ref{thm:expect-product},~\ref{thm:expect-additive} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
+Доказаните в твърдения~\ref{thm:expectation_of_independent_product},~\ref{thm:expectation_is_additive} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
   \underLine{Ковариация на случайните величини \( \xi \) и \( \eta \)} наричаме
@@ -491,7 +491,7 @@
   Случайни величини със стандартно отклонение единица наричаме \underLine{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \LSpace^2 \).
 \end{definition}
 
-\begin{proposition}\label{thm:orthogonal-if-independent}
+\begin{proposition}\label{thm:independence_implies_orthogonality}
   Ако две случайни величини са независими и имат крайно очакване, те са ортогонални.
 \end{proposition}
 \begin{proof}
@@ -511,7 +511,7 @@
   \end{align*}
 \end{proof}
 
-\begin{proposition}\label{thm:lower-order-moments}
+\begin{proposition}\label{thm:lower_order_moments_exist}
   Ако \( \Expect(\xi^n) \) съществува, съществуват и моментите от по-нисък ред.
 \end{proposition}
 \begin{proof}
@@ -597,7 +597,7 @@
   Дефинициите за моменти и функции от очакването се пренасят без изменение за случайни величини, които не са непрекъснати.
 \end{note}
 
-\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf-props}
+\begin{theorem}[Свойства на пораждащите моментите функции]\label{thm:mgf_properties}
   Нека \( \xi \) и \( \eta \) са независими непрекъснати случайни величини.
 
   За пораждащите моментите функции \( \MGF_\xi \) и \( \MGF_\eta \) са изпълнени следните свойства
@@ -628,7 +628,7 @@
       2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{align*}
 
-    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower-order-moments} съществуват и всички нечетни моменти.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
 
     При фиксирано \( n = 1, 2, \ldots \) за някаква околност на \( 0 \), съдържаща се в \( U \), за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
@@ -680,7 +680,7 @@
   \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Свойства на характеристичните функции]\label{thm:char-props}
+\begin{theorem}[Свойства на характеристичните функции]\label{thm:char_properties}
   Нека \( \xi \) и \( \eta \) са независими дискретни случайни величини.
 
   За характеристичните функции \( \Char_\xi \) и \( \Char_\eta \) са изпълнени следните свойства
@@ -857,7 +857,7 @@
 
 Поради различните варианти на централната гранична теорема, нормалното разпределение е гранично за средно аритметичното на независими случайни величини от много други разпределения. Това го прави най-широко приложимото вероятностно разпределение. На практика нормалното разпределение се използва за приближено описание на всякакъв род данни - от анализ на резултати от социологически проучвания до моделиране на финансови пазари или термална радиация.
 
-Нека \( \eta \in \DNormal(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от твърдение~\ref{thm:transformation-density} получаваме, че плътността на \( \xi \) е
+Нека \( \eta \in \DNormal(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от твърдение~\ref{thm:density_of_transformed_variable} получаваме, че плътността на \( \xi \) е
 \begin{align*}
   f_\xi(x)
   =
@@ -944,7 +944,7 @@
 \end{align*}
 
 Оттук директно следва
-\begin{proposition}\label{thm:normal-operations}
+\begin{proposition}\label{thm:normal_distribution_is_stable}
   \mbox{}
   \begin{enumerate}
     \item Ако \( \xi_k \in \DNormal(\mu_k, \sigma_k^2), k = 1, \ldots, n \), то
@@ -1079,7 +1079,7 @@
 \end{align*}
 \endgroup
 
-Вж. също задача~\ref{ex:se-autumn2016}.
+Вж. също задача~\ref{ex:se_autumn2016}.
 
 \subsubsection{Експоненциално разпределение}\label{dist:exp}
 
@@ -1204,7 +1204,7 @@
   \end{align*}
 \end{proof}
 
-Вж. също задача~\ref{ex:se-summer2011}.
+Вж. също задача~\ref{ex:se_summer2011}.
 
 \subsubsection{Гама разпределение}\label{dist:gamma}
 
@@ -1296,7 +1296,7 @@
 \end{align*}
 \endgroup
 
-\begin{proposition}\label{thm:gamma-operations}
+\begin{proposition}\label{thm:gamma_linear_combination_is_gamma}
   \mbox{}
   \begin{enumerate}
     \item Ако \( \gamma_k \in \DGamma(\alpha_k, \beta), k = 1, \ldots, n \), то
@@ -1314,7 +1314,7 @@
   \mbox{}
   \begin{enumerate}
     \item Следва директно от вида на пораждащата моментите функция.
-    \item Използвайки твърдение~\ref{thm:transformation-density}, намираме плътността за \( x \geq 0 \)
+    \item Използвайки твърдение~\ref{thm:density_of_transformed_variable}, намираме плътността за \( x \geq 0 \)
     \begin{align*}
       f_{c\xi}(x)
       =
@@ -1328,13 +1328,13 @@
   \end{enumerate}
 \end{proof}
 
-Вж. също задача~\ref{ex:se-summer2011}.
+Вж. също задача~\ref{ex:se_summer2011}.
 
 \section{Задачи}
 
 В конспекта не е посочен списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
 
-\begin{exercise}[\cite{SESummer2011}]\label{ex:se-summer2011}
+\begin{exercise}[\cite{SESummer2011}]\label{ex:se_summer2011}
   Нека \( \xi \in \DExp(\lambda), \lambda > 0 \), т.е. нейната вероятностна плътност е \( f(x) = \frac 1 \lambda e^{-\frac x \lambda} \)
   \begin{enumerate}[label=\alph*)]
     \item Намерете разпределението на \( \eta = \min(\xi_1, \xi_2) \), където \( \eta_1 \) и \( \eta_2 \) са независими и еднакво разпределени случайни величини, както \( \xi \).
@@ -1478,7 +1478,7 @@
     \end{align*}
     където \( \DExp \) е параметризирано както в тази задача, а \( \DGamma \)-както в~\ref{dist:gamma}.
 
-    От твърдение~\ref{thm:gamma-operations} имаме
+    От твърдение~\ref{thm:gamma_linear_combination_is_gamma} имаме
     \begin{align*}
       \overline \xi_n \in \DGamma\left( n, \frac n \lambda \right)
       &&
@@ -1501,7 +1501,7 @@
   \end{enumerate}
 \end{solution}
 
-\begin{exercise}[\cite{SEAutumn2016}]\label{ex:se-autumn2016}
+\begin{exercise}[\cite{SEAutumn2016}]\label{ex:se_autumn2016}
   Нека случайната величина \( X \) е равномерно разпределена в \( (0, a) \), а \( Y \) е равномерно разпределена в \( (0, b) \).
   \begin{enumerate}[label=\alph*)]
     \item Ако \( X \) и \( Y \) са независими, намерете математическото очакване и дисперсията на \( 2X - 3Y \).

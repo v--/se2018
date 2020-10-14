@@ -196,7 +196,7 @@
 
 \begin{theorem}
   Нека правите \( l_1 \) и \( l_2 \) имат спрямо \( K \) общи уравнения
-  \begin{equation}\label{thm:plane-line-position:scalar-equations}
+  \begin{equation}\label{thm:plane_line_position/scalar_equations}
     l_i : A_i x + B_i y + C_i, i = 1, 2.
   \end{equation}
 
@@ -232,7 +232,7 @@
   Така получаваме \( 1 \leq \Rank L \leq \Rank \tilde L \leq 2 \).
 
   Разглеждаме матричното уравнение
-  \begin{equation}\label{thm:plane-line-position:matrix-equation}
+  \begin{equation}\label{thm:plane_line_position/matrix_equation}
     L
     \begin{pmatrix}
       x \\ y \\ 1
@@ -242,15 +242,15 @@
       -C_1 \\ -C_2
     \end{pmatrix},
   \end{equation}
-  което ни дава едновременните решения на уравненията (\ref{thm:plane-line-position:scalar-equations}).
+  което ни дава едновременните решения на уравненията (\ref{thm:plane_line_position/scalar_equations}).
 
-  Ако \( \Rank L \neq \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane-line-position:matrix-equation}) няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\ref{thm:plane-line-position:matrix-equation}) няма решения и \( \Rank L \neq \Rank \tilde L \).
+  Ако \( \Rank L \neq \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) няма решения и \( \Rank L \neq \Rank \tilde L \).
 
-  Ако \( \Rank L = \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane-line-position:matrix-equation}) има поне едно решение. Разглеждаме два случая:
+  Ако \( \Rank L = \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) има поне едно решение. Разглеждаме два случая:
   \begin{enumerate}
-    \item Ако \( \Rank L = \Rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\ref{thm:plane-line-position:scalar-equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
+    \item Ако \( \Rank L = \Rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\ref{thm:plane_line_position/scalar_equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
 
-    Обратно, нека уравненията (\ref{thm:plane-line-position:scalar-equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
+    Обратно, нека уравненията (\ref{thm:plane_line_position/scalar_equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
     \begin{align*}
       A_1x + B_1y + C_1 = 0
       \implies
@@ -271,7 +271,7 @@
       C_2 = \frac {A_2} {A_1} C_1.
     \end{align*}
 
-    Тогава второто уравнение от (\ref{thm:plane-line-position:scalar-equations}) има вида
+    Тогава второто уравнение от (\ref{thm:plane_line_position/scalar_equations}) има вида
     \begin{align*}
       l_2:
       A_2 x + B_2 y + C_2 =
@@ -280,9 +280,9 @@
     \end{align*}
     откъдето виждаме, че двете уравнения са пропорционални и следователно \( \Rank \tilde L = 1 \).
 
-    \item Ако \( \Rank L = \Rank \tilde L = 2 \), то системата (\ref{thm:plane-line-position:matrix-equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
+    \item Ако \( \Rank L = \Rank \tilde L = 2 \), то системата (\ref{thm:plane_line_position/matrix_equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
 
-    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват (\ref{thm:plane-line-position:matrix-equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \Rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на (\ref{thm:plane-line-position:matrix-equation}) и матрицата \( L \) има максимален ранг 2.
+    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват (\ref{thm:plane_line_position/matrix_equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \Rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на (\ref{thm:plane_line_position/matrix_equation}) и матрицата \( L \) има максимален ранг 2.
   \end{enumerate}
 \end{proof}
 
@@ -339,7 +339,7 @@
   \end{align*}
 \end{proof}
 
-\begin{theorem}\label{thm:plane-dist}
+\begin{theorem}\label{thm:plane_distance}
   Нека координатната система \( K \) е ортонормирана и са дадени точката \( P_0(x_0, y_0) \) и правата \( l \) с нормално уравнение
   \begin{align*}
     l: \alpha x + \beta y + \gamma = 0.
@@ -882,7 +882,7 @@
     \end{figure}
   \end{minipage}
 
-  Нека \( \Point P \) има координати \( P(x, y) \) спрямо \( K \). Тъй като уравнението \( d: x = - \frac p 2 \) е нормално, теорема~\ref{thm:plane-dist} ни дава \( \Dist(d, P) = x + \frac p 2 \). Разписваме уравнението за \( k \) покоординатно:
+  Нека \( \Point P \) има координати \( P(x, y) \) спрямо \( K \). Тъй като уравнението \( d: x = - \frac p 2 \) е нормално, теорема~\ref{thm:plane_distance} ни дава \( \Dist(d, P) = x + \frac p 2 \). Разписваме уравнението за \( k \) покоординатно:
   \begin{align*}
     \Norm{F P} &= \Dist(d, P) \\
     {\Norm{F P}}^2 &= {\Dist(d, P)}^2 \\
@@ -1021,7 +1021,7 @@
 
     Получихме \( B'(12/25, -9/25) \).
 
-    \item Разстоянието \( \Dist(A, a) \) намираме използвайки теорема~\ref{thm:plane-dist}:
+    \item Разстоянието \( \Dist(A, a) \) намираме използвайки теорема~\ref{thm:plane_distance}:
     \begin{align*}
       \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {n_a}},
     \end{align*}
@@ -1130,7 +1130,7 @@
         \draw[dotted] (-3, -5/3) -- (13/3, 7/9);
       \end{tikzpicture}
     \end{Center}
-    \caption{Отразен светлинен лъч}\label{fig:plane-light-ray}
+    \caption{Отразен светлинен лъч}\label{fig:plane_light_ray}
   \end{figure}
 \end{minipage}
 \bigskip
@@ -1624,7 +1624,7 @@
     \end{align*}
     което уравнение е еквивалентно на системата
     \begin{equation}
-      \label{ex:canon:eigen}
+      \label{ex:canonization/eigen}
       \begin{cases}
         4x - 2y = \lambda x \\
         -2x + y = \lambda y
@@ -1649,17 +1649,17 @@
     \end{align*}
     За определеност взимаме само една двойка корени
     \begin{equation}
-      \label{ex:canon:normed_eigen}
+      \label{ex:canonization/normed_eigen}
       x = \frac {1 - \lambda} {\sqrt{\lambda^2 - 2\lambda + 5}}
       \text{ и }
       y = \frac 2 {\sqrt{\lambda^2 - 2\lambda + 5}}
     \end{equation}
 
-    Изваждайки двете уравнения в~\ref{ex:canon:eigen}, стигаме до характеристичния полином на \( A \):
+    Изваждайки двете уравнения в~\ref{ex:canonization/eigen}, стигаме до характеристичния полином на \( A \):
     \begin{align*}
       \frac {4 - \lambda} 2 - \frac 2 {1 - \lambda} = 0 \iff 4 - \lambda - 4\lambda + \lambda^2 - 4 = \lambda^2 - 5\lambda = 0,
     \end{align*}
-    чиито корени са \( \lambda_1 = 0 \) и \( \lambda_1 = 5 \), а замествайки в~\ref{ex:canon:normed_eigen}, директно получаваме собствените вектори
+    чиито корени са \( \lambda_1 = 0 \) и \( \lambda_1 = 5 \), а замествайки в~\ref{ex:canonization/normed_eigen}, директно получаваме собствените вектори
     \begin{align*}
       v_1 \left(\frac 1 {\sqrt 5}, \frac 2 {\sqrt 5} \right)
       &&
