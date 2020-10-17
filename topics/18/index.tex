@@ -53,11 +53,11 @@
       \item \( N(0) = 0 \)
       \item \( N(t) \) е процес с независими нараствания
       \item Нарастванията \( N(t+h)-N(t) \) имат поасоново разпределение със степен \( h\lambda \), т.е.
-      \begin{align*}
+      \begin{equation*}
         \Prob(N(t+h)-N(t) = k)
         =
         \frac{e^{-h\lambda} {(h\lambda)}^k} {k!}.
-      \end{align*}
+      \end{equation*}
     \end{enumerate}
 
     \item\label{def:poisson_process/limits} Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{поасонов със степен \( \lambda > 0 \)}, ако са изпълнени
@@ -96,9 +96,9 @@
     \end{align*}
 
     Броящият процес \( N(t) \), за който е изпълнено
-    \begin{align*}
+    \begin{equation*}
       N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
-    \end{align*}
+    \end{equation*}
     се нарича \textbf{поасонов процес със степен \( \lambda \)}, случайните величини \( S_0, S_1, S_2, \ldots \) наричаме времена на появява на \( n \)-тото събитие, а \( \xi_1, \xi_2, \ldots \) наричаме \textbf{времена на чакане за поява на \( n \)-тото събитие}.
   \end{enumerate}
 \end{definition}
@@ -118,7 +118,7 @@
   (\ref{def:poisson_process/increments} \( \implies \)~\ref{def:poisson_process/limits}) Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
 
   Тогава
-  \begin{align*}
+  \begin{equation*}
     \frac {\Prob(N(h) = 1)} h
     =
     \frac 1 h \frac {e^{-\lambda h} {(\lambda h)}^1} {1!}
@@ -126,7 +126,7 @@
     \lambda e^{-\lambda h}
     \Conv[h \to 0]{}
     \lambda.
-  \end{align*}
+  \end{equation*}
   и
   \begin{align*}
     \frac {\Prob(N(h) \geq 1)} h
@@ -168,9 +168,9 @@
   \end{align*}
 
   Като се има предвид началното условие \( \Prob(N(0) = 0) = 1 \), това уравнение има решение
-  \begin{align*}
+  \begin{equation*}
    \Prob(N(t) = 0) = e^{-\lambda t}.
-  \end{align*}
+  \end{equation*}
 
   За \( n > 0 \) формулата за пълната вероятност ни дава
   \begin{align*}
@@ -242,9 +242,9 @@
   \end{align*}
 
   Понеже \( \Prob(N(0) = 1) = 0 \), имаме \( C = 0 \) и
-  \begin{align*}
+  \begin{equation*}
     \boxed{\Prob(N(t) = 1) = \lambda t e^{-\lambda t}}.
-  \end{align*}
+  \end{equation*}
 
   С индукция по \( n \) получаваме функцията на вероятностите на познатото поасоново разпределение със степен \( \lambda t \)
   \begin{align*}
@@ -266,9 +266,9 @@
   \end{align*}
 
   Понеже \( \Prob(N(0) = n) = \delta_{n,0} \), имаме \( C = 0 \) и
-  \begin{align*}
+  \begin{equation*}
     \boxed{\Prob(N(t) = n) = e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}.
-  \end{align*}
+  \end{equation*}
 
   (\ref{def:poisson_process/increments} \( \implies \)~\ref{def:poisson_process/waiting_times}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
   \begin{align*}
@@ -311,11 +311,11 @@
 От експоненциалното разпределение се наследява следното свойство:
 \begin{proposition}[Липса на памет]
   За поасонов процес \( N(t) \) със степен \( \lambda > 0 \) е изпълнено
-  \begin{align*}
+  \begin{equation*}
     \Prob(N(t+h) > n + m \mid N(t) > n)
     =
     \Prob(N(h) > m)
-  \end{align*}
+  \end{equation*}
 \end{proposition}
 \begin{proof}
   \begin{align*}
@@ -408,17 +408,17 @@
 Машинен елемент се поврежда средно три пъти годишно и моментално се заменя с нов. Нека случайните величини \( \xi_1, \xi_2, \ldots \) описват времената на живот на последователно използвани елементи.
 
 Предполагаме, че те са експоненциално разпределени с параметър \( 3 \). Тогава времето на повреда на \( n \)-тия машинен елемент се описва от случайните величини \( S_n = \xi_1 + \cdots + \xi_n \), а
-\begin{align*}
+\begin{equation*}
   N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \}
-\end{align*}
+\end{equation*}
 е поасонов процес.
 
 Този модел ни позволява да отговаряме на много въпроси, сред които:
 \begin{enumerate}
   \item Количеството повредени машинни елемента за три години имат разпределение \( N(3) \in \DPoisson(9) \). За три години се очакват средно \( 9 \) повреди със стандартно отклонение \( 3 \), а вероятността да се повредят цели \( 12 \) елемента е
-  \begin{align*}
+  \begin{equation*}
     \Prob(N(3) = 12) = e^{-9} \frac {9^{12}} {12!} \approx 0.07.
-  \end{align*}
+  \end{equation*}
 
   \item Наредените времена за повреда на последните \( n \) машинни елементи са равновероятни.
   \item Поради липсата на памет на процеса, вероятността за нови повреди не се влияе от зачестяване на броя повреди за единица време.
@@ -439,9 +439,9 @@
 
 \begin{definition}
   Ако \( N(t) \) е поасонов процес и \( \eta_1, \eta_2, \ldots \) са независими помежду си и от \( N(t) \) неотрицателни целочислени случайни величини с еднакво разпределение с, процесът
-  \begin{align*}
+  \begin{equation*}
     X(t) = \sum_{k=1}^{N(t)} \eta_k, t \geq 0,
-  \end{align*}
+  \end{equation*}
   се нарича \textbf{сложен поасонов}.
 \end{definition}
 
@@ -514,9 +514,9 @@
   \end{enumerate}
 
   За удобство полагаме
-  \begin{align*}
+  \begin{equation*}
     \Lambda(t) \coloneqq \int_0^t \lambda(x) dx.
-  \end{align*}
+  \end{equation*}
 \end{definition}
 
 Формулираме следното обобщение на свойствата на обикновения поасонов процес, чиито доказателства са аналогични:
@@ -525,9 +525,9 @@
   \begin{enumerate}
     \item \( N(t) \in \DPoisson(\Lambda(t)) \).
     \item Моментът \( S_n \) на появяване на \( n \)-тото събитие има плътност
-    \begin{align*}
+    \begin{equation*}
       f_{S_n}(t) = \lambda(t) e^{-\Lambda(t)} \frac {{(\Lambda(t))}^{n-1}} {(n-1)!}
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{theorem}
 

@@ -88,13 +88,13 @@
   Нека \( U_a \) и \( U_b \) са околности на \( a \) и на \( b \). Нека \( n \) е най-големият индекс, за който \( a_n \not\in U_a \), а \( m \) е най-големият индекс, за който \( b_m \not\in U_b \).
 
   Тогава \( U_a + U_b = \{ x + y \mid x \in U_a, y \in U_b \} \) е околност на \( a + b \) и, освен това, тя съдържа всички членове на редицата
-  \begin{align*}
+  \begin{equation*}
     {\{ a_k + b_k \}}_{k > \max{n, m}},
-  \end{align*}
+  \end{equation*}
   следователно цялата редица
-  \begin{align*}
+  \begin{equation*}
     {\{ a_k + b_k \}}_{k > 0}
-  \end{align*}
+  \end{equation*}
   клони към \( a + b \).
 
   Аналогично се доказва и другото твърдение на теоремата.
@@ -102,9 +102,9 @@
 
 \begin{definition}
   Нека редицата \( \{ a_k \} \) е неограничена, т.е. всяка околност на \( 0 \) съдържа само краен брой нейни елементи. Казваме, че редицата \textbf{клони към безкрайност} и пишем
-  \begin{align*}
+  \begin{equation*}
     \lim_{k \to \infty} a_k = \infty,
-  \end{align*}
+  \end{equation*}
   ако редицата е (нестрого) монотонно растяща с изключение на краен брой членове.
 
   Аналогично се дефинира \textbf{сходимост към отрицателна безкрайност} (\( -\infty \)) за неограничени монотонно намаляващи редици.
@@ -161,19 +161,19 @@
   Нека \( a \) е точка на сгъстяване на \( D \subseteq \R \). Ако \( f: D \to \R \) клони към \( A \) в точката \( a \) и \( g: D \to \R \) клони към \( B \) в точката \( a \), тогава
   \begin{enumerate}
     \item За произволна константа \( c \in \R \)
-    \begin{align*}
+    \begin{equation*}
       \lim_{x \to a} [c f(x)] = c A.
-    \end{align*}
+    \end{equation*}
 
     \item Граничният преход е адитивен
-    \begin{align*}
+    \begin{equation*}
       \lim_{x \to a} [f(x) + g(x)] = A + B.
-    \end{align*}
+    \end{equation*}
 
     \item Граничният преход е мултипликативен
-    \begin{align*}
+    \begin{equation*}
       \lim_{x \to a} [f(x) \cdot g(x)] = A \cdot B.
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -194,9 +194,9 @@
 
 \begin{definition}[Обобщена сходимост по Хайне]
   Нека редицата \( \{ a_k \} \subseteq D \) клони към крайна или безкрайна граница \( a \), т.е. \( a \) е точка на сгъстяване на \( D \) или \( a = \pm \infty \), а редицата от функционални стойности \( \{ f(a_k) \} \) клони към крайна или безкрайна граница \( A \), т.е. \( A \in \R \) или \( A = \pm \infty \). Казваме, че \textbf{функцията \( f(x) \) клони към \( A \) при \( x \) клонящо към \( a \)} и пишем
-  \begin{align*}
+  \begin{equation*}
     \lim_{x \to a} f(x) = A.
-  \end{align*}
+  \end{equation*}
 \end{definition}
 
 \subsection{Непрекъснатост}
@@ -223,9 +223,9 @@
 
 \begin{definition}
   Нека точката \( a \) принадлежи на \( D \) заедно със своя дясна околност, т.е. за някое число \( \varepsilon > 0 \) интервалът \( [a, a + \varepsilon) \) лежи изцяло в \( D \). \textbf{Дясна производна на функцията \( f: D \to \R \) в точка \( a \in D \)} наричаме границата
-  \begin{align*}
+  \begin{equation*}
     \lim_{h \downarrow 0} \frac {f(a + h) - f(a)} h.
-  \end{align*}
+  \end{equation*}
 
   Ако \( f(x) \) има дясна производна в точка \( a \), казваме, че тя е \textbf{диференцируема отдясно} в тази точка.
   Частното \( \frac {f(a + h) - f(a)} h \) наричаме диференчно частно.
@@ -241,9 +241,9 @@
   Диференциалът на променливата \( x \), разгледана като идентитет, е също идентитет, тъй като диференчното частно \( \frac {(x + h) - x} h \) на идентитета е константата \( 1 \). Понеже диференциалът \( dx(a) \) не зависи от точката \( a \), ще пишем просто \( dx \).
 
   Това ни дава основание да въведем \textbf{означенията на Лайбниц за производни} като частно на диференциалите
-  \begin{align*}
+  \begin{equation*}
     \frac {df(a)} {dx} = \frac {f'(a) \cdot h} h = f'(a).
-  \end{align*}
+  \end{equation*}
 \end{definition}
 
 \begin{remark}
@@ -255,7 +255,7 @@
 \end{proposition}
 \begin{proof}
   Производната \( f'(a) \) е крайно число, следователно от твърдение~\ref{thm:limits_of_elementwise_sums_and_products} получаваме
-  \begin{align*}
+  \begin{equation*}
     \lim_{h \to 0} [f(a+h) - f(a)]
     =
     \lim_{h \to 0} \frac {f(a+h) - f(a)} h \cdot \lim_{h \to 0} h
@@ -263,7 +263,7 @@
     f'(a) \cdot 0
     =
     0.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \begin{theorem}[Механична интерпретация на производна]
@@ -271,9 +271,9 @@
 \end{theorem}
 \begin{proof}
   Изразявайки приблизително нарастването на пътя \( f(t+h) - f(t) \approx h v(t) \) като нарастването на времето \( t \) умножено по скоростта \( v(t) \) на движение в момента \( t \), получаваме
-  \begin{align*}
+  \begin{equation*}
     v(t) = \frac{f(t+h) - f(t)} {h} \Conv[h \to 0]{} f'(t).
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \bigskip
@@ -284,9 +284,9 @@
     За някое достатъчно малко по абсолютна стойност число \( h \in \R \) разглеждаме секущата \( d_h \) през точките с координати \( (a, f(a)) \) и \( (a+h, f(a+h)) \) (фиг.~\ref{fig:secant}). Декартовите уравнения на тези секущи при \( h \to 0 \) клонят към декартово уравнение на допирателна права \( d \) към \( \Gamma_f \) в точката \( a \).
 
     Твърдим, че декартовото уравнение на тази допирателна права е
-    \begin{align*}
+    \begin{equation*}
       d: y = f'(a) (x-a) + f(a).
-    \end{align*}
+    \end{equation*}
   \end{theorem}
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
@@ -386,16 +386,16 @@
 
 \begin{theorem}\label{thm:chain_rule}
   Ако функцията \( g(x) \) е диференцируема в точка \( a \) и \( f(x) \) е диференцируема в точка \( g(a) \), имаме
-  \begin{align*}
+  \begin{equation*}
     (f \circ g)'(a) = (f' \circ g)(a) \cdot g'(a).
-  \end{align*}
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Ще разгледаме два случая.
 
   \begin{enumerate}
     \item Ако \( g'(a) = 0 \), поради непрекъснатостта на \( f(x) \) в точка \( g(a) \) имаме
-    \begin{align*}
+    \begin{equation*}
       \lim_{h \to 0} \frac {f(g(a+h)) - f(g(a))} h
       =
       0
@@ -403,7 +403,7 @@
       f'(g(a)) \cdot 0
       =
       f'(g(a)) \cdot g'(a).
-    \end{align*}
+    \end{equation*}
 
     \item Ако \( g'(a) \neq 0 \), можем да считаме, че \( g(a+h) - g(a) \neq 0 \) за достатъчно малки по абсолютна стойност \( h \in \R \). Тогава
     \begin{align*}
@@ -432,9 +432,9 @@
   \mbox{}
   \begin{enumerate}
     \item За \( f(x) = c, c \in \R \) пресмятаме
-    \begin{align*}
+    \begin{equation*}
       f'(x) = \lim_{h \to 0} \frac {c - c} h = 0.
-    \end{align*}
+    \end{equation*}
 
     \item За \( f(x) = x^n, n = 1, 2, \ldots \) използваме биномната теорема, за да пресметнем
     \begin{align*}
@@ -452,7 +452,7 @@
     \end{align*}
 
     \item За \( f(x) = \alpha^x, \alpha > 0 \) пресмятаме
-    \begin{align*}
+    \begin{equation*}
       f'(x)
       =
       \lim_{h \to 0} \frac {\alpha^{x+h} - \alpha^x} h
@@ -460,12 +460,12 @@
       \alpha^x \lim_{h \to 0} \frac {\alpha^h - 1} h
       =
       f'(0) \alpha^x.
-    \end{align*}
+    \end{equation*}
 
     Остава само да намерим производната на \( f(x) = \alpha^x \) в нулата. За целта временно се ограничаваме до \( \alpha = e \) и използваме определението
-    \begin{align*}
+    \begin{equation*}
       e^x \coloneqq \lim_{n \to \infty} {\left( 1 + \frac x n \right)}^n.
-    \end{align*}
+    \end{equation*}
 
     Така получаваме
     \begin{align*}
@@ -483,13 +483,13 @@
     \end{align*}
 
     Следователно производната на \( e^x \) е \( e^x \) и по теорема~\ref{thm:chain_rule} за \( f(x) = \alpha^x = e^{\ln \alpha \cdot x} \) имаме
-    \begin{align*}
+    \begin{equation*}
       f'(x)
       =
       e^{\ln \alpha \cdot x} \cdot \ln \alpha \cdot 1
       =
       \ln \alpha \cdot \alpha^x.
-    \end{align*}
+    \end{equation*}
 
     \item Преди да пресметнем производните на \( \sin(x) \) и \( \cos(x) \), нека се убедим в два факта:
     \begin{enumerate}
@@ -509,9 +509,9 @@
       \end{align*}
 
       Тогава за всяко \( \varepsilon > 0 \) е достатъчно да изберем \( \delta < \varepsilon \), за да бъде изпълнено
-      \begin{align*}
+      \begin{equation*}
         \Abs{\sin(y) - \sin(x)} < \varepsilon
-      \end{align*}
+      \end{equation*}
       при \( 0 < \Abs{y - x} < \delta \).
 
       Като следствие, \( \cos(x) = \sin(\pi / 2 - x) \) също е непрекъсната.
@@ -525,7 +525,7 @@
         \cos(x) &\leq \frac {\sin(x)} x \leq 1,
       \end{align*}
       откъдето следва
-      \begin{align*}
+      \begin{equation*}
         1
         =
         \lim_{h \to 0} \cos(h)
@@ -535,7 +535,7 @@
         \sin'(0)
         \leq
         1.
-      \end{align*}
+      \end{equation*}
     \end{enumerate}
 
     За \( \sin(x) \) пресмятаме
@@ -554,9 +554,9 @@
     \end{align*}
 
     Тогава за \( \cos(x) \) получаваме
-    \begin{align*}
+    \begin{equation*}
       \cos'(x) = \sin'(\pi / 2 - x) = \cos(\pi / 2 - x) \cdot (-1) = -\sin(x).
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{proof}
 
@@ -582,9 +582,9 @@
   \end{align*}
 
   На практика е удобно да използваме означението на Лайбниц:
-  \begin{align*}
+  \begin{equation*}
     \frac {dx} {df} = {\left( \frac {df} {dx} \right)}^{-1}.
-  \end{align*}
+  \end{equation*}
   Естествено, тази формула важи само в околността, в която функцията е обратима.
 \end{remark}
 
@@ -599,24 +599,24 @@
   \mbox{}
   \begin{enumerate}
     \item Функцията \( \ln(x) \) е обратна на \( e^x \) за всички стойности на \( e^x \), следователно
-    \begin{align*}
+    \begin{equation*}
       \ln'(e^x) = \frac 1 {e^x}.
-    \end{align*}
+    \end{equation*}
 
     Тогава за \( x > 0 \) имаме
-    \begin{align*}
+    \begin{equation*}
       \ln'(x) = \frac 1 {x}.
-    \end{align*}
+    \end{equation*}
 
     \item Функцията \( \arcsin(x) \) е обратна на \( \sin(x) \) за всички стойности на \( \sin(x) \), следователно
-    \begin{align*}
+    \begin{equation*}
       \arcsin'(\sin(x)) = \frac 1 {\cos(x)} = \frac 1 {\sqrt{1 - {\sin(x)}^2}}.
-    \end{align*}
+    \end{equation*}
 
     Тогава за \( x \in [0, 1] \) имаме
-    \begin{align*}
+    \begin{equation*}
       \arcsin'(x) = \frac 1 {\cos(x)} = \frac 1 {\sqrt{1 - x^2}}.
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{proof}
 
@@ -628,13 +628,13 @@
 
 \begin{theorem}
 Нека \( a < b \in \R \), функцията \( f: [a, b] \to \R \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и функциите \( F: [a, b] \to \R \) и \( G: [a, b] \to \R \) са примитивни функции на \( f(x) \) в \( (a, b) \). Тогава съществува константа \( c \in \R \), такава че
-  \begin{align*}
+  \begin{equation*}
     F(x) = c + G(x).
-  \end{align*}
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Ако \( F(x) \) и \( G(x) \) са едновременно диференцируеми в точката \( a \in D \), за тяхната разлика имаме
-  \begin{align*}
+  \begin{equation*}
     (F - G)'(x)
     =
     F'(x) - G'(x)
@@ -642,7 +642,7 @@
     f(x) - f(x)
     =
     0.
-  \end{align*}
+  \end{equation*}
 
   Според твърдение~\ref{thm:zero_derivative}, функцията \( F(x) - G(x) \) е константа. Полагаме \( c \coloneqq F(x) - G(x) \), с което доказваме теоремата.
 \end{proof}

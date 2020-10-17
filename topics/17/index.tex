@@ -48,14 +48,14 @@
   Вероятността \( \Prob(\xi_n = j \mid \xi_{n-1} = i) \) наричаме \textbf{вероятност за преход} от \( i \) към \( j \) в момента \( n \). Ако вероятностите за преход не зависят от момента, казваме, че процесът е \textbf{стационарен}.
 
   Процесът \( \{ \xi_0, \xi_1, \ldots \} \) наричаме \textbf{марковска верига}, ако за произволно цяло число \( n > 0 \) и състояния \( j_0, \ldots, j_n \) е изпълнено
-  \begin{align*}
+  \begin{equation*}
     \Prob(\xi_n = j_n \mid \xi_{n-1} = j_{n-1}, \xi_{n-2} = j_{n-2}, \ldots, \xi_0 = j_0) = \Prob(\xi_n = j_n \mid \xi_{n-1} = j_{n-1}).
-  \end{align*}
+  \end{equation*}
 
   Ако означим \( \sigma(\xi_k) \coloneqq \{ \xi_k^{-1}(B) \mid B \in \BorelAlgebra(\R) \} \), горното условие може да се запише и чрез
-  \begin{align*}
+  \begin{equation*}
     \Prob(\xi_n = j_n \mid \SigmaAlgebra(\xi_{n-1}), \SigmaAlgebra(\xi_{n-2}), \ldots, \SigmaAlgebra(\xi_0)) = \Prob(\xi_n = j_n \mid \SigmaAlgebra(\xi_{n-1})).
-  \end{align*}
+  \end{equation*}
 \end{definition}
 
 \begin{remark}
@@ -90,14 +90,14 @@
   Тъй като векторът \( B \) напълно описва разпределението на \( \xi_0 \), елементите му се сумират до единица.
 
   За фиксирано число \( i \) дефинираме събитието \( A_i \coloneqq \{ \omega \in \Omega \mid \xi_0(\omega) = i \} \). Тогава \( i \)-тият ред на матрицата \( P \) напълно описва условното разпределение
-  \begin{align*}
+  \begin{equation*}
     \Prob(\xi_1 = j \mid A_i)
     =
     \Prob(\xi_1 = j \mid \xi_0 = i).
-  \end{align*}
+  \end{equation*}
 
   Следователно
-  \begin{align*}
+  \begin{equation*}
     \sum_{j=0}^\infty p_{ij}
     =
     \sum_{j=0}^\infty \Prob(\xi_1 = j \mid \xi_0 = i)
@@ -105,7 +105,7 @@
     \sum_{j=0}^\infty \Prob(\xi_1 = j \mid A_i)
     =
     1.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \subsection{Уравнения на Чепмен-Колмогоров}
@@ -113,9 +113,9 @@
 Нека е дадена марковска верига с начални вероятности \( B \) и матрица на преходите \( P \).
 
 Означаваме с \( p^{(n)}_{ij} \) вероятността да преминем от състояние \( i \) в състояние \( j \) за \( n \) стъпки, т.е.
-\begin{align*}
+\begin{equation*}
   p^{(n)}_{ij} \coloneqq \Prob(\xi_n = j \mid \xi_0 = i).
-\end{align*}
+\end{equation*}
 
 \begin{lemma}\label{thm:transition_matrix_power}
   За произволно цяло \( n > 0 \) е изпълнено, че \( n \)-кратната степен \( P^n \) на матрицата \( P \) има елементи \( p_{ij}^{(n)} \).
@@ -126,15 +126,15 @@
   Нека предположим, че теоремата е вярна за \( P^{n-1} \). Вероятността да преминем от състояние \( i \) към състояние \( j \) за \( n \) стъпки тогава е сумата на вероятностите по всички траектории. От формулата за пълната вероятност имаме
   \begin{align*}
     p^{(n)}_{ij}
-    =
+    &=
     \Prob(\xi_n = j \mid \xi_0 = i)
-    =
+    = \\ &=
     \sum_{k=0}^\infty \Prob(\xi_n = j \mid \xi_{n-1} = k, \xi_0 = i) \Prob(\xi_{n-1} = k \mid \xi_0 = i)
-    = \\ =
+    = \\ &=
     \sum_{k=0}^\infty \Prob(\xi_n = j \mid \xi_{n-1} = k) \Prob(\xi_{n-1} = k \mid \xi_0 = i)
-    =
+    = \\ &=
     \sum_{k=0}^\infty p_{kj} p^{(n-1)}_{ik}
-    =
+    = \\ &=
     \sum_{k=0}^\infty p^{(n-1)}_{ik} p_{kj}.
   \end{align*}
 
@@ -147,9 +147,9 @@
 
 \begin{theorem}[Уравнения на Чепмен-Колмогоров]\label{thm:chapman_kolmogorov}
   За произволни цели \( m, n \geq 0 \) е изпълнено
-  \begin{align*}
+  \begin{equation*}
     p^{(n+m)}_{ij} = \sum_{k=0}^\infty p^{(n)}_{ik} p^{(m)}_{kj}
-  \end{align*}
+  \end{equation*}
   за всеки две състояния \( i, j \geq 0 \).
 \end{theorem}
 \begin{proof}
@@ -161,7 +161,7 @@
 \end{corollary}
 \begin{proof}
   От формулата за пълната вероятност имаме
-  \begin{align*}
+  \begin{equation*}
     \Prob(\xi_n = i)
     =
     \sum_{k=1}^\infty \Prob(\xi_n = i \mid \xi_0 = k) \Prob(\xi_0 = k)
@@ -169,7 +169,7 @@
     \sum_{k=1}^\infty p^{(n)}_{ki} s_k
     =
     \sum_{k=1}^\infty b_k p^{(n)}_{ki},
-  \end{align*}
+  \end{equation*}
   което по определение е именно \( i \)-тата координата на вектор-реда \( B P^n \).
 \end{proof}
 
@@ -278,20 +278,20 @@
   \end{align*}
 
   Получихме
-  \begin{align*}
+  \begin{equation*}
     f(z) = \frac {p(z)} {1 + p(z)}.
-  \end{align*}
+  \end{equation*}
 
   Редът
-  \begin{align*}
+  \begin{equation*}
     \sum_{n=1}^\infty p^{(n)}_{ii} = \lim_{z \to 1} p(z)
-  \end{align*}
+  \end{equation*}
   е разходящ точно тогава, когато \( \lim_{z \to 1} f(z) = 1 \).
 
   От друга страна, горният ред е сходящ, точно когато
-  \begin{align*}
+  \begin{equation*}
     \sum_{n=1}^\infty f_i^{(n)} = \frac {p(1)} {1 + p(1)} < 1,
-  \end{align*}
+  \end{equation*}
   т.е. когато състоянието \( i \) е преходно.
 \end{proof}
 
@@ -327,7 +327,7 @@
   са \textbf{броят попадания в състоянието \( j \) до момента \( n \)}.
 
   Очакваният брой стъпки, които са необходими, за да се върнем в състояние \( j \), тръгвайки от него, означаваме с
-  \begin{align*}
+  \begin{equation*}
     \tau_i
     \coloneqq
     \Expect(T_i^{(1)} \mid \xi_0 = i)
@@ -335,7 +335,7 @@
     \sum_{n=1}^\infty n \Prob(\xi_n = i, \xi_{n-1} \neq i, \ldots, \xi_1 \neq i \mid \xi_0 = i)
     =
     \sum_{n=1}^\infty n f^{(n)}_{ii}.
-  \end{align*}
+  \end{equation*}
 \end{definition}
 
 \begin{definition}
@@ -348,22 +348,22 @@
 
 \begin{definition}
   Нека е дадена марковска верига с матрица на преходите \( P \). Стохастичният вектор \( \pi = (\pi_1, \pi_2, \ldots) \) наричаме \textbf{стационарно разпределение} на веригата, ако \( \pi \) удовлетворява матричното уравнение
-  \begin{align*}
+  \begin{equation*}
     \pi = \pi P.
-  \end{align*}
+  \end{equation*}
 
   Ако границата \( \lim_{n \to \infty} P^n \) съществува и редовете на получената матрица са равни, то произволен ред на матрицата наричаме \textbf{гранично разпределение} на веригата.
 \end{definition}
 
 \begin{theorem}[Ергодична теорема]
   Нека е дадена неразложима положително възвратна марковска верига. Тогава са в сила равенствата
-  \begin{align*}
+  \begin{equation*}
     \frac 1 {\tau_j}
     =
     \lim_{n \to \infty} \frac {M^{(n)}_j} n
     =
     \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n p_{ij}^{(k)}~\forall i \geq 0,
-  \end{align*}
+  \end{equation*}
   където сходимостта е по вероятност.
 
   Освен това векторът \( \pi = (\pi_1, \pi_2, \ldots) \) с координати \( \pi_j = \frac 1 {\tau_j} \) е стационарно разпределение на веригата.
@@ -372,55 +372,55 @@
   Тъй като веригата е положително възвратна, очакването \( \tau_j \geq 1 \) е крайно и следователно стойностите \( \pi_j = \frac 1 {\tau_j} \in (0, 1] \) са добре дефинирани.
 
   Първо ще докажем равенството
-  \begin{align*}
+  \begin{equation*}
     \frac 1 {\tau_j}
     =
     \lim_{n \to \infty} \frac {M^{(n)}_j} n.
-  \end{align*}
+  \end{equation*}
 
   Фиксираме произволни състояние \( j \) и момент \( n > 0 \). Да забележим, че за произволно \( k \geq 0 \) разликите \( T_j^{(k+1)} - T_j^{(k)} \) са независими и еднакво разпределени с (условно) очакване
-  \begin{align*}
+  \begin{equation*}
    \Expect(T_j^{(k)} - T_j^{(k-1)} \mid \xi_0 = i) = \tau_j.
-  \end{align*}
+  \end{equation*}
 
   От усиления закон за големите числа имаме
-  \begin{align*}
+  \begin{equation*}
     \frac {T_j^{(n)}} n = \frac 1 n \sum_{k=0}^{n-1} (T_j^{(k+1)} - T_j^{(k)}) \Conv[n \to \infty]{} \tau_j
-  \end{align*}
+  \end{equation*}
   почти сигурно.
 
   Случайната величина \( T_j^{(M_j^{(n)})} \) е моментът на последното попадане в състояние \( j \) преди момента \( n \). По тази причина е изпълнено
-  \begin{align*}
+  \begin{equation*}
     T_j^{(M_j^{(n)})} \leq n \leq T_j^{(M_j^{(n)} + 1)}.
-  \end{align*}
+  \end{equation*}
 
   Делим на \( M_j^{(n)} \) и получаваме
-  \begin{align*}
+  \begin{equation*}
     \frac {T_j^{(M_j^{(n)})}} {M_j^{(n)}} \leq \frac n {M_j^{(n)}} \leq \frac {T_j^{(M_j^{(n)} + 1)}} {M_j^{(n)} + 1} \frac {M_j^{(n)} + 1} {M_j^{(n)}}
-  \end{align*}
+  \end{equation*}
 
   От лемата за милиционерите получаваме, че
-  \begin{align*}
+  \begin{equation*}
     \lim_{n \to \infty} \frac n {M^{(n)}_j}
     =
     \tau_j
-  \end{align*}
+  \end{equation*}
   по вероятност.
 
   Сега ще докажем равенството
-  \begin{align*}
+  \begin{equation*}
     \lim_{n \to \infty} \frac {M^{(n)}_j} n
     =
     \lim_{n \to \infty} p_{ij}^{(n)}~\forall i \geq 0.
-  \end{align*}
+  \end{equation*}
 
   Фиксираме изходно състояние \( i \). Да забележим първо, че сходимостта по вероятност \( \lim_{n \to \infty} \frac {M^{(n)}_j} n = \pi_j \) влече сходимост по разпределение, което пък е еквивалентно на сходимостта по всеки непрекъснат линеен функционал и в частност
-  \begin{align*}
+  \begin{equation*}
     \lim_{n \to \infty} \frac {\Expect(M^{(n)}_j \mid \xi_0 = i)} n = \pi_j.
-  \end{align*}
+  \end{equation*}
 
   От друга страна,
-  \begin{align*}
+  \begin{equation*}
     \pi_j
     =
     \lim_{n \to \infty} \frac {\Expect(M^{(n)}_j \mid \xi_0 = i)} n
@@ -428,12 +428,12 @@
     \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n \Expect(\mu^{(k)}_j \mid \xi_0 = i)
     =
     \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n 1 \cdot p_{ij}^{(k)}.
-  \end{align*}
+  \end{equation*}
 
   В частност, получената стойност не зависи от началното състояние \( i \).
 
   Векторът \( \pi \) е стохастичен, тъй като
-  \begin{align*}
+  \begin{equation*}
     \sum_{j=0}^\infty \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n p_{ij}^{(k)}
     =
     \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n \sum_{j=0}^\infty p_{ij}^{(k)}
@@ -441,7 +441,7 @@
     \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n 1
     =
     1.
-  \end{align*}
+  \end{equation*}
 
   Остана само да докажем, че векторът \( \pi \) е стационарен. Уравненията на Чепмен-Колмогоров ни дават
   \begin{align*}
@@ -465,9 +465,9 @@
 
 \begin{corollary}
   Ако веригата е ергодична, тогава
-  \begin{align*}
+  \begin{equation*}
     \pi_j = \lim_{n \to \infty} p_{ij}^{(n)}.
-  \end{align*}
+  \end{equation*}
 \end{corollary}
 
 \subsection{Приложения}
@@ -488,9 +488,9 @@
 Очевидно едно случайно блуждаене е неразложима, възвратна и периодична марковска верига с период \( 2 \).
 
 Нека \( \eta_1, \eta_2, \ldots \) са независими случайни величини с еднакво разпределение
-\begin{align*}
+\begin{equation*}
   \Prob(\eta_n = 1) = 1 - \Prob(\eta_k = -1) = p.
-\end{align*}
+\end{equation*}
 
 Сумите им \( \xi_n \coloneqq \sum_{k=1}^n \eta_k \) тогава образуват случайно блуждаене.
 
@@ -566,14 +566,14 @@
 Ако разполагаме с метод за симулиране на дискретни случайни величини с краен брой стойности, можем да генерираме текст с произволна дължина.
 
 Като прост пример можем да разгледаме изречението \enquote{Ту вали, ту не вали}. Преходните вероятности за него са
-\begin{Center}
-    \begin{tabular}{l l l l}
-                      & \textbf{ту} & \textbf{вали} & \textbf{не} \\
-        \textbf{ту}   & 0           & 0.5           & 0.5         \\
-        \textbf{вали} & 1           & 0             & 0           \\
-        \textbf{не}   & 0           & 1             & 0           \\
-    \end{tabular}
-\end{Center}
+\begin{center}
+  \begin{tabular}{l l l l}
+                    & \textbf{ту} & \textbf{вали} & \textbf{не} \\
+      \textbf{ту}   & 0           & 0.5           & 0.5         \\
+      \textbf{вали} & 1           & 0             & 0           \\
+      \textbf{не}   & 0           & 1             & 0           \\
+  \end{tabular}
+\end{center}
 
 Като примерен резултат от генериране на текст с марковска верига, обучена с горното изречение, можем да получим изречението \enquote{ту вали, ту не вали, ту вали, ту не вали, ту не вали} (с вмъкнати запетайки за четимост).
 

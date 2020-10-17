@@ -68,19 +68,19 @@
   Нека \( l \) е права в \( A_2 \), нека са дадени \( \Point P_0 \in l \) и направляващият за \( l \) вектор \( v \parallel l \). Очевидно векторът \( v \) е ненулев. Нека \( r_0 = \V{OP_0} \) и \( r = \V{OP} \) са радиус-векторите на точките \( \Point P_0 \) и \( \Point P \) спрямо \( K \).
 
   От тъждествата \( r - r_0 = \V{P_0 P} \parallel v \iff P \in l \) и \( \forall \lambda \in \R : v \parallel \lambda v \) следва, че правата \( l \) удовлетворява уравнението
-  \begin{align*}
+  \begin{equation*}
     l: r = r_0 + \lambda v, \lambda \in \R,
-  \end{align*}
+  \end{equation*}
   което наричаме \textbf{векторно параметрично уравнение} на \( l \) спрямо \( K \).
 
   Нека \( \Point P_0 \), \( \Point P \) и \( v \) имат координати \( P_0(x_0, y_0) \), \( P(x, y) \) и \( v(a, b) \) спрямо \( K \). Уравненията
-  \begin{align*}
+  \begin{equation*}
     l: \begin{cases}
       x = x_0 + \lambda a \\
       y = y_0 + \lambda b
     \end{cases},
     \lambda \in \R
-  \end{align*}
+  \end{equation*}
   наричаме \textbf{система скаларни параметрични уравнения} на \( l \) спрямо \( K \).
 \end{definition}
 
@@ -107,13 +107,13 @@
   Да забележим, че уравнението има поне едно решение, например \( x = -\frac C A \) и \( y = 0 \).
 
   Нека е дадена точката \( P_0(x_0, y_0) \), чиито координати удовлетворяват уравнението. Нека \( v \) е ненулевият вектор с координати \( v(B, -A) \). Тогава системата
-  \begin{align*}
+  \begin{equation*}
     l: \begin{cases}
       x = x_0 + \lambda B \\
       y = y_0 - \lambda A,
     \end{cases}
     \lambda \in \R
-  \end{align*}
+  \end{equation*}
   е система скаларни параметрични уравнения за някаква права \( l \). Ще покажем, че тази система е еквивалентна на даденото уравнение.
 
   От една страна, всяко решение на общото уравнение удовлетворява системата, тъй като \( C = -Ax_0 - By_0 \). Получаваме
@@ -125,21 +125,21 @@
   \end{align*}
 
   Полагаме \( \lambda \coloneqq \frac{y_0 - y} A \), откъдето получаваме
-  \begin{align*}
+  \begin{equation*}
     \begin{cases}
       x = x_0 + \lambda B \\
       y = y_0 - \lambda A
     \end{cases}.
-  \end{align*}
+  \end{equation*}
 
   От друга страна, всяко решение на системата удовлетворява общото уравнение, тъй като
-  \begin{align*}
+  \begin{equation*}
     A (x_0 + \lambda B) + B (y_0 - \lambda A) + C
     =
     (A x_0 + B y_0 + C) + (\lambda AB - \lambda AB)
     =
     0 + 0 = 0.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \begin{definition}
@@ -152,9 +152,9 @@
   \end{align*}
 
   Полагаме \( k = -\frac A B \) и \( m = -\frac C B \). Уравнението
-  \begin{align*}
+  \begin{equation*}
     l: y = kx + m
-  \end{align*}
+  \end{equation*}
   наричаме \textbf{декартово уравнение} на \( l \) спрямо \( K \), а коефициента \( k \) наричаме \textbf{ъглов коефициент} на \( l \) спрямо \( K \).
 \end{definition}
 
@@ -184,14 +184,14 @@
   Нека \( u \) е векторът с координати \( u(1, k) \) спрямо \( K \).
 
   Ако \( k \geq 0 \), то \( u \upuparrows r\Ray \) и
-  \begin{align*}
+  \begin{equation*}
      \tan \angle(r\Ray, Ox\Ray) = \tan \angle(u, Ox\Ray) = k.
-  \end{align*}
+  \end{equation*}
 
   Ако \( k < 0 \), то \( u \updownarrows r\Ray \) и
-  \begin{align*}
+  \begin{equation*}
     \tan \angle(r\Ray, Ox\Ray) = \tan(\pi - \angle(-u, Ox\Ray)) = -\tan \angle(-u, Ox\Ray) = -(-k) = k.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \begin{theorem}
@@ -251,11 +251,11 @@
     \item Ако \( \Rank L = \Rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\ref{thm:plane_line_position/scalar_equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
 
     Обратно, нека уравненията (\ref{thm:plane_line_position/scalar_equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
-    \begin{align*}
+    \begin{equation*}
       A_1x + B_1y + C_1 = 0
       \implies
       x = - \frac {B_1} {A_1} y - \frac {C_1} {A_1},
-    \end{align*}
+    \end{equation*}
     \begin{align*}
       A_2x + B_2y + C_2 &= 0,
       \\
@@ -272,12 +272,12 @@
     \end{align*}
 
     Тогава второто уравнение от (\ref{thm:plane_line_position/scalar_equations}) има вида
-    \begin{align*}
+    \begin{equation*}
       l_2:
       A_2 x + B_2 y + C_2 =
       \frac {A_2} {A_1} A_1 x + \frac {A_2} {A_1} B_1 y + \frac {A_2} {A_1} C_1
       = 0,
-    \end{align*}
+    \end{equation*}
     откъдето виждаме, че двете уравнения са пропорционални и следователно \( \Rank \tilde L = 1 \).
 
     \item Ако \( \Rank L = \Rank \tilde L = 2 \), то системата (\ref{thm:plane_line_position/matrix_equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
@@ -305,15 +305,15 @@
   По условие имаме, че \( A \) и \( B \) не са едновременно равни на \( 0 \), следователно \( v \) и \( n \) са ненулеви.
   \begin{enumerate}
     \item Разглеждаме точката \( P_0(x_0, y_0) \in l \) и точката \( P_1(x_0 - B, y_0 + A) \), която също принадлежи на \( l \), тъй като
-    \begin{align*}
+    \begin{equation*}
       A(x_0 - B) + B(y_0 + A) + C = (Ax_0 + By_0 + C) + (-AB + AB) = 0 + 0 = 0.
-    \end{align*}
+    \end{equation*}
      Тогава \( \V{P_0 P_1} \parallel l \). Но векторът \( \V{P_0 P_1}(-B, A) \) е равен на \( v \), следователно \( v \parallel l \).
 
     \item Тъй като координатната система \( K \) е ортонормирана, имаме
-    \begin{align*}
+    \begin{equation*}
       \Prod v n = -AB + AB = 0,
-    \end{align*}
+    \end{equation*}
     следователно \( v \perp n \) и тъй като \( v \) е направляващ за \( l \), то \( n \) е нормален за \( l \).
   \end{enumerate}
 \end{proof}
@@ -327,33 +327,33 @@
 \end{proposition}
 \begin{proof}
   Нека \( l \) има спрямо \( K \) общо уравнение \( l: Ax + By + C = 0 \). Тогава всевъзможните общи уравнения на \( l \) спрямо \( K \) имат вида
-  \begin{align*}
+  \begin{equation*}
     l: \lambda(Ax + By + C) = 0, \lambda \in \R \setminus \{ 0 \}.
-  \end{align*}
+  \end{equation*}
 
   Но \( {(\lambda A)}^2 + {(\lambda B)}^2 = 1 \iff \lambda = \pm \frac 1 {\sqrt{A^2 + B^2}} \).
 
   Двете нормални уравнения са
-  \begin{align*}
+  \begin{equation*}
     l: \pm \frac {Ax + By + C} {\sqrt{A^2 + B^2}} = 0.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \begin{theorem}\label{thm:plane_distance}
   Нека координатната система \( K \) е ортонормирана и са дадени точката \( P_0(x_0, y_0) \) и правата \( l \) с нормално уравнение
-  \begin{align*}
+  \begin{equation*}
     l: \alpha x + \beta y + \gamma = 0.
-  \end{align*}
+  \end{equation*}
 
   Означаваме \( F(x, y) \coloneqq \alpha x + \beta y + \gamma \). Тогава разстоянието между \( P_0 \) и \( l \) е
-  \begin{align*}
+  \begin{equation*}
     \Dist(P_0, l) = \Abs{F(x_0, y_0)},
-  \end{align*}
+  \end{equation*}
   а величината \( \ODist(P, l) = F(x_0, y_0) \) се нарича \textbf{ориентирано разстояние} между \( P_0 \) и \( l \).
 \end{theorem}
 \begin{proof}
   Нека \( P_1(x_1, y_1) \) е ортогоналната проекция на \( P_0 \) върху \( l \). Понеже \( \V{P_0 P_1} \perp l \), то \( \V{P_0 P_1} \parallel n(\alpha, \beta) \), следователно \( \exists \lambda \in \R: \V{P_0 P_1} = \lambda n \). Тогава
-  \begin{align*}
+  \begin{equation*}
     \Dist(P_0, l)
     =
     \Norm{\V{P_0 P_1}}
@@ -361,10 +361,10 @@
     \Abs{\lambda} \Norm{n}
     =
     \Abs{\lambda}.
-  \end{align*}
+  \end{equation*}
 
   Намираме \( \lambda \) от \( \V{P_0 P_1}(x_1 - x_0, y_1 - y_0) = \lambda n(\alpha, \beta) \):
-  \begin{align*}
+  \begin{equation*}
     \begin{cases}
       x_1 - x_0 = \lambda \alpha \\
       y_1 - y_0 = \lambda \beta
@@ -374,7 +374,7 @@
       x_1 = x_0 + \lambda \alpha \\
       y_1 = y_0 + \lambda \beta.
     \end{cases}
-  \end{align*}
+  \end{equation*}
 
   Заместваме в нормалното уравнение на \( l \):
   \begin{align*}
@@ -391,9 +391,9 @@
 
 \begin{theorem}
   Нека са дадени правите \( l_1 \) и \( l_2 \) с нормални уравнения спрямо ортонормирана \( K \)
-  \begin{align*}
+  \begin{equation*}
     l_i: \alpha_i x + \beta_i y + \gamma_i = 0, i = 1, 2.
-  \end{align*}
+  \end{equation*}
 
   Тогава за ъгълът между \( l_1 \) и \( l_2 \) е \( \angle(l_1, l_2) = \arccos \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2} \).
 \end{theorem}
@@ -403,16 +403,16 @@
   Разглеждаме два случая:
   \begin{enumerate}
     \item Ако \( 0 < \angle(n_1, n_2) \leq \frac {\pi} 2 \), то \( \angle(l_1, l_2) = \angle(n_1, n_2) \) и
-    \begin{align*}
+    \begin{equation*}
       \cos \angle (l_1, l_2)
       =
       \cos \angle(n_1, n_2)
       =
       \Abs{\cos \angle (n_1, n_2)}.
-    \end{align*}
+    \end{equation*}
 
     \item Ако \( \frac {\pi} 2 < \angle(n_1, n_2) \leq \pi \), то \( \angle(l_1, l_2) = \pi - \angle(n_1, n_2) \)
-    \begin{align*}
+    \begin{equation*}
       \cos \angle (l_1, l_2)
       =
       \cos (\pi - \angle(n_1, n_2))
@@ -420,11 +420,11 @@
       -\cos \angle(n_1, n_2)
       =
       \Abs{\cos \angle (n_1, n_2)}.
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 
   И в двата случая имаме
-  \begin{align*}
+  \begin{equation*}
     \cos \angle(l_1, l_2)
     =
     \Abs{\cos \angle(n_1, n_2)}
@@ -432,13 +432,13 @@
     \frac {\Abs {\Prod {n_1} {n_2}}} {\Norm{n_1} \Norm{n_2}}
     =
     \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2}
-  \end{align*}
+  \end{equation*}
   и
-  \begin{align*}
+  \begin{equation*}
     \angle(l_1, l_2)
     =
     \arccos \Abs{\alpha_1 \alpha_2 + \beta_1 \beta_2}.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \subsection{Равнини в пространството}
@@ -591,16 +591,16 @@
   \end{align*}
   които също принадлежат на \( l \), тъй като
   \begin{align*}
-    A(x_0 - B) + B(y_0 + A) + Cz_0 + D = (Ax_0 + By_0 + Cz_0 + D) + (-AB + AB) = 0, \\
-    A(x_0 - C) + By_0 + C(z_0 + A) + D = (Ax_0 + By_0 + Cz_0 + D) + (-AC + AC) = 0.
+    &A(x_0 - B) + B(y_0 + A) + Cz_0 + D = (Ax_0 + By_0 + Cz_0 + D) + (-AB + AB) = 0, \\
+    &A(x_0 - C) + By_0 + C(z_0 + A) + D = (Ax_0 + By_0 + Cz_0 + D) + (-AC + AC) = 0.
   \end{align*}
 
   Тогава векторите \( \V{P_0 P_1} \) и \( \V{P_0 P_2} \) са компланарни с \( \pi \). Но \( \V{P_0 P_1} = u \) и \( \V{P_0 P_2} = v \), следователно \( u \) и \( v \) са компланарни с \( \pi \).
 
   \item Тъй като координатната система \( K \) е ортонормирана, имаме
-  \begin{align*}
+  \begin{equation*}
     \Prod u n = -AB + AB = 0 = -AC + AC = \Prod v n,
-  \end{align*}
+  \end{equation*}
   следователно \( u \perp n \) и \( v \perp n \). Тогава \( n \) е перпендикулярен и на всички линейни комбинации на \( u \) и \( v \) и понеже \( u \) и \( v \) образуват равнината \( \pi \), то \( n \) е нормален за \( \pi \).
 \end{proof}
 
@@ -614,14 +614,14 @@
 
 \begin{theorem}
   Нека координатната система \( K \) е ортонормирана и са дадени точката \( P_0(x_0, y_0, z_0) \) и правата \( l \) с нормално уравнение
-  \begin{align*}
+  \begin{equation*}
     l: \alpha x + \beta y + \gamma z + \delta = 0.
-  \end{align*}
+  \end{equation*}
 
   Означаваме \( F(x, y, z) \coloneqq \alpha x + \beta y + \gamma z + \delta \). Тогава разстоянието между \( P_0 \) и \( \pi \) е
-  \begin{align*}
+  \begin{equation*}
     \Dist(P_0, \pi) = \Abs{F(x_0, y_0, z_0)},
-  \end{align*}
+  \end{equation*}
   а величината \( \ODist(P, \pi) = F(x_0, y_0, z_0) \) се нарича \textbf{ориентирано разстояние} между \( P_0 \) и \( \pi \).
 \end{theorem}
 
@@ -641,7 +641,7 @@
   \textbf{Окръжност} \( k \) с \textbf{център} \( P_0(x_0, y_0) \) и \textbf{радиус} \( r > 0 \) наричаме множеството от всички точки \( P \) на разстояние \( r \) от \( P_0 \).
 
   Точката \( P(x, y) \) е от \( k \) точно когато
-  \begin{align*}
+  \begin{equation*}
     \Dist(P_0, P)
     =
     \Norm{P_0 P}
@@ -649,30 +649,34 @@
     \sqrt{{(x - x_0)}^2 + {(y - y_0)}^2} = r
     \iff
     {(x - x_0)}^2 + {(y - y_0)}^2 = r^2.
-  \end{align*}
+  \end{equation*}
 
-  Уравнението \( {(x - x_0)}^2 + {(y - y_0)}^2 = r \) наричаме \textbf{централно уравнение на окръжността \( k \)}.
+  Уравнението
+  \begin{equation*}
+    {(x - x_0)}^2 + {(y - y_0)}^2 = r
+  \end{equation*}
+  наричаме \textbf{централно уравнение на окръжността \( k \)}.
 
   В частност, оттук следва, че окръжностите са алгебрични криви от втора степен.
 
   \bigskip
   \begin{minipage}{0.45\textwidth}
     Нека сега \( P_0 x\Ray \) е лъчът с начало \( P_0 \), успореден на \( Ox\Ray \). Ако означим с \( \varphi \) ориентирания ъгъл между лъчите \( P_0x\Ray \) и \( P_0 P\Ray \), от определенията за \( \sin \) и \( \cos \) за координатите на вектора \( \V{P_0 P} \) получаваме
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         x - x_0 = r \cos \varphi \\
         y - y_0 = r \sin \varphi
       \end{cases}.
-    \end{align*}
+    \end{equation*}
 
     \textbf{Скаларни параметрични уравнения на окръжност} наричаме системата
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         x = x_0 + r \cos \varphi \\
         y = y_0 + r \sin \varphi
       \end{cases},
       \varphi \in [0, 2\pi).
-    \end{align*}
+    \end{equation*}
   \end{minipage}
   \begin{minipage}{0.45\textwidth}
     \begin{figure}[H]
@@ -764,20 +768,20 @@
   \end{align*}
 
   Така получаваме \textbf{метрично канонично уравнение на елипсата \( k \)} спрямо \( K \):
-  \begin{align*}
+  \begin{equation*}
     k: \frac {x^2} {a^2} + \frac {y^2} {b^2} = 1.
-  \end{align*}
+  \end{equation*}
 
   Веднага виждаме, че елипсите са алгебрични криви от втора степен и че централното уравнение на окръжност е частен случай с \( a = b = r \iff c = 0 \).
 
   \textbf{Скаларни параметрични уравнения на елипса} можем да изведем аналогично на тези за окръжност. В нашия опростен случай те имат вида
-  \begin{align*}
+  \begin{equation*}
     \begin{cases}
       x = a \cos \varphi \\
       y = b \sin \varphi
     \end{cases},
     \varphi \in [0, 2\pi).
-  \end{align*}
+  \end{equation*}
 
   \begin{theorem}[Фокално свойство на елипса]
     Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от елипсата минава през \( \Point F_1 \) (фиг.~\ref{fig:ellipse}).
@@ -826,25 +830,25 @@
   \end{itemize}
 
   Напълно аналогично на случая с елипса, разписвайки уравнението за \( k \) покоординатно стигаме до уравнението
-  \begin{align*}
+  \begin{equation*}
     \frac {x^2} {a^2} + \frac {y^2} {a^2 - c^2} = 1.
-  \end{align*}
+  \end{equation*}
 
   Единствената разлика е, че тук \( b = -(a^2 - c^2) \). Така получаваме \textbf{метрично канонично уравнение} на хиперболата \( k \) спрямо \( K \):
-  \begin{align*}
+  \begin{equation*}
     k: \frac {x^2} {a^2} - \frac {y^2} {b^2} = 1.
-  \end{align*}
+  \end{equation*}
 
   Веднага виждаме, че хиперболите са алгебрични криви от втора степен.
 
   \textbf{Скаларните параметрични уравнения на хипербола} са различни за левия и десния клон на хиперболата. В нашия опростен случай те имат вида
-  \begin{align*}
+  \begin{equation*}
     \begin{cases}
       x = \pm a \cosh \varphi \\
       y = b \sinh \varphi
     \end{cases},
     \varphi \in [0, 2\pi).
-  \end{align*}
+  \end{equation*}
 
   \begin{theorem}[Фокално свойство на хипербола]
     Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от хиперболата лежи върху правата, минаваща през \( \Point M \) и \( \Point F_1 \) (фиг.~\ref{fig:hyperbola}).
@@ -892,20 +896,20 @@
   \end{align*}
 
   Така получаваме \textbf{метрично канонично уравнение на параболата \( k \)} спрямо \( K \):
-  \begin{align*}
+  \begin{equation*}
     k: y^2 = 2px.
-  \end{align*}
+  \end{equation*}
 
   Веднага виждаме, че параболите са алгебрични криви от втора степен.
 
   Ако вземем \( y \) за параметър, получаваме следните \textbf{скаларни параметрични уравнения} на параболата \( k \) спрямо \( K \):
-  \begin{align*}
+  \begin{equation*}
     k: \begin{cases}
       x = \frac{\varphi^2} {2p} \\
       y = \varphi,
     \end{cases}
     \varphi \in \R.
-  \end{align*}
+  \end{equation*}
 
   \begin{theorem}[Фокално свойство на парабола]
     Всеки лъч с начало \( \Point F \) след отражение в произволна точка \( M \) от параболата, става перпендикулярен на директрисата \( d \) (фиг.~\ref{fig:parabola}).
@@ -942,14 +946,14 @@
 \begin{solution}
   \begin{enumerate}[label=\alph*)]
     \item Правата \( l \) е успоредна на \( a \), следователно тя има общо уравнение от вида
-    \begin{align*}
+    \begin{equation*}
       l: 3x + 4y + C = 0,
-    \end{align*}
+    \end{equation*}
 
     където \( C \) е подбрано спрямо условието \( l \) да минава през \( \Point A \), т.е.
-    \begin{align*}
+    \begin{equation*}
       C = - 3 \cdot 1 - 4 \cdot (-2) = 5.
-    \end{align*}
+    \end{equation*}
 
     И така, \( l \) има общо уравнение \( l: 3x + 4y + 5 = 0 \).
 
@@ -987,7 +991,7 @@
     \end{align*}
 
     Координатите на пресечната точка \( B_a \) на \( a \) и \( BB' \) (ортогоналната проекция на \( B \) върху \( a \)) намираме от системата
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         3x + 4y + 2 = 0 \mid (\times 3) \\
         4x - 3y - 3 = 0 \mid (\times 4)
@@ -1002,12 +1006,12 @@
         25x = 6 \\
         12y = 16x - 12
       \end{cases},
-    \end{align*}
+    \end{equation*}
 
     откъдето получаваме \( B_a(6/25, -17/25) \).
 
     Остава да намерим координатите на \( B' \). Имаме \( \V{BB_a} = \V{B_a B'} \), откъдето
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         6/25 = x' - 6/25 \\
         -17/25 + 1 = y' + 17/25
@@ -1017,19 +1021,19 @@
         x' = 12/25 \\
         y' = -34/25 + 1 = -9/25
       \end{cases}.
-    \end{align*}
+    \end{equation*}
 
     Получихме \( B'(12/25, -9/25) \).
 
     \item Разстоянието \( \Dist(A, a) \) намираме използвайки теорема~\ref{thm:plane_distance}:
-    \begin{align*}
+    \begin{equation*}
       \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {n_a}},
-    \end{align*}
+    \end{equation*}
 
     където \( F_a(x, y) = 3x + 4y + 2 \) е лявата част на зададеното общо уравнение на \( a \), а \( n_a(3, 4) \) е съответният нормален вектор. Директно пресмятаме разстоянието и получаваме
-    \begin{align*}
+    \begin{equation*}
       \Dist(A, a) = \frac {\Abs{3 \cdot 1 + 4 \cdot (-2) + 2}} 5 = \frac 3 5.
-    \end{align*}
+    \end{equation*}
 
     \item Ъглополовящите \( u_{1,2} \) на правите \( a \) и \( b \) се състоят от всички точки \( P(x, y) \), за които \( \Dist(P, a) = \Dist(P, b) \). Последното условие е еквивалентно на условието \( \ODist(P, a) \pm \ODist(P, b) = 0 \), откъдето намираме уравненията на ъглополовящите:
     \begin{align*}
@@ -1040,12 +1044,12 @@
     \end{align*}
 
     \item Ъгълът между \( a \) и \( b \) намираме чрез нормалните им вектори \( n_a(3, 5) \) и \( n_b(5, -12) \):
-    \begin{align*}
+    \begin{equation*}
       \angle(a, b) = \arccos \frac {\Abs{\Prod{n_a} {n_b}}} {\Norm{n_a} \Norm{n_b}} = \arccos \Abs {- \frac {33} {65}} = \arccos \frac {33} {65}
-    \end{align*}
+    \end{equation*}
 
     \item Координатите на пресечната точка \( T \) на \( a \) и \( b \) намираме от системата
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         3x + 4y + 2 = 0 \mid (\times 3) \\
         5x - 12y + 1 = 0
@@ -1060,7 +1064,7 @@
         14x = -7 \\
         12y = 5x + 1
       \end{cases}
-    \end{align*}
+    \end{equation*}
 
     откъдето получаваме \( T(-1/2, -1/8) \).
 
@@ -1154,30 +1158,30 @@
     а от ограничението \( M_a \in a \) получаваме, че \( \Point M_a \) има координати \( (0, 0) \) спрямо \( K \).
 
     \item Намираме координатите на ортогонално симетричната точка \( M'(x', y') \) на \( M \) относно \( a \). Имаме \( \V{MM_a} = \V{M_a M'} \), откъдето
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         2 - 0 = 0 - x' \\
         2 - 0 = 0 - y'
       \end{cases}
       \implies
       x' = y' = -2,
-    \end{align*}
+    \end{equation*}
     т.е. \( M'(-2, -2) \).
 
     \item Намираме уравнението на правата \( l' \). Тъй като \( l' \parallel b \), правата \( l' \) има общо уравнение
-    \begin{align*}
+    \begin{equation*}
       l': x - 3y + C = 0,
-    \end{align*}
+    \end{equation*}
 
     където \( C \) е подбрано спрямо условието \( l' \) да минава през \( \Point M' \), т.е.
-    \begin{align*}
+    \begin{equation*}
       C = - 1 \cdot (-2) + 3 \cdot (-2) = -4.
-    \end{align*}
+    \end{equation*}
 
     И така, \( l' \) има общо уравнение \( l': x - 3y - 4 = 0 \).
 
     \item Намираме координатите на пресечната точка \( N \) на \( a \) и \( l' \) (а също и \( l' \)):
-    \begin{align*}
+    \begin{equation*}
       N(x, y): \begin{cases}
         x + y = 0 \\
         x - 3y - 4 = 0
@@ -1192,7 +1196,7 @@
         x = 1 \\
         y = -1
       \end{cases},
-    \end{align*}
+    \end{equation*}
 
     т.е. \( N(1, -1) \).
 
@@ -1221,9 +1225,9 @@
   \end{align*}
 
   а равнината \( \beta \) има общо уравнение
-  \begin{align*}
+  \begin{equation*}
     \beta: x + y - z + 1 = 0.
-  \end{align*}
+  \end{equation*}
 
   Да се намерят:
   \begin{enumerate}[label=\alph*)]
@@ -1259,18 +1263,18 @@
     \end{align*}
 
     \item Правата \( h \) е успоредна на нормалния за \( \alpha \) вектор на \( n_\alpha(1, -3, -1) \), следователно тя има векторно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       h: \V{OD} + \lambda n_\alpha, \lambda \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       h: \begin{cases}
         x = \lambda \\
         y = -3 - 3\lambda \\
         z = 2 - \lambda
       \end{cases},
       \lambda \in \R.
-    \end{align*}
+    \end{equation*}
 
     \item За да намерим ортогонално симетричната на \( \Point D \) спрямо \( \alpha \) точка \( \Point D'(x', y', z') \), първо ще намерим пресечната точка \( \Point D_\alpha \) на правата \( h \) и равнината \( \alpha \).
 
@@ -1285,7 +1289,7 @@
     откъдето намираме координатите \( (-1, 0, 3) \) на \( \Point D_\alpha \).
 
     След това, развиваме очевидното равенство \( \V{D_\alpha D'} = \V{DD_\alpha} \) покоординатно:
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         x' + 1 = -1 \\
         y' - 0 = 3 \\
@@ -1297,23 +1301,23 @@
         y' = 3 \\
         z' = 4,
       \end{cases}
-    \end{align*}
+    \end{equation*}
     т.е. \( D'(-2, 3, 4) \).
 
     \item Тъй като равнината \( \gamma \) е успоредна на \( \beta \), тя има общо уравнение
-    \begin{align*}
+    \begin{equation*}
       \gamma: x + y - z + C = 0,
-    \end{align*}
+    \end{equation*}
 
     където \( C \) е подбрано спрямо условието \( \gamma \) да минава през \( \Point D \), т.е.
-    \begin{align*}
+    \begin{equation*}
       C = -(0 + (- 3) - 2) = 5.
-    \end{align*}
+    \end{equation*}
 
     И така, \( \gamma: x + y - z + 5 = 0 \).
 
     \item Търсим едновременни решения на известните общи уравнения на равнините \( \alpha \) и \( \beta \):
-    \begin{align*}
+    \begin{equation*}
       \begin{cases}
         \alpha: x - 3y - z + 4 = 0 \\
         \beta: x + y - z + 1 = 0
@@ -1323,37 +1327,37 @@
         y = 3 / 4 \\
         z = x + 7 / 4.
       \end{cases}
-    \end{align*}
+    \end{equation*}
 
     Очевидно точките \( V_0\left(0, \frac 3 4, \frac 7 4 \right) \) и \( V_1\left( 1, \frac 3 4, 1 + \frac 7 4 \right) \) удовлетворяват горната система, следователно векторът \( v = \V{V_0 V_1} \) с координати \( (1, 0, 1) \) е колинеарен и с двете равнини.
 
     \item Пресечницата \( m \) на \( \alpha \) и \( \beta \) има векторно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       m: \V{OV_0} + \mu v, \mu \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       m: \begin{cases}
         x = \mu \\
         y = 3/4 \\
         z = 7/4 + \mu
       \end{cases},
       \mu \in \R.
-    \end{align*}
+    \end{equation*}
 
     \item Тъй като вече разполагаме с координатите на ортогонално симетричната на \( D \) относно \( \alpha \) точка \( D' \) и нормалният за \( \alpha \) вектор \( n_\beta(1, 1, -1) \), можем да намерим векторно параметрично уравнения на правата \( l' \):
-    \begin{align*}
+    \begin{equation*}
       l': \V{OD'} + \nu n_\beta, \nu \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларното параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       l': \begin{cases}
         x = -2 + \nu \\
         y = 3 + \nu \\
         z = 4 - \nu
       \end{cases},
       \nu \in \R.
-    \end{align*}
+    \end{equation*}
 
     Сега намираме стойността на параметъра \( \nu \), за която \( l' \) пресича равнината \( \alpha \):
     \begin{align*}
@@ -1364,23 +1368,23 @@
     т.е. пресечната точка \( N \) на \( l' \) и \( \alpha \) има координати \( N(9, 14, -7) \).
 
     Сега намираме векторно параметрично уравнения на правата \( l \), минаваща през \( \Point D \) и \( \Point N \):
-    \begin{align*}
+    \begin{equation*}
       l: \V{OD} + \xi \V{DN}, \xi \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларното параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       l: \begin{cases}
         x = 9\xi \\
         y = -3 + 17\xi \\
         z = 2 - 9\xi
       \end{cases},
       \xi \in \R.
-    \end{align*}
+    \end{equation*}
 
     \item Първо намираме два нормални за правата \( m \) вектора. Нека \( u(x, y, z) \) е произволен вектор. Тъй като \( v \) е направляващ за \( m \), \( u \) е нормален за \( m \) само ако
-    \begin{align*}
+    \begin{equation*}
       \Prod u v = x + z = 0.
-    \end{align*}
+    \end{equation*}
 
     От горното условие виждаме, че два нормални за \( m \) вектора са \( u_1(0, 1, 0) \) и \( u_2(-1, 0, 1) \).
 
@@ -1454,12 +1458,12 @@
     \item Точката \( A(1, 1, 1) \) лежи върху \( t \)
     \item \( t \) лежи в равнината \( \alpha: 2x + y - 3z + 6 = 0 \)
     \item \( t \) е успоредна на правата
-    \begin{align*}
+    \begin{equation*}
       a: \begin{cases}
         x + 5y + 4z - 3 = 0 \\
         2x - 5y - 4z + 1 = 0
       \end{cases}
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{exercise}
 
@@ -1496,23 +1500,23 @@
     \end{align*}
 
     От второто уравнение получаваме
-    \begin{align*}
+    \begin{equation*}
       -k = -8k\mu_H \implies \mu_H = 1 / 8 \implies H(-1, -13/8, 11/8).
-    \end{align*}
+    \end{equation*}
 
     Правата \( t \) има векторно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \V{OA} + 8 \nu \V{AH}, \nu \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \begin{cases}
         x = 1 - 16\nu \\
         y = 1 - 21 \nu \\
         z = 1 + 3 \nu
       \end{cases},
       \nu \in \R.
-    \end{align*}
+    \end{equation*}
 
     \item Намираме \( \lambda_G \) и \( \mu_H \) като директно заместваме координатите на \( G \) и \( H \) в уравнението на \( \alpha \):
     \begin{align*}
@@ -1529,18 +1533,18 @@
     следователно \( \mu_H = 0 \) и \( \Point H \) има координати \( H(-1, -1, 1) \).
 
     Правата \( t \) има векторно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \V{OG} + \nu \V{GH}, \nu \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \begin{cases}
         x = 1 - 2\nu \\
         y = 4 - 5\nu \\
         z = 4 - 3\nu
       \end{cases},
       \nu \in \R.
-    \end{align*}
+    \end{equation*}
 
     \item Първо намираме скаларно параметрично уравнение на правата \( a \). Събирайки двете уравнения, получаваме
     \begin{align*}
@@ -1556,33 +1560,33 @@
     \end{align*}
 
     Параметризираме горната система чрез \( \xi \in \R \), полагайки \( y = 4\xi \), и получаваме
-    \begin{align*}
+    \begin{equation*}
       a: \begin{cases}
         x = 2 / 3 \\
         y = 4\xi \\
         z = 7/{12} - 5\xi
       \end{cases},
       \xi \in \R.
-    \end{align*}
+    \end{equation*}
 
     Означаваме направляващия вектор от горното уравнение чрез \( v_a(0, 4, -5) \). За да бъдат колинеарни правите \( t \) и \( a \) е достатъчно двойка техни направляващи вектори да бъдат колинеарни, т.е. \( \V{GH} \parallel v_a \iff \exists k \in \R \setminus \{ 0 \} : \V{GH} = k v_a \). Разписвайки това уравнение само за първата координата, получаваме
-    \begin{align*}
+    \begin{equation*}
       2 + 2\lambda_G = 0 \cdot k \implies \lambda_G = -1 \implies G(-1, 0, 3).
-    \end{align*}
+    \end{equation*}
 
     Разполагайки с точка \( G \in t \) и направляващ вектор \( v_a \parallel t \), за трансверзалата \( t \) получаваме векторно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \V{OG} + \nu v_a, \nu \in \R
-    \end{align*}
+    \end{equation*}
     и, съответно, скаларно параметрично уравнение
-    \begin{align*}
+    \begin{equation*}
       t: \begin{cases}
         x = -1 \\
         y = 4\nu \\
         z = 3 - 5\nu
       \end{cases},
       \nu \in \R.
-    \end{align*}
+    \end{equation*}
   \end{enumerate}
 \end{solution}
 
@@ -1590,9 +1594,9 @@
 
 \begin{exercise}
   Спрямо ортонормирана координатна система \( K = Oxy \) е зададена кривата
-  \begin{align*}
+  \begin{equation*}
     c: 4x^2 - 4xy + y^2 + 2x - 16y - 8 = 0.
-  \end{align*}
+  \end{equation*}
 
   Да се намери метрично канонично уравнение на \( c \) и да намерят координатите на фокусите на \( c \) спрямо \( K \).
 \end{exercise}
@@ -1656,9 +1660,9 @@
     \end{equation}
 
     Изваждайки двете уравнения в~\ref{ex:canonization/eigen}, стигаме до характеристичния полином на \( A \):
-    \begin{align*}
+    \begin{equation*}
       \frac {4 - \lambda} 2 - \frac 2 {1 - \lambda} = 0 \iff 4 - \lambda - 4\lambda + \lambda^2 - 4 = \lambda^2 - 5\lambda = 0,
-    \end{align*}
+    \end{equation*}
     чиито корени са \( \lambda_1 = 0 \) и \( \lambda_1 = 5 \), а замествайки в~\ref{ex:canonization/normed_eigen}, директно получаваме собствените вектори
     \begin{align*}
       v_1 \left(\frac 1 {\sqrt 5}, \frac 2 {\sqrt 5} \right)
@@ -1667,29 +1671,29 @@
     \end{align*}
 
     Желаната ротация има вида
-    \begin{align*}
+    \begin{equation*}
       R: \begin{cases}
         x = \frac 1 {\sqrt 5} (x' - 2y') \\
         y = \frac 1 {\sqrt 5} (2x' + y').
       \end{cases}
-    \end{align*}
+    \end{equation*}
 
     Спрямо новата координатна система \( K' \) кривата \( c \) има вида
-    \begin{align*}
+    \begin{equation*}
       c: 5y'^2 + \frac 2 {\sqrt 5} (x' - 2y') - \frac {16} {\sqrt 5} (2x' + y') - 8 = 5y'^2 - \frac {30} {\sqrt 5} x' - \frac {20} {\sqrt 5} y' - 8 = 0,
-    \end{align*}
+    \end{equation*}
     което можем да опростим до
-    \begin{align*}
+    \begin{equation*}
       c: 5 \sqrt 5 y'^2 - 30 x' - 20 y' - 8 \sqrt 5 = 0,
-    \end{align*}
+    \end{equation*}
 
     \item Имаме уравнения на парабола, но то не е канонично. Търсим афинна координатна система \( K'' \), в която параболата да е центрирана, т.е. търсим транслация
-    \begin{align*}
+    \begin{equation*}
       T: \begin{cases}
         x' = x'' + a \\
         y' = y'' + b,
       \end{cases}
-    \end{align*}
+    \end{equation*}
     така че в новата координатна система уравнението да има вида \( c: y'' = 2px'' \) за някое число \( p \).
 
     Правим транслацията и след това намираме подходящи стойности за параметрите \( a \) и \( b \):
@@ -1700,10 +1704,10 @@
     \end{align*}
 
     Приравняваме на нула коефициента пред \( y'' \) и свободния коефициент:
-    \begin{align*}
+    \begin{equation*}
       10 \sqrt 5 b - 20 = 0 \implies b = \frac 2 {\sqrt 5}
-    \end{align*}
-    \begin{align*}
+    \end{equation*}
+    \begin{equation*}
       a
       =
       \frac {5 \sqrt 5 b^2 - 20 b - 8 \sqrt 5} {30}
@@ -1715,10 +1719,10 @@
       \frac {-60} {30 \sqrt 5}
       =
       \frac {-2} {\sqrt 5}.
-    \end{align*}
+    \end{equation*}
 
     Тогава за композираната смяна на координатната система от \( K'' \) към \( K \) получаваме
-    \begin{align*}
+    \begin{equation*}
       R \circ T: \begin{cases}
         x = \frac 1 {\sqrt 5} \left( x'' + a - 2y'' - 2b \right) \\
         y = \frac 1 {\sqrt 5} \left( 2x'' + 2a + y'' + b \right)
@@ -1728,22 +1732,22 @@
         x = \frac 1 {\sqrt 5} \left( x'' - 2y'' - \frac 6 {\sqrt 5} \right) \\
         y = \frac 1 {\sqrt 5} \left( 2x'' + y'' - \frac 2 {\sqrt 5} \right)
       \end{cases}
-    \end{align*}
+    \end{equation*}
 
     и спрямо \( K'' \) параболата има уравнение
-    \begin{align*}
+    \begin{equation*}
       c: 5 \sqrt 5 y''^2 = 30x''
       \iff
       c: y''^2 = 2 \cdot \frac 3 {\sqrt 5}x''
-    \end{align*}
+    \end{equation*}
 
     \item Фокусът на параболата \( c \) има спрямо \( K'' \) координати \( F \left(\frac 3 {2 \sqrt 5}, 0 \right) \). Спрямо \( K \) фокусът има координати
-    \begin{align*}
+    \begin{equation*}
       R \circ T: \begin{cases}
         x = \frac 1 {\sqrt 5} \left( \frac 3 {2 \sqrt 5} - \frac 6 {\sqrt 5} \right) = - \frac 9 {10} \\
         y = \frac 1 {\sqrt 5} \left( \frac 3 {\sqrt 5} - \frac 2 {\sqrt 5} \right) = \frac 1 5
       \end{cases},
-    \end{align*}
+    \end{equation*}
 
     т.е. \( F \left(-\frac 9 {10}, \frac 1 5 \right) \).
   \end{enumerate}

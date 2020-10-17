@@ -56,9 +56,9 @@
   Нека \( \{ a_{k_i} \} \) е една сходяща подредица на \( \{ a_k \} \). Тъй като интервалът \( [a, b] \) е затворен, границата \( \alpha \) на редицата \( \{ a_{k_i} \} \) лежи в този интервал.
 
   Понеже \( f(x) \) е непрекъсната, имаме
-  \begin{align*}
+  \begin{equation*}
     \lim_{i \to \infty} f(a_{k_i}) = f(\alpha) = M,
-  \end{align*}
+  \end{equation*}
   където последното равенство получихме от еднозначността на сходимостта на редици.
 \end{proof}
 
@@ -67,13 +67,13 @@
 \end{theorem}
 \begin{proof}
   Нека без ограничение на общността \( f(x) \) да има локален минимум в \( a \). Тогава
-  \begin{align*}
+  \begin{equation*}
     f'(a) = \lim_{h \downarrow 0} \frac {f(a+h) - f(a)} h \geq 0,
-  \end{align*}
+  \end{equation*}
   тъй като \( f(a+h) \geq f(a) \) за достатъчно малко \( h > 0 \). Обратно,
-  \begin{align*}
+  \begin{equation*}
     f'(a) = \lim_{h \uparrow 0} \frac {f(a+h) - f(a)} h \leq 0,
-  \end{align*}
+  \end{equation*}
   тъй като \( f(a+h) \geq f(a) \) за достатъчно малко по абсолютна стойност \( h < 0 \).
 
   Заключаваме, че \( f'(a) = 0 \).
@@ -95,17 +95,17 @@
 
 \begin{theorem}[Теорема на Лагранж за крайните нараствания]
   Нека \( a < b \), а функцията \( f: [a, b] \to \R \) е непрекъсната в \( [a, b] \) и диференцируема в \( (a, b) \). Тогава съществува точка \( c \in (a, b) \), такава че
-  \begin{align*}
+  \begin{equation*}
     f'(c) = \frac {f(b) - f(a)} {b-a}.
-  \end{align*}
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Разглеждаме спомагателната функция
-  \begin{align*}
+  \begin{equation*}
     g(x) \coloneqq f(x) - \frac {f(b) - f(a)} {b-a} x,
-  \end{align*}
+  \end{equation*}
   за която имаме
-  \begin{align*}
+  \begin{equation*}
     g(a)
     =
     f(a) - \frac {f(b) - f(a)} {b-a} a
@@ -115,33 +115,33 @@
     f(b) - \frac {f(b) - f(a)} {b-a} b
     =
     g(b).
-  \end{align*}
+  \end{equation*}
 
   Освен това \( g(x) \) е непрекъсната в \( [a, b] \) като сума на непрекъснати в \( [a, b] \) функции и диференцируема в \( (a, b) \) като сума на диференцируеми в \( (a, b) \) функции. Това ни позволява да приложим теоремата на Рол към \( g(x) \), за да получим константа \( c \), за която
 
-  \begin{align*}
+  \begin{equation*}
     0 = g'(c) = f'(c) - \frac {f(b) - f(a)} {b-a}.
-  \end{align*}
+  \end{equation*}
 
   Но тогава
-  \begin{align*}
+  \begin{equation*}
     f'(c) = \frac {f(b) - f(a)} {b-a}.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \begin{theorem}[Теорема на Коши]
   Нека \( a < b \), а функцията \( f: [a, b] \to \R \) и \( g: [a, b] \to \R \) са непрекъснати в \( [a, b] \) и диференцируеми в \( (a, b) \) и нека \( g'(x) \neq 0 \) за \( x \in (a, b) \). Тогава съществува точка \( c \in (a, b) \), такава че
-  \begin{align*}
+  \begin{equation*}
     \frac {f'(c)} {g'(c)} = \frac {f(b) - f(a)} {g(b) - g(a)}.
-  \end{align*}
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Да отбележим първо, че \( g'(x) \neq 0 \) в \( (a, b) \) влече, че условията на теоремата на Рол не са изпълнена за \( g(x) \) и следователно \( g(a) \neq g(b) \).
 
   Разглеждаме спомагателната функция
-  \begin{align*}
+  \begin{equation*}
     h(x) \coloneqq f(x) - \frac {f(b) - f(a)} {g(b) - g(a)} g(x),
-  \end{align*}
+  \end{equation*}
   за която имаме
   \begin{align*}
     h(a)
@@ -157,57 +157,57 @@
 
   Функцията \( h(x) \) е непрекъсната в \( [a, b] \) като линейна комбинация на непрекъснати в \( [a, b] \) функции и диференцируема в \( (a, b) \) като линейна комбинация на диференцируеми в \( (a, b) \) функции. Това ни позволява да приложим теоремата на Рол към \( h(x) \), за да получим константа \( c \), за която
 
-  \begin{align*}
+  \begin{equation*}
     0 = h'(c) = f'(c) - \frac {f(b) - f(a)} {g(b) - g(a)} g'(c).
-  \end{align*}
+  \end{equation*}
 
   Но тогава
-  \begin{align*}
+  \begin{equation*}
     \frac {f'(c)} {g'(c)} = \frac {f(b) - f(a)} {g(b) - g(a)}.
-  \end{align*}
+  \end{equation*}
 \end{proof}
 
 \subsection{Теорема на Тейлър}
 
 \begin{theorem}[Тейлър]
   Нека \( a < b \), а функцията \( f: [a, b] \to \R \) е непрекъсната в \( [a, b] \) и \( n+1 \)-кратно диференцируема в \( (a, b) \). Тогава за произволна точка \( \xi \in (a, b) \) в достатъчно малка околност на \( \xi \) е изпълнено
-  \begin{align*}
+  \begin{equation*}
     f(x) = \sum_{k=0}^n \frac {f^{(k)}(\xi)} {k!} {(x-\xi)}^k + R(x),
-  \end{align*}
+  \end{equation*}
   където \( R(x) \Conv[x \to \xi]{} 0 \).
 \end{theorem}
 \begin{proof}
   Фиксираме \( \xi, x \in (a, b) \) и полагаме \( U \coloneqq [\min(\xi, x), \max(\xi, x)] \). Дефинираме спомагателната функция
-  \begin{align*}
+  \begin{equation*}
     \varphi(t) \coloneqq f(x) - \sum_{k=0}^n \frac {f^{(k)}(t)} {k!} {(x-t)}^k.
-  \end{align*}
+  \end{equation*}
 
   Тази функция обобщава остатъчния член, тъй като \( \varphi(\xi) = R(x) \). За производната ѝ имаме
-  \begin{align*}
+  \begin{equation*}
     \varphi'(t)
     =
     f'(t) -\sum_{k=1}^n \left( \frac {f^{(k+1)}(t)} {k!} {(x-t)}^k - \frac {f^{(k)}(t)} {(k-1)!} {(x-t)}^{k-1} \right)
     =
     - \frac {f^{(n+1)}(t)} {n!} {(x-t)}^n.
-  \end{align*}
+  \end{equation*}
 
   За да изразим остатъчният член в различни форми, използваме още една спомагателна функция. Нека \( \psi: U \to \R \) е непрекъсната в \( U \) и диференцируема във вътрешността \( \Int U \). Нека освен това производната \( \psi'(t) \) да бъде различна от \( 0 \) в интервала \( \Int U \).
 
   От теоремата на Коши намираме константа \( c \in \Int U \), така че
-  \begin{align*}
+  \begin{equation*}
     \frac {\varphi'(c)} {\psi'(c)}
     =
     \frac {\varphi(x) - \varphi(\xi)} {\psi(x) - \psi(\xi)}.
-  \end{align*}
+  \end{equation*}
 
   Понеже \( \varphi(x) = 0 \) и \( \varphi(\xi) = R(x) \), за остатъчния член имаме
-  \begin{align*}
+  \begin{equation*}
     R(x)
     =
     -\frac {\psi(x) - \psi(\xi)} {\psi'(c)} \varphi'(c)
     =
     \frac {\psi(x) - \psi(\xi)} {\psi'(c)} \frac {f^{(n+1)}(c)} {n!} {(x-c)}^n.
-  \end{align*}
+  \end{equation*}
 
   От непрекъснатостта на \( \psi(t) \) следва, че \( R(x) \Conv[x \to \xi]{} 0 \).
 \end{proof}
@@ -270,9 +270,9 @@
   \endgroup
 
   Стойностите на функцията \( F(t) \) в краищата на интервала \( [0, 1] \) се анулират. Тогава теоремата на Рол ни дава константа \( c \in (0, 1) \), за която
-  \begin{align*}
+  \begin{equation*}
     F'(c) = f(c) = 0.
-  \end{align*}
+  \end{equation*}
 
   Следователно \( c \in (0, 1) \) е корен на уравнението \( f(t) = 0 \).
 \end{solution}
