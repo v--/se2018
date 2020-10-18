@@ -1,8 +1,10 @@
 index.pdf
 
 ; luatex
-*.aux
 *.log
+
+; latex
+*.aux
 *.out
 *.fls
 

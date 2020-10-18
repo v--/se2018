@@ -10,6 +10,7 @@ topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
 
 clean:
 	rm -fv topics/*/index.pdf
-	rm -fv topics/*/*.{aux,log,out,fls}
-	rm -fv topics/*/*.fdb_latexmk
-	rm -fv topics/*/*.{run.xml,bbl,bcf,blg}
+	rm -fv topics/*.log # luatex
+	rm -fv topics/*.{aux,out,fls} # latex
+	rm -fv topics/*.fdb_latexmk # latexmk
+	rm -fv topics/*.{bbl,bcf,blg,run.xml} # biber

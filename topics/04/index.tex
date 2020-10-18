@@ -289,19 +289,19 @@
     \end{equation*}
   \end{theorem}
 \end{minipage}
+\hspace{0.5cm}
 \begin{minipage}{0.45\textwidth}
-  \begin{figure}[H]
-    \begin{Center}
-      \begin{tikzpicture}
-        \draw[->] (-1,0) -- (4,0) node[below right] {\( x \)};
-        \draw[->] (0,-1) -- (0,4) node[left] {\( y \)};
-        \draw [domain=-1:2.7, samples=40] plot (\x, \x^2/2);
-        \filldraw [black] (2, 2) circle (1.5pt);
-        \filldraw [black] (1/2, 1/8) circle (1.5pt);
-        \draw[-] (0, -1/2) -- (16/5, 3.5);
-      \end{tikzpicture}
-    \end{Center}
-    \caption{Секуща през две точки от графиката}\label{fig:secant}
+  \begin{figure}[H]\label{fig:secant}
+    \centering
+    \begin{tikzpicture}
+      \draw[->] (-1,0) -- (4,0) node[below right] {\( x \)};
+      \draw[->] (0,-1) -- (0,4) node[left] {\( y \)};
+      \draw [domain=-1:2.7, samples=40] plot (\x, \x^2/2);
+      \filldraw [black] (2, 2) circle (1.5pt);
+      \filldraw [black] (1/2, 1/8) circle (1.5pt);
+      \draw[-] (0, -1/2) -- (16/5, 3.5);
+    \end{tikzpicture}
+    \caption{Секуща през две точки от графиката}
   \end{figure}
 \end{minipage}
 \begin{proof}
