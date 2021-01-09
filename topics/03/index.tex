@@ -118,7 +118,7 @@
 
 \subsection{Делимост на полиноми}
 
-\begin{theorem}[Делене с остатък]
+\begin{theorem}[Делене с остатък]\label{thm:polynomial_division}
   Нека са дадени ненулевите полиноми \( p(X) = \sum_{k=0}^n a_k X^k \) и \( q(X) = \sum_{k=0}^m b_k X^k \), където \( q(X) \neq 0 \). Тогава съществуват единствени полиноми \( s \) и \( r \), където \( r = 0 \) или \( \deg(r) < m \), такива че
   \begin{equation*}
     p = sq + r.
@@ -181,15 +181,16 @@
 
   (\( \impliedby \)) Нека \( u \) е корен на \( p(X) \).
 
-  Разглеждаме идеала \( I \lhd F[X] \) на всички полиноми, на които \( u \) е корен. Това наистина е идеал, тъй като ако \( u \) е корен на \( q(X) \) и \( s(X) \), то
-  \begin{enumerate}
-    \item \( q(u) + s(u) = 0 + 0 = 0 \).
-    \item \( q(u) r(u) = 0 \cdot r(u) = 0~\forall r \in F[x] \).
-  \end{enumerate}
+  Теорема~\ref{thm:polynomial_division} ни дава полиноми \( q(X) \) и \( r(X) \), където или \( r(X) = 0 \), или \( \deg r < \deg b \), такива че
+  \begin{equation*}
+    p(X) = (X - u) q(X) + r(X).
+  \end{equation*}
 
-  По теорема~\ref{thm:polynomial_ideals_are_principal} всеки идеал на \( F[X] \) е главен, следователно \( I = \Gen{(X - u)} \), тъй като \( (X - u) \) е ненулев полином от минимална степен, принадлежащ на \( I \).
-
-  Тъй като \( p(X) \in I = \Gen{(X - u)} \), то \( (X - u) \) дели \( p(X) \).
+  Да допуснем, че полиномът \( r(X) \) е ненулев. Стойността на \( p(X) \) в \( u \) е
+  \begin{equation*}
+    0 = p(u) = (u - u) q(r) + r(u) = r(u),
+  \end{equation*}
+  следователно \( u \) е корен и на \( r(X) \). Но \( \deg r(X) < \deg (X - u) = 1 \), тоест \( r(X) \) е ненулев константен полином и \( r(X) \) не може да има нули. Полученото противоречие доказва твърдението.
 \end{proof}
 
 \begin{proposition}\label{thm:root_inexact_divisor}
