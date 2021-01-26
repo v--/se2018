@@ -1,7 +1,7 @@
 TOPICS := $(patsubst topics/%,topics/%/index.pdf,$(wildcard topics/*))
 COMPILER := latexmk -cd -interaction=batchmode -time -bibtex
 
-.PHONY: all clean
+.PHONY: all clean install-hook
 
 all: $(TOPICS)
 
@@ -14,3 +14,7 @@ clean:
 	rm -fv topics/*.{aux,out,fls} # latex
 	rm -fv topics/*.fdb_latexmk # latexmk
 	rm -fv topics/*.{bbl,bcf,blg,run.xml} # biber
+
+install-hook:
+	cp gitinfo2_hook.sh .git/hooks/post-checkout
+	chmod +x .git/hooks/post-checkout
