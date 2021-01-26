@@ -5,7 +5,7 @@ COMPILER := latexmk -cd -interaction=batchmode -time -bibtex
 
 all: $(TOPICS)
 
-topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty
+topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty .git/gitHeadInfo.gin
 	$(COMPILER) $(<D)/index.tex -pdflua
 
 clean:
@@ -17,4 +17,6 @@ clean:
 
 install-hook:
 	cp gitinfo2_hook.sh .git/hooks/post-checkout
-	chmod +x .git/hooks/post-checkout
+	cp gitinfo2_hook.sh .git/hooks/post-commit
+	cp gitinfo2_hook.sh .git/hooks/post-merge
+	chmod +x .git/hooks/post-{checkout,commit,merge}
