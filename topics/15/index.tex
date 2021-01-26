@@ -123,7 +123,7 @@
 До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \F, \Prob) \).
 
 \begin{definition}
-  Нека \( \xi \) е дискретна случайна величина със стойности \( x_1, x_2, \ldots \) Дефинираме \textbf{очакване на \( \xi \)} чрез
+  Нека \( \xi \) е дискретна случайна величина със стойности \( x_1, x_2, \ldots \) Дефинираме \textbf{очакване} на \( \xi \) чрез
   \begin{equation*}
     \Expect(\xi) \coloneqq \sum_k x_k \Prob(\xi = x_k) = \sum_{\omega \in \Omega} \xi(\omega) P(\{ \omega \}).
   \end{equation*}
@@ -232,14 +232,14 @@
 Доказаните в твърдения~\ref{thm:expectation_of_independent_product},~\ref{thm:expectation_is_linear_linear} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
-  \textbf{Ковариация на случайните величини \( \xi \) и \( \eta \)} наричаме
+  \textbf{Ковариация} на случайните величини \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
     \Cov(\xi, \eta)
     \coloneqq
     \Expect((\xi - \Expect \xi) (\eta - \Expect \eta)).
   \end{equation*}
 
-  \textbf{Дисперсия или вариация на случайната величина \( \xi \)} наричаме
+  \textbf{Дисперсия} или \textbf{вариация} на случайната величина \( \xi \) наричаме
   \begin{align*}
     \Var(\xi)
     \coloneqq
@@ -254,7 +254,7 @@
     \Expect(\xi^2) - {\Expect(\xi)}^2.
   \end{align*}
 
-  \textbf{Корелация на \( \xi \) и \( \eta \)} наричаме
+  \textbf{Корелация} на \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
     \Corr(\xi, \eta)
     \coloneqq
@@ -263,7 +263,7 @@
 
   От неравенството на Коши-Буняковски-Шварц следва, че \( \Abs{\Corr(\xi, \eta)} \leq 1 \).
 
-  Числото \( \Expect(\xi^n) \) наричаме \textbf{\( n \)-ти момент на \( \xi \)}, а \( \Expect \left( {(\xi - \Expect \xi)}^n \right) \) наричаме \textbf{\( n \)-ти централен момент на \( \xi \)}.
+  Числото \( \Expect(\xi^n) \) наричаме \( n \)-ти \textbf{момент} на \( \xi \), а \( \Expect \left( {(\xi - \Expect \xi)}^n \right) \) наричаме \( n \)-ти \textbf{централен момент} на \( \xi \).
 
   Очакването всъщност е просто първият момент, а дисперсията - вторият централен момент. Коренът на дисперсията се нарича \textbf{стандартно отклонение} и често се бележи със \( \sigma_\xi \).
 
@@ -317,17 +317,17 @@
 \subsection{Пораждащи, пораждащи моментите и характеристични функции}
 
 \begin{definition}
-  \textbf{Пораждаща функция на \( \xi \)} наричаме
+  \textbf{Пораждаща функция} на \( \xi \) наричаме
   \begin{equation*}
     \PGF_\xi (z) \coloneqq \Expect(z^\xi).
   \end{equation*}
 
-  \textbf{Пораждаща моментите функция на \( \xi \)} наричаме
+  \textbf{Пораждаща моментите функция} на \( \xi \) наричаме
   \begin{equation*}
     \MGF_\xi (t) \coloneqq \Expect(e^{t\xi}).
   \end{equation*}
 
-  \textbf{Характеристична функция на \( \xi \)} наричаме
+  \textbf{Характеристична функция} на \( \xi \) наричаме
   \begin{equation*}
     \Char_\xi (t) \coloneqq \Expect(e^{it\xi}).
   \end{equation*}
