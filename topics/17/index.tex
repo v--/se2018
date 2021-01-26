@@ -405,19 +405,32 @@
     =
     \tau_j
   \end{equation*}
-  по вероятност.
+  по вероятност. Еквивалентно,
+  \begin{equation}\label{thm:ergodic_theorem/squeeze_lemma_application}
+    \lim_{n \to \infty} \frac {M^{(n)}_j} n
+    =
+    \pi_j.
+  \end{equation}
 
   Сега ще докажем равенството
   \begin{equation*}
     \lim_{n \to \infty} \frac {M^{(n)}_j} n
     =
-    \lim_{n \to \infty} p_{ij}^{(n)}~\forall i \geq 0.
+    \lim_{n \to \infty} p_{ij}^{(n)} \quad\forall i \geq 0.
   \end{equation*}
 
-  Фиксираме изходно състояние \( i \). Да забележим първо, че сходимостта по вероятност \( \lim_{n \to \infty} \frac {M^{(n)}_j} n = \pi_j \) влече сходимост по разпределение, което пък е еквивалентно на сходимостта по всеки непрекъснат линеен функционал и в частност
+  Фиксираме изходно състояние \( i \). Понеже сходимостта в (\ref{thm:ergodic_theorem/squeeze_lemma_application}) е по вероятност, важи и сходимост по разпределение, следователно за всяка ограничена непрекъсната функция \( g \) имаме
+  \begin{equation}\label{thm:ergodic_theorem/expectation_of_limit}
+    \lim_{n \to \infty} \Expect g\left( \frac {M^{(n)}_j} n \right) = \Expect g\left( \lim_{n \to \infty} \frac {M^{(n)}_j} n \right) = \Expect g(\pi_j).
+  \end{equation}
+
+  Последното следва от, например, \cite[следствие 2 на стр. 119]{Borovkov}.
+
+  Да забележим, че \( \frac {M^{(n)}_j} n \leq 1 \) с вероятност \( 1 \). Понеже \( g(x) \coloneqq \max(x, 1) \) е ограничена непрекъсната функция, (\ref{thm:ergodic_theorem/expectation_of_limit}) придобива вида
   \begin{equation*}
-    \lim_{n \to \infty} \frac {\Expect(M^{(n)}_j \mid \xi_0 = i)} n = \pi_j.
+    \lim_{n \to \infty} \Expect \left( \frac {M^{(n)}_j} n \big\mid \xi_0 = i \right) = \Expect (\pi_j \mid \xi_0 = i) = \pi_j,
   \end{equation*}
+  където условното очакване не променя сходимостта, защото \( \pi_j \) е константа.
 
   От друга страна,
   \begin{equation*}
