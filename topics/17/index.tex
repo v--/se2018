@@ -421,16 +421,15 @@
 
   Фиксираме изходно състояние \( i \). Понеже сходимостта в (\ref{thm:ergodic_theorem/squeeze_lemma_application}) е по вероятност, важи и сходимост по разпределение, следователно за всяка ограничена непрекъсната функция \( g \) имаме
   \begin{equation}\label{thm:ergodic_theorem/expectation_of_limit}
-    \lim_{n \to \infty} \Expect g\left( \frac {M^{(n)}_j} n \right) = \Expect g\left( \lim_{n \to \infty} \frac {M^{(n)}_j} n \right) = \Expect g(\pi_j).
+    \lim_{n \to \infty} \Expect g\left( \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect g\left( \lim_{n \to \infty} \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect g(\pi_j \mid \xi_0 = i).
   \end{equation}
 
   Последното следва от, например, \cite[следствие 2 на стр. 119]{Borovkov}.
 
   Да забележим, че \( \frac {M^{(n)}_j} n \leq 1 \) с вероятност \( 1 \). Понеже \( g(x) \coloneqq \max(x, 1) \) е ограничена непрекъсната функция, (\ref{thm:ergodic_theorem/expectation_of_limit}) придобива вида
   \begin{equation*}
-    \lim_{n \to \infty} \Expect \left( \frac {M^{(n)}_j} n \bigl\vert \xi_0 = i \right) = \Expect (\pi_j \mid \xi_0 = i) = \pi_j,
+    \lim_{n \to \infty} \Expect \left( \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect (\pi_j \mid \xi_0 = i) = \pi_j.
   \end{equation*}
-  където условното очакване не променя сходимостта, защото \( \pi_j \) е константа.
 
   От друга страна,
   \begin{equation*}
