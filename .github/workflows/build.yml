@@ -15,8 +15,8 @@ jobs:
       with:
         run: |
           apk add make git
-          bash gitinfo2_hook.sh
-          make
+          make output-revision
+          make all
 
     - name: Archive
       run: zip 'Всички теми'.zip *.pdf
