@@ -253,7 +253,10 @@
 \end{definition}
 
 \begin{remark}
-  От теорема~\ref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат.
+  От теорема~\ref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат и са еквивалентни на следната проста формула:
+  \begin{equation*}
+    \lim_{x \to a} f(x) = f\left( \lim_{x \to a} x \right).
+  \end{equation*}
 \end{remark}
 
 \begin{definition}
@@ -459,6 +462,14 @@
   \end{enumerate}
 \end{proof}
 
+\begin{remark}
+  Сега ще докажем добре познатите формули за производни за \( e^x \), \( \sin(x) \) и \( \cos(x) \). Доказателство силно зависи от начина, по който сме определили съответните функции. Например, ако ги определим чрез степенни редове, тъждествата ще последват директно от свойствата на степенните редове.
+
+  Не знам какъв е правилният подход за ДИ, затова съм направил предположението, че \( \sin(x) \) и \( \cos(x) \) удовлетворяват известните от училище тригонометрични тъждества, независимо от това как са определени самите функции.
+
+  За експоненциалната функция \( e^x \) ще използвам определението (\ref{eq:bernoulli_exponential_definition}).
+\end{remark}
+
 \begin{theorem}
   \mbox{}
   \begin{enumerate}
@@ -482,12 +493,12 @@
       &=
       \lim_{h \to 0} \frac {{(x+h)}^n - x^n} h
       = \\ &=
-      \lim_{h \to 0} \frac {\sum_{k=0}^n \binom{n}{k} x^k h^{n-k} - x^n} h
+      \lim_{h \to 0} \frac 1 h \left(\sum_{k=0}^n \binom{n}{k} x^k h^{n-k} - x^n \right)
       = \\ &=
-      \lim_{h \to 0} \frac {\sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k} + n \cdot x^{n-1} \cdot h^1 + 1 \cdot x^n \cdot h^0 - x^n} h
+      \lim_{h \to 0} \frac 1 h \left(\sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k} + n \cdot x^{n-1} \cdot h^1 + 1 \cdot x^n \cdot h^0 - x^n \right)
       = \\ &=
       \lim_{h \to 0} \sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k-1} + n x^{n-1}
-      =
+      = \\ &=
       n x^{n-1}.
     \end{align*}
 
@@ -503,9 +514,9 @@
     \end{equation*}
 
     Остава само да намерим производната на \( f(x) = \alpha^x \) в нулата. За целта временно се ограничаваме до \( \alpha = e \) и използваме определението
-    \begin{equation*}
+    \begin{equation}\label{eq:bernoulli_exponential_definition}
       e^x \coloneqq \lim_{n \to \infty} {\left( 1 + \frac x n \right)}^n.
-    \end{equation*}
+    \end{equation}
 
     Така получаваме
     \begin{align*}
@@ -533,36 +544,35 @@
 
     \item Преди да пресметнем производните на \( \sin(x) \) и \( \cos(x) \), нека се убедим в два факта:
     \begin{enumerate}
-      \item \( \sin(x) \) и \( \cos(x) \) са непрекъснати функции в \( \R \). Наистина,
+      \item \( \sin(x) \) и \( \cos(x) \) са непрекъснати функции в \( \R \). Наистина, нека фиксираме \( \varepsilon > 0 \). С цел да определим какво \( \delta \) ни е необходимо, нека фиксираме произволно \( \delta > 0 \). Тогава за произволно \( x_0 \in \R \) имаме
       \begin{align*}
-        \Abs{\sin(x+h) - \sin(x)}
+        \Abs{\sin(x_0 + \delta) - \sin(x_0)}
         &=
-        \Abs{\sin(x+h) + \sin(-x)}
+        \Abs{\sin(x_0 + \delta) + \sin(-x_0)}
         = \\ &=
-        2 \Abs{\sin\left(\frac h 2 \right) \cos \left( x+ \frac h 2 \right)}
+        2 \Abs{\sin\left(\frac \delta 2 \right) \cos \left(x_0 + \frac \delta 2 \right)}
         \leq \\ &\leq
-        2 \Abs{\sin\left(\frac h 2 \right)}
+        2 \Abs{\sin\left(\frac \delta 2 \right)}
         \leq \\ &=
-        2 \Abs{\frac h 2}
-        =
-        \Abs{h}.
+        2 \Abs{\frac \delta 2}
+        = \\ &=
+        \delta.
       \end{align*}
 
-      Тогава за всяко \( \varepsilon > 0 \) е достатъчно да изберем \( \delta < \varepsilon \), за да бъде изпълнено
+      Следователно за всяко \( \varepsilon > 0 \) е достатъчно да изберем \( \delta < \varepsilon \), за да бъде изпълнено
       \begin{equation*}
-        \Abs{\sin(y) - \sin(x)} < \varepsilon
+        \Abs{\sin(y) - \sin(x_0)} < \varepsilon \text{ при } \Abs{y - x_0} < \delta.
       \end{equation*}
-      при \( 0 < \Abs{y - x} < \delta \).
 
-      Като следствие, \( \cos(x) = \sin(\pi / 2 - x) \) също е непрекъсната.
+      Показахме, че \( \sin(x) \) е непрекъсната функция в точката \( x_0 \), а понеже \( x_0 \) беше произволна, то \( \sin(x) \) е непрекъсната навсякъде. Като следствие, \( \cos(x) = \sin(\pi / 2 - x) \) също е непрекъсната навсякъде.
 
-      \item \( \sin'(0) \) съществува и е равна на единица. Наистина, за \( h \in [0, \pi / 2] \) имаме
+      \item \( \sin'(0) \) съществува и е равна на единица. Наистина, за \( h \in (0, \pi / 2] \) имаме
       \begin{align*}
-        \tan(x) &\geq x \geq \sin(x),
+        \tan(h) &\geq h \geq \sin(h),
         \\
-        \frac {\cos(x)} {\sin(x)} &\leq \frac 1 x \leq \frac 1 {\sin(x)},~~~~\mid \cdot \sin(x)
+        \frac {\cos(h)} {\sin(h)} &\leq \frac 1 h \leq \frac 1 {\sin(h)}, \quad\mid \cdot \sin(h)
         \\
-        \cos(x) &\leq \frac {\sin(x)} x \leq 1,
+        \cos(h) &\leq \frac {\sin(h)} h \leq 1,
       \end{align*}
       откъдето следва
       \begin{equation*}
@@ -578,7 +588,7 @@
       \end{equation*}
     \end{enumerate}
 
-    За \( \sin(x) \) пресмятаме
+    За произволно \( \sin(x) \) пресмятаме
     \begin{align*}
       \sin'(x)
       &=
