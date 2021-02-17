@@ -570,8 +570,8 @@
       \Abs{z}.
     \end{equation*}
 
-    Фиксираме \( \varepsilon > 0 \). Избираме константа \( c_\varepsilon \in \RPos \), такава че \( \Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
-    Въвеждаме две множества от индекси: \( A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \} \) и \( B = \ZPos \setminus A \).
+    Фиксираме \( \varepsilon > 0 \). Избираме реална константа \( c_\varepsilon > 0 \), такава че \( \Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
+    Въвеждаме две множества от индекси: \( A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \} \) и \( B = \Z^{>0} \setminus A \).
 
     За \( k \in A \) имаме
     \begin{equation*}
@@ -732,7 +732,7 @@
 \subsubsection{Биномно разпределение}\label{dist:binomial}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{биномно разпределение} с обем \( n \in \ZPos \) и вероятност \( p \in (0, 1) \) и пишем \( \xi \in \DBinomial(n, p) \), ако за всяко \( k = 0, 1, \ldots, n \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{биномно разпределение} с обем \( n = 1, 2, \ldots \) и вероятност \( p \in (0, 1) \) и пишем \( \xi \in \DBinomial(n, p) \), ако за всяко \( k = 0, 1, \ldots, n \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = \binom{n}{k} p^k {(1-p)}^{n-k}.
   \end{equation*}
@@ -833,7 +833,7 @@
     \Prob(\xi = k) = {(1-p)}^{k-1} p.
   \end{equation*}
 
-  Дефиницията е коректна, тъй като \( \Prob(\xi = k) > 0 \) за \( k \in \ZPos \) и
+  Дефиницията е коректна, тъй като \( \Prob(\xi = k) > 0 \) за \( k = 1, 2, \ldots \) и
   \begin{equation*}
     \sum_{k=1}^\infty \Prob(\xi = k)
     =
@@ -935,12 +935,12 @@
 \subsubsection{Поасоново разпределение}\label{dist:poisson}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{поасоново разпределение} със степен \( \lambda \in \RPos \) и пишем \( \xi \in \DPoisson(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{поасоново разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \DPoisson(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = \frac{e^{-\lambda} \lambda^k} {k!}.
   \end{equation*}
 
-  Дефиницията е коректна, тъй като \( \Prob(\xi = k) > 0 \) за \( k \in \ZNNeg \) и
+  Дефиницията е коректна, тъй като \( \Prob(\xi = k) > 0 \) за \( k = 0, 1, \ldots \) имаме
   \begin{equation*}
     \sum_{k=0}^\infty \Prob(\xi = k)
     =
