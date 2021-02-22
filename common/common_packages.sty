@@ -4,6 +4,14 @@
 \usepackage{amsthm}
 \usepackage{lualatex-math}
 
+% Reference packages
+\usepackage[colorlinks]{hyperref}
+\usepackage{cleveref}
+\crefname{figure}{фигура}{фигури}
+\Crefname{figure}{Фигура}{Фигури}
+\crefname{section}{параграф}{параграфи}
+\Crefname{section}{Параграф}{Параграфи}
+
 % Internationalization
 \usepackage{polyglossia}
 \setdefaultlanguage{bulgarian}
@@ -18,7 +26,12 @@
 }
 
 % Citations
-\usepackage[backend=biber, autolang=other]{biblatex}
+\usepackage[
+  backend=biber,
+  autolang=other,
+  style=authortitle,
+  citestyle=authortitle
+]{biblatex}
 
 % Fonts
 \usepackage{fontspec}
@@ -29,15 +42,6 @@
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \setmathfont{NewCMMath-Regular.otf}
 
-% Make arrows over vectors look nicer
-\setmathfont[range={\overrightarrow}]{xits-math}
-
 % Misc packages
 \usepackage{enumitem}
 \usepackage{microtype}
-
-% Reference packages
-\usepackage{hyperref}
-
-% Versioning
-\usepackage{gitinfo2}

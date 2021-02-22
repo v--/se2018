@@ -1,17 +1,21 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
-
+\usepackage{../../common/colors}
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 16 от \URL{https://github.com/v--/se2018}}
+\title{\Title{16}}
 \subtitle{Случайни величини с непрекъснати разпределения. Нормално разпределение. Равномерно разпределение, експоненциално разпределение или гама разпределение. Задачи, в които възникват.}
 \author{Янис Василев}
-\date{Оригинал: 23 юни 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{23 юни 2019}}
 
 \begin{document}
 
@@ -19,11 +23,11 @@
 
 \section{Теория}
 
-Теорията е представена с минимални препратки към теорията на мярката и е базирана частично на изложението в~\cite{Borovkov} и~\cite{DimitrovYanev}. За пълнота съм включил доказателства на основните свойства на пораждащи моментите и характеристична функции.
+Теорията е представена с минимални препратки към теорията на мярката и е базирана частично на изложението в \cite{Borovkov} и \cite{DimitrovYanev}. За пълнота съм включил доказателства на основните свойства на пораждащи моментите и характеристична функции.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Дефиниция на непрекъснато разпределение на случайна величина
@@ -82,10 +86,10 @@
   \end{enumerate}
 \end{proposition}
 
-Твърдение~\ref{thm:cdf_properties} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
+\Cref{thm:cdf_properties} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
 
-\begin{proof}[Доказателство на твърдение~\ref{thm:cdf_properties}]
-  (\( \implies \))
+\begin{proof}[Доказателство на \cref{thm:cdf_properties}]
+  \Sufficiency
   \begin{enumerate}
     \item За всички \( x < y \)
     \begin{align*}
@@ -143,7 +147,7 @@
     \item \( \lim_{x \uparrow \infty} F_\xi(x) = 0 \) се доказва напълно аналогично на \( \lim_{x \uparrow \infty} F_\xi(x) = 1 \).
   \end{enumerate}
 
-  (\( \impliedby \)) Нека функцията \( F_\xi \) удовлетворява условията на теоремата. Дефинираме
+  \Necessity Нека функцията \( F_\xi \) удовлетворява условията на теоремата. Дефинираме
   \begin{align*}
     \xi: \R \to \R,     &&& \Prob: \BorelAlgebra(\R) \to [0, 1], \\
     \xi(x) \coloneqq x, &&& \Prob((a, b]) \coloneqq F_\xi \left(\lim_{h \downarrow 0} b + h \right) - F_\xi(a), a < b \in \R.
@@ -157,7 +161,7 @@
     =
     \Prob((-\infty, x])
     =
-    F_\xi(x)~\forall x \in \R.
+    F_\xi(x)\quad\forall x \in \R.
   \end{equation*}
 
   С други думи, построихме вероятностно пространство и случайна величина \( \xi \), чиято функцията на разпределение е \( F_\xi \).
@@ -167,16 +171,16 @@
 
 \begin{theorem}\label{thm:density_properties}
   Интегруемата по Риман функция \( f_\xi: \R \to \R \) е плътност на някаква абсолютно непрекъсната случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
-  \begin{enumerate}
-    \item \( f_\xi(x) \geq 0 \) почти навсякъде (неотрицателност)
-    \item \( \int_{\R} f_\xi(x) dx = 1 \) (нормираност)
-  \end{enumerate}
+  \begin{align}
+    &f_\xi(x) \geq 0 \text{ почти навсякъде} \tag{неотрицателност}\label{thm:density_properties/nonnegative} \\
+    &\sum_k p_k = 1 \tag{нормираност}\label{thm:density_properties/normed}
+  \end{align}
 \end{theorem}
 
 Тази теорема ни позволява да задаваме непрекъсната случайна величина изцяло чрез плътността ѝ, поради което плътността понякога се нарича разпределение на случайната величина.
 
-\begin{proof}[Доказателство на теорема~\ref{thm:density_properties}]
-  (\( \implies \)) Нека \( f_\xi \) е плътност на \( \xi \).
+\begin{proof}[Доказателство на \cref{thm:density_properties}]
+  \Sufficiency Нека \( f_\xi \) е плътност на \( \xi \).
   \begin{enumerate}
     \item За всяка точка \( x \in \R \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
     \item За произволно \( c > 0 \) функцията \( F_\xi \) е абсолютно непрекъсната в \( [-c, c] \). Следователно
@@ -191,7 +195,7 @@
     \end{equation*}
   \end{enumerate}
 
-  (\( \impliedby \)) Нека \( f_\xi: \R \to \R \) е неотрицателна, интегруема по Риман и нормирана. Дефинираме функцията \( F_\xi(x) \coloneqq \int_{-\infty}^x f_\xi(t) dt \). Ще покажем, че за \( F_\xi \) са изпълнени свойствата на функция на разпределение:
+  \Necessity Нека \( f_\xi: \R \to \R \) е неотрицателна, интегруема по Риман и нормирана. Дефинираме функцията \( F_\xi(x) \coloneqq \int_{-\infty}^x f_\xi(t) dt \). Ще покажем, че за \( F_\xi \) са изпълнени свойствата на функция на разпределение:
   \begin{enumerate}
     \item Ако \( x < y \), от адитивността на римановия интеграл и неотрицателността на \( f_\xi \) следва
     \begin{equation*}
@@ -238,7 +242,7 @@
     \end{equation*}
   \end{enumerate}
 
-  Видяхме, че \( F_\xi \) удовлетворява свойствата на функция на разпределение и по~\ref{thm:cdf_properties} съществува случайна величина \( \xi \), чиято плътност е \( f_\xi \).
+  Видяхме, че \( F_\xi \) удовлетворява свойствата на функция на разпределение и по \cref{thm:cdf_properties} съществува случайна величина \( \xi \), чиято плътност е \( f_\xi \).
 
   Освен това \( F_\xi \) е абсолютно непрекъсната във всеки затворен интервал \( [a, b] \), тъй като тя има интегруема производна почти навсякъде и за \( x \in [a, b] \) е изпълнено
   \begin{equation*}
@@ -397,7 +401,7 @@
   Ако \( \xi \) и \( \eta \) са непрекъснати и независими, имаме \( \Expect(\xi + \eta) = \Expect(\xi) + \Expect(\eta) \).
 \end{proposition}
 \begin{proof}
-  От твърдение~\ref{thm:density_of_sum_is_convolution} знаем, че \( \xi + \eta \) също има непрекъснато разпределение и плътността ѝ е конволюция на плътностите на \( \xi \) и \( \eta \). Тогава от теоремата на Фубини имаме
+  От \cref{thm:density_of_sum_is_convolution} знаем, че \( \xi + \eta \) също има непрекъснато разпределение и плътността ѝ е конволюция на плътностите на \( \xi \) и \( \eta \). Тогава от теоремата на Фубини имаме
   \begin{align*}
     \Expect(\xi + \eta)
     &=
@@ -448,7 +452,7 @@
   \end{align*}
 \end{proof}
 
-Доказаните в твърдения~\ref{thm:expectation_of_independent_product},~\ref{thm:expectation_is_additive} и~\ref{thm:lotus} свойства на очакването значително опростяват работата с него.
+Доказаните в \cref{thm:expectation_of_independent_product,thm:expectation_is_additive,thm:lotus} свойства на очакването значително опростяват работата с него.
 
 \begin{definition}
   \textbf{Ковариация} на случайните величини \( \xi \) и \( \eta \) наричаме
@@ -534,7 +538,7 @@
 \end{proof}
 
 \begin{definition}
-  Ако една случайна величина има крайна дисперсия, можем да я~\textbf{стандартизираме}, разглеждайки вместо нея
+  Ако една случайна величина има крайна дисперсия, можем да я \textbf{стандартизираме}, разглеждайки вместо нея
   \begin{equation*}
     \hat \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\Var(\xi)}}.
   \end{equation*}
@@ -628,7 +632,7 @@
       2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{equation*}
 
-    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според твърдение~\ref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според \cref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
 
     При фиксирано \( n = 1, 2, \ldots \) за някаква околност на \( 0 \), съдържаща се в \( U \), за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
@@ -831,7 +835,7 @@
 
 \subsection{Често срещани непрекъснати разпределения}
 
-\subsubsection{Нормално разпределение}\label{dist:normal}
+\subsubsection{Нормално разпределение}\label{sec:normal}
 
 \begin{definition}
   Казваме, че случайната величина \( \xi \) има \textbf{нормално разпределение} с очакване \( \mu \in \R \) и стандартно отклонение \( \sigma > 0 \) и пишем \( \xi \in \DNormal(\mu, \sigma^2) \), ако плътността има вида
@@ -839,7 +843,7 @@
     f_\xi(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}}.
   \end{equation*}
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и от \( \int_{\R} e^{-x^2} dx = \sqrt \pi \) получаваме
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и от \( \int_{\R} e^{-x^2} dx = \sqrt \pi \) получаваме
   \begin{equation*}
     \int_{\R} \varphi(x) dx
     =
@@ -857,7 +861,7 @@
 
 Поради различните варианти на централната гранична теорема, нормалното разпределение е гранично за средно аритметичното на независими случайни величини от много други разпределения. Това го прави най-широко приложимото вероятностно разпределение. На практика нормалното разпределение се използва за приближено описание на всякакъв род данни - от анализ на резултати от социологически проучвания до моделиране на финансови пазари или термална радиация.
 
-Нека \( \eta \in \DNormal(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от твърдение~\ref{thm:density_of_transformed_variable} получаваме, че плътността на \( \xi \) е
+Нека \( \eta \in \DNormal(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от \cref{thm:density_of_transformed_variable} получаваме, че плътността на \( \xi \) е
 \begin{equation*}
   f_\xi(x)
   =
@@ -989,7 +993,7 @@
   при \( n \to \infty \) клони по вероятност към стандартно нормално разпределение.
 \end{theorem}
 
-\subsubsection{Равномерно разпределение}\label{dist:unif}
+\subsubsection{Равномерно разпределение}\label{sec:unif}
 
 \begin{definition}
   Казваме, че случайната величина \( \xi \) е \textbf{равномерно разпределена} в интервала \( [a, b] \) пишем \( \xi \in \DUniform(a, b) \), ако плътността има вида
@@ -1079,9 +1083,9 @@
 \end{align*}
 \endgroup
 
-Вж. също задача~\ref{ex:se_autumn2016}.
+Вж. също \cref{ex:se_autumn2016}.
 
-\subsubsection{Експоненциално разпределение}\label{dist:exp}
+\subsubsection{Експоненциално разпределение}\label{sec:exp}
 
 \begin{definition}
   Казваме, че случайната величина \( \xi \) има \textbf{експоненциално разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \DExp(\lambda) \), ако плътността има вида
@@ -1092,7 +1096,7 @@
     \end{cases}
   \end{align*}
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и
   \begin{equation*}
     \int_{\R} \varphi(x) dx
     =
@@ -1114,7 +1118,7 @@
   \end{align*}
 \end{definition}
 
-Експоненциалното разпределение моделира време на изчакване. Това включва време за чакане на градски транспорт, време до настъпване на застрахователно събитие или време за полуразпад на радиоактивно вещество. Предимство на експоненциалното разпределение за тези модели е свойството липса на памет, описано в теорема~\ref{thm:memorylessness}.
+Експоненциалното разпределение моделира време на изчакване. Това включва време за чакане на градски транспорт, време до настъпване на застрахователно събитие или време за полуразпад на радиоактивно вещество. Предимство на експоненциалното разпределение за тези модели е свойството липса на памет, описано в \cref{thm:memorylessness}.
 
 За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DExp(\lambda) \) имаме
 \begingroup
@@ -1204,9 +1208,9 @@
   \end{align*}
 \end{proof}
 
-Вж. също задача~\ref{ex:se_summer2011}.
+Вж. също \cref{ex:se_summer2011}.
 
-\subsubsection{Гама разпределение}\label{dist:gamma}
+\subsubsection{Гама разпределение}\label{sec:gamma}
 
 \begin{definition}
   Казваме, че случайната величина \( \xi \) има \textbf{гама разпределение} с мащаб \( \alpha > 0 \) и степен \( \beta > 0 \) и пишем \( \xi \in \DGamma(\alpha, \beta) \), ако плътността има вида
@@ -1220,7 +1224,7 @@
   \end{align*}
   където \( \Gamma(x) \) е \( \Gamma \)-функцията на Ойлер.
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0~\forall x \in \R \) и
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и
   \begin{equation*}
     \frac 1 {\Gamma(\alpha)} \int_0^\infty {\beta^\alpha x^{\alpha-1} e^{-\beta x}} dx
     =
@@ -1314,7 +1318,7 @@
   \mbox{}
   \begin{enumerate}
     \item Следва директно от вида на пораждащата моментите функция.
-    \item Използвайки твърдение~\ref{thm:density_of_transformed_variable}, намираме плътността за \( x \geq 0 \)
+    \item Използвайки \cref{thm:density_of_transformed_variable}, намираме плътността за \( x \geq 0 \)
     \begin{equation*}
       f_{c\xi}(x)
       =
@@ -1328,7 +1332,7 @@
   \end{enumerate}
 \end{proof}
 
-Вж. също задача~\ref{ex:se_summer2011}.
+Вж. също \cref{ex:se_summer2011}.
 
 \section{Задачи}
 
@@ -1361,7 +1365,7 @@
 \end{remark}
 
 \begin{solution}
-  В~\ref{dist:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в~\ref{dist:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
+  В\cref{sec:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в\cref{sec:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
   \begin{equation*}
     F_\xi(x) = 1 - e^{-\frac x \lambda}.
   \end{equation*}
@@ -1476,9 +1480,9 @@
       &&
       \DExp(\lambda) = \DGamma\left(1, \frac 1 \lambda \right),
     \end{align*}
-    където \( \DExp \) е параметризирано както в тази задача, а \( \DGamma \)-както в~\ref{dist:gamma}.
+    където \( \DExp \) е параметризирано както в тази задача, а \( \DGamma \)-както в\cref{sec:gamma}.
 
-    От твърдение~\ref{thm:gamma_linear_combination_is_gamma} имаме
+    От \cref{thm:gamma_linear_combination_is_gamma} имаме
     \begin{align*}
       \overline \xi_n \in \DGamma\left( n, \frac n \lambda \right)
       &&
@@ -1512,7 +1516,7 @@
 \begin{solution}
   \mbox{}
   \begin{enumerate}[label=\alph*)]
-    \item В~\ref{dist:unif} сме намерили, че за \( \xi \in \DUniform(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \Var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
+    \item В\cref{sec:unif} сме намерили, че за \( \xi \in \DUniform(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \Var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
     \begin{align*}
       \Expect(X) = \frac a 2,
       &&
@@ -1551,7 +1555,7 @@
       \boxed{\frac {4a^2 + 9b^2} {12} + \frac {48} 5}.
     \end{align*}
 
-    \item Ще използваме наготово от~\ref{dist:unif} функцията на разпределение
+    \item Ще използваме наготово от\cref{sec:unif} функцията на разпределение
     \begin{equation*}
       F_X(x) = \frac {\max(0, \min(a, x))} a.
     \end{equation*}

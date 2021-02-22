@@ -1,17 +1,21 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
-
+\usepackage{../../common/colors}
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 19 от \URL{https://github.com/v--/se2018}}
+\title{\Title{19}}
 \subtitle{Проверка на хипотези.}
 \author{Янис Василев}
-\date{Оригинал: 28 юни 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{28 юни 2019}}
 
 \begin{document}
 
@@ -19,11 +23,11 @@
 
 \section{Теория}
 
-Лемата на Нейман-Пирсън е базирана на изложението ѝ в~\cite{DimitrovYanev}.
+Лемата на Нейман-Пирсън е базирана на изложението ѝ в \cite{DimitrovYanev}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Определение за статистичека хипотеза
@@ -95,7 +99,7 @@
     \begin{equation*}
       W_\alpha^* \coloneqq \Argmax_{W_\alpha \subsetneq \SampleSpace} \Prob(\V{\xi_n} \in W_\alpha \mid H_1),
     \end{equation*}
-    осигуряваща най-голяма мощност на теста, наричаме~\textbf{оптимална критична област}.
+    осигуряваща най-голяма мощност на теста, наричаме \textbf{оптимална критична област}.
 
     \item Хипотезата наричаме \textbf{проста}, ако на нея отговаря точно едно разпределение. В противен случая я наричаме \textbf{сложна}. Ако имаме една проста хипотеза и една сложна, избираме нулевата да бъде проста. Така имаме три случая:
     \begin{enumerate}
@@ -106,8 +110,8 @@
 
     \item Разглеждаме тест с две хипотези \( H_0 \) и \( H_1 \) като множества от възможни функции на разпределение на \( \xi \). Имаме три случая
     \begin{itemize}
-      \item Ако \( F_1(x) \leq F_0(x)~\forall F_0 \in H_0, F_1 \in H_1 \), наричаме теста \textbf{ляв едностранен}
-      \item Ако \( F_1(x) \geq F_0(x)~\forall F_0 \in H_0, F_1 \in H_1 \), наричаме теста \textbf{десен едностранен}
+      \item Ако \( F_1(x) \leq F_0(x)\quad\forall F_0 \in H_0, F_1 \in H_1 \), наричаме теста \textbf{ляв едностранен}
+      \item Ако \( F_1(x) \geq F_0(x)\quad\forall F_0 \in H_0, F_1 \in H_1 \), наричаме теста \textbf{десен едностранен}
       \item В противен случай, наричаме теста \textbf{двустранен}
     \end{itemize}
 

@@ -1,17 +1,22 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
+\usepackage{../../common/colors}
 
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 2 от \URL{https://github.com/v--/se2018}}
+\title{\Title{2}}
 \subtitle{Симетрични оператори в крайномерни евклидови пространства. Основни свойства. Теорема за диагонализация.}
 \author{Янис Василев}
-\date{Оригинал: 5 юли 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{5 юли 2019}}
 
 \begin{document}
 
@@ -19,11 +24,11 @@
 
 \section{Теория}
 
-Някои твърдения и доказателства са взаимствани от~\cite{Knapp} и~\cite{RoyachkiNotes}.
+Някои твърдения и доказателства са заимствани от \cite{Knapp} и \cite{RoyachkiNotes}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Определение за симетричен оператор и матрица на симетричен оператор
@@ -69,7 +74,7 @@
     a_{i,j}.
   \end{equation*}
 
-  (\( \implies \)) Ако операторът \( L \) е симетричен, за произволни базисни вектори получаваме
+  \Sufficiency Ако операторът \( L \) е симетричен, за произволни базисни вектори получаваме
   \begin{equation*}
     a_{i,j}
     =
@@ -83,7 +88,7 @@
   \end{equation*}
   Следователно матрицата \( A \) е симетрична.
 
-  (\( \impliedby \)) Обратно, ако матрицата \( A \) е симетрична, за произволни базисни вектори получаваме
+  \Necessity Обратно, ако матрицата \( A \) е симетрична, за произволни базисни вектори получаваме
   \begin{equation*}
     \Prod {e_i} {L(e_j)}
     =
@@ -126,11 +131,11 @@
   \begin{align*}
     \sum_{j=1}^n a_{i,j} x_j
     &=
-    \lambda x_i~\mid~\cdot \; \CConj{x_i}
+    \lambda x_i \ \mid \ \cdot \; \CConj{x_i}
     \\
     \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
     &=
-    \lambda x_i \CConj{x_i} = \lambda \Abs{x_i}^2~~\mid \sum_{i=1}^n \cdot
+    \lambda x_i \CConj{x_i} = \lambda \Abs{x_i}^2\; \mid \sum_{i=1}^n \cdot
     \\
     \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
     &=

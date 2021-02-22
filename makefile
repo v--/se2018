@@ -10,10 +10,10 @@ topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty revi
 
 clean:
 	rm -fv topics/*/index.pdf
-	rm -fv topics/*.log # luatex
-	rm -fv topics/*.{aux,out,fls} # latex
-	rm -fv topics/*.fdb_latexmk # latexmk
-	rm -fv topics/*.{bbl,bcf,blg,run.xml} # biber
+	rm -fv topics/*/*.log # luatex
+	rm -fv topics/*/*.{aux,out,fls} # latex
+	rm -fv topics/*/*.fdb_latexmk # latexmk
+	rm -fv topics/*/*.{bbl,bcf,blg,run.xml} # biber
 
 output-revision:
 	git --no-pager log -1 --date=short --decorate=short --pretty=format:"%h (%cd)" HEAD > revision

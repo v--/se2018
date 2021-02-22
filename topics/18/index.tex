@@ -1,17 +1,21 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
-
+\usepackage{../../common/colors}
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 18 от \URL{https://github.com/v--/se2018}}
+\title{\Title{18}}
 \subtitle{Поасонов процес. Характеризационни свойства. Приложения.}
 \author{Янис Василев}
-\date{Оригинал: 26 юни 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{26 юни 2019}}
 
 \begin{document}
 
@@ -19,11 +23,11 @@
 
 \section{Теория}
 
-Теорията е базирана на~\cite{Lectures}.
+Теорията е базирана на \cite{Lectures}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Дефиниция за броящ процес
@@ -38,69 +42,73 @@
 
 Ще считаме, че е фиксирано някакво вероятностно пространство \( (\Omega, \F, \Prob) \) и множество \( \symcal{N} \) от целочислени случайни величини с неотрицателни стойности над това пространство.
 
+% I want the three definition for Poisson processes to have numbers 1-3
+\setcounter{ThmCounter}{-1}
 \begin{definition}
   \textbf{Броящ процес} наричаме монотонната с вероятност \( 1 \) функция \( N: [0, \infty) \to \symcal{N} \), чиито аргументи обикновено интерпретираме като време и бележим с \( t \), а стойностите \( N(t) \) като брой настъпили събития за време \( t \).
 
   \textbf{Нарастване} на процеса с \( h > 0 \) в момента \( t \) наричаме разликите \( N(t+h) - N(t) \). Ако всички нараствания за един процес са независими, казваме, че процесът е с \textbf{независими нараствания}. Ако разпределенията на нарастванията \( N(t_1+h) - N(t_1) \) и \( N(t_2+h) - N(t_2) \) зависят само от \( h>0 \), казваме, че процесът \( N(t) \) е със \textbf{стационарни нараствания}.
 \end{definition}
 
-\begin{definition}
-  Ще дадем три еквивалентни определения за \textbf{поасонов процес}.
+Ще дадем три еквивалентни определения за \textbf{поасонов процес}.
 
+\begin{definition}\label{def:poisson_process/increments}
+  Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{поасонов} със \textbf{степен} \( \lambda > 0 \), ако са изпълнени
   \begin{enumerate}
-    \item\label{def:poisson_process/increments} Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{поасонов със степен \( \lambda > 0 \)}, ако са изпълнени
-    \begin{enumerate}
-      \item \( N(0) = 0 \)
-      \item \( N(t) \) е процес с независими нараствания
-      \item Нарастванията \( N(t+h)-N(t) \) имат поасоново разпределение със степен \( h\lambda \), т.е.
-      \begin{equation*}
-        \Prob(N(t+h)-N(t) = k)
-        =
-        \frac{e^{-h\lambda} {(h\lambda)}^k} {k!}.
-      \end{equation*}
-    \end{enumerate}
-
-    \item\label{def:poisson_process/limits} Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{поасонов със степен \( \lambda > 0 \)}, ако са изпълнени
-    \begin{enumerate}
-      \item \( N(0) = 0 \)
-      \item \( N(t) \) е процес със стационарни и независими нараствания
-      \item \( \frac {\Prob(N(h) = 1)} h \Conv[h \to 0]{} \lambda \)
-      \item \( \frac {\Prob(N(h) \geq 1)} h \Conv[h \to 0]{} 0 \)
-    \end{enumerate}
-
-    \item\label{def:poisson_process/waiting_times} Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \DExp(\lambda) \), т.е.
-    \begin{align*}
-      f_{\xi_n}(t) =
-      \begin{cases}
-        \lambda e^{-\lambda t}, &t \geq 0 \\
-        0, &t < 0
-      \end{cases},
-      n = 1, 2, \ldots.
-    \end{align*}
-
-    Полагаме
-    \begin{align*}
-      S_0 &\coloneqq 0, \\
-      S_n &\coloneqq \sum_{k=1}^n \xi_k.
-    \end{align*}
-
-    Очевидно \( S_n \in \DGamma(n, \lambda), n > 0 \), т.е.
-    \begin{align*}
-      f_{S_n}(t)
-      =
-      \begin{dcases}
-        \frac {\lambda^n t^{n-1} e^{-\lambda t}} {\Gamma(n)} = \lambda e^{-\lambda t} \frac {{(\lambda t)}^{n-1}} {(n-1)!}, &t \geq 0, \\
-        0, &t < 0,
-      \end{dcases}
-      n = 1, 2, \ldots.
-    \end{align*}
-
-    Броящият процес \( N(t) \), за който е изпълнено
+    \item \( N(0) = 0 \)
+    \item \( N(t) \) е процес с независими нараствания
+    \item Нарастванията \( N(t+h)-N(t) \) имат поасоново разпределение със степен \( h\lambda \), т.е.
     \begin{equation*}
-      N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
+      \Prob(N(t+h)-N(t) = k)
+      =
+      \frac{e^{-h\lambda} {(h\lambda)}^k} {k!}.
     \end{equation*}
-    се нарича \textbf{поасонов процес} със степен \( \lambda \), случайните величини \( S_0, S_1, S_2, \ldots \) наричаме времена на появява на \( n \)-тото събитие, а \( \xi_1, \xi_2, \ldots \) наричаме \textbf{времена на чакане} за поява на \( n \)-тото събитие.
   \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:poisson_process/limits}
+  Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{поасонов} със \textbf{степен} \( \lambda > 0 \), ако са изпълнени
+  \begin{enumerate}
+    \item \( N(0) = 0 \)
+    \item \( N(t) \) е процес със стационарни и независими нараствания
+    \item \( \frac {\Prob(N(h) = 1)} h \Conv[h \to 0]{} \lambda \)
+    \item \( \frac {\Prob(N(h) \geq 1)} h \Conv[h \to 0]{} 0 \)
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:poisson_process/waiting_times}
+  Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \DExp(\lambda) \), т.е.
+  \begin{align*}
+    f_{\xi_n}(t) =
+    \begin{cases}
+      \lambda e^{-\lambda t}, &t \geq 0 \\
+      0, &t < 0
+    \end{cases},
+    n = 1, 2, \ldots.
+  \end{align*}
+
+  Полагаме
+  \begin{align*}
+    S_0 &\coloneqq 0, \\
+    S_n &\coloneqq \sum_{k=1}^n \xi_k.
+  \end{align*}
+
+  Очевидно \( S_n \in \DGamma(n, \lambda), n > 0 \), т.е.
+  \begin{align*}
+    f_{S_n}(t)
+    =
+    \begin{dcases}
+      \frac {\lambda^n t^{n-1} e^{-\lambda t}} {\Gamma(n)} = \lambda e^{-\lambda t} \frac {{(\lambda t)}^{n-1}} {(n-1)!}, &t \geq 0, \\
+      0, &t < 0,
+    \end{dcases}
+    n = 1, 2, \ldots.
+  \end{align*}
+
+  Броящият процес \( N(t) \), за който е изпълнено
+  \begin{equation*}
+    N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
+  \end{equation*}
+  се нарича \textbf{поасонов процес} със степен \( \lambda \), случайните величини \( S_0, S_1, S_2, \ldots \) наричаме времена на появява на \( n \)-тото събитие, а \( \xi_1, \xi_2, \ldots \) наричаме \textbf{времена на чакане} за поява на \( n \)-тото събитие.
 \end{definition}
 
 \begin{remark}
@@ -115,7 +123,7 @@
   Трите определения са еквивалентни.
 \end{theorem}
 \begin{proof}
-  (\ref{def:poisson_process/increments} \( \implies \)~\ref{def:poisson_process/limits}) Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
+  \SubProofImplication{def:poisson_process/increments}{def:poisson_process/limits} Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
 
   Тогава
   \begin{equation*}
@@ -146,7 +154,7 @@
     0.
   \end{align*}
 
-  (\ref{def:poisson_process/limits} \( \implies \)~\ref{def:poisson_process/increments}) Обратно, ако \( N(t) \) удовлетворява второто определение, получаваме диференциалното уравнение
+  \SubProofImplication{def:poisson_process/limits}{def:poisson_process/increments} Обратно, ако \( N(t) \) удовлетворява второто определение, получаваме диференциалното уравнение
   \begin{align*}
     \frac {\partial \Prob(N(t) = 0)} {\partial t}
     =&
@@ -270,7 +278,7 @@
     \boxed{\Prob(N(t) = n) = e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}.
   \end{equation*}
 
-  (\ref{def:poisson_process/increments} \( \implies \)~\ref{def:poisson_process/waiting_times}) Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
+  \SubProofImplication{def:poisson_process/increments}{def:poisson_process/waiting_times} Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
   \begin{align*}
     \Prob(N(t) < N(t+h))
     &=
@@ -285,7 +293,7 @@
 
   Виждаме, времето за чакане за настъпване на събитие между моментите \( t \) и \( t+h \) е експоненциално разпределено и не зависи от \( t \), т.е. времената за чакане са независими.
 
-  (\ref{def:poisson_process/waiting_times} \( \implies \)~\ref{def:poisson_process/increments}) Сега приемаме третото определение и разглеждаме вероятността да са се случили \( n \) събития до момента \( t \)
+  \SubProofImplication{def:poisson_process/waiting_times}{def:poisson_process/increments} Сега приемаме третото определение и разглеждаме вероятността да са се случили \( n \) събития до момента \( t \)
   \begin{align*}
     \Prob(N(t) = n)
     &=
@@ -503,7 +511,7 @@
 
 \subsubsection{Нехомогенен поасонов процес}
 
-Ако допуснем степента \( \lambda(t) \) да варира с времето нарастванията няма да бъдат стационарни и ще получим следното обобщение на определение~\ref{def:poisson_process/limits} за обикновения поасонов процес:
+Ако допуснем степента \( \lambda(t) \) да варира с времето нарастванията няма да бъдат стационарни и ще получим следното обобщение на \cref{def:poisson_process/limits} за обикновения поасонов процес:
 \begin{definition}
   Броящият процес \( N(t), t \geq 0 \) наричаме \textbf{нехомогенен поасонов} със степен \( \lambda(t) \geq 0 \), ако са изпълнени
   \begin{enumerate}

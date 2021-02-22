@@ -1,16 +1,41 @@
-\newcounter{counter:thm}
-\newcounter{counter:ex}
+\newcounter{ThmCounter}
+\newcounter{ExCounter}
 
-\theoremstyle{plain}
-\newtheorem{proposition}  [counter:thm] {Твърдение}
-\newtheorem{corollary}    [counter:thm] {Следствие}
-\newtheorem{lemma}        [counter:thm] {Лема}
-\newtheorem{theorem}      [counter:thm] {Теорема}
+% Unlike the custom macros, the theorems are lowercase because cleveref has these names predefined (not in bulgarian, but it implies that the environments are conventional).
 
-\theoremstyle{definition}
-\newtheorem{definition}   [counter:thm] {Определение}
-\newtheorem{exercise}     [counter:ex]  {Задача}
+\theoremstyle {plain}
 
-\theoremstyle{remark}
-\newtheorem{remark}       [counter:thm] {Забележка}
-\newtheorem*{solution}                  {Решение}
+\crefname   {proposition}  {твърдение}    {твърдения}
+\Crefname   {proposition}  {Твърдение}    {Твърдения}
+\newtheorem {proposition}  [ThmCounter]   {Твърдение}
+
+\crefname   {corollary}    {следствие}    {следствия}
+\Crefname   {corollary}    {Следствие}    {Следствия}
+\newtheorem {corollary}    [ThmCounter]   {Следствие}
+
+\crefname   {lemma}        {лема}         {леми}
+\Crefname   {lemma}        {Лема}         {Леми}
+\newtheorem {lemma}        [ThmCounter]   {Лема}
+
+\crefname   {theorem}      {теорема}      {теореми}
+\Crefname   {theorem}      {Теорема}      {Теореми}
+\newtheorem {theorem}      [ThmCounter]   {Теорема}
+
+\theoremstyle {definition}
+\crefname   {definition}   {определение} {определения}
+\Crefname   {definition}   {Определение} {Определения}
+\newtheorem {definition}   [ThmCounter]  {Определение}
+
+\crefname   {exercise}     {задача}      {задачи}
+\Crefname   {exercise}     {Задача}      {Задачи}
+\newtheorem {exercise}     [ExCounter]   {Задача}
+
+\theoremstyle {remark}
+
+\crefname   {remark}       {забележка}   {забележки}
+\Crefname   {remark}       {Забележка}   {Забележки}
+\newtheorem {remark}       [ThmCounter]  {Забележка}
+
+\crefname   {exercise}     {решение}     {решения}
+\Crefname   {exercise}     {Решение}     {Решения}
+\newtheorem*{solution}                   {Решение}

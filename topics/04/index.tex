@@ -1,9 +1,13 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
-
+\usepackage{../../common/colors}
 % Misc packages
 \usepackage{tikz}
 \usepackage{float} % Allowing figures inside minipages
@@ -12,10 +16,10 @@
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 4 от \URL{https://github.com/v--/se2018}}
+\title{\Title{4}}
 \subtitle{Граница, непрекъснатост, производна и примитивна на функция на една променлива. Геометрична интерпретация.}
 \author{Янис Василев}
-\date{Оригинал: 6 юли 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{6 юли 2019}}
 
 \begin{document}
 
@@ -27,7 +31,7 @@
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Дефиниции на Хайне и Коши за граница на функция в крайна точна и в безкрайността
@@ -52,7 +56,7 @@
   Ако \( U \) е отворено множество и \( x \in U \), казваме, че \( U \) е \textbf{околност} на \( x \).
 \end{definition}
 
-За удобство, при изследване на сходимост понякога се ограничаваме до отворени интервали вместо произволни отворени множества. В.ж., например, твърдение~\ref{thm:sequence_converges_in_topology_iff_converges_in_base}.
+За удобство, при изследване на сходимост понякога се ограничаваме до отворени интервали вместо произволни отворени множества. В.ж., например, \cref{thm:sequence_converges_in_topology_iff_converges_in_base}.
 
 \begin{lemma}\label{thm:real_numbers_are_hausdorff}
   Ако \( a < b \) са реални числа, те имат поне една двойка непресичащи се околности.
@@ -92,7 +96,7 @@
   Сходящите редици \( \{ a_k \} \subseteq D \) имат единствена граница.
 \end{proposition}
 \begin{proof}
-  Нека \( a \) и \( b \) са граници на редицата \( \{ a_k \} \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности според лема \ref{thm:real_numbers_are_hausdorff}.
+  Нека \( a \) и \( b \) са граници на редицата \( \{ a_k \} \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности според \cref{thm:real_numbers_are_hausdorff}.
 
   От друга страна, ако \( U_a \) и \( U_b \) са някакви околности на \( a \) и \( b \), те непременно се пресичат, тъй като и двете съдържат цялата редица с изключение на краен брой членове. Заключаваме, че \( a = b \).
 \end{proof}
@@ -232,7 +236,7 @@
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  Следва директно от твърдения~\ref{thm:heine_iff_cauchy} и~\ref{thm:limits_of_elementwise_sums_and_products}.
+  Следва директно от \cref{thm:heine_iff_cauchy,thm:limits_of_elementwise_sums_and_products}.
 \end{proof}
 
 \begin{definition}[Обобщена сходимост по Хайне]
@@ -253,7 +257,7 @@
 \end{definition}
 
 \begin{remark}
-  От теорема~\ref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат и са еквивалентни на следната проста формула:
+  От \cref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат и са еквивалентни на следната проста формула:
   \begin{equation*}
     \lim_{x \to a} f(x) = f\left( \lim_{x \to a} x \right).
   \end{equation*}
@@ -295,7 +299,7 @@
   Нека \( D \subseteq \R \) е отворено и функцията \( f: D \to \R \) е диференцируема в точка \( a \in D \). Тогава \( f(x) \) е и непрекъсната в \( a \).
 \end{proposition}
 \begin{proof}
-  Производната \( f'(a) \) е крайно число, следователно от твърдение~\ref{thm:limits_of_elementwise_sums_and_products} получаваме
+  Производната \( f'(a) \) е крайно число, следователно от \cref{thm:limits_of_elementwise_sums_and_products} получаваме
   \begin{equation*}
     \lim_{h \to 0} [f(a+h) - f(a)]
     =
@@ -324,7 +328,7 @@
   \begin{theorem}[Геометрична интерпретация на производна]
     Нека \( D \subseteq \R \) и функцията \( f: D \to \R \) е диференцируема в точка \( a \in D \). Разглеждаме графиката \( \Gamma_f = \{ (x, f(x)) \mid x \in D \} \) на \( f(x) \) като параметрична крива в равнината.
 
-    За някое достатъчно малко по абсолютна стойност число \( h \in \R \) разглеждаме секущата \( d_h \) през точките с координати \( (a, f(a)) \) и \( (a+h, f(a+h)) \) (фиг.~\ref{fig:secant}). При намаляващо \( h \), декартовите уравнения на тези секущи при се приближават към декартово уравнение на допирателна права \( d \) към \( \Gamma_f \) в точката \( a \).
+    За някое достатъчно малко по абсолютна стойност число \( h \in \R \) разглеждаме секущата \( d_h \) през точките с координати \( (a, f(a)) \) и \( (a+h, f(a+h)) \) (\cref{fig:secant}). При намаляващо \( h \), декартовите уравнения на тези секущи при се приближават към декартово уравнение на допирателна права \( d \) към \( \Gamma_f \) в точката \( a \).
 
     Твърдим, че декартовото уравнение на тази допирателна права е
     \begin{equation*}
@@ -382,7 +386,7 @@
 \begin{proof}
   \mbox{}
   \begin{enumerate}
-    \item От адитивността на граничния преход (твърдение~\ref{thm:limit_is_linear_and_multiplicative}) директно следва
+    \item От адитивността на граничния преход (\cref{thm:limit_is_linear_and_multiplicative}) директно следва
     \begin{align*}
       (f+g)'(a)
       &=
@@ -393,7 +397,7 @@
       f'(a) + g'(a).
     \end{align*}
 
-    \item Използваме мултипликативността на граничния преход от твърдение~\ref{thm:limit_is_linear_and_multiplicative}, за да получим
+    \item Използваме мултипликативността на граничния преход от \cref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
       &(f \cdot g)'(a)
       = \\ &=
@@ -408,7 +412,7 @@
       f(a) g'(a) - f'(a) g(a).
     \end{align*}
 
-    \item Отново използваме свойствата от твърдение~\ref{thm:limit_is_linear_and_multiplicative}, за да получим
+    \item Отново използваме свойствата от \cref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
       &\left( \frac f g \right)'(a)
       = \\ &=
@@ -467,10 +471,10 @@
 
   Не знам какъв е правилният подход за ДИ, затова съм направил предположението, че \( \sin(x) \) и \( \cos(x) \) удовлетворяват известните от училище тригонометрични тъждества, независимо от това как са определени самите функции.
 
-  За експоненциалната функция \( e^x \) ще използвам определението (\ref{eq:bernoulli_exponential_definition}).
+  За експоненциалната функция \( e^x \) ще използвам определението \eqref{thm:elementary_derivatives/bernoulli_exponential_definition}.
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{thm:elementary_derivatives}
   \mbox{}
   \begin{enumerate}
     \item Константните функции \( f(x) = c, c \in \R \) са диференцируеми навсякъде в \( \R \) и имат производни \( 0 \).
@@ -514,7 +518,7 @@
     \end{equation*}
 
     Остава само да намерим производната на \( f(x) = \alpha^x \) в нулата. За целта временно се ограничаваме до \( \alpha = e \) и използваме определението
-    \begin{equation}\label{eq:bernoulli_exponential_definition}
+    \begin{equation}\label{thm:elementary_derivatives/bernoulli_exponential_definition}
       e^x \coloneqq \lim_{n \to \infty} {\left( 1 + \frac x n \right)}^n.
     \end{equation}
 
@@ -533,7 +537,7 @@
       1 + \lim_{h \to 0} \lim_{n \to \infty} \sum_{k=2}^n \binom{n}{k} \frac {h^{k-1}} {n^k} = 1.
     \end{align*}
 
-    Следователно производната на \( e^x \) е \( e^x \) и по теорема~\ref{thm:chain_rule} за \( f(x) = \alpha^x = e^{\ln \alpha \cdot x} \) имаме
+    Следователно производната на \( e^x \) е \( e^x \) и по \cref{thm:chain_rule} за \( f(x) = \alpha^x = e^{\ln \alpha \cdot x} \) имаме
     \begin{equation*}
       f'(x)
       =
@@ -650,7 +654,7 @@
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  Ще използваме забележка~\ref{remark:derivatives_of_invertible_functions}.
+  Ще използваме \cref{remark:derivatives_of_invertible_functions}.
 
   \begin{enumerate}
     \item Функцията \( \ln(x) \) е обратна на \( e^x \) за всички стойности на \( e^x \), следователно
@@ -699,7 +703,7 @@
     0.
   \end{equation*}
 
-  Според твърдение~\ref{thm:zero_derivative}, функцията \( F(x) - G(x) \) е константа. Полагаме \( c \coloneqq F(x) - G(x) \), с което доказваме теоремата.
+  Според \cref{thm:zero_derivative}, функцията \( F(x) - G(x) \) е константа. Полагаме \( c \coloneqq F(x) - G(x) \), с което доказваме теоремата.
 \end{proof}
 
 \printbibliography

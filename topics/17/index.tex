@@ -1,17 +1,21 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
-
+\usepackage{../../common/colors}
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 17 от \URL{https://github.com/v--/se2018}}
+\title{\Title{17}}
 \subtitle{Марковски вериги с дискретно време. Класификация на състоянията. Ергодична теорема. Приложения.}
 \author{Янис Василев}
-\date{Оригинал: 25 юни 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{25 юни 2019}}
 
 \begin{document}
 
@@ -19,11 +23,11 @@
 
 \section{Теория}
 
-Теорията е базирана на~\cite{Lectures}, но някои неща са взаимствани от~\cite{Borovkov}. Ергодичната теорема е отчасти базирана на~\cite{Ergodic}.
+Теорията е базирана на \cite{Lectures}, но някои неща са заимствани от \cite{Borovkov}. Ергодичната теорема е отчасти базирана на \cite{Ergodic}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Дефиниция за марковска верига
@@ -153,7 +157,7 @@
   за всеки две състояния \( i, j \geq 0 \).
 \end{theorem}
 \begin{proof}
-  От свойствата на матричното умножение имаме \( P^{n+m} = P^n P^m \). Лема~\ref{thm:transition_matrix_power} ни казва, че това е просто матричен запис на уравненията от условието.
+  От свойствата на матричното умножение имаме \( P^{n+m} = P^n P^m \). \Cref{thm:transition_matrix_power} ни казва, че това е просто матричен запис на уравненията от условието.
 \end{proof}
 
 \begin{corollary}
@@ -181,7 +185,7 @@
   f_{ij} &\coloneqq \sum_{n=0}^\infty f_{ij}^{(n)}.
 \end{align*}
 
-В частност, \( f_{ij}^{(0)} = p_{ij}^{(0)} = \delta_{ij} \). Стойността \( f^{(n)}_{ij} \) е вероятността започвайки от състояние \( i \) да достигнем за пръв път състояние \( j \) за точно \( n \) стъпки, а \( f_{ij} \) е вероятността излизайки от състояние \( i \) някога да стигнем до състояние \( j \).  В теорема~\ref{thm:state_is_transient_iff_p_is_divergent} ще видим, че \( f_{ii} \in [0, 1] \).
+В частност, \( f_{ij}^{(0)} = p_{ij}^{(0)} = \delta_{ij} \). Стойността \( f^{(n)}_{ij} \) е вероятността започвайки от състояние \( i \) да достигнем за пръв път състояние \( j \) за точно \( n \) стъпки, а \( f_{ij} \) е вероятността излизайки от състояние \( i \) някога да стигнем до състояние \( j \).  В \cref{thm:state_is_transient_iff_p_is_divergent} ще видим, че \( f_{ii} \in [0, 1] \).
 
 \begin{definition}
   \mbox{}
@@ -362,7 +366,7 @@
     =
     \lim_{n \to \infty} \frac {M^{(n)}_j} n
     =
-    \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n p_{ij}^{(k)}~\forall i \geq 0,
+    \lim_{n \to \infty} \frac 1 n \sum_{k=1}^n p_{ij}^{(k)}\quad\forall i \geq 0,
   \end{equation*}
   където сходимостта е по вероятност.
 
@@ -419,14 +423,14 @@
     \lim_{n \to \infty} p_{ij}^{(n)} \quad\forall i \geq 0.
   \end{equation*}
 
-  Фиксираме изходно състояние \( i \). Понеже сходимостта в (\ref{thm:ergodic_theorem/squeeze_lemma_application}) е по вероятност, важи и сходимост по разпределение, следователно за всяка ограничена непрекъсната функция \( g \) имаме
+  Фиксираме изходно състояние \( i \). Понеже сходимостта в \eqref{thm:ergodic_theorem/squeeze_lemma_application} е по вероятност, важи и сходимост по разпределение, следователно за всяка ограничена непрекъсната функция \( g \) имаме
   \begin{equation}\label{thm:ergodic_theorem/expectation_of_limit}
     \lim_{n \to \infty} \Expect g\left( \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect g\left( \lim_{n \to \infty} \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect g(\pi_j \mid \xi_0 = i).
   \end{equation}
 
   Последното следва от, например, \cite[следствие 2 на стр. 119]{Borovkov}.
 
-  Да забележим, че \( \frac {M^{(n)}_j} n \leq 1 \) с вероятност \( 1 \). Понеже \( g(x) \coloneqq \max(x, 1) \) е ограничена непрекъсната функция, (\ref{thm:ergodic_theorem/expectation_of_limit}) придобива вида
+  Да забележим, че \( \frac {M^{(n)}_j} n \leq 1 \) с вероятност \( 1 \). Понеже \( g(x) \coloneqq \max(x, 1) \) е ограничена непрекъсната функция, \eqref{thm:ergodic_theorem/expectation_of_limit} придобива вида
   \begin{equation*}
     \lim_{n \to \infty} \Expect \left( \frac {M^{(n)}_j} n \Bigl\vert \xi_0 = i \right) = \Expect (\pi_j \mid \xi_0 = i) = \pi_j.
   \end{equation*}
@@ -473,7 +477,7 @@
 
 Ако марковската верига е и апериодична, редицата \( {\{ p_{ij}^{(n)} \}}_n \) схожда към \( \pi_j \). Доказателството на този факт е трудоемко и затова само ще го формулираме.
 
-То се базира на факта, че ако редицата \( {\{ p_{ij}^{(n)} \}}_n \) е сходяща, тя схожда към същата стойност като съответната редица на Чезаро \( {\{ \frac 1 n \sum_{k=1}^n p_{ij}^{(k)} \}}_n \), за която знаем, че клони към \( \pi_j \). Ако веригата е периодична с период \( d \), \( p_{jj}^{(nd)} = 0~\forall n > 0 \), т.е. редицата има безброй нулеви членове и не може да схожда към положително число.
+То се базира на факта, че ако редицата \( {\{ p_{ij}^{(n)} \}}_n \) е сходяща, тя схожда към същата стойност като съответната редица на Чезаро \( {\{ \frac 1 n \sum_{k=1}^n p_{ij}^{(k)} \}}_n \), за която знаем, че клони към \( \pi_j \). Ако веригата е периодична с период \( d \), \( p_{jj}^{(nd)} = 0\quad\forall n > 0 \), т.е. редицата има безброй нулеви членове и не може да схожда към положително число.
 
 \begin{corollary}
   Ако веригата е ергодична, тогава

@@ -76,5 +76,22 @@
 \newcommand           \Avg            {\overline}
 
 % Misc
-\newcommand           \URL        [1] {\href{#1}{#1}}
 \newcommand           \F              {\symcal{F}}
+\newcommand           \URL        [1] {\href{#1}{\texttt{#1}}}
+
+\newcommand           \Title      [1] {Тема #1 \\ \large{\URL{https://github.com/v--/se2018}}}
+
+\newcommand           \Revision   [1] {%
+  \normalsize{%
+    \textbf{Оригинал:} #1%
+    \\%
+    \textbf{Ревизия:} \input{../../revision}%
+    \\%
+    За всеки случай проверете дали няма по-нова ревизия
+  }%
+}
+
+\newcommand  \SubProof            [1] {\item\indent\par{\textbf{#1.}}\ }
+\newcommand  \SubProofImplication [2] {\SubProof{Доказателство, че \cref{#1} влече \cref{#2}}}
+\newcommand  \Necessity               {\SubProof{Доказателство на необходимост}}
+\newcommand  \Sufficiency             {\SubProof{Доказателство на достатъчност}}

@@ -1,8 +1,13 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
+\usepackage{../../common/colors}
 
 % Misc packages
 \usepackage{tikz}
@@ -15,10 +20,10 @@
 \usetikzlibrary{arrows.meta}
 
 % Document
-\title{Тема 1 от \URL{https://github.com/v--/se2018}}
+\title{\Title{1}}
 \subtitle{Уравнение на права и равнина. Формули за разстояния и ъгли. Криви от втора степен.}
 \author{Янис Василев}
-\date{Оригинал: 11 юни 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{11 юни 2019}}
 
 \begin{document}
 
@@ -26,11 +31,11 @@
 
 \section{Теория}
 
-Теорията е до голяма степен базирана на~\cite{Notes}.
+Теорията е до голяма степен базирана на \cite{Notes}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Прави в равнината и пространството
@@ -242,15 +247,15 @@
       -C_1 \\ -C_2
     \end{pmatrix},
   \end{equation}
-  което ни дава едновременните решения на уравненията (\ref{thm:plane_line_position/scalar_equations}).
+  което ни дава едновременните решения на уравненията (\eqref{thm:plane_line_position/scalar_equations}).
 
-  Ако \( \Rank L \neq \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) няма решения и \( \Rank L \neq \Rank \tilde L \).
+  Ако \( \Rank L \neq \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) няма решения и \( \Rank L \neq \Rank \tilde L \).
 
-  Ако \( \Rank L = \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\ref{thm:plane_line_position/matrix_equation}) има поне едно решение. Разглеждаме два случая:
+  Ако \( \Rank L = \Rank \tilde L \), то по теоремата на Руше матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) има поне едно решение. Разглеждаме два случая:
   \begin{enumerate}
-    \item Ако \( \Rank L = \Rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\ref{thm:plane_line_position/scalar_equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
+    \item Ако \( \Rank L = \Rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\eqref{thm:plane_line_position/scalar_equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
 
-    Обратно, нека уравненията (\ref{thm:plane_line_position/scalar_equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
+    Обратно, нека уравненията (\eqref{thm:plane_line_position/scalar_equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
     \begin{equation*}
       A_1x + B_1y + C_1 = 0
       \implies
@@ -271,7 +276,7 @@
       C_2 = \frac {A_2} {A_1} C_1.
     \end{align*}
 
-    Тогава второто уравнение от (\ref{thm:plane_line_position/scalar_equations}) има вида
+    Тогава второто уравнение от (\eqref{thm:plane_line_position/scalar_equations}) има вида
     \begin{equation*}
       l_2:
       A_2 x + B_2 y + C_2 =
@@ -280,9 +285,9 @@
     \end{equation*}
     откъдето виждаме, че двете уравнения са пропорционални и следователно \( \Rank \tilde L = 1 \).
 
-    \item Ако \( \Rank L = \Rank \tilde L = 2 \), то системата (\ref{thm:plane_line_position/matrix_equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
+    \item Ако \( \Rank L = \Rank \tilde L = 2 \), то системата (\eqref{thm:plane_line_position/matrix_equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
 
-    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват (\ref{thm:plane_line_position/matrix_equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \Rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на (\ref{thm:plane_line_position/matrix_equation}) и матрицата \( L \) има максимален ранг 2.
+    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват (\eqref{thm:plane_line_position/matrix_equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \Rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на (\eqref{thm:plane_line_position/matrix_equation}) и матрицата \( L \) има максимален ранг 2.
   \end{enumerate}
 \end{proof}
 
@@ -784,7 +789,7 @@
   \end{equation*}
 
   \begin{theorem}[Фокално свойство на елипса]
-    Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от елипсата минава през \( \Point F_1 \) (фиг.~\ref{fig:ellipse}).
+    Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от елипсата минава през \( \Point F_1 \) (\cref{fig:ellipse}).
   \end{theorem}
 \end{definition}
 
@@ -850,7 +855,7 @@
   \end{equation*}
 
   \begin{theorem}[Фокално свойство на хипербола]
-    Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от хиперболата лежи върху правата, минаваща през \( \Point M \) и \( \Point F_1 \) (фиг.~\ref{fig:hyperbola}).
+    Всеки лъч с начало \( \Point F_0 \) след отражение в произволна точка \( M \) от хиперболата лежи върху правата, минаваща през \( \Point M \) и \( \Point F_1 \) (\cref{fig:hyperbola}).
   \end{theorem}
 \end{definition}
 
@@ -886,7 +891,7 @@
     \end{figure}
   \end{minipage}
 
-  Нека \( \Point P \) има координати \( P(x, y) \) спрямо \( K \). Тъй като уравнението \( d: x = - \frac p 2 \) е нормално, теорема~\ref{thm:plane_distance} ни дава \( \Dist(d, P) = x + \frac p 2 \). Разписваме уравнението за \( k \) покоординатно:
+  Нека \( \Point P \) има координати \( P(x, y) \) спрямо \( K \). Тъй като уравнението \( d: x = - \frac p 2 \) е нормално, \cref{thm:plane_distance} ни дава \( \Dist(d, P) = x + \frac p 2 \). Разписваме уравнението за \( k \) покоординатно:
   \begin{align*}
     \Norm{F P} &= \Dist(d, P) \\
     {\Norm{F P}}^2 &= {\Dist(d, P)}^2 \\
@@ -912,13 +917,13 @@
   \end{equation*}
 
   \begin{theorem}[Фокално свойство на парабола]
-    Всеки лъч с начало \( \Point F \) след отражение в произволна точка \( M \) от параболата, става перпендикулярен на директрисата \( d \) (фиг.~\ref{fig:parabola}).
+    Всеки лъч с начало \( \Point F \) след отражение в произволна точка \( M \) от параболата, става перпендикулярен на директрисата \( d \) (\cref{fig:parabola}).
   \end{theorem}
 \end{definition}
 
 \section{Примерни задачи}
 
-В конспекта не е посочен списък с възможни задачи, затова съм включил няколко по-обширни задачи от~\cite{Notes}.
+В конспекта не е посочен списък с възможни задачи, затова съм включил няколко по-обширни задачи от \cite{Notes}.
 
 \subsection{Прави в равнината}
 
@@ -1025,7 +1030,7 @@
 
     Получихме \( B'(12/25, -9/25) \).
 
-    \item Разстоянието \( \Dist(A, a) \) намираме използвайки теорема~\ref{thm:plane_distance}:
+    \item Разстоянието \( \Dist(A, a) \) намираме използвайки \cref{thm:plane_distance}:
     \begin{equation*}
       \Dist(A, a) = \Abs{\ODist(A, a)} = \frac {\Abs{F_a(A)}} {\Norm {n_a}},
     \end{equation*}
@@ -1659,11 +1664,11 @@
       y = \frac 2 {\sqrt{\lambda^2 - 2\lambda + 5}}
     \end{equation}
 
-    Изваждайки двете уравнения в~\ref{ex:canonization/eigen}, стигаме до характеристичния полином на \( A \):
+    Изваждайки двете уравнения в \eqref{ex:canonization/eigen}, стигаме до характеристичния полином на \( A \):
     \begin{equation*}
       \frac {4 - \lambda} 2 - \frac 2 {1 - \lambda} = 0 \iff 4 - \lambda - 4\lambda + \lambda^2 - 4 = \lambda^2 - 5\lambda = 0,
     \end{equation*}
-    чиито корени са \( \lambda_1 = 0 \) и \( \lambda_1 = 5 \), а замествайки в~\ref{ex:canonization/normed_eigen}, директно получаваме собствените вектори
+    чиито корени са \( \lambda_1 = 0 \) и \( \lambda_1 = 5 \), а замествайки в \eqref{ex:canonization/normed_eigen}, директно получаваме собствените вектори
     \begin{align*}
       v_1 \left(\frac 1 {\sqrt 5}, \frac 2 {\sqrt 5} \right)
       &&

@@ -1,17 +1,22 @@
-\documentclass[numbers=endperiod, bibliography=totocnumbered]{scrartcl}
+\documentclass[
+  numbers=endperiod,
+  headings=standardclasses,
+  bibliography=totocnumbered,
+]{scrartcl}
 
 \usepackage{../../common/common_packages}
 \usepackage{../../common/macros}
 \usepackage{../../common/theorem_styles}
+\usepackage{../../common/colors}
 
 % Bibliography
 \addbibresource{./references.bib}
 
 % Document
-\title{Тема 20 от \URL{https://github.com/v--/se2018}}
+\title{\Title{20}}
 \subtitle{Точкови и интервални оценки за параметрите на нормалното разпределение.}
 \author{Янис Василев}
-\date{Оригинал: 4 юли 2019 \\ Ревизия: \input{../../revision} \\ За всеки случай проверете дали няма по-нова ревизия}
+\date{\Revision{4 юли 2019}}
 
 \begin{document}
 
@@ -19,11 +24,11 @@
 
 \section{Теория}
 
-Общата теория е базирана на~\cite{DimitrovYanev}, а оценките за нормалното разпределение - на~\cite{ASLectures}.
+Общата теория е базирана на \cite{DimitrovYanev}, а оценките за нормалното разпределение - на \cite{ASLectures}.
 
 \subsection{Анотация}
 
-Изложената анотацията е взета от конспекта~\cite{Syllabus} за 2018г.
+Изложената анотацията е взета от \cite{Syllabus}.
 
 \begin{enumerate}
   \item Определения за точкови и интервални оценки
@@ -73,12 +78,12 @@
 
     \item Точковата оценка \( t_n \) за \( \theta \) наричаме \textbf{състоятелна}, ако \( t_n \Conv[n \to \infty]{} \theta \) по вероятност, т.е.
     \begin{equation*}
-      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0~\forall \varepsilon > 0.
+      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0\quad\forall \varepsilon > 0.
     \end{equation*}
 
-    Оценката наричаме~\textbf{силно състоятелна}, ако сходимостта е почти сигурна, т.е.
+    Оценката наричаме \textbf{силно състоятелна}, ако сходимостта е почти сигурна, т.е.
     \begin{equation*}
-      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0~\forall \varepsilon > 0.
+      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0\quad\forall \varepsilon > 0.
     \end{equation*}
 
     \item Точковата оценка \( t_n \) за \( \theta \) с изместване \( \Expect(t_n) - \theta \) има \textbf{минимална дисперсия}, ако \( \Var(t_n) \leq \Var(u_n) \) за произволна друга точкова оценка \( u_n \) със същото изместване.
@@ -229,7 +234,7 @@
 
     \item Директно пресмятаме
     \begin{align*}
-      &~~~~\Expect\left( \frac {\partial^2 \ln l_\xi(\xi \mid \theta)} {\partial \theta^2} \mid \theta \right)
+      &\quad\Expect\left( \frac {\partial^2 \ln l_\xi(\xi \mid \theta)} {\partial \theta^2} \mid \theta \right)
       = \\ &=
       \int_{\R} \frac {\partial^2 \ln l_\xi(x \mid \theta)} {\partial \theta^2} l_\xi(x \mid \theta) dx
       = \\ &=
@@ -298,7 +303,7 @@
 
 Ще докажем малко по-общ резултат, който улеснява проверката и даже намирането на ефективни оценки.
 \begin{theorem}[Рао-Крамер]\label{thm:rao_cramer}
-  Нека \( \theta \) е някаква числена характеристика на \( \xi \) е \( r'(\theta) \) е диференцируема в \( \Theta \). Нека са изпълнени условията за регулярност от деф.~\ref{def:fisher_information}.
+  Нека \( \theta \) е някаква числена характеристика на \( \xi \) е \( r'(\theta) \) е диференцируема в \( \Theta \). Нека са изпълнени условията за регулярност от \cref{def:fisher_information}.
 
   За всяка неизместена оценка \( t_n \) на \( r(\theta) \) е изпълнено
   \begin{equation*}
@@ -456,7 +461,7 @@
 \end{definition}
 
 \begin{remark}
-  Стюдентизацията има разпределение на Стюдънт, тъй като според твърдение~\ref{thm:normal_mean_variance_estimators_independent} оценките \( m_n \) и \( s_n \) са независими.
+  Стюдентизацията има разпределение на Стюдънт, тъй като според \cref{thm:normal_mean_variance_estimators_independent} оценките \( m_n \) и \( s_n \) са независими.
 \end{remark}
 
 \subsubsection{Доверителен интервал за очакването при известна дисперсия}
@@ -494,7 +499,7 @@
 
 С \( {\DChiSq(m)}_p \) ще означаваме \( p \)-квантила на \( \DChiSq(m) \) разпределението.
 
-Тъй като според твърдение~\ref{thm:normal_mean_variance_estimators_independent} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1) \), директно намираме \( \gamma \)-доверителния интервал
+Тъй като според \cref{thm:normal_mean_variance_estimators_independent} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1) \), директно намираме \( \gamma \)-доверителния интервал
 \begin{align*}
   \Prob \left( {\DChiSq(n-1)}_{\frac {1-\gamma} 2} \leq (n-1) \frac {s_n^2} {\sigma^2} \leq {\DChiSq(n-1)}_{\frac {1+\gamma} 2} \right) &= \gamma,
   \\
