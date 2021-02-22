@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/v--/se2018/workflows/Build/badge.svg)](https://github.com/v--/se2018/actions?query=workflow%3ABuild)
 
-PDF файлове: https://ivasilev.net/files/ДИ2018
+PDF файлове: https://ivasilev.net/files/ДИ2018?sorting=1
 
 Това е хранилище за .tex файлове за учебни материали за летен държавен изпит 2019 (който всъщност е поправка за ДИ 2018) за спец. статистика във ФМИ на СУ. Темите включват и основни задачи, свързани с материала.
 
