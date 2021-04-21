@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on:  ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make git
+          make output-revision
+          make all
+
+    - name: Archive
+      run: zip 'Всички теми'.zip *.pdf
+      working-directory: named
+
+    - name: Deploy topics
+      run: |
+        echo '${{ secrets.SFTP_KEY }}' > ssh_id
+        chmod 600 ssh_id
+        echo 'cd ${{ secrets.SFTP_ROOT }}
+              put -R named/*
+        ' | sftp -i ssh_id -o StrictHostKeyChecking=no -o Port=${{ secrets.SFTP_PORT }} ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_SERVER }}
