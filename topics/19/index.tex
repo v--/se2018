@@ -1,20 +1,14 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=19,
+  title={Проверка на хипотези.},
+  basedate={28 юни 2019},
+  author={Янис Василев}
+}
+
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{19}}
-\subtitle{Проверка на хипотези.}
-\author{Янис Василев}
-\date{\Revision{28 юни 2019}}
 
 \begin{document}
 
@@ -37,17 +31,17 @@
 
 \subsection{Основни понятия}
 
-Считаме, че е зададено вероятностно пространство \( (\Omega, \F, \Prob) \).
+Считаме, че е зададено вероятностно пространство \( (\Omega, \mscrF, \Prob) \).
 
 \begin{definition}[Извадки]
-  Нека \( \xi \) е случайна величина над \( (\Omega, \F, \Prob) \). Множеството от елементарни събития \( \Omega \) в статистиката често се нарича \textbf{генерална съвкупност}.
+  Нека \( \xi \) е случайна величина над \( (\Omega, \mscrF, \Prob) \). Множеството от елементарни събития \( \Omega \) в статистиката често се нарича \textbf{генерална съвкупност}.
 
   \begin{itemize}
-    \item Ако случайните величини \( \xi_1, \ldots, \xi_n \) са независими две по две и имат същото разпределение като \( \xi \), казваме, че \( \xi_1, \ldots, \xi_n \) са \textbf{наблюдения} над \( \xi \) и че те са \textbf{проста извадка} с обем \( n \) над генералната съвкупност \( \Omega \). Понякога ги разглеждаме и като случаен вектор \( \V{\xi_n} = (\xi_1, \ldots, \xi_n) \).
+    \item Ако случайните величини \( \xi_1, \ldots, \xi_n \) са независими две по две и имат същото разпределение като \( \xi \), казваме, че \( \xi_1, \ldots, \xi_n \) са \textbf{наблюдения} над \( \xi \) и че те са \textbf{проста извадка} с обем \( n \) над генералната съвкупност \( \Omega \). Понякога ги разглеждаме и като случаен вектор \( \vect{\xi_n} = (\xi_1, \ldots, \xi_n) \).
     \item \textbf{Функция на правдоподобие} \( l_\xi(x) \) на случайната величина \( \xi \) наричаме, в абсолютно непрекъснатия случай, плътността на \( \xi \) или, в дискретния случай, функцията на вероятностите на \( \xi \).
-    \item \textbf{Функция на правдоподобие} \( l(x_1, \ldots, x_n) \) на извадката \( \xi_1, \ldots, \xi_n \) наричаме функцията на правдоподобие на случайния вектор \( \V{\xi_n} \). При извадки от независими случайни величини, функцията на правдоподобие на извадката е произведение на индивидуалните функции на правдоподобие.
-    \item \textbf{Извадково} пространство, съответстващо на извадката \( \xi_1, \ldots, \xi_n \), наричаме множеството \( \SampleSpace \subseteq \R^n \) от стойности на случайния вектор \( \V{\xi_n} \).
-    \item \textbf{Реализации} на извадката наричаме вектори от \( \SampleSpace \). Те моделират истинските данни в математическата статистика, съпоставяйки ги на \enquote{теоретичната} извадка \( \xi_1, \ldots, \xi_n \).
+    \item \textbf{Функция на правдоподобие} \( l(x_1, \ldots, x_n) \) на извадката \( \xi_1, \ldots, \xi_n \) наричаме функцията на правдоподобие на случайния вектор \( \vect{\xi_n} \). При извадки от независими случайни величини, функцията на правдоподобие на извадката е произведение на индивидуалните функции на правдоподобие.
+    \item \textbf{Извадково} пространство, съответстващо на извадката \( \xi_1, \ldots, \xi_n \), наричаме множеството \( \mscrX \subseteq \BbbR^n \) от стойности на случайния вектор \( \vect{\xi_n} \).
+    \item \textbf{Реализации} на извадката наричаме вектори от \( \mscrX \). Те моделират истинските данни в математическата статистика, съпоставяйки ги на \enquote{теоретичната} извадка \( \xi_1, \ldots, \xi_n \).
   \end{itemize}
 \end{definition}
 
@@ -57,14 +51,14 @@
   \begin{itemize}
     \item Всяко предположение за разпределението на \( \xi \) наричаме \textbf{статистическа хипотеза}. Формално, хипотезата \( H \) често се представя като множество от възможни функции на разпределение на \( \xi \). При повече от една хипотеза, искаме те да не се пресичат. Условна вероятност при условие, че \( F_\xi \in H \), обикновена записваме чрез
     \begin{equation*}
-      \Prob(\cdot \mid H).
+      \Prob(\cdot \given H).
     \end{equation*}
 
     Обикновено се разглеждат само две хипотези: \textbf{нулевата хипотеза} \( H_0 \) и \textbf{алтернативната хипотеза} \( H_1 \).
 
     \item При \textbf{параметричната} статистика хипотезите се отнасят за параметри на семейства от разпределения, например за очакването \( \mu \) на нормално разпределение или степента \( \lambda \) на поасоново разпределение. В противен случай говорим за \textbf{непараметрична} статистика. В непараметричния случай считаме, че двете хипотези съдържат едновременно само дискретни или само непрекъснати разпределения.
 
-    \item За да направим заключение за верността на една хипотеза ни е необходим \textbf{статистически критерий}. Формално, статистическите критерии са изображения \( \delta: \SampleSpace \to \{ H_0, H_1 \} \), съпоставящи на реализация на извадка някоя хипотеза. Да отбележим, че критерият \( \delta \) сам по себе си е случайна величина.
+    \item За да направим заключение за верността на една хипотеза ни е необходим \textbf{статистически критерий}. Формално, статистическите критерии са изображения \( \delta: \mscrX \to \set{ H_0, H_1 } \), съпоставящи на реализация на извадка някоя хипотеза. Да отбележим, че критерият \( \delta \) сам по себе си е случайна величина.
 
     \item Един критерий ни казва коя хипотеза да \textbf{приемем} и коя да \textbf{отхвърлим}, обикновено на базата на данни от експеримент, т.е. на някоя реализация на извадка над \( \xi \). Поради случайния характер на експериментите, обаче, при практически задачи е възприета терминологията \enquote{имаме/нямаме основание да отхвърлим хипотезата \( H \) на база на данните} или \enquote{хипотезата \( H \) е/не е съвместима с данните}.
 
@@ -72,19 +66,19 @@
 
     \item Вероятността \( \alpha \) за \textbf{грешка от първи род} или \textbf{ниво на съгласие} или \textbf{ниво на значимост} е вероятността да отхвърлим вярна нулева хипотеза, т.е.
     \begin{equation*}
-      \alpha \coloneqq \Prob(\delta = H_1 \mid H_0).
+      \alpha \coloneqq \Prob(\delta = H_1 \given H_0).
     \end{equation*}
 
     Стойността \( \gamma \coloneqq 1 - \alpha \) наричаме \textbf{значимост} или \textbf{ниво на доверие} на теста.
 
     \item \enquote{Вероятността \( \beta \) за грешка от втори род} е вероятността да приемем грешна нулева хипотеза, т.е.
     \begin{equation*}
-      \beta \coloneqq \Prob(\delta = H_0 \mid H_1).
+      \beta \coloneqq \Prob(\delta = H_0 \given H_1).
     \end{equation*}
 
     Стойността \( \pi \coloneqq 1 - \beta \) наричаме \textbf{мощност} на теста.
 
-    \item \textbf{Критична област} \( W_\alpha \) с ниво на значимост \( \alpha \) наричаме произволно множество \( W_\alpha \subsetneq \SampleSpace \) от реализации на извадката с \( \Prob(\V{\xi_n} \in W \mid H_0) = \alpha \), попадайки в което \textbf{отхвърляме} нулевата хипотеза.
+    \item \textbf{Критична област} \( W_\alpha \) с ниво на значимост \( \alpha \) наричаме произволно множество \( W_\alpha \subsetneq \mscrX \) от реализации на извадката с \( \Prob(\vect{\xi_n} \in W \given H_0) = \alpha \), попадайки в което \textbf{отхвърляме} нулевата хипотеза.
 
     Всяка критична област задава критерия
     \begin{equation*}
@@ -96,7 +90,7 @@
 
     \item Нека са зададени хипотезите \( H_0 \) и \( H_1 \) и е фиксирано ниво на значимост \( \alpha \). Критичната област
     \begin{equation*}
-      W_\alpha^* \coloneqq \Argmax_{W_\alpha \subsetneq \SampleSpace} \Prob(\V{\xi_n} \in W_\alpha \mid H_1),
+      W_\alpha^* \coloneqq \operatornamewithlimits{argmax}_{W_\alpha \subsetneq \mscrX} \Prob(\vect{\xi_n} \in W_\alpha \given H_1),
     \end{equation*}
     осигуряваща най-голяма мощност на теста, наричаме \textbf{оптимална критична област}.
 
@@ -114,18 +108,22 @@
       \item В противен случай, наричаме теста \textbf{двустранен}
     \end{itemize}
 
-    \item Нека \( H_0 \) е проста хипотеза и \( x = (x_1, \ldots, x_n) \in \SampleSpace \) е реализация на извадка. \textbf{Значимост} или \( p \)-\textbf{стойност} на реализацията \( x \) наричаме условната вероятност спрямо нулева хипотеза \( H_0 \) на опашките на разпределението на \( \xi \), определени от типа на теста.
+    \item Нека \( H_0 \) е проста хипотеза и \( x = (x_1, \ldots, x_n) \in \mscrX \) е реализация на извадка. \textbf{Значимост} или \( p \)-\textbf{стойност} на реализацията \( x \) наричаме условната вероятност спрямо нулева хипотеза \( H_0 \) на опашките на разпределението на \( \xi \), определени от типа на теста.
 
     В зависимост от типа на теста разполагаме с няколко формални определения за значимост на реализация:
     \begin{align*}
       p \coloneqq \begin{cases}
-        \Prob(x \geq \xi \mid H_0), &\text{ за леви едностранни тестове} \\
-        \Prob(x \leq \xi \mid H_0), &\text{ за десни едностранни тестове} \\
-        2 \min (\Prob(x \leq \xi \mid H_0), \Prob(x \geq \xi \mid H_0)) &\text{ за двустранни тестове}
+        \Prob(x \geq \xi \given H_0), &\text{ за леви едностранни тестове} \\
+        \Prob(x \leq \xi \given H_0), &\text{ за десни едностранни тестове} \\
+        2 \min (\Prob(x \leq \xi \given H_0), \Prob(x \geq \xi \given H_0)) &\text{ за двустранни тестове}
       \end{cases}
     \end{align*}
 
-    Често се казва, че значимостта на \( x \) е вероятността да наблюдаваме \enquote{по-екстремна} стойност от \( x \).
+    {
+      \hfuzz=2pt
+      Често се казва, че значимостта на \( x \) е вероятността да наблюдаваме \enquote{по-екстремна} стойност от \( x \).
+      \par
+    }
   \end{itemize}
 \end{definition}
 
@@ -149,35 +147,35 @@
 \end{lemma}
 
 \begin{remark}
-  В общия случай стойностите \( x \in \SampleSpace \), за които \( l_0(x) = cl_1(x) \), могат както да лежат в критичната област, така и извън нея.
+  В общия случай стойностите \( x \in \mscrX \), за които \( l_0(x) = cl_1(x) \), могат както да лежат в критичната област, така и извън нея.
 \end{remark}
 
 \begin{proof}
   Ще докажем теоремата само за абсолютно непрекъснати разпределения. В общия случай римановите интеграли могат да се заменят с интеграли по вероятностни мерки, съответстващи на двете хипотези.
 
-  Нека \( U_\alpha \) е произволна друга критична област за същия тест с ниво на съгласие \( \alpha \). Означаваме \( Q(A) \coloneqq \Prob(\V{\xi_n} \in A) \).
+  Нека \( U_\alpha \) е произволна друга критична област за същия тест с ниво на съгласие \( \alpha \). Означаваме \( Q(A) \coloneqq \Prob(\vect{\xi_n} \in A) \).
 
-   Ще докажем, че \( Q(U_\alpha \mid H_1) \geq Q(W_\alpha \mid H_1) \). Поради адитивността на вероятностните мерки имаме
+   Ще докажем, че \( Q(U_\alpha \given H_1) \geq Q(W_\alpha \given H_1) \). Поради адитивността на вероятностните мерки имаме
   \begin{align*}
-    &\hspace{0.45cm}Q(W_\alpha \mid H_1) - Q(U_\alpha \mid H_1)
+    &\hspace{0.45cm}Q(W_\alpha \given H_1) - Q(U_\alpha \given H_1)
     = \\ &=
-    Q((U_\alpha \cap W_\alpha) \cup (W_\alpha \setminus U_\alpha) \mid H_1) - Q((U_\alpha \cap W_\alpha) \cup (U_\alpha \setminus W_\alpha) \mid H_1)
+    Q((U_\alpha \cap W_\alpha) \cup (W_\alpha \setminus U_\alpha) \given H_1) - Q((U_\alpha \cap W_\alpha) \cup (U_\alpha \setminus W_\alpha) \given H_1)
     = \\ &=
-    Q(U_\alpha \cap W_\alpha \mid H_1) + Q(W_\alpha \setminus U_\alpha \mid H_1) - Q(U_\alpha \cap W_\alpha \mid H_1) - Q(U_\alpha \setminus W_\alpha \mid H_1)
+    Q(U_\alpha \cap W_\alpha \given H_1) + Q(W_\alpha \setminus U_\alpha \given H_1) - Q(U_\alpha \cap W_\alpha \given H_1) - Q(U_\alpha \setminus W_\alpha \given H_1)
     = \\ &=
-    Q(W_\alpha \setminus U_\alpha \mid H_1) - Q(U_\alpha \setminus W_\alpha \mid H_1)
+    Q(W_\alpha \setminus U_\alpha \given H_1) - Q(U_\alpha \setminus W_\alpha \given H_1)
     = \\ &=
     \int_{W_\alpha \setminus U_\alpha} l_1(x) dx + \int_{U_\alpha \setminus W_\alpha} (-l_1(x)) dx
     \geq \\ &\geq
     \frac 1 c \int_{W_\alpha \setminus U_\alpha} l_0(x) dx + \frac 1 c \int_{U_\alpha \setminus W_\alpha} (-l_0(x)) dx
     = \\ &=
-    \frac 1 c \left( \int_{W_\alpha \setminus U_\alpha} l_0(x) dx - \int_{U_\alpha \setminus W_\alpha} l_0(x) dx \right)
+    \frac 1 c \parens*{ \int_{W_\alpha \setminus U_\alpha} l_0(x) dx - \int_{U_\alpha \setminus W_\alpha} l_0(x) dx }
     = \\ &=
-    \frac 1 c [Q(W_\alpha \setminus U_\alpha \mid H_0) - Q(U_\alpha \setminus W_\alpha \mid H_0)]
+    \frac 1 c [Q(W_\alpha \setminus U_\alpha \given H_0) - Q(U_\alpha \setminus W_\alpha \given H_0)]
     = \\ &=
-    \frac 1 c [Q(U_\alpha \cap W_\alpha \mid H_0) + Q(W_\alpha \setminus U_\alpha \mid H_0) - Q(U_\alpha \cap W_\alpha \mid H_0) - Q(U_\alpha \setminus W_\alpha \mid H_0)]
+    \frac 1 c [Q(U_\alpha \cap W_\alpha \given H_0) + Q(W_\alpha \setminus U_\alpha \given H_0) - Q(U_\alpha \cap W_\alpha \given H_0) - Q(U_\alpha \setminus W_\alpha \given H_0)]
     = \\ &=
-    \frac 1 c [Q(W_\alpha \mid H_0) - Q(U_\alpha \mid H_0)]
+    \frac 1 c [Q(W_\alpha \given H_0) - Q(U_\alpha \given H_0)]
     = \\ &=
     \frac 1 c (\alpha - \alpha)
     =

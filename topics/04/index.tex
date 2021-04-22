@@ -1,24 +1,18 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
-% Misc packages
+\TopicSetup{
+  number=4,
+  title={Граница, непрекъснатост, производна и примитивна на функция на една променлива. Геометрична интерпретация.},
+  basedate={6 юли 2019},
+  author={Янис Василев}
+}
+
+% Packages
 \usepackage{tikz}
 \usepackage{float} % Allowing figures inside minipages
 
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{4}}
-\subtitle{Граница, непрекъснатост, производна и примитивна на функция на една променлива. Геометрична интерпретация.}
-\author{Янис Василев}
-\date{\Revision{6 юли 2019}}
 
 \begin{document}
 
@@ -50,7 +44,7 @@
 \subsection{Отворени множества}
 
 \begin{definition}
-  Множеството \( U \subseteq \R \) ще наричаме \textbf{отворено}, ако \( U \) е обединение на (произволен брой) отворени интервали. В частност, \( \varnothing \) е отворено като обединение на \( 0 \) множества. Това определение изглежда нагласено, но всъщност казва, че отворените интервали са база за стандартната топология в \( \R \).
+  Множеството \( U \subseteq \BbbR \) ще наричаме \textbf{отворено}, ако \( U \) е обединение на (произволен брой) отворени интервали. В частност, \( \varnothing \) е отворено като обединение на \( 0 \) множества. Това определение изглежда нагласено, но всъщност казва, че отворените интервали са база за стандартната топология в \( \BbbR \).
 
   Ако \( U \) е отворено множество и \( x \in U \), казваме, че \( U \) е \textbf{околност} на \( x \).
 \end{definition}
@@ -61,27 +55,27 @@
   Ако \( a < b \) са реални числа, те имат поне една двойка непресичащи се околности.
 \end{lemma}
 \begin{proof}
-  Разглеждаме, например, интервалите \( U_a = \left(a, \tfrac {a + b} 2 \right) \) и \( U_b = \left(\tfrac {a + b} 2, b\right) \).
+  Разглеждаме, например, интервалите \( U_a = \parens*{a, \tfrac {a + b} 2 } \) и \( U_b = \parens*{\tfrac {a + b} 2, b} \).
 \end{proof}
 
 \subsection{Граница на редица}
 
 \begin{definition}
-  Безкрайните последователности от реални числа наричаме редици и бележим с \( {\{ a_k \}}_{k=1}^\infty \) или просто с \( \{ a_k \} \), когато няма опасност от недоразумение.
+  Безкрайните последователности от реални числа наричаме редици и бележим с \( {\set{ a_k }}_{k=1}^\infty \) или просто с \( \set{ a_k } \), когато няма опасност от недоразумение.
 
-  Формално, редиците са функции \( \mathbb{N} \to \R \).
+  Формално, редиците са функции \( \mathbb{N} \to \BbbR \).
 \end{definition}
 
 \begin{definition}
-  Нека \( D \subseteq \R \) е произволно непразно множество. Казваме, че \( a \in D \) е \textbf{точка на сгъстяване} на множеството \( D \) или \textbf{гранична точка} на \( D \), ако във всяка околност на \( a \) има точки на \( D \), различни от \( a \).
+  Нека \( D \subseteq \BbbR \) е произволно непразно множество. Казваме, че \( a \in D \) е \textbf{точка на сгъстяване} на множеството \( D \) или \textbf{гранична точка} на \( D \), ако във всяка околност на \( a \) има точки на \( D \), различни от \( a \).
 \end{definition}
 
 \begin{definition}
-  Нека \( D \subseteq \R \) и \( \{ a_k \} \subseteq D \) е произволна редица. Казваме, че \( a \) е \textbf{граница на редицата} \( \{ a_k \} \) или че редицата \( \{ a_k \} \) \textbf{клони} към \( a \), ако всяка околност на \( a \) съдържа цялата редица с изключение на краен брой членове. Пишем
+  Нека \( D \subseteq \BbbR \) и \( \set{ a_k } \subseteq D \) е произволна редица. Казваме, че \( a \) е \textbf{граница на редицата} \( \set{ a_k } \) или че редицата \( \set{ a_k } \) \textbf{клони} към \( a \), ако всяка околност на \( a \) съдържа цялата редица с изключение на краен брой членове. Пишем
   \begin{align*}
     \lim_{k \to \infty} a_k = a,
     &&
-    a_k \Conv[k \to \infty]{} a.
+    a_k \xrightarrow[k \to \infty]{} a.
   \end{align*}
 
   Ако една редица има граница, казваме, че \textbf{редицата е сходяща}. Ако една редица не е сходяща, тя е \textbf{разходяща}.
@@ -92,48 +86,48 @@
 \end{remark}
 
 \begin{proposition}
-  Сходящите редици \( \{ a_k \} \subseteq D \) имат единствена граница.
+  Сходящите редици \( \set{ a_k } \subseteq D \) имат единствена граница.
 \end{proposition}
 \begin{proof}
-  Нека \( a \) и \( b \) са граници на редицата \( \{ a_k \} \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности според \cref{thm:real_numbers_are_hausdorff}.
+  Нека \( a \) и \( b \) са граници на редицата \( \set{ a_k } \). Ако \( a \) и \( b \) са различни, те непременно имат поне една двойка непресичащи се околности според \cref{thm:real_numbers_are_hausdorff}.
 
   От друга страна, ако \( U_a \) и \( U_b \) са някакви околности на \( a \) и \( b \), те непременно се пресичат, тъй като и двете съдържат цялата редица с изключение на краен брой членове. Заключаваме, че \( a = b \).
 \end{proof}
 
 \begin{proposition}\label{thm:sequence_converges_in_topology_iff_converges_in_base}
-  Редица \( \{ a_k \} \subseteq D \) от реални числа клони към \( a \) тогава и само тогава за всяко положително число \( \varepsilon > 0 \) съществува индекс \( k_0 \) такъв, че при \( k \geq k_0 \) да бъде изпълнено \( \Abs{a_k - a} < \varepsilon \).
+  Редица \( \set{ a_k } \subseteq D \) от реални числа клони към \( a \) тогава и само тогава за всяко положително число \( \varepsilon > 0 \) съществува индекс \( k_0 \) такъв, че при \( k \geq k_0 \) да бъде изпълнено \( \abs{a_k - a} < \varepsilon \).
 \end{proposition}
 \begin{proof}
-  Първо ще докажем достатъчност. Фиксираме \( \varepsilon \) и предполагаме, че само краен брой членове на редицата не се съдържат в интервала \( (a - \tfrac{\varepsilon} 2, a + \tfrac{\varepsilon} 2) \). Тогава съществува индекс \( k_0 \), такъв че всички членове на редицата след \( a_{k_0} \) се съдържат в интервала, т.е. \( \Abs{a - a_k} < \varepsilon \) за всяко \( k \geq k_0 \).
+  Първо ще докажем достатъчност. Фиксираме \( \varepsilon \) и предполагаме, че само краен брой членове на редицата не се съдържат в интервала \( (a - \tfrac{\varepsilon} 2, a + \tfrac{\varepsilon} 2) \). Тогава съществува индекс \( k_0 \), такъв че всички членове на редицата след \( a_{k_0} \) се съдържат в интервала, т.е. \( \abs{a - a_k} < \varepsilon \) за всяко \( k \geq k_0 \).
 
-  Обратно, ако е зададена околност \( U \) на \( a \), избираме отворен интервал \( (a - \tfrac \varepsilon 2, a + \tfrac \varepsilon 2) \subseteq U \) и индекс \( k_0 \), така че \( \Abs{a - a_k} < \varepsilon \) при \( k \geq k_0 \). Получаваме, че единствено краен брой членове на редицата с индекси, по-малки от \( k_0 \), потенциално се съдържат извън \( (a - \tfrac \varepsilon 2, a + \tfrac \varepsilon 2) \).
+  Обратно, ако е зададена околност \( U \) на \( a \), избираме отворен интервал \( (a - \tfrac \varepsilon 2, a + \tfrac \varepsilon 2) \subseteq U \) и индекс \( k_0 \), така че \( \abs{a - a_k} < \varepsilon \) при \( k \geq k_0 \). Получаваме, че единствено краен брой членове на редицата с индекси, по-малки от \( k_0 \), потенциално се съдържат извън \( (a - \tfrac \varepsilon 2, a + \tfrac \varepsilon 2) \).
 \end{proof}
 
 \begin{proposition}\label{thm:limits_of_elementwise_sums_and_products}
-  Ако редиците \( \{ a_k \} \subseteq D \) и \( \{ b_k \} \subseteq D \) клонят към \( a \) и \( b \), съответно, тогава
+  Ако редиците \( \set{ a_k } \subseteq D \) и \( \set{ b_k } \subseteq D \) клонят към \( a \) и \( b \), съответно, тогава
   \begin{enumerate}
     \item \( a_k + b_k \xrightarrow[k \to \infty]{} a + b \)
     \item \( a_k b_k \xrightarrow[k \to \infty]{} a b \)
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  Понеже \( a_k \to a \) и \( b_k \to b \), можем да изберем индекс \( k \) и \( \delta > 0 \) такива, че да бъдат изпълнени неравенствата \( \Abs{a - a_k} < \delta \) и \( \Abs{b - b_k} < \delta \).
+  Понеже \( a_k \to a \) и \( b_k \to b \), можем да изберем индекс \( k \) и \( \delta > 0 \) такива, че да бъдат изпълнени неравенствата \( \abs{a - a_k} < \delta \) и \( \abs{b - b_k} < \delta \).
 
   \begin{enumerate}
     \item От неравенството на триъгълника следва
     \begin{equation*}
-      \Abs{(a + b) - (a_k + b_k)}
+      \abs{(a + b) - (a_k + b_k)}
       =
-      \Abs{(a - a_k) + (b - b_k)}
+      \abs{(a - a_k) + (b - b_k)}
       \leq
-      \Abs{a - a_k} + \Abs{b - b_k}
+      \abs{a - a_k} + \abs{b - b_k}
       <
       2\delta.
     \end{equation*}
 
     И така, при зададено \( \varepsilon > 0 \), достатъчно е да положим \( \delta \coloneqq \tfrac \varepsilon 2 \), за да съществува индекс \( k_0 \), за който
     \begin{equation*}
-      \Abs{(a + b) - (a_k + b_k)} < \varepsilon \quad\forall k \geq k_0.
+      \abs{(a + b) - (a_k + b_k)} < \varepsilon \quad\forall k \geq k_0.
     \end{equation*}
 
     \item Развиваме израза
@@ -149,17 +143,17 @@
       a \underbrace{(b - b_k)}_{\in (-\delta, \delta)} + \underbrace{(a - a_k)}_{\in (-\delta, \delta)} \underbrace{(b_k - b)}_{\in (-\delta, \delta)} + \underbrace{(a - a_k)}_{\in (-\delta, \delta)} b.
     \end{align*}
 
-    Следователно \( \Abs{ab - a_k b_k} < \delta^2 + \Abs{a + b} \delta \). Ако поискаме \( \delta \) да бъде по-малко от \( 1 \), ще получим \( \delta^2 \leq \delta \) и, съответно, \( \Abs{ab - a_k b_k} < (1 + \Abs{a + b}) \delta \).
+    Следователно \( \abs{ab - a_k b_k} < \delta^2 + \abs{a + b} \delta \). Ако поискаме \( \delta \) да бъде по-малко от \( 1 \), ще получим \( \delta^2 \leq \delta \) и, съответно, \( \abs{ab - a_k b_k} < (1 + \abs{a + b}) \delta \).
 
-    И така, при зададено \( \varepsilon > 0 \), достатъчно е да положим \( \delta = \tfrac {\min \{\varepsilon, 1 \}} {1 + \Abs{a + b}} \), за да съществува индекс \( k_0 \), за който
+    И така, при зададено \( \varepsilon > 0 \), достатъчно е да положим \( \delta = \tfrac {\min \set{\varepsilon, 1 }} {1 + \abs{a + b}} \), за да съществува индекс \( k_0 \), за който
     \begin{equation*}
-      \Abs{ab - a_k b_k} < \varepsilon \quad\forall k \geq k_0.
+      \abs{ab - a_k b_k} < \varepsilon \quad\forall k \geq k_0.
     \end{equation*}
   \end{enumerate}
 \end{proof}
 
 \begin{definition}
-  Нека редицата \( \{ a_k \} \) е неограничена, т.е. всяка околност на \( 0 \) съдържа само краен брой нейни елементи. Казваме, че редицата \textbf{клони към безкрайност} и пишем
+  Нека редицата \( \set{ a_k } \) е неограничена, т.е. всяка околност на \( 0 \) съдържа само краен брой нейни елементи. Казваме, че редицата \textbf{клони към безкрайност} и пишем
   \begin{equation*}
     \lim_{k \to \infty} a_k = \infty,
   \end{equation*}
@@ -177,17 +171,17 @@
 \end{remark}
 
 \begin{definition}[Сходимост по Хайне]
-  Нека \( a \) е точка на сгъстяване на \( D \subseteq \R \). Казваме, че функцията \( f: D \to \R \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \) или \( A \) е граница на \( f(x) \) при \( x \) клонящо към \( a \) и пишем
+  Нека \( a \) е точка на сгъстяване на \( D \subseteq \BbbR \). Казваме, че функцията \( f: D \to \BbbR \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \) или \( A \) е граница на \( f(x) \) при \( x \) клонящо към \( a \) и пишем
   \begin{align*}
     \lim_{x \to a} f(x) = A,
     &&
-    f(x) \Conv[x \to a]{} A,
+    f(x) \xrightarrow[x \to a]{} A,
   \end{align*}
-  ако за всяка сходяща към \( a \) редица \( \{ a_k \} \subseteq D \) съответната редица от функционални стойности \( {\{ f(a_k) \}}_{k=1}^\infty \) клони към \( A \).
+  ако за всяка сходяща към \( a \) редица \( \set{ a_k } \subseteq D \) съответната редица от функционални стойности \( {\set{ f(a_k) }}_{k=1}^\infty \) клони към \( A \).
 \end{definition}
 
 \begin{definition}[Сходимост по Коши]
-  Нека \( a \) е точка на сгъстяване на \( D \subseteq \R \). Казваме, че функцията \( f: D \to \R \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \), ако за всяко положително число \( \varepsilon > 0 \) съществува \( \delta > 0 \), така че за всяко \( x \in \R \) при \( \Abs{x - a} < \delta \) да е изпълнено \( \Abs{f(x) - A} < \varepsilon \).
+  Нека \( a \) е точка на сгъстяване на \( D \subseteq \BbbR \). Казваме, че функцията \( f: D \to \BbbR \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \), ако за всяко положително число \( \varepsilon > 0 \) съществува \( \delta > 0 \), така че за всяко \( x \in \BbbR \) при \( \abs{x - a} < \delta \) да е изпълнено \( \abs{f(x) - A} < \varepsilon \).
 \end{definition}
 
 \begin{remark}
@@ -198,27 +192,27 @@
   Определенията на Хайне и Коши за сходимост са еквивалентни.
 \end{theorem}
 \begin{proof}
-  (Хайне \( \implies \) Коши). Нека \( f: D \to \R \) клони към \( A \) в точката \( a \) според определението на Хайне и нека \( \varepsilon > 0 \) е произволно.
+  (Хайне \( \implies \) Коши). Нека \( f: D \to \BbbR \) клони към \( A \) в точката \( a \) според определението на Хайне и нека \( \varepsilon > 0 \) е произволно.
 
   С цел да получим противоречие, допускаме, че условието на Коши за сходимост не е изпълнено, т.е. за всяко \( \delta > 0 \) съществува \( a_\delta \in (a - \delta, a + \delta) \), такова че \( f(a_\delta) \) е извън интервала \( (A - \varepsilon, A + \varepsilon) \).
 
-  Построяваме редица \( \{ a_n \}_{n=1}^\infty \), където \( a_n \) избираме така, че \( a_n \in \left(a - \frac 1 n, a + \frac 1 n \right) \) и \( f(a_n) \not\in (A - \varepsilon, A + \varepsilon) \). Построената редица очевидно клони към \( a \) и според определението на Хайне за сходимост на функция, само краен брой членове от редицата \( \{ f(a_n) \}_{n=1}^\infty \) са извън интервала \( (A - \varepsilon, A + \varepsilon) \). Но това противоречи на избора на елементи на редицата \( \{ a_n \}_{n=1}^\infty \).
+  Построяваме редица \( \set{ a_n }_{n=1}^\infty \), където \( a_n \) избираме така, че \( a_n \in \parens*{a - \frac 1 n, a + \frac 1 n } \) и \( f(a_n) \not\in (A - \varepsilon, A + \varepsilon) \). Построената редица очевидно клони към \( a \) и според определението на Хайне за сходимост на функция, само краен брой членове от редицата \( \set{ f(a_n) }_{n=1}^\infty \) са извън интервала \( (A - \varepsilon, A + \varepsilon) \). Но това противоречи на избора на елементи на редицата \( \set{ a_n }_{n=1}^\infty \).
 
   Следователно е изпълнено определението на Коши за сходимост.
 
-  (Коши \( \implies \) Хайне). Нека \( f: D \to \R \) клони към \( A \) в точката \( a \) според определението на Коши.
+  (Коши \( \implies \) Хайне). Нека \( f: D \to \BbbR \) клони към \( A \) в точката \( a \) според определението на Коши.
 
-  Нека \( U \) е произволна околност на \( A \) и нека числото \( \varepsilon > 0 \) е такова, че интервалът \( (A - \varepsilon, A + \varepsilon) \), който също е околност на \( A \), се съдържа в \( U \). От определението на Коши за сходимост съществува число \( \delta > 0 \), за което за произволно \( x \in \R \) неравенството \( 0 < \Abs{x - a} < \delta \) да влече \( \Abs{f(x) - A} < \varepsilon \).
+  Нека \( U \) е произволна околност на \( A \) и нека числото \( \varepsilon > 0 \) е такова, че интервалът \( (A - \varepsilon, A + \varepsilon) \), който също е околност на \( A \), се съдържа в \( U \). От определението на Коши за сходимост съществува число \( \delta > 0 \), за което за произволно \( x \in \BbbR \) неравенството \( 0 < \abs{x - a} < \delta \) да влече \( \abs{f(x) - A} < \varepsilon \).
 
-  Нека редицата \( \{ a_k \} \) клони към \( a \) и нека \( n \) е най-големият индекс, за който \( \Abs{a - a_n} \geq \delta \), или \( n = 0 \), ако няма такива членове. Тогава подредицата \( {\{ a_k \}}_{k>n} \) също клони към \( a \), а редицата \( {\{ f(a_k) \}}_{k>n} \) се съдържа изцяло в околността \( (A - \varepsilon, A + \varepsilon) \subseteq U \) на \( a \).
+  Нека редицата \( \set{ a_k } \) клони към \( a \) и нека \( n \) е най-големият индекс, за който \( \abs{a - a_n} \geq \delta \), или \( n = 0 \), ако няма такива членове. Тогава подредицата \( {\set{ a_k }}_{k>n} \) също клони към \( a \), а редицата \( {\set{ f(a_k) }}_{k>n} \) се съдържа изцяло в околността \( (A - \varepsilon, A + \varepsilon) \subseteq U \) на \( a \).
 
-  Но това означава, че редицата \( {\{ f(a_k) \}}_{k>0} \) клони към \( A \) и следователно е изпълнено определението на Хайне за сходимост.
+  Но това означава, че редицата \( {\set{ f(a_k) }}_{k>0} \) клони към \( A \) и следователно е изпълнено определението на Хайне за сходимост.
 \end{proof}
 
 \begin{proposition}\label{thm:limit_is_linear_and_multiplicative}
-  Нека \( a \) е точка на сгъстяване на \( D \subseteq \R \). Ако \( f: D \to \R \) клони към \( A \) в точката \( a \) и \( g: D \to \R \) клони към \( B \) в точката \( a \), тогава
+  Нека \( a \) е точка на сгъстяване на \( D \subseteq \BbbR \). Ако \( f: D \to \BbbR \) клони към \( A \) в точката \( a \) и \( g: D \to \BbbR \) клони към \( B \) в точката \( a \), тогава
   \begin{enumerate}
-    \item За произволна константа \( c \in \R \)
+    \item За произволна константа \( c \in \BbbR \)
     \begin{equation*}
       \lim_{x \to a} [c f(x)] = c A.
     \end{equation*}
@@ -239,7 +233,7 @@
 \end{proof}
 
 \begin{definition}[Обобщена сходимост по Хайне]
-  Нека редицата \( \{ a_k \} \subseteq D \) клони към крайна или безкрайна граница \( a \), т.е. \( a \) е точка на сгъстяване на \( D \) или \( a = \pm \infty \), а редицата от функционални стойности \( \{ f(a_k) \} \) клони към крайна или безкрайна граница \( A \), т.е. \( A \in \R \) или \( A = \pm \infty \). Казваме, че функцията \( f(x) \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \) и пишем
+  Нека редицата \( \set{ a_k } \subseteq D \) клони към крайна или безкрайна граница \( a \), т.е. \( a \) е точка на сгъстяване на \( D \) или \( a = \pm \infty \), а редицата от функционални стойности \( \set{ f(a_k) } \) клони към крайна или безкрайна граница \( A \), т.е. \( A \in \BbbR \) или \( A = \pm \infty \). Казваме, че функцията \( f(x) \) \textbf{клони} към \( A \) при \( x \) клонящо към \( a \) и пишем
   \begin{equation*}
     \lim_{x \to a} f(x) = A.
   \end{equation*}
@@ -248,17 +242,17 @@
 \subsection{Непрекъснатост}
 
 \begin{definition}[Непрекъснатост по Хайне]
-  Нека \( D \subseteq \R \) и \( a \in D \) е точка на сгъстяване на \( D \). Казваме, че функцията \( f: D \to \R \) е \textbf{непрекъсната} в точката \( a \), ако за произволна редица \( \{ a_k \} \subseteq D \), клоняща към \( a \), съответната редица \( \{ f(a_k) \} \) от функционални стойности клони към \( f(a) \).
+  Нека \( D \subseteq \BbbR \) и \( a \in D \) е точка на сгъстяване на \( D \). Казваме, че функцията \( f: D \to \BbbR \) е \textbf{непрекъсната} в точката \( a \), ако за произволна редица \( \set{ a_k } \subseteq D \), клоняща към \( a \), съответната редица \( \set{ f(a_k) } \) от функционални стойности клони към \( f(a) \).
 \end{definition}
 
 \begin{definition}[Непрекъснатост по Коши]
-  Нека \( D \subseteq \R \) и \( a \in D \) е точка на сгъстяване на \( D \). Казваме, че функцията \( f: D \to \R \) е \textbf{непрекъсната} в точката \( a \), ако за всяко положително число \( \varepsilon > 0 \) съществува \( \delta > 0 \), така че за всяко \( x \in \R \) при \( 0 < \Abs{x - a} < \delta \) да е изпълнено \( \Abs{f(x) - f(a)} < \varepsilon \).
+  Нека \( D \subseteq \BbbR \) и \( a \in D \) е точка на сгъстяване на \( D \). Казваме, че функцията \( f: D \to \BbbR \) е \textbf{непрекъсната} в точката \( a \), ако за всяко положително число \( \varepsilon > 0 \) съществува \( \delta > 0 \), така че за всяко \( x \in \BbbR \) при \( 0 < \abs{x - a} < \delta \) да е изпълнено \( \abs{f(x) - f(a)} < \varepsilon \).
 \end{definition}
 
 \begin{remark}
   От \cref{thm:heine_iff_cauchy} следва, че двете определения за непрекъснатост съвпадат и са еквивалентни на следната проста формула:
   \begin{equation*}
-    \lim_{x \to a} f(x) = f\left( \lim_{x \to a} x \right).
+    \lim_{x \to a} f(x) = f\parens*{ \lim_{x \to a} x }.
   \end{equation*}
 \end{remark}
 
@@ -269,7 +263,7 @@
 \subsection{Диференцируемост}
 
 \begin{definition}
-  Нека точката \( a \) принадлежи на \( D \) заедно със своя дясна околност, т.е. за някое число \( \varepsilon > 0 \) интервалът \( [a, a + \varepsilon) \) лежи изцяло в \( D \). \textbf{Производна} на функцията \( f: D \to \R \) в точка \( a \in D \) наричаме границата
+  Нека точката \( a \) принадлежи на \( D \) заедно със своя дясна околност, т.е. за някое число \( \varepsilon > 0 \) интервалът \( [a, a + \varepsilon) \) лежи изцяло в \( D \). \textbf{Производна} на функцията \( f: D \to \BbbR \) в точка \( a \in D \) наричаме границата
   \begin{equation*}
     \lim_{\substack{h \to 0 \\ h \neq 0}} \frac {f(a + h) - f(a)} h.
   \end{equation*}
@@ -278,7 +272,7 @@
 
   Ако \( f(x) \) има производна в точка \( a \), казваме, че тя е \textbf{диференцируема} в тази точка.
 
-  Ако \( D \subseteq \R \) е отворено множество и функцията \( f: D \to \R \) е диференцируема в цялата си дефиниционна област, казваме, че тя е диференцируема, без да правим допълнително пояснения. В такъв случай производните се разглеждат като функция на \( x \in D \). Ако производната \( f'(x) \) съществува в околност на \( a \) и е непрекъсната в \( a \), казваме, че \( f(x) \) е непрекъснато диференцируема.
+  Ако \( D \subseteq \BbbR \) е отворено множество и функцията \( f: D \to \BbbR \) е диференцируема в цялата си дефиниционна област, казваме, че тя е диференцируема, без да правим допълнително пояснения. В такъв случай производните се разглеждат като функция на \( x \in D \). Ако производната \( f'(x) \) съществува в околност на \( a \) и е непрекъсната в \( a \), казваме, че \( f(x) \) е непрекъснато диференцируема.
 
   Ако функцията \( f(x) \) е диференцируема в \( a \), \textbf{диференциал} \( df(a) \) на \( f(x) \) в точката \( a \) наричаме линейната функция \( h \mapsto f'(a) \cdot h \).
 
@@ -295,7 +289,7 @@
 \end{remark}
 
 \begin{proposition}
-  Нека \( D \subseteq \R \) е отворено и функцията \( f: D \to \R \) е диференцируема в точка \( a \in D \). Тогава \( f(x) \) е и непрекъсната в \( a \).
+  Нека \( D \subseteq \BbbR \) е отворено и функцията \( f: D \to \BbbR \) е диференцируема в точка \( a \in D \). Тогава \( f(x) \) е и непрекъсната в \( a \).
 \end{proposition}
 \begin{proof}
   Производната \( f'(a) \) е крайно число, следователно от \cref{thm:limits_of_elementwise_sums_and_products} получаваме
@@ -314,20 +308,24 @@
   Ако пътят, изминат от материална частица за време \( t \), се описва чрез диференцируемата функция \( f(t) \), тогава моментната скорост във времето \( t \) е равна на \( f'(t) \).
 \end{theorem}
 \begin{proof}
-  Нека \( T > 0 \) и нека функцията \( f: [0, T] \to \R \) е диференцируема в точка \( t \in (0, T) \).
+  Нека \( T > 0 \) и нека функцията \( f: [0, T] \to \BbbR \) е диференцируема в точка \( t \in (0, T) \).
 
   Изразявайки приблизително нарастването на пътя \( f(t+h) - f(t) \approx h v(t) \) като нарастването на времето умножено по скоростта \( v(t) \) на движение в момента \( t \), получаваме
   \begin{equation*}
-    v(t) = \frac{f(t+h) - f(t)} {h} \Conv[h \to 0]{} f'(t).
+    v(t) = \frac{f(t+h) - f(t)} {h} \xrightarrow[h \to 0]{} f'(t).
   \end{equation*}
 \end{proof}
 
 \bigskip
 \begin{minipage}{0.45\textwidth}
   \begin{theorem}[Геометрична интерпретация на производна]
-    Нека \( D \subseteq \R \) и функцията \( f: D \to \R \) е диференцируема в точка \( a \in D \). Разглеждаме графиката \( \Gamma_f = \{ (x, f(x)) \mid x \in D \} \) на \( f(x) \) като параметрична крива в равнината.
+    Нека \( D \subseteq \BbbR \) и функцията \( f: D \to \BbbR \) е диференцируема в точка \( a \in D \). Разглеждаме графиката
+    \begin{equation*}
+      \Gamma_f = \set{ (x, f(x)) \mid x \in D }
+    \end{equation*}
+    на \( f(x) \) като параметрична крива в равнината.
 
-    За някое достатъчно малко по абсолютна стойност число \( h \in \R \) разглеждаме секущата \( d_h \) през точките с координати \( (a, f(a)) \) и \( (a+h, f(a+h)) \) (\cref{fig:secant}). При намаляващо \( h \), декартовите уравнения на тези секущи при се приближават към декартово уравнение на допирателна права \( d \) към \( \Gamma_f \) в точката \( a \).
+    За някое достатъчно малко по абсолютна стойност число \( h \in \BbbR \) разглеждаме секущата \( d_h \) през точките с координати \( (a, f(a)) \) и \( (a+h, f(a+h)) \) (\cref{fig:secant}). При намаляващо \( h \), декартовите уравнения на тези секущи при се приближават към декартово уравнение на допирателна права \( d \) към \( \Gamma_f \) в точката \( a \).
 
     Твърдим, че декартовото уравнение на тази допирателна права е
     \begin{equation*}
@@ -337,7 +335,7 @@
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}{0.45\textwidth}
-  \begin{figure}[H]\label{fig:secant}
+  \begin{figure}[H]
     \centering
     \begin{tikzpicture}
       \draw[->] (-1,0) -- (4,0) node[below right] {\( x \)};
@@ -347,7 +345,7 @@
       \filldraw [black] (1/2, 1/8) circle (1.5pt);
       \draw[-] (0, -1/2) -- (16/5, 3.5);
     \end{tikzpicture}
-    \caption{Секуща през две точки от графиката}
+    \caption{Секуща през две точки от графиката}\label{fig:secant}
   \end{figure}
 \end{minipage}
 \begin{proof}
@@ -362,13 +360,13 @@
 
   Оттук намираме декартовото уравнение на \( d_h \):
   \begin{align*}
-    d_h&: (f(a+h) - f(a)) (a+h-x) - (f(a+h)-y)h \mid \cdot \frac 1 h = 0,
+    &\phantom{{}\implies{}} d_h: (f(a+h) - f(a)) (a+h-x) - (f(a+h)-y)h = 0 \mid \cdot \frac 1 h,
     \\
-    d_h&: \frac {f(a+h) - f(a)} h (a-x) + (f(a+h) - f(a)) - f(a+h) + y = 0,
+    &\implies d_h: \frac {f(a+h) - f(a)} h (a-x) + (f(a+h) - f(a)) - f(a+h) + y = 0,
     \\
-    d_h&: y = -\frac {f(a+h) - f(a)} h (a-x) + f(a),
+    &\implies d_h: y = -\frac {f(a+h) - f(a)} h (a-x) + f(a),
     \\
-    d_h&: y = \frac {f(a+h) - f(a)} h (x-a) + f(a).
+    &\implies d_h: y = \frac {f(a+h) - f(a)} h (x-a) + f(a).
   \end{align*}
 
   С граничен предох при \( h \to 0 \) получаваме уравнението от твърдението на теоремата.
@@ -383,7 +381,7 @@
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item От адитивността на граничния преход (\cref{thm:limit_is_linear_and_multiplicative}) директно следва
     \begin{align*}
@@ -398,7 +396,7 @@
 
     \item Използваме мултипликативността на граничния преход от \cref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
-      &(f \cdot g)'(a)
+      &\phantom{{}={}} (f \cdot g)'(a)
       = \\ &=
       \lim_{h \to 0} \frac {(f \cdot g)(a+h) - (f \cdot g)(a)} h
       = \\ &=
@@ -413,17 +411,17 @@
 
     \item Отново използваме свойствата от \cref{thm:limit_is_linear_and_multiplicative}, за да получим
     \begin{align*}
-      &\left( \frac f g \right)'(a)
+      &\phantom{{}={}} \parens*{ \frac f g }'(a)
       = \\ &=
-      \lim_{h \to 0} \frac {\left(\frac f g \right)(a+h) - \left(\frac f g \right)(a)} h
+      \lim_{h \to 0} \frac {\parens*{\frac f g }(a+h) - \parens*{\frac f g }(a)} h
       = \\ &=
       \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a+h)} {h \cdot g(a) \cdot g(a+h)}
       = \\ &=
       \lim_{h \to 0} \frac 1 {g(a) \cdot g(a+h)} \cdot \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a+h)} h
       = \\ &=
-      \frac 1 {{g(a)}^2} \left( \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a)} h - \lim_{h \to 0} \frac {f(a) g(a+h) - f(a) g(a)} h \right)
+      \frac 1 {{g(a)}^2} \parens*{ \lim_{h \to 0} \frac {f(a+h) g(a) - f(a) g(a)} h - \lim_{h \to 0} \frac {f(a) g(a+h) - f(a) g(a)} h }
       = \\ &=
-      \frac 1 {{g(a)}^2} \left( g(a) \lim_{h \to 0} \frac {f(a+h) - f(a)} h - f(a) \lim_{h \to 0} \frac {g(a+h) - g(a)} h \right)
+      \frac 1 {{g(a)}^2} \parens*{ g(a) \lim_{h \to 0} \frac {f(a+h) - f(a)} h - f(a) \lim_{h \to 0} \frac {g(a+h) - g(a)} h }
       = \\ &=
       \frac {f'(a) g(a) - f(a) g'(a)} {{g(a)}^2}.
     \end{align*}
@@ -451,7 +449,7 @@
       f'(g(a)) \cdot g'(a).
     \end{equation*}
 
-    \item Ако \( g'(a) \neq 0 \), можем да считаме, че \( g(a+h) - g(a) \neq 0 \) за достатъчно малки по абсолютна стойност \( h \in \R \). Тогава
+    \item Ако \( g'(a) \neq 0 \), можем да считаме, че \( g(a+h) - g(a) \neq 0 \) за достатъчно малки по абсолютна стойност \( h \in \BbbR \). Тогава
     \begin{align*}
       \lim_{h \to 0} \frac {f(g(a+h)) - f(g(a))} h
       &=
@@ -461,7 +459,7 @@
       = \\ &=
       f'(g(a)) \cdot g'(a),
     \end{align*}
-    където \( \Delta_h \coloneqq g(a+h) - g(a) \Conv[h \to 0]{} 0 \), тъй като \( g(x) \) е непрекъсната в \( a \).
+    където \( \Delta_h \coloneqq g(a+h) - g(a) \xrightarrow[h \to 0]{} 0 \), тъй като \( g(x) \) е непрекъсната в \( a \).
   \end{enumerate}
 \end{proof}
 
@@ -474,18 +472,18 @@
 \end{remark}
 
 \begin{theorem}\label{thm:elementary_derivatives}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item Константните функции \( f(x) = c, c \in \R \) са диференцируеми навсякъде в \( \R \) и имат производни \( 0 \).
-    \item Степенните функции \( f(x) = x^n, n = 1, 2, \ldots \) са диференцируеми навсякъде в \( \R \) и имат производни \( f'(x) = n x^{n-1} \).
-    \item Показателните функции \( f(x) = \alpha^x, \alpha > 0 \) са диференцируеми навсякъде в \( \R \) и имат производни \( f'(x) = \ln \alpha \cdot \alpha^x \).
-    \item Функциите \( \sin(x) \) и \( \cos(x) \) са диференцируеми навсякъде в \( \R \) и имат производни \( \sin'(x) = \cos(x) \) и \( \cos'(x) = -\sin(x) \).
+    \item Константните функции \( f(x) = c, c \in \BbbR \) са диференцируеми навсякъде в \( \BbbR \) и имат производни \( 0 \).
+    \item Степенните функции \( f(x) = x^n, n = 1, 2, \ldots \) са диференцируеми навсякъде в \( \BbbR \) и имат производни \( f'(x) = n x^{n-1} \).
+    \item Показателните функции \( f(x) = \alpha^x, \alpha > 0 \) са диференцируеми навсякъде в \( \BbbR \) и имат производни \( f'(x) = \ln \alpha \cdot \alpha^x \).
+    \item Функциите \( \sin(x) \) и \( \cos(x) \) са диференцируеми навсякъде в \( \BbbR \) и имат производни \( \sin'(x) = \cos(x) \) и \( \cos'(x) = -\sin(x) \).
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item За \( f(x) = c, c \in \R \) пресмятаме
+    \item За \( f(x) = c, c \in \BbbR \) пресмятаме
     \begin{equation*}
       f'(x) = \lim_{h \to 0} \frac {c - c} h = 0.
     \end{equation*}
@@ -496,9 +494,9 @@
       &=
       \lim_{h \to 0} \frac {{(x+h)}^n - x^n} h
       = \\ &=
-      \lim_{h \to 0} \frac 1 h \left(\sum_{k=0}^n \binom{n}{k} x^k h^{n-k} - x^n \right)
+      \lim_{h \to 0} \frac 1 h \parens*{\sum_{k=0}^n \binom{n}{k} x^k h^{n-k} - x^n }
       = \\ &=
-      \lim_{h \to 0} \frac 1 h \left(\sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k} + n \cdot x^{n-1} \cdot h^1 + 1 \cdot x^n \cdot h^0 - x^n \right)
+      \lim_{h \to 0} \frac 1 h \parens*{\sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k} + n \cdot x^{n-1} \cdot h^1 + 1 \cdot x^n \cdot h^0 - x^n }
       = \\ &=
       \lim_{h \to 0} \sum_{k=0}^{n-2} \binom{n}{k} x^k h^{n-k-1} + n x^{n-1}
       = \\ &=
@@ -518,7 +516,7 @@
 
     Остава само да намерим производната на \( f(x) = \alpha^x \) в нулата. За целта временно се ограничаваме до \( \alpha = e \) и използваме определението
     \begin{equation}\label{thm:elementary_derivatives/bernoulli_exponential_definition}
-      e^x \coloneqq \lim_{n \to \infty} {\left( 1 + \frac x n \right)}^n.
+      e^x \coloneqq \lim_{n \to \infty} {\parens*{ 1 + \frac x n }}^n.
     \end{equation}
 
     Така получаваме
@@ -527,11 +525,11 @@
       &=
       \lim_{h \to 0} \frac {e^h - 1} h
       = \\ &=
-      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} {\left( 1 + \frac h n \right)}^n - 1 \right)
+      \lim_{h \to 0} \frac 1 h \parens*{ \lim_{n \to \infty} {\parens*{ 1 + \frac h n }}^n - 1 }
       = \\ &=
-      \lim_{h \to 0} \frac 1 h \left( \lim_{n \to \infty} \sum_{k=2}^n \binom{n}{k} {\left(\frac h n \right)}^k - 1 \right)
+      \lim_{h \to 0} \frac 1 h \parens*{ \lim_{n \to \infty} \sum_{k=2}^n \binom{n}{k} {\parens*{\frac h n }}^k - 1 }
       = \\ &=
-      \lim_{h \to 0} \frac 1 h \lim_{n \to \infty} \left( 1 + h + \sum_{k=2}^n \binom{n}{k} {\left(\frac h n \right)}^k - 1 \right)
+      \lim_{h \to 0} \frac 1 h \lim_{n \to \infty} \parens*{ 1 + h + \sum_{k=2}^n \binom{n}{k} {\parens*{\frac h n }}^k - 1 }
       = \\ &=
       1 + \lim_{h \to 0} \lim_{n \to \infty} \sum_{k=2}^n \binom{n}{k} \frac {h^{k-1}} {n^k} = 1.
     \end{align*}
@@ -547,24 +545,24 @@
 
     \item Преди да пресметнем производните на \( \sin(x) \) и \( \cos(x) \), нека се убедим в два факта:
     \begin{enumerate}
-      \item \( \sin(x) \) и \( \cos(x) \) са непрекъснати функции в \( \R \). Наистина, нека фиксираме \( \varepsilon > 0 \). С цел да определим какво \( \delta \) ни е необходимо, нека фиксираме произволно \( \delta > 0 \). Тогава за произволно \( x_0 \in \R \) имаме
+      \item \( \sin(x) \) и \( \cos(x) \) са непрекъснати функции в \( \BbbR \). Наистина, нека фиксираме \( \varepsilon > 0 \). С цел да определим какво \( \delta \) ни е необходимо, нека фиксираме произволно \( \delta > 0 \). Тогава за произволно \( x_0 \in \BbbR \) имаме
       \begin{align*}
-        \Abs{\sin(x_0 + \delta) - \sin(x_0)}
+        \abs{\sin(x_0 + \delta) - \sin(x_0)}
         &=
-        \Abs{\sin(x_0 + \delta) + \sin(-x_0)}
+        \abs{\sin(x_0 + \delta) + \sin(-x_0)}
         = \\ &=
-        2 \Abs{\sin\left(\frac \delta 2 \right) \cos \left(x_0 + \frac \delta 2 \right)}
+        2 \abs*{\sin\parens*{\frac \delta 2 } \cos \parens*{x_0 + \frac \delta 2 }}
         \leq \\ &\leq
-        2 \Abs{\sin\left(\frac \delta 2 \right)}
+        2 \abs*{\sin\parens*{\frac \delta 2 }}
         \leq \\ &=
-        2 \Abs{\frac \delta 2}
+        2 \abs*{\frac \delta 2}
         = \\ &=
         \delta.
       \end{align*}
 
       Следователно за всяко \( \varepsilon > 0 \) е достатъчно да изберем \( \delta < \varepsilon \), за да бъде изпълнено
       \begin{equation*}
-        \Abs{\sin(y) - \sin(x_0)} < \varepsilon \text{ при } \Abs{y - x_0} < \delta.
+        \abs{\sin(y) - \sin(x_0)} < \varepsilon \text{ при } \abs{y - x_0} < \delta.
       \end{equation*}
 
       Показахме, че \( \sin(x) \) е непрекъсната функция в точката \( x_0 \), а понеже \( x_0 \) беше произволна, то \( \sin(x) \) е непрекъсната навсякъде. Като следствие, \( \cos(x) = \sin(\pi / 2 - x) \) също е непрекъсната навсякъде.
@@ -601,7 +599,7 @@
       = \\ &=
       \lim_{h \to 0} \frac {2 \sin(h / 2) \cos(x+h/2)} h
       = \\ &=
-      \lim_{h \to 0} \cos \left(x + \frac h 2 \right) \cdot \lim_{h \to 0} \frac {\sin(h / 2)} {h/2}
+      \lim_{h \to 0} \cos \parens*{x + \frac h 2 } \cdot \lim_{h \to 0} \frac {\sin(h / 2)} {h/2}
       = \\ &=
       \cos(x) \cdot 1.
     \end{align*}
@@ -615,14 +613,14 @@
 
 За константите важи и по-слаб вариант на обратното твърдение:
 \begin{proposition}\label{thm:zero_derivative}
-  Нека \( a < b \in \R \), функцията \( f: [a, b] \to \R \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и производната ѝ е тъждествено нула в \( (a, b) \). Тогава \( f(x) \) е константа.
+  Нека \( a < b \in \BbbR \), функцията \( f: [a, b] \to \BbbR \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и производната ѝ е тъждествено нула в \( (a, b) \). Тогава \( f(x) \) е константа.
 \end{proposition}
 \begin{remark}
   Доказателството на този факт използва теоремата за крайните нараствания, която е извън рамките на тази тема.
 \end{remark}
 
 \begin{theorem}[Теорема за обратната функция]
-  Нека \( D \subseteq \R \) е произволно множество и функцията \( f: D \to \R \) е непрекъснато диференцируема в точка \( a \in D \), при това \( f'(a) \neq 0 \). Тогава \( f(x) \) е обратима в околност на \( a \) и обратната функция \( f^{-1} (x) \) е непрекъснато диференцируема в точката \( f(a) \) с производна \( \frac 1 {f'(a)} \).
+  Нека \( D \subseteq \BbbR \) е произволно множество и функцията \( f: D \to \BbbR \) е непрекъснато диференцируема в точка \( a \in D \), при това \( f'(a) \neq 0 \). Тогава \( f(x) \) е обратима в околност на \( a \) и обратната функция \( f^{-1} (x) \) е непрекъснато диференцируема в точката \( f(a) \) с производна \( \frac 1 {f'(a)} \).
 \end{theorem}
 \begin{proof}
   Доказателството не е тривиално и няма да го даваме.
@@ -640,13 +638,13 @@
 
   На практика е удобно да използваме означението на Лайбниц:
   \begin{equation*}
-    \frac {dx} {df} = {\left( \frac {df} {dx} \right)}^{-1}.
+    \frac {dx} {df} = {\parens*{ \frac {df} {dx} }}^{-1}.
   \end{equation*}
   Естествено, тази формула важи само в околността, в която функцията е обратима.
 \end{remark}
 
 \begin{theorem}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item Производната на \( \ln(x) \) при \( x > 0 \) е \( \frac 1 x \).
     \item Производната на \( \arcsin(x) \) при \( x \in [-1, 1] \) е \( \frac 1 {\cos(x)} \).
@@ -681,11 +679,11 @@
 \subsection{Примитивни функции}
 
 \begin{definition}
-  Нека \( D \subseteq \R \) е отворено и \( f: D \to \R \) е някаква функция. Казваме, че \textbf{функцията \( F: D \to \R \) е примитивна за \( f(x) \)}, ако \( F(x) \) е диференцируема и производната ѝ съвпада с \( f(x) \).
+  Нека \( D \subseteq \BbbR \) е отворено и \( f: D \to \BbbR \) е някаква функция. Казваме, че \textbf{функцията \( F: D \to \BbbR \) е примитивна за \( f(x) \)}, ако \( F(x) \) е диференцируема и производната ѝ съвпада с \( f(x) \).
 \end{definition}
 
 \begin{theorem}
-Нека \( a < b \in \R \), функцията \( f: [a, b] \to \R \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и функциите \( F: [a, b] \to \R \) и \( G: [a, b] \to \R \) са примитивни функции на \( f(x) \) в \( (a, b) \). Тогава съществува константа \( c \in \R \), такава че
+Нека \( a < b \in \BbbR \), функцията \( f: [a, b] \to \BbbR \) е диференцируема в \( (a, b) \) и непрекъсната в \( [a, b] \) и функциите \( F: [a, b] \to \BbbR \) и \( G: [a, b] \to \BbbR \) са примитивни функции на \( f(x) \) в \( (a, b) \). Тогава съществува константа \( c \in \BbbR \), такава че
   \begin{equation*}
     F(x) = c + G(x).
   \end{equation*}

@@ -1,39 +1,38 @@
-\newcounter{ThmCounter}
-\newcounter{ExCounter}
-
-% Unlike the custom macros, the theorems are lowercase because cleveref has these names predefined (not in bulgarian, but it implies that the environments are conventional).
+\newcounter{counters@theorem}
+\newcounter{counters@exercise}
 
 \theoremstyle {plain}
 
-\crefname   {proposition}  {твърдение}    {твърдения}
-\Crefname   {proposition}  {Твърдение}    {Твърдения}
-\newtheorem {proposition}  [ThmCounter]   {Твърдение}
+\crefname   {proposition}  {твърдение}         {твърдения}
+\Crefname   {proposition}  {Твърдение}         {Твърдения}
+\newtheorem {proposition}  [counters@theorem]  {Твърдение}
 
-\crefname   {corollary}    {следствие}    {следствия}
-\Crefname   {corollary}    {Следствие}    {Следствия}
-\newtheorem {corollary}    [ThmCounter]   {Следствие}
+\crefname   {corollary}    {следствие}         {следствия}
+\Crefname   {corollary}    {Следствие}         {Следствия}
+\newtheorem {corollary}    [counters@theorem]  {Следствие}
 
-\crefname   {lemma}        {лема}         {леми}
-\Crefname   {lemma}        {Лема}         {Леми}
-\newtheorem {lemma}        [ThmCounter]   {Лема}
+\crefname   {lemma}        {лема}              {леми}
+\Crefname   {lemma}        {Лема}              {Леми}
+\newtheorem {lemma}        [counters@theorem]  {Лема}
 
-\crefname   {theorem}      {теорема}      {теореми}
-\Crefname   {theorem}      {Теорема}      {Теореми}
-\newtheorem {theorem}      [ThmCounter]   {Теорема}
+\crefname   {theorem}      {теорема}           {теореми}
+\Crefname   {theorem}      {Теорема}           {Теореми}
+\newtheorem {theorem}      [counters@theorem]  {Теорема}
 
 \theoremstyle {definition}
-\crefname   {definition}   {определение} {определения}
-\Crefname   {definition}   {Определение} {Определения}
-\newtheorem {definition}   [ThmCounter]  {Определение}
 
-\crefname   {exercise}     {задача}      {задачи}
-\Crefname   {exercise}     {Задача}      {Задачи}
-\newtheorem {exercise}     [ExCounter]   {Задача}
+\crefname   {definition}   {определение}       {определения}
+\Crefname   {definition}   {Определение}       {Определения}
+\newtheorem {definition}   [counters@theorem]  {Определение}
 
-\crefname   {remark}       {забележка}   {забележки}
-\Crefname   {remark}       {Забележка}   {Забележки}
-\newtheorem {remark}       [ThmCounter]  {Забележка}
+\crefname   {exercise}     {задача}            {задачи}
+\Crefname   {exercise}     {Задача}            {Задачи}
+\newtheorem {exercise}     [counters@exercise] {Задача}
 
-\crefname   {exercise}     {решение}     {решения}
-\Crefname   {exercise}     {Решение}     {Решения}
-\newtheorem*{solution}                   {Решение}
+\crefname   {remark}       {забележка}         {забележки}
+\Crefname   {remark}       {Забележка}         {Забележки}
+\newtheorem {remark}       [counters@theorem]  {Забележка}
+
+\crefname   {solution}     {решение}           {решения}
+\Crefname   {solution}     {Решение}           {Решения}
+\newtheorem*{solution}                         {Решение}

@@ -1,20 +1,17 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=15,
+  title={Случайни величини с дискретни разпределения - дискретно равномерно, биномно, геометрично, поасоново разпределения. Задачи, в които възникват.},
+  basedate={20 юни 2019},
+  author={Янис Василев}
+}
+
+% Packages
+\usepackage{enumitem}
+
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{15}}
-\subtitle{Случайни величини с дискретни разпределения - дискретно равномерно, биномно, геометрично, поасоново разпределения. Задачи, в които възникват.}
-\author{Янис Василев}
-\date{\Revision{20 юни 2019}}
 
 \begin{document}
 
@@ -39,11 +36,11 @@
 \subsection{Основни дефиниции и теореми}
 
 \begin{definition}
-  \textbf{(Реална) случайна величина} над вероятностното пространство \( (\Omega, \F, \Prob) \) наричаме всяка измерима функция \( \xi : \Omega \to \R \).
+  \textbf{(Реална) случайна величина} над вероятностното пространство \( (\Omega, \mscrF, \Prob) \) наричаме всяка измерима функция \( \xi : \Omega \to \BbbR \).
 
-  Условието за измеримост на \( \xi \) може да се запише така: за всяко борелово множество \( B \in \BorelAlgebra(\R) \) имаме
+  Условието за измеримост на \( \xi \) може да се запише така: за всяко борелово множество \( B \in \mfrakB(\BbbR) \) имаме
   \begin{equation*}
-    \xi^{-1} (B) = \{ \omega \in \Omega \mid \xi(\omega) \in B \} \in \F.
+    \xi^{-1} (B) = \set{ \omega \in \Omega \given \xi(\omega) \in B } \in \mscrF.
   \end{equation*}
 
   \textbf{Разпределение на \( \xi \)} наричаме мярката
@@ -51,7 +48,7 @@
     \Prob_\xi(A) \coloneqq \Prob(\xi \in A).
   \end{equation*}
 
-  Две случайни величини \( \xi \) и \( \eta \) наричаме \textbf{независими}, ако за всички \( A, B \in \F \) е изпълнено
+  Две случайни величини \( \xi \) и \( \eta \) наричаме \textbf{независими}, ако за всички \( A, B \in \mscrF \) е изпълнено
   \begin{equation*}
     \Prob(\xi \in A, \eta \in B) = \Prob_\xi(A) \Prob_\eta(B).
   \end{equation*}
@@ -61,7 +58,7 @@
     p_k = P(\xi = x_k), k = 1, 2, \ldots.
   \end{equation*}
 
-  Множеството от стойности на \( \xi \) ще бележим с \( \Image(\xi) \coloneqq \{ x_1, x_2, \ldots \} \).
+  Множеството от стойности на \( \xi \) ще бележим с \( \img(\xi) \coloneqq \set{ x_1, x_2, \ldots } \).
 \end{definition}
 
 \begin{theorem}\label{thm:pmf_properties}
@@ -75,70 +72,74 @@
 \Cref{thm:pmf_properties} ни дава обосновка да задаваме дискретни случайни величини изцяло чрез редици от вероятности, т.е. без изрично да задаваме вероятностни пространства. По тази причина понякога разпределение на дискретна случайна величина наричаме не съответната вероятностна мярка, а редицата от вероятностите.
 
 \begin{proof}[Доказателство на \cref{thm:pmf_properties}]
-  \Sufficiency Нека \( \xi \) е дискретна случайна величина над вероятностното пространство \( (\Omega, \F, \Prob) \) със стойности \( x_1, x_2, \ldots \) и вероятности \( p_1, p_2, \ldots \)
+  \SufficiencySubProof Нека \( \xi \) е дискретна случайна величина над вероятностното пространство \( (\Omega, \mscrF, \Prob) \) със стойности \( x_1, x_2, \ldots \) и вероятности \( p_1, p_2, \ldots \)
 
-  Тъй като \( \Prob: \F \to [0, 1] \) е вероятностна мярка, директно получаваме \( p_k = \Prob(\xi = x_k) \in [0, 1] \) за всяко \( k = 1, 2, \ldots \) и
+  Тъй като \( \Prob: \mscrF \to [0, 1] \) е вероятностна мярка, директно получаваме
+  \begin{equation*}
+    p_k = \Prob(\xi = x_k) \in [0, 1]
+  \end{equation*}
+  за всяко \( k = 1, 2, \ldots \) и
   \begin{align*}
     \sum_k p_k
     &=
     \sum_k \Prob(\xi = x_k)
     = \\ &=
-    \sum_k \Prob(\{ \omega \in \Omega \mid \xi(\omega) = x_k \})
+    \sum_k \Prob\parens*{\set{ \omega \in \Omega \given \xi(\omega) = x_k }}
     = \\ &=
-    \Prob(\cup_k \{ \omega \in \Omega \mid \xi(\omega) = x_k \})
+    \Prob\parens*{\bigcup_k \set{ \omega \in \Omega \given \xi(\omega) = x_k }}
     = \\ &=
-    \Prob(\{ \omega \in \Omega \mid \xi(\omega) \in \Image(\xi) \})
+    \Prob\parens*{\set{ \omega \in \Omega \given \xi(\omega) \in \img(\xi) }}
     = \\ &=
-    \Prob(\xi \in \Image(\xi))
+    \Prob(\xi \in \img(\xi))
     = \\ &=
     1.
   \end{align*}
 
-  \Necessity Нека редицата \( p_1, p_2, \ldots \) удовлетворява условията \ref{thm:pmf_properties/nonnegative} и \ref{thm:pmf_properties/normed}. Предполагаме, че това са вероятности за някакви елементарни събития \( \Omega = \{ \omega_1, \omega_2, \ldots \} \).
+  \NecessitySubProof Нека редицата \( p_1, p_2, \ldots \) удовлетворява условията \ref{thm:pmf_properties/nonnegative} и \ref{thm:pmf_properties/normed}. Предполагаме, че това са вероятности за някакви елементарни събития \( \Omega = \set{ \omega_1, \omega_2, \ldots } \).
 
-  Дефинираме случайната величина \( \xi: \Omega \to \R, \xi(\omega_k) \coloneqq p_k \), която е измерима над \( (\Omega, \PowerSet(\Omega)) \), тъй като праобразът \( \xi^{-1}(A) \) на всяко борелово множество \( A \in \BorelAlgebra(\R) \) е подмножество на \( \Omega \).
+  Дефинираме случайната величина \( \xi: \Omega \to \BbbR, \xi(\omega_k) \coloneqq p_k \), която е измерима над \( (\Omega, \mscrP(\Omega)) \), тъй като праобразът \( \xi^{-1}(A) \) на всяко борелово множество \( A \in \mfrakB(\BbbR) \) е подмножество на \( \Omega \).
 
   Сега дефинираме \( \Prob(A) \coloneqq \sum_{\omega \in A} \xi(\omega) \). Тази сума е добре дефинирана, тъй като редът \( \sum_k p_k \) е абсолютно сходящ според \ref{thm:pmf_properties/nonnegative} и следователно всеки подред също е абсолютно сходящ.
 
-  \( \Prob \) е вероятностна мярка над \( (\Omega, \PowerSet(\Omega)) \), тъй като
+  \( \Prob \) е вероятностна мярка над \( (\Omega, \mscrP(\Omega)) \), тъй като
   \begin{enumerate}
     \item \( \Prob(\varnothing) = 0 \),
     \item \( \Prob(A) = \sum_{\omega \in A} \xi(\omega) \geq 0 \) за произволно събитие \( A \subseteq \Omega \) според \ref{thm:pmf_properties/nonnegative},
-    \item \( \Prob(\cup_{i=1}^\infty A_i) = \sum_{\omega \in \cup_{i=1}^\infty A_i} \xi(\omega) = \sum_{i=1}^\infty \sum_{\omega \in A_i} \xi(\omega) = \sum_{i=1}^\infty \Prob(A_i) \),
+    \item \( \Prob\parens*{\bigcup_{i=1}^\infty A_i} = \sum_{\omega \in \bigcup_{i=1}^\infty A_i} \xi(\omega) = \sum_{i=1}^\infty \sum_{\omega \in A_i} \xi(\omega) = \sum_{i=1}^\infty \Prob(A_i) \),
     \item \( \Prob(A) \leq 1 \) за произволно събитие \( A \subseteq \Omega \) според доказаната адитивност и \ref{thm:pmf_properties/normed}.
   \end{enumerate}
-  Така построихме дискретна случайна величина \( \xi \) над пространството \( (\Omega, \PowerSet(\Omega), \Prob) \) с вероятности \( p_1, p_2, \ldots \)
+  Така построихме дискретна случайна величина \( \xi \) над пространството \( (\Omega, \mscrP(\Omega), \Prob) \) с вероятности \( p_1, p_2, \ldots \)
 \end{proof}
 
 \begin{proposition}
-  Дискретните случайни величини над едно вероятностно пространство \( (\Omega, \F, \Prob) \) образуват линейно пространство относно операциите събиране и умножение с число.
+  Дискретните случайни величини над едно вероятностно пространство \( (\Omega, \mscrF, \Prob) \) образуват линейно пространство относно операциите събиране и умножение с число.
 \end{proposition}
 \begin{proof}
   Ще докажем само затвореността относно операциите, тъй като останалите аксиоми за линейно пространство са изпълнени по тривиални причини.
 
-  Сумата \( \xi + \eta \) на две дискретни случайни величини приема стойности \( x + y \) за \( x \in \Image(\xi) \) и \( y \in \Image(\eta) \), които са не повече от изброимо много, следователно \( \xi + \eta \) също е дискретна случайна величина.
+  Сумата \( \xi + \eta \) на две дискретни случайни величини приема стойности \( x + y \) за \( x \in \img(\xi) \) и \( y \in \img(\eta) \), които са не повече от изброимо много, следователно \( \xi + \eta \) също е дискретна случайна величина.
 
-  Произведението \( c \xi \) за \( c \in \R \) приема или само една стойност при \( c = 0 \), или същият брой стойности като \( \xi \), следователно \( c \xi \) също е дискретна случайна величина.
+  Произведението \( c \xi \) за \( c \in \BbbR \) приема или само една стойност при \( c = 0 \), или същият брой стойности като \( \xi \), следователно \( c \xi \) също е дискретна случайна величина.
 \end{proof}
 
 \subsection{Очакване и моменти}
 
-До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \F, \Prob) \).
+До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \mscrF, \Prob) \).
 
 \begin{definition}
   Нека \( \xi \) е дискретна случайна величина със стойности \( x_1, x_2, \ldots \) Дефинираме \textbf{очакване} на \( \xi \) чрез
   \begin{equation*}
-    \Expect(\xi) \coloneqq \sum_k x_k \Prob(\xi = x_k) = \sum_{\omega \in \Omega} \xi(\omega) P(\{ \omega \}).
+    \Expect(\xi) \coloneqq \sum_k x_k \Prob(\xi = x_k) = \sum_{\omega \in \Omega} \xi(\omega) P(\set{ \omega }).
   \end{equation*}
   Казваме, че \( \xi \) има (крайно) очакване, ако горният ред е абсолютно сходящ.
 
   Случайни величини с очакване нула наричаме \textbf{центрирани}.
 
-  Очакване от константа \( x \in \R \) дефинираме да бъде самата константа \( x \).
+  Очакване от константа \( x \in \BbbR \) дефинираме да бъде самата константа \( x \).
 \end{definition}
 
 \begin{remark}
-  Формално, полагаме \( \Expect(x) \coloneqq \Expect(\Ind_x) \), където \( \Ind_x \) е индикатор за \( x \), т.е.
+  Формално, полагаме \( \Expect(x) \coloneqq \Expect(\op{I}_x) \), където \( \op{I}_x \) е индикатор за \( x \), т.е.
   \begin{equation*}
     \Prob(I_x = y) = \delta_{xy} = \begin{cases}
       1, x = y, \\
@@ -146,7 +147,7 @@
     \end{cases}
   \end{equation*}
 
-  Оттук директно следва \( \Expect(x) = \Expect(\Ind_x) = x \).
+  Оттук директно следва \( \Expect(x) = \Expect(\op{I}_x) = x \).
 \end{remark}
 
 \begin{proposition}\label{thm:expectation_of_independent_product}
@@ -160,7 +161,7 @@
   \begin{align*}
     \Expect(\xi) \Expect(\eta)
     &=
-    \left( \sum_i x_i \Prob(\xi = x_i) \right) \left( \sum_j y_j \Prob(\eta = y_j) \right)
+    \parens*{ \sum_i x_i \Prob(\xi = x_i) } \parens*{ \sum_j y_j \Prob(\eta = y_j) }
     = \\ &=
     \sum_{k=1}^\infty \sum_{m=1}^k x_m y_{k-m} \Prob(\xi = x_m) \Prob(\eta = y_{k-m})
     = \\ &=
@@ -175,7 +176,7 @@
 \end{proof}
 
 \begin{proposition}\label{thm:expectation_is_linear_linear}
-  Очакването е линеен функционал над подпространството от дискретни случайни величини над \( (\Omega, \F, \Prob) \), за които очакването съществува.
+  Очакването е линеен функционал над подпространството от дискретни случайни величини над \( (\Omega, \mscrF, \Prob) \), за които очакването съществува.
 \end{proposition}
 \begin{proof}
   Директно проверяваме дефиницията за линеен функционал:
@@ -184,16 +185,16 @@
     \begin{align*}
       \Expect(\xi + \eta)
       &=
-      \sum_{\omega \in \Omega} (\xi + \eta) (\omega) P(\{ \omega \})
+      \sum_{\omega \in \Omega} (\xi + \eta) (\omega) P(\set{ \omega })
       = \\ &=
-      \sum_{\omega \in \Omega} [\xi (\omega) + \eta (\omega)] P(\{ \omega \})
+      \sum_{\omega \in \Omega} [\xi (\omega) + \eta (\omega)] P(\set{ \omega })
       = \\ &=
-      \sum_{\omega \in \Omega} \xi (\omega) P(\{ \omega \}) + \sum_{\omega \in \Omega} \eta (\omega) P(\{ \omega \})
+      \sum_{\omega \in \Omega} \xi (\omega) P(\set{ \omega }) + \sum_{\omega \in \Omega} \eta (\omega) P(\set{ \omega })
       = \\ &=
       \Expect(\xi) + \Expect(\eta).
     \end{align*}
 
-    \item За дискретна случайна величина \( \xi \) със стойности \( x_1, x_2, \ldots \) и крайно очакване и константа \( c \in \R \) по \cref{thm:lotus} имаме
+    \item За дискретна случайна величина \( \xi \) със стойности \( x_1, x_2, \ldots \) и крайно очакване и константа \( c \in \BbbR \) по \cref{thm:lotus} имаме
     \begin{equation*}
       \Expect(c \xi)
       =
@@ -209,7 +210,7 @@
 \end{proof}
 
 \begin{proposition}\label{thm:lotus}
-  Нека \( \xi \) е дискретна случайна величина със стойности \( x_1, x_2, \ldots \) и крайно очакване. Нека \( \psi: \R \to \R \) е произволна функция. Тогава \( \psi(\xi) \) е дискретна случайна величина и е изпълнено
+  Нека \( \xi \) е дискретна случайна величина със стойности \( x_1, x_2, \ldots \) и крайно очакване. Нека \( \psi: \BbbR \to \BbbR \) е произволна функция. Тогава \( \psi(\xi) \) е дискретна случайна величина и е изпълнено
   \begin{equation*}
     \Expect(\psi(\xi))
     =
@@ -218,7 +219,7 @@
 \end{proposition}
 
 \begin{proof}
-  Образът на крайно или измеримо множество е най-много измеримо, затова \( \psi(\xi) \) приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на \( \psi(\xi) \) са \( y_1, y_2, \ldots \) Праобразите \( \psi^{-1}(y_i) \) на \( y_i, i = 1, 2, \ldots \) са крайни или изброими, непресичащи се и \( \Image(\xi) = \cup_i \psi^{-1}(y_i) \). Имаме
+  Образът на крайно или измеримо множество е най-много измеримо, затова \( \psi(\xi) \) приема не повече от изброимо много различни стойности и следователно е дискретна случайна величина. Нека стойностите на \( \psi(\xi) \) са \( y_1, y_2, \ldots \) Праобразите \( \psi^{-1}(y_i) \) на \( y_i, i = 1, 2, \ldots \) са крайни или изброими, непресичащи се и \( \img(\xi) = \bigcup_i \psi^{-1}(y_i) \). Имаме
   \begin{align*}
     \Expect(\psi(\xi))
     &=
@@ -237,18 +238,18 @@
 \begin{definition}
   \textbf{Ковариация} на случайните величини \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
-    \Cov(\xi, \eta)
+    \cov(\xi, \eta)
     \coloneqq
     \Expect((\xi - \Expect \xi) (\eta - \Expect \eta)).
   \end{equation*}
 
   \textbf{Дисперсия} или \textbf{вариация} на случайната величина \( \xi \) наричаме
   \begin{align*}
-    \Var(\xi)
+    \var(\xi)
     \coloneqq
-    \Cov(\xi, \xi)
+    \cov(\xi, \xi)
     &=
-    \Expect \left({(\xi - \Expect \xi)}^2 \right)
+    \Expect \parens*{{(\xi - \Expect \xi)}^2 }
     = \\ &=
     \Expect(\xi^2 - 2 \xi \Expect \xi + {\Expect(\xi)}^2)
     = \\ &=
@@ -259,20 +260,20 @@
 
   \textbf{Корелация} на \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
-    \Corr(\xi, \eta)
+    \corr(\xi, \eta)
     \coloneqq
-    \frac {\Cov(\xi, \eta)} {\sqrt{\Var(\xi) \Var(\eta)}}.
+    \frac {\cov(\xi, \eta)} {\sqrt{\var(\xi) \var(\eta)}}.
   \end{equation*}
 
-  От неравенството на Коши-Буняковски-Шварц следва, че \( \Abs{\Corr(\xi, \eta)} \leq 1 \).
+  От неравенството на Коши-Буняковски-Шварц следва, че \( \abs{\corr(\xi, \eta)} \leq 1 \).
 
-  Числото \( \Expect(\xi^n) \) наричаме \( n \)-ти \textbf{момент} на \( \xi \), а \( \Expect \left( {(\xi - \Expect \xi)}^n \right) \) наричаме \( n \)-ти \textbf{централен момент} на \( \xi \).
+  Числото \( \Expect(\xi^n) \) наричаме \( n \)-ти \textbf{момент} на \( \xi \), а \( \Expect \parens*{ {(\xi - \Expect \xi)}^n } \) наричаме \( n \)-ти \textbf{централен момент} на \( \xi \).
 
   Очакването всъщност е просто първият момент, а дисперсията - вторият централен момент. Коренът на дисперсията се нарича \textbf{стандартно отклонение} и често се бележи със \( \sigma_\xi \).
 
-  Две случайни величини се наричат \textbf{некорелирани} или \textbf{ортогонални}, ако ковариацията им е \( 0 \), защото ковариацията играе ролята на скаларно произведение в пространството \( \LSpace^2 \) от (всички, не непременно дискретни) случайни величини с краен втори момент.
+  Две случайни величини се наричат \textbf{некорелирани} или \textbf{ортогонални}, ако ковариацията им е \( 0 \), защото ковариацията играе ролята на скаларно произведение в пространството \( \op{L}^2 \) от (всички, не непременно дискретни) случайни величини с краен втори момент.
 
-  Случайни величини със стандартно отклонение единица наричаме \textbf{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \LSpace^2 \).
+  Случайни величини със стандартно отклонение единица наричаме \textbf{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \op{L}^2 \).
 \end{definition}
 
 \begin{proposition}\label{thm:independence_implies_orthogonality}
@@ -281,7 +282,7 @@
 \begin{proof}
   Нека \( \xi \) и \( \eta \) са независими и имат крайни очаквания съответно \( \mu \) и \( \eta \). Тогава
   \begin{equation*}
-    \Cov(\xi, \eta)
+    \cov(\xi, \eta)
     =
     \Expect((\xi - \mu) (\eta - \nu))
     =
@@ -301,19 +302,19 @@
 \begin{proof}
   Първо да забележим, че за \( y \in (0, 1) \) имаме \( {\Prob(\xi = x_k)}^y < \Prob(\xi = x_k) \). Тъй като вероятностната мярка е нормирана, можем да приложим неравенството на Йенсен и да получим:
   \begin{align*}
-    \Expect({\Abs{\xi}}^{n-1})
+    \Expect({\abs{\xi}}^{n-1})
     &\leq
-    {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
+    {\Expect({\abs{\xi}}^{n-1})}^{\frac n {n-1}}
     = \\ &=
-    {\left( \sum_k {\Abs{x_k}}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
+    {\parens*{ \sum_k {\abs{x_k}}^{n-1} \Prob(\xi = x_k) }}^{\frac n {n-1}}
     \leq \\ &\leq
-    \sum_k {\left({\Abs{x_k}}^{n-1} \Prob(\xi = x_k) \right)}^{\frac n {n-1}}
+    \sum_k {\parens*{{\abs{x_k}}^{n-1} \Prob(\xi = x_k) }}^{\frac n {n-1}}
     < \\ &<
-    \sum_k {\left({\Abs{x_k}}^{n-1}\right)}^{\frac n {n-1}} \Prob(\xi = x_k)
+    \sum_k {\parens*{{\abs{x_k}}^{n-1}}}^{\frac n {n-1}} \Prob(\xi = x_k)
     = \\ &=
-    \sum_k {\Abs{x_k}}^n \Prob(\xi = x_k)
+    \sum_k {\abs{x_k}}^n \Prob(\xi = x_k)
     = \\ &=
-    \Expect({\Abs{\xi}}^n).
+    \Expect({\abs{\xi}}^n).
   \end{align*}
 \end{proof}
 
@@ -332,16 +333,16 @@
 
   \textbf{Характеристична функция} на \( \xi \) наричаме
   \begin{equation*}
-    \Char_\xi (t) \coloneqq \Expect(e^{it\xi}).
+    \varphi_\xi (t) \coloneqq \Expect(e^{it\xi}).
   \end{equation*}
 
-  Изпълнено е \( \Char_\xi(t) = \MGF_\xi(it) = \PGF_\xi(e^{it}) \).
+  Изпълнено е \( \varphi_\xi(t) = \MGF_\xi(it) = \PGF_\xi(e^{it}) \).
 \end{definition}
 
 \begin{remark}
   Не сме дефинирали очакване от комплексна случайна величина, но теоретичната обосновка идва от формулите на Ойлер:
   \begin{equation*}
-    \Char_\xi (t)
+    \varphi_\xi (t)
     =
     \Expect(e^{it\xi})
     =
@@ -362,7 +363,7 @@
   \begin{enumerate}
     \item \( \PGF_\xi(z) \) е аналитична функция поне в \( -1 < z < 1 \).
     \item \( P(\xi = m) = \frac {\PGF_\xi^{(m)}} {m!} (0) \), където \( \PGF_\xi^{(m)} \) е \( m \)-тата производна на \( \PGF_\xi \).
-    \item Ако пораждащите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( z \in \R \), имаме
+    \item Ако пораждащите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( z \in \BbbR \), имаме
     \begin{equation*}
       \PGF_{\xi + \eta}(z) = \PGF_\xi(z) \PGF_\eta(z)
     \end{equation*}
@@ -371,23 +372,23 @@
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item \( \PGF_\xi(z) \) се дефинира чрез степенен ред. За да докажем, че тя е аналитична в някоя област, е достатъчно да покажем сходимост на степенния ред в тази област. Използваме това, че за произволно събитие \( A \) имаме \( 0 \leq \Prob(A) \leq 1 \), и оценяваме редът отгоре
     \begin{align*}
-      \Abs{\PGF_\xi(z)}
+      \abs{\PGF_\xi(z)}
       &=
-      \Abs{\Expect(z^\xi)}
+      \abs{\Expect(z^\xi)}
       = \\ &=
-      \Abs{\sum_{k=0}^\infty z^k \Prob(\xi = k)}
+      \abs{\sum_{k=0}^\infty z^k \Prob(\xi = k)}
       \leq \\ &\leq
-      \sum_{k=0}^\infty \Abs{z^k \Prob(\xi = k)}
+      \sum_{k=0}^\infty \abs{z^k \Prob(\xi = k)}
       = \\ &=
-      \sum_{k=0}^\infty \Abs{z}^k \Prob(\xi = k)
+      \sum_{k=0}^\infty \abs{z}^k \Prob(\xi = k)
       \leq \\ &\leq
-      \sum_{k=0}^\infty \Abs{z}^k.
+      \sum_{k=0}^\infty \abs{z}^k.
     \end{align*}
-    Последният ред е сходящ при \( \Abs z < 1 \).
+    Последният ред е сходящ при \( \abs z < 1 \).
 
     \item Разглеждаме степенния ред на \( \PGF_\xi \):
     \begin{align*}
@@ -407,7 +408,7 @@
 
     Следователно \( \PGF_\xi^{(m)}(0) = m! \Prob(\xi = m) \).
 
-    \item Тъй като \( \xi \) и \( \eta \) са независими, за произволно \( z \in \R \) величините \( z^\xi \) и \( z^\eta \) са независими и
+    \item Тъй като \( \xi \) и \( \eta \) са независими, за произволно \( z \in \BbbR \) величините \( z^\xi \) и \( z^\eta \) са независими и
     \begin{equation*}
       \PGF_{\xi + \eta}(z)
       =
@@ -431,18 +432,18 @@
   \begin{enumerate}
     \item В общия случай пораждащата моментите функция съществува само в \( 0 \). Ако тя съществува в околност на \( 0 \), то тя е гладка в тази околност, съществуват всички моменти и е изпълнено \( \Expect(\xi^n) = \MGF_\xi^{(n)} (0) \) за \( n = 1, 2, \ldots \)
 
-    \item Ако пораждащите моментите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( t \in \R \), имаме
+    \item Ако пораждащите моментите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( t \in \BbbR \), имаме
     \begin{equation*}
       \MGF_{\xi + \eta}(t) = \MGF_\xi(t) \MGF_\eta(t).
     \end{equation*}
 
-    \item Ако \( \MGF_\xi \) и \( \MGF_\eta \) имат обща дефиниционна област, различна от \( \{ 0 \} \), в която те съвпадат, то \( \xi \) и \( \eta \) също съвпадат.
+    \item Ако \( \MGF_\xi \) и \( \MGF_\eta \) имат обща дефиниционна област, различна от \( \set{ 0 } \), в която те съвпадат, то \( \xi \) и \( \eta \) също съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
   Нека стойностите на \( \xi \) са \( x_1, x_2, \ldots \)
 
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item Пораждащата моментите функция винаги съществува в \( 0 \), тъй като \( \MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1 \).
 
@@ -452,12 +453,12 @@
       =
       \Expect(e^{-\tau\xi} + e^{\tau\xi})
       =
-      \Expect\left( 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} \right)
+      \Expect\parens*{ 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} }
       =
       2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{equation*}
 
-    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според \cref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според \cref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
 
     При фиксирано \( n = 1, 2, \ldots \) за някаква околност на \( 0 \), съдържаща се в \( U \), за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
@@ -465,11 +466,11 @@
       &=
       \Expect(e^{t\xi})
       = \\ &=
-      \Expect\left(\sum_{k=0}^n \frac {\xi^k} {k!} t^k + \frac {{(\alpha \xi)}^{(n+1)} e^{\alpha t \xi}} {(n+1)!} t^{n+1} \right)
+      \Expect\parens*{\sum_{k=0}^n \frac {\xi^k} {k!} t^k + \frac {{(\alpha \xi)}^{(n+1)} e^{\alpha t \xi}} {(n+1)!} t^{n+1} }
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{\alpha}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \Conv[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
 
     Получихме полином на Тейлър за функцията \( \MGF_\xi(t) \). Тогава \( \MGF_\xi(t) \) има \( n \)-та производна, при това \( \MGF^{(n)}_\xi(0) = \Expect(\xi^n) \).
 
@@ -484,7 +485,7 @@
 
     В частност, \( \MGF^{(n)}_\xi(0) = \Expect(\xi^n) \).
 
-    \item Ако пораждащите моментите функции съществуват в \( t \in \R \), тъй като \( \xi \) и \( \eta \) са независими, случайните величини \( e^{t\xi} \) и \( e^{t\eta} \) също са независими и
+    \item Ако пораждащите моментите функции съществуват в \( t \in \BbbR \), тъй като \( \xi \) и \( \eta \) са независими, случайните величини \( e^{t\xi} \) и \( e^{t\eta} \) също са независими и
     \begin{equation*}
       \MGF_{\xi + \eta}(t)
       =
@@ -505,94 +506,94 @@
       \\
       \sum_k e^{t z_k} (\Prob(\xi = z_k) - \Prob(\eta = z_k)) &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко \( t \in U \) точно когато \( \Prob(\xi = z) = \Prob(\xi = z) \) за всяко \( z \in \Image(\xi) \cup \Image(\eta) \). Следователно \( \xi \) и \( \eta \) приемат едни и същи стойности \( \Image(\xi) = \Image(\eta) \) с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
+    Последното равенство е изпълнено за всяко \( t \in U \) точно когато \( \Prob(\xi = z) = \Prob(\xi = z) \) за всяко \( z \in \img(\xi) \cup \img(\eta) \). Следователно \( \xi \) и \( \eta \) приемат едни и същи стойности \( \img(\xi) = \img(\eta) \) с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
 \begin{theorem}[Свойства на характеристичните функции]\label{thm:char_properties}
   Нека \( \xi \) и \( \eta \) са независими дискретни случайни величини.
 
-  За характеристичните функции \( \Char_\xi \) и \( \Char_\eta \) са изпълнени следните свойства
+  За характеристичните функции \( \varphi_\xi \) и \( \varphi_\eta \) са изпълнени следните свойства
   \begin{enumerate}
-    \item \( \Char_\xi \) съществува и е равномерно непрекъсната навсякъде върху реалната права.
+    \item \( \varphi_\xi \) съществува и е равномерно непрекъсната навсякъде върху реалната права.
 
-    \item Ако \( \xi^n \) има краен \( n \)-ти момент, е изпълнено \( \Expect(\xi^n) = i^{-n} \Char_\xi^{(n)} (0) \).
+    \item Ако \( \xi^n \) има краен \( n \)-ти момент, е изпълнено \( \Expect(\xi^n) = i^{-n} \varphi_\xi^{(n)} (0) \).
 
-    \item За всяко \( t \in \R \) имаме
+    \item За всяко \( t \in \BbbR \) имаме
     \begin{equation*}
-      \Char_{\xi + \eta}(t) = \Char_\xi(t) \Char_\eta(t).
+      \varphi_{\xi + \eta}(t) = \varphi_\xi(t) \varphi_\eta(t).
     \end{equation*}
 
-    \item Ако \( \Char_\xi \) и \( \Char_\eta \) съвпадат, то \( \xi \) и \( \eta \) също съвпадат.
+    \item Ако \( \varphi_\xi \) и \( \varphi_\eta \) съвпадат, то \( \xi \) и \( \eta \) също съвпадат.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
   Нека стойностите на \( \xi \) са \( x_1, x_2, \ldots \)
 
   \begin{enumerate}
-    \item За да докажем, че \( \Char_\xi \) е дефинирана навсякъде в \( \R \), оценяваме отгоре абсолютната стойност на \( \Char_\xi \) за \( t \in \R \):
+    \item За да докажем, че \( \varphi_\xi \) е дефинирана навсякъде в \( \BbbR \), оценяваме отгоре абсолютната стойност на \( \varphi_\xi \) за \( t \in \BbbR \):
     \begin{align*}
-      \Abs{\Char_\xi(t)}
+      \abs{\varphi_\xi(t)}
       &=
-      \Abs{\Expect(e^{it\xi})}
+      \abs{\Expect(e^{it\xi})}
       = \\ &=
-      \Abs{\sum_k e^{it x_k} \Prob(\xi = x_k)}
+      \abs{\sum_k e^{it x_k} \Prob(\xi = x_k)}
       \leq \\ &\leq
-      \sum_k \Abs{e^{it x_k}} \Prob(\xi = x_k)
+      \sum_k \abs{e^{it x_k}} \Prob(\xi = x_k)
       = \\ &=
       \sum_k \Prob(\xi = x_k)
       =
       1.
     \end{align*}
 
-    За да докажем и равномерната непрекъснатост в \( \R \), първо оценяваме отгоре израза
+    За да докажем и равномерната непрекъснатост в \( \BbbR \), първо оценяваме отгоре израза
     \begin{align*}
-      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      \abs{\varphi_\xi(t + h) - \varphi_\xi(t)}
       &=
-      \Abs{\Expect(e^{i(t + h)\xi}) - \Expect(e^{it\xi})}
+      \abs*{\Expect(e^{i(t + h)\xi}) - \Expect(e^{it\xi})}
       = \\ &=
-      \Abs{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
+      \abs*{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
       = \\ &=
-      \Abs{\sum_k e^{it x_k} (e^{ih x_k} - 1) \Prob(\xi = x_k)}
+      \abs*{\sum_k e^{it x_k} (e^{ih x_k} - 1) \Prob(\xi = x_k)}
       \leq \\ &\leq
-      \sum_k \Abs{e^{it x_k}} \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
+      \sum_k \abs*{e^{it x_k}} \abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
       = \\ &=
-      \sum_k \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k).
+      \sum_k \abs*{e^{ih x_k} - 1} \Prob(\xi = x_k).
     \end{align*}
 
-    Ще използваме, че за всяко \( z \in \Complex \) неравенството на Йенсен ни дава
+    Ще използваме, че за всяко \( z \in \BbbC \) неравенството на Йенсен ни дава
     \begin{equation*}
-      \Abs{e^{iz} - 1}
+      \abs{e^{iz} - 1}
       =
-      \Abs{i \int_0^z e^{it} dt}
+      \abs{i \int_0^z e^{it} dt}
       \leq
-      \int_0^{\Abs{z}} \Abs{e^{it}} dt
+      \int_0^{\abs{z}} \abs{e^{it}} dt
       =
-      \int_0^{\Abs{z}} dt
+      \int_0^{\abs{z}} dt
       =
-      \Abs{z}.
+      \abs{z}.
     \end{equation*}
 
-    Фиксираме \( \varepsilon > 0 \). Избираме реална константа \( c_\varepsilon > 0 \), такава че \( \Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
-    Въвеждаме две множества от индекси: \( A \coloneqq \{ k = 1, 2, \ldots \mid \Abs{x_k} \leq c_\varepsilon \} \) и \( B = \Z^{>0} \setminus A \).
+    Фиксираме \( \varepsilon > 0 \). Избираме реална константа \( c_\varepsilon > 0 \), такава че \( \Prob(\abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
+    Въвеждаме две множества от индекси: \( A \coloneqq \set{ k = 1, 2, \ldots \given \abs{x_k} \leq c_\varepsilon } \) и \( B = \BbbZ^{>0} \setminus A \).
 
     За \( k \in A \) имаме
     \begin{equation*}
-      \sum_{k \in A} \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
+      \sum_{k \in A} \abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
       \leq
-      \sum_{k \in A} \Abs{h x_k} \Prob(\xi = x_k)
+      \sum_{k \in A} \abs{h x_k} \Prob(\xi = x_k)
       \leq
-      c_\varepsilon \Abs h \sum_{k \in A} \Prob(\xi = x_k)
+      c_\varepsilon \abs h \sum_{k \in A} \Prob(\xi = x_k)
       \leq
-      c_\varepsilon \Abs h.
+      c_\varepsilon \abs h.
     \end{equation*}
 
     За \( k \in B \) имаме
 
     \begin{equation*}
-      \sum_{k \in B} \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
+      \sum_{k \in B} \abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
       \leq
-      \sum_{k \in B} \left( \Abs{e^{ih x_k}} + 1 \right) \Prob(\xi = x_k)
+      \sum_{k \in B} \parens*{ \abs{e^{ih x_k}} + 1 } \Prob(\xi = x_k)
       =
       2 \sum_{k \in B} \Prob(\xi = x_k)
       <
@@ -601,49 +602,49 @@
 
     За целия ред тогава получаваме
     \begin{equation*}
-      \sum_k \Abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
+      \sum_k \abs{e^{ih x_k} - 1} \Prob(\xi = x_k)
       <
-      c_\varepsilon \Abs{h} + 2 \varepsilon.
+      c_\varepsilon \abs{h} + 2 \varepsilon.
     \end{equation*}
 
     Полагаме \( \delta = \frac \varepsilon {3 c_\varepsilon} \).
 
-    Тогава за \( \Abs h < \delta \) имаме
+    Тогава за \( \abs h < \delta \) имаме
     \begin{equation*}
-      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      \abs{\varphi_\xi(t + h) - \varphi_\xi(t)}
       <
-      c_\varepsilon \Abs{h} + \frac {2\varepsilon} 3
+      c_\varepsilon \abs{h} + \frac {2\varepsilon} 3
       <
       \frac {\varepsilon} 3 + \frac {2\varepsilon} 3
       =
       \varepsilon.
     \end{equation*}
 
-    Числото \( \delta \) зависи само от \( \varepsilon \), следователно \( \Char_\xi(t) \) е равномерно непрекъсната върху цялата реална права.
+    Числото \( \delta \) зависи само от \( \varepsilon \), следователно \( \varphi_\xi(t) \) е равномерно непрекъсната върху цялата реална права.
 
     \item Нека съществува моментът \( \Expect \xi^n \). Тогава съществуват и моментите от по-нисък ред и в някаква околност на \( 0 \) за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
-      \Char_\xi(t)
+      \varphi_\xi(t)
       &=
       \Expect(e^{it\xi})
       = \\ &=
-      \Expect\left(\sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + \frac {{(\alpha i \xi)}^{(n+1)} e^{\alpha it \xi}} {(n+1)!} t^{n+1} \right)
+      \Expect\parens*{\sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + \frac {{(\alpha i \xi)}^{(n+1)} e^{\alpha it \xi}} {(n+1)!} t^{n+1} }
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{(\alpha i)}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \Conv[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
 
-    Получихме полином на Тейлър за функцията \( \Char_\xi(t) \). Тогава \( \Char_\xi(t) \) има \( n \)-та производна, при това \( \Char^{(n)}_\xi(0) = i^n \Expect(\xi^n) \).
+    Получихме полином на Тейлър за функцията \( \varphi_\xi(t) \). Тогава \( \varphi_\xi(t) \) има \( n \)-та производна, при това \( \varphi^{(n)}_\xi(0) = i^n \Expect(\xi^n) \).
 
-    \item Нека \( z_1, z_2, \ldots \) е обединение на стойностите на \( \xi \) и \( \eta \). Ако функциите \( \Char_\xi \) и \( \Char_\eta \) съвпадат, имаме
+    \item Нека \( z_1, z_2, \ldots \) е обединение на стойностите на \( \xi \) и \( \eta \). Ако функциите \( \varphi_\xi \) и \( \varphi_\eta \) съвпадат, имаме
     \begin{align*}
-      \Char_\xi(t) - \Char_\xi(t) &= 0
+      \varphi_\xi(t) - \varphi_\xi(t) &= 0
       \\
       \sum_k e^{i t z_k} \Prob(\xi = z_k) - \sum_k e^{i t z_k} \Prob(\xi = z_k) &= 0
       \\
       \sum_k e^{i t z_k} (\Prob(\xi = z_k) - \Prob(\xi = y_k)) &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко \( t \in \R \) точно когато \( \Prob(\xi = z) = \Prob(\xi = z) \) за всяко \( z \in \Image(\xi) \cup \Image(\eta) \). Следователно \( \xi \) и \( \eta \) приемат едни и същи стойности \( \Image(\xi) = \Image(\eta) \) с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
+    Последното равенство е изпълнено за всяко \( t \in \BbbR \) точно когато \( \Prob(\xi = z) = \Prob(\xi = z) \) за всяко \( z \in \img(\xi) \cup \img(\eta) \). Следователно \( \xi \) и \( \eta \) приемат едни и същи стойности \( \img(\xi) = \img(\eta) \) с една и съща вероятност и тъй като и двете са дискретни, те съвпадат.
   \end{enumerate}
 \end{proof}
 
@@ -652,19 +653,19 @@
 \subsubsection{Дискретно равномерно разпределение}\label{sec:unif}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{дискретно равномерно разпределение} над множеството \( N \) с размер \( n \) и пишем \( \xi \in \DUniform(N) \), ако за всяко \( k \in N \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{дискретно равномерно разпределение} над множеството \( N \) с размер \( n \) и пишем \( \xi \in \distr{Uniform}(N) \), ако за всяко \( k \in N \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = \frac 1 n.
   \end{equation*}
 
   Дефиницията е коректна, тъй като \( \frac 1 n > 0 \) и \( \sum_{k \in N} \Prob(\xi = k) = \sum_{k \in N} \frac 1 n = \frac n n = 1 \).
 
-  За простота обикновено считаме, че \( N \) е множеството на целите числа между две положителни цели числа \( a \) и \( b \), т.е. \( N = \{ a, a + 1, \ldots, b - 1, b \} \). В такъв случай бележим \( \xi \in \DUniform(a, b) \).
+  За простота обикновено считаме, че \( N \) е множеството на целите числа между две положителни цели числа \( a \) и \( b \), т.е. \( N = \set{ a, a + 1, \ldots, b - 1, b } \). В такъв случай бележим \( \xi \in \distr{Uniform}(a, b) \).
 \end{definition}
 
 Равномерното дискретно разпределение моделира експерименти с краен брой изходи, за които предполагаме, че са равновероятни. Такива са например разни игри - боята на случайно избрана игрална карта или броят точки, паднали се при хвърляне на зар. Друг пример идва от втората световна война, където статистици са се опитали да оценят броя \( n \) произведени от Германия танкове, предполагайки, че серийните им номера са равномерно разпределени между \( 1 \) и \( n \).
 
-За пораждащата функция, очакването и дисперсията на \( \xi \in \DUniform(a, b) \) имаме
+За пораждащата функция, очакването и дисперсията на \( \xi \in \distr{Uniform}(a, b) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -674,9 +675,9 @@
   = \\ &=
   \frac 1 {b-a+1} \sum_{k=a}^b z^k
   = \\ &=
-  \frac 1 {b-a+1} \left( \sum_{k=1}^b z^k - \sum_{k=1}^{a-1} z^k \right)
+  \frac 1 {b-a+1} \parens*{ \sum_{k=1}^b z^k - \sum_{k=1}^{a-1} z^k }
   = \\ &=
-  \frac 1 {b-a+1} \left(\frac {z^{b+1} - 1} {z - 1} - \frac {z^a - 1} {z - 1} \right)
+  \frac 1 {b-a+1} \parens*{\frac {z^{b+1} - 1} {z - 1} - \frac {z^a - 1} {z - 1} }
   = \\ &=
   \boxed{\frac {z^{b+1} - z^a} {(b-a+1)(z-1)}},
   \\
@@ -684,9 +685,9 @@
   &=
   \frac 1 {b-a+1} \sum_{k=a}^b k
   = \\ &=
-  \frac 1 {b-a+1} \left( \sum_{k=1}^b k - \sum_{k=1}^{a-1} k \right)
+  \frac 1 {b-a+1} \parens*{ \sum_{k=1}^b k - \sum_{k=1}^{a-1} k }
   = \\ &=
-  \frac 1 {b-a+1} \left( \frac {b(b+1)} 2 - \frac {(a-1)a} 2 \right)
+  \frac 1 {b-a+1} \parens*{ \frac {b(b+1)} 2 - \frac {(a-1)a} 2 }
   = \\ &=
   \frac {b^2 + b - a^2 + a} {2(b-a+1)}
   = \\ &=
@@ -698,9 +699,9 @@
   &=
   \frac 1 {b-a+1} \sum_{k=a}^b k^2
   = \\ &=
-  \frac 1 {b-a+1} \left( \sum_{k=1}^b k^2 - \sum_{k=1}^{a-1} k^2 \right)
+  \frac 1 {b-a+1} \parens*{ \sum_{k=1}^b k^2 - \sum_{k=1}^{a-1} k^2 }
   = \\ &=
-  \frac 1 {b-a+1} \left( \frac {b(b+1)(2b+1)} 6 - \frac {(a-1)a(2a-1)} 6 \right)
+  \frac 1 {b-a+1} \parens*{ \frac {b(b+1)(2b+1)} 6 - \frac {(a-1)a(2a-1)} 6 }
   = \\ &=
   \frac {b(2b^2 + 3b + 1) - b(2a^2 - 3a + 1)} {6(b-a+1)}
   =
@@ -718,11 +719,11 @@
   = \\ &=
   \boxed{\frac {2b^2+2ba+2a^2+b-a} 6},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   = \\ &=
-  \frac {2b^2+2ba+2a^2+b-a} 6 - {\left( \frac {b+a} 2 \right)}^2
+  \frac {2b^2+2ba+2a^2+b-a} 6 - {\parens*{ \frac {b+a} 2 }}^2
   = \\ &=
   \frac {2(2b^2+2ba+2a^2+b-a) - 3{b^2+2ba+a^2}} {12}
   = \\ &=
@@ -735,7 +736,7 @@
 \subsubsection{Биномно разпределение}\label{sec:binomial}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{биномно разпределение} с обем \( n = 1, 2, \ldots \) и вероятност \( p \in (0, 1) \) и пишем \( \xi \in \DBinomial(n, p) \), ако за всяко \( k = 0, 1, \ldots, n \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{биномно разпределение} с обем \( n = 1, 2, \ldots \) и вероятност \( p \in (0, 1) \) и пишем \( \xi \in \distr{Binom}(n, p) \), ако за всяко \( k = 0, 1, \ldots, n \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = \binom{n}{k} p^k {(1-p)}^{n-k}.
   \end{equation*}
@@ -749,12 +750,12 @@
     {(p+(1-p))}^n = 1.
   \end{equation*}
 
-  Частният случай \( \DBinomial(1, p) \) наричаме \textbf{разпределение на Бернули} и бележим с \( \DBernoulli(p) \).
+  Частният случай \( \distr{Binom}(1, p) \) наричаме \textbf{разпределение на Бернули} и бележим с \( \distr{Bernoulli}(p) \).
 \end{definition}
 
 Биномното разпределение моделира брой успехи сред общо \( n \) независими опита с еднаква вероятност \( p \). Тога го прави изключително приложимо - от моделиране на количеството ръце с поне един туз при \( n \) раздавания на игрални карти до моделиране на броя освободени невротрансмитери в химичните синапси на мозъка за единица време.
 
-За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DBinomial(n, p) \) имаме
+За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \distr{Binom}(n, p) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -764,21 +765,21 @@
   = \\ &=
   \sum_{k=0}^n \binom{n}{k} e^{tk} p^k {(1-p)}^{n-k}
   = \\ &=
-  \sum_{k=0}^n \binom{n}{k} {\left( e^t p \right)}^k {(1-p)}^{n-k}
+  \sum_{k=0}^n \binom{n}{k} {\parens*{ e^t p }}^k {(1-p)}^{n-k}
   = \\ &=
-  \boxed{{\left( e^t p + (1-p) \right)}^n},
+  \boxed{{\parens*{ e^t p + (1-p) }}^n},
   \\
   \MGF'_\xi(t)
   &=
-  \boxed{n p e^t {\left( e^t p + (1-p) \right)}^{n-1}},
+  \boxed{n p e^t {\parens*{ e^t p + (1-p) }}^{n-1}},
   \\
   \MGF''_\xi(t)
   &=
-  n p \left[ e^t \cdot {\left( e^t p + (1-p) \right)}^{n-1} + e^t \cdot (n-1) p {\left( e^t p + (1-p) \right)}^{n-2} \right]
+  n p \bracks*{ e^t \cdot {\parens*{ e^t p + (1-p) }}^{n-1} + e^t \cdot (n-1) p {\parens*{ e^t p + (1-p) }}^{n-2} }
   = \\ &=
-  n p e^t {\left( e^t p + (1-p) \right)}^{n-2} (e^t p + (1-p) + (n-1)p)
+  n p e^t {\parens*{ e^t p + (1-p) }}^{n-2} (e^t p + (1-p) + (n-1)p)
   = \\ &=
-  \boxed{n p e^t {\left( e^t p + (1-p) \right)}^{n-2} (np + e^t p - 2p + 1)},
+  \boxed{n p e^t {\parens*{ e^t p + (1-p) }}^{n-2} (np + e^t p - 2p + 1)},
   \\
   \Expect(\xi)
   &=
@@ -792,7 +793,7 @@
   =
   \boxed{np(np - p + 1)}
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   =
@@ -802,22 +803,22 @@
 \end{align*}
 \endgroup
 
-Както става ясно от видът на пораждащата моментите функция, ако \( \xi_1, \ldots, \xi_n \in \DBernoulli(p) \), то сумата им има разпределение \( \DBinomial(n, p) \). Нещо повече, сумата на случайни величини с разпределения \( \DBinomial(n, p) \) и \( \DBinomial(m, p) \) има разпределение \( \DBinomial(n + m, p) \).
+Както става ясно от видът на пораждащата моментите функция, ако \( \xi_1, \ldots, \xi_n \in \distr{Bernoulli}(p) \), то сумата им има разпределение \( \distr{Binom}(n, p) \). Нещо повече, сумата на случайни величини с разпределения \( \distr{Binom}(n, p) \) и \( \distr{Binom}(m, p) \) има разпределение \( \distr{Binom}(n + m, p) \).
 
 Биномното разпределение е изиграло важна историческа роля, тъй като за него първо са формулирани известни гранични теореми.
 
 \begin{theorem}[Бернули, предшественик на законите за големите числа]\label{thm:bernoulli}
-  Нека са дадени независими и еднакво \( \DBinomial(n, p) \)-разпределени случайни величини \( \xi_1, \xi_2, \ldots \) Тогава
+  Нека са дадени независими и еднакво \( \distr{Binom}(n, p) \)-разпределени случайни величини \( \xi_1, \xi_2, \ldots \) Тогава
   \begin{equation*}
     \frac 1 n \sum_{k=1}^n \xi_k
     \to
-    \Ind_p
+    \op{I}_p
   \end{equation*}
   по вероятност.
 \end{theorem}
 
 \begin{theorem}[Моавър-Лаплас, предшественик на централните гранични теореми]\label{thm:moivre_laplace}
-  Ако \( \xi \in \DBinomial(n, p) \), тогава
+  Ако \( \xi \in \distr{Binom}(n, p) \), тогава
   \begin{equation*}
     \frac {\xi - \Expect(\xi)} {\sigma_\xi}
     =
@@ -831,7 +832,7 @@
 \subsubsection{Геометрично разпределение}\label{sec:geom}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{геометрични разпределение} с вероятност \( p \in (0, 1) \) и пишем \( \xi \in \DGeom(p) \), ако за всяко \( k = 1, 2, \ldots \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{геометрични разпределение} с вероятност \( p \in (0, 1) \) и пишем \( \xi \in \distr{Geom}(p) \), ако за всяко \( k = 1, 2, \ldots \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = {(1-p)}^{k-1} p.
   \end{equation*}
@@ -857,7 +858,7 @@
 
 Геометричното разпределение моделира номера на първия успешен опит сред безброй независими опити с еднаква вероятност \( p \) или, при алтернативната дефиниция, броя неуспехи до появата на първия успех. То също е изключително приложимо, например за намирането на очаквания брой изтеглени игрални карти преди първия туз или за оценяване на необходимото количество допълнително произведени изделия, ако целим да произведем дадено количество изделия без дефект при вероятност за дефект \( p \). Предимство на геометричното разпределение за тези модели е свойството липса на памет, описано в \cref{thm:memorylessness}.
 
-За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DGeom(p) \) имаме
+За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \distr{Geom}(p) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -897,7 +898,7 @@
   =
   \boxed{\frac {2-p} {p^2}},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   =
@@ -908,14 +909,14 @@
 \endgroup
 
 \begin{theorem}[Липса на памет]\label{thm:memorylessness}
-  За \( \xi \in \DGeom(p) \) и положителни цели числа \( n \) и \( m \) е изпълнено
+  За \( \xi \in \distr{Geom}(p) \) и положителни цели числа \( n \) и \( m \) е изпълнено
   \begin{equation*}
-    \Prob(\xi = n + m \mid \xi > n) = \Prob(\xi = m)
+    \Prob(\xi = n + m \given \xi > n) = \Prob(\xi = m)
   \end{equation*}
 \end{theorem}
 \begin{proof}
   \begin{align*}
-    \Prob(\xi = n + m \mid \xi > n)
+    \Prob(\xi = n + m \given \xi > n)
     &=
     \frac {\Prob(\xi = n + m, \xi > n)} {\Prob(\xi > n)}
     = \\ &=
@@ -938,7 +939,7 @@
 \subsubsection{Поасоново разпределение}\label{sec:poisson}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{поасоново разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \DPoisson(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
+  Казваме, че случайната величина \( \xi \) има \textbf{поасоново разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \distr{Poisson}(p) \), ако за всяко \( k = 0, 1, \ldots \) е изпълнено
   \begin{equation*}
     \Prob(\xi = k) = \frac{e^{-\lambda} \lambda^k} {k!}.
   \end{equation*}
@@ -957,7 +958,7 @@
 
 Ако дадено явление се случва със средна честота \( \lambda \), поасоновото разпределение моделира количеството независими явления за единица време. Това го прави подходящо за широк спектър от задачи - от моделиране на броя посетители на магазин в натоварен час до моделиране на броя скокове в цените на финансов дериват.
 
-За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DPoisson(p) \) имаме
+За пораждащата моментите функция, очакването и дисперсията на \( \xi \in \distr{Poisson}(p) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -993,7 +994,7 @@
   &=
   \boxed{\lambda(1 + \lambda)},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   =
@@ -1004,14 +1005,14 @@
 \endgroup
 
 \begin{theorem}[Поасон]\label{thm:poisson}
-  Нека \( \xi_1, \xi_2, \ldots \) са независими и \( \xi_k \in \DBinomial(k, p_k), k = 1, 2, \ldots \) Ако \( k p_k \Conv[k \to \infty]{} \lambda \), тогава граница по вероятност \( \lim_{k \to \infty} \xi_k \) съществува и има разпределение \( \DPoisson(\lambda) \).
+  Нека \( \xi_1, \xi_2, \ldots \) са независими и \( \xi_k \in \distr{Binom}(k, p_k), k = 1, 2, \ldots \) Ако \( k p_k \xrightarrow[k \to \infty]{} \lambda \), тогава граница по вероятност \( \lim_{k \to \infty} \xi_k \) съществува и има разпределение \( \distr{Poisson}(\lambda) \).
 \end{theorem}
 
 Както става ясно от видът на пораждащата моментите функция, ако
 \begin{equation*}
-  \xi_m \in \DPoisson(\lambda_m), m = 1, \ldots, n,
+  \xi_m \in \distr{Poisson}(\lambda_m), m = 1, \ldots, n,
 \end{equation*}
-то сумата им има разпределение \( \DPoisson\left(\sum_{m=1}^n \lambda_m \right) \).
+то сумата им има разпределение \( \distr{Poisson}\parens*{\sum_{m=1}^n \lambda_m } \).
 
 Вж. също \cref{ex:se_summer2016}.
 
@@ -1029,15 +1030,15 @@
   \end{enumerate}
 \end{exercise}
 \begin{solution}
-  \mbox{}
+  \hfill
   \begin{enumerate}[label=\alph*)]
     \item Това е именно алтернативната формулировка на геометричното разпределение, която споменахме в\cref{sec:geom}, т.е. \( \Prob(X = k) = {(1-p)}^k p \).
 
-    Ако вече разполагаме с информацията за геометричното разпределение от\cref{sec:geom} и \( \xi \) има разпределение \( \DGeom(p) \) спрямо оригиналната дефиниция, тогава \( X = \xi - 1 \) и директно получаваме
+    Ако вече разполагаме с информацията за геометричното разпределение от\cref{sec:geom} и \( \xi \) има разпределение \( \distr{Geom}(p) \) спрямо оригиналната дефиниция, тогава \( X = \xi - 1 \) и директно получаваме
     \begin{align*}
       \PGF_X(k) &= \PGF_\xi(k-1), \\
       \Expect_X(k) &= \Expect_\xi(k) - 1 = \frac 1 p - 1 = \frac {1-p} p, \\
-      \Var_X(k) &= \Var_\xi(k) = \frac {1-p} {p^2}.
+      \var_X(k) &= \var_\xi(k) = \frac {1-p} {p^2}.
     \end{align*}
 
     Можем да изведем търсените характеристики и директно
@@ -1049,7 +1050,7 @@
       = \\ &=
       p \sum_{k=0}^\infty {((1-p) z)}^k
       = \\ &=
-      \boxed{\frac p {1 - (1-p)z}, \Abs{(1-p) z} < 1 \iff \Abs z < \frac 1 {1-p}},
+      \boxed{\frac p {1 - (1-p)z}, \abs{(1-p) z} < 1 \iff \abs z < \frac 1 {1-p}},
     \end{align*}
     при което \( \MGF_X(t) = \PGF_X(e^t) = \boxed{\frac p {1 - (1-p)e^t}, t < -\ln(1-p)} \).
 
@@ -1083,7 +1084,7 @@
       =
       \frac {(1-p)(2-p)} {p^2},
       \\
-      \Var(X)
+      \var(X)
       &=
       \Expect(X^2) - {\Expect(X)}^2
       =
@@ -1111,18 +1112,18 @@
 \begin{exercise}[\cite{SESummer2016}]\label{ex:se_summer2016}
   Нека \( X \) е случайна величина с разпределение на Поасон с параметър \( \lambda > 0 \):
   \begin{align*}
-    X \in \DPoisson(\lambda),
+    X \in \distr{Poisson}(\lambda),
     &&
     \Prob(X = x) = e^{-\lambda} \frac {x^\lambda} {x!}, x = 0, 1, 2, \ldots.
   \end{align*}
 
   \begin{enumerate}[label=\alph*)]
-    \item Намерете математическото очакване \( \Expect X \) и дисперсията \( \Var X \) на случайната величина \( X \).
+    \item Намерете математическото очакване \( \Expect X \) и дисперсията \( \var X \) на случайната величина \( X \).
     \item Нека случайните величини \( X_1 \) и \( X_2 \) са независими и с разпределение на Поасон с параметри съответно \( \lambda_1 > 0 \) и \( \lambda_2 > 0 \):
     \begin{align*}
-      X_1 \in \DPoisson(\lambda_1),
+      X_1 \in \distr{Poisson}(\lambda_1),
       &&
-      X_2 \in \DPoisson(\lambda_2).
+      X_2 \in \distr{Poisson}(\lambda_2).
     \end{align*}
 
     Намерете разпределението на сумата им
@@ -1130,7 +1131,7 @@
       S_2 = X_1 + X_2.
     \end{equation*}
 
-    \item Нека \( X_1, X_2, \ldots, X_n \) са независими наблюдения над случайна величина \( X \in \DPoisson(\lambda), \lambda > 0 \) и нека сумата им е \( S_n = X_1 + X_2 + \cdots + X_n \).
+    \item Нека \( X_1, X_2, \ldots, X_n \) са независими наблюдения над \( \distr{Poisson}(\lambda) \) случайна величина \( X \) и нека сумата им е \( S_n = X_1 + X_2 + \cdots + X_n \).
 
     Намерете значимостта (\( p \)-value) на статистиката \( S_n \) при проверката на основна и алтернативни хипотези:
     \begin{align*}
@@ -1148,9 +1149,9 @@
 \end{remark}
 
 \begin{solution}
-  \mbox{}
+  \hfill
   \begin{enumerate}[label=\alph*)]
-    \item В\cref{sec:poisson} сме намерили, че \( \Expect(X) = \Var(X) = \lambda \).
+    \item В\cref{sec:poisson} сме намерили, че \( \Expect(X) = \var(X) = \lambda \).
     \item Според \cref{thm:char_properties} \( \MGF_{X_1 + X_2} \) определя напълно разпределението на \( X_1 + X_2 \). Използваме пораждащата моментите функция от\cref{sec:poisson}, за да намерим
     \begin{equation*}
       \MGF_{X_1 + X_2}
@@ -1161,13 +1162,13 @@
       =
       e^{(\lambda_1 + \lambda_2) (e^t - 1)},
     \end{equation*}
-    което е пораждаща моментите функция на \( \DPoisson(\lambda_1 + \lambda_2) \) разпределение.
+    което е пораждаща моментите функция на \( \distr{Poisson}(\lambda_1 + \lambda_2) \) разпределение.
 
-    \item От предната подточка знаем, че \( S_n \in \DPoisson(n \lambda) \). Тогава значимостта на наблюдението \( S_4 = 15 \) при десен едностранен тест с нулева хипотеза \( \lambda = 3 \) е
+    \item От предната подточка знаем, че \( S_n \in \distr{Poisson}(n \lambda) \). Тогава значимостта на наблюдението \( S_4 = 15 \) при десен едностранен тест с нулева хипотеза \( \lambda = 3 \) е
     \begin{equation*}
-      \Prob(S_4 \geq 15 \mid 4\lambda = 12)
+      \Prob(S_4 \geq 15 \given 4\lambda = 12)
       =
-      1 - \Prob(S_4 \leq 14 \mid 4\lambda = 12)
+      1 - \Prob(S_4 \leq 14 \given 4\lambda = 12)
       \approx
       1 - 0.772
       =
@@ -1178,6 +1179,9 @@
   \end{enumerate}
 \end{solution}
 
-\printbibliography
+{
+  \hfuzz=3pt
+  \printbibliography
+}
 
 \end{document}

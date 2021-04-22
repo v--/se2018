@@ -6,7 +6,7 @@ COMPILER := latexmk -cd -interaction=batchmode -time -bibtex
 all: $(TOPICS)
 
 topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty revision
-	$(COMPILER) $(<D)/index.tex -pdflua
+	$(COMPILER) $(<D)/index.tex -pdflua $(args)
 
 clean:
 	rm -fv topics/*/index.pdf

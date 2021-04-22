@@ -1,21 +1,14 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=20,
+  title={Точкови и интервални оценки за параметрите на нормалното разпределение.},
+  basedate={4 юли 2019},
+  author={Янис Василев}
+}
 
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{20}}
-\subtitle{Точкови и интервални оценки за параметрите на нормалното разпределение.}
-\author{Янис Василев}
-\date{\Revision{4 юли 2019}}
 
 \begin{document}
 
@@ -38,26 +31,26 @@
 
 \subsection{Основни понятия}
 
-Считаме, че е зададено вероятностно пространство \( (\Omega, \F, \Prob) \).
+Считаме, че е зададено вероятностно пространство \( (\Omega, \mscrF, \Prob) \).
 
 \begin{definition}[Извадки]
-  Нека \( \xi \) е случайна величина над \( (\Omega, \F, \Prob) \). Множеството от елементарни събития \( \Omega \) в статистиката често се нарича \textbf{генерална съвкупност}.
+  Нека \( \xi \) е случайна величина над \( (\Omega, \mscrF, \Prob) \). Множеството от елементарни събития \( \Omega \) в статистиката често се нарича \textbf{генерална съвкупност}.
 
   \begin{itemize}
-    \item Ако случайните величини \( \xi_1, \ldots, \xi_n \) са независими две по две и имат същото разпределение като \( \xi \), казваме, че \( \xi_1, \ldots, \xi_n \) са \textbf{наблюдения} над \( \xi \) и че те са \textbf{проста извадка} с обем \( n \) над генералната съвкупност \( \Omega \). Понякога ги разглеждаме и като случаен вектор \( \V{\xi_n} = (\xi_1, \ldots, \xi_n) \).
+    \item Ако случайните величини \( \xi_1, \ldots, \xi_n \) са независими две по две и имат същото разпределение като \( \xi \), казваме, че \( \xi_1, \ldots, \xi_n \) са \textbf{наблюдения} над \( \xi \) и че те са \textbf{проста извадка} с обем \( n \) над генералната съвкупност \( \Omega \). Понякога ги разглеждаме и като случаен вектор \( \vect{\xi_n} = (\xi_1, \ldots, \xi_n) \).
     \item \textbf{Функция на правдоподобие} \( l_\xi(x) \) на случайната величина \( \xi \) наричаме, в абсолютно непрекъснатия случай, плътността на \( \xi \) или, в дискретния случай, функцията на вероятностите на \( \xi \).
-    \item \textbf{Функция на правдоподобие} \( l(x_1, \ldots, x_n) \) на извадката \( \xi_1, \ldots, \xi_n \) наричаме функцията на правдоподобие на случайния вектор \( \V{\xi_n} \). При извадки от независими случайни величини, функцията на правдоподобие на извадката е произведение на индивидуалните функции на правдоподобие.
-    \item \textbf{Извадково} пространство, съответстващо на извадката \( \xi_1, \ldots, \xi_n \), наричаме множеството \( \SampleSpace \subseteq \R^n \) от стойности на случайния вектор \( \V{\xi_n} \).
-    \item \textbf{Реализации} на извадката наричаме вектори от \( \SampleSpace \). Те моделират истинските данни в математическата статистика, съпоставяйки ги на \enquote{теоретичната} извадка \( \xi_1, \ldots, \xi_n \).
+    \item \textbf{Функция на правдоподобие} \( l(x_1, \ldots, x_n) \) на извадката \( \xi_1, \ldots, \xi_n \) наричаме функцията на правдоподобие на случайния вектор \( \vect{\xi_n} \). При извадки от независими случайни величини, функцията на правдоподобие на извадката е произведение на индивидуалните функции на правдоподобие.
+    \item \textbf{Извадково} пространство, съответстващо на извадката \( \xi_1, \ldots, \xi_n \), наричаме множеството \( \mscrX \subseteq \BbbR^n \) от стойности на случайния вектор \( \vect{\xi_n} \).
+    \item \textbf{Реализации} на извадката наричаме вектори от \( \mscrX \). Те моделират истинските данни в математическата статистика, съпоставяйки ги на \enquote{теоретичната} извадка \( \xi_1, \ldots, \xi_n \).
   \end{itemize}
 \end{definition}
 
 \begin{definition}[Оценки]
   Нека \( \xi_1, \ldots \xi_n \) е проста извадка над случайната величина \( \xi \), чието разпределение не ни е известно. Целта ни е на базата на тази извадка да оценим някакви числени характеристики \( \theta = (\theta_1, \ldots, \theta_m) \) на \( \xi \), които напълно да определят разпределението на \( \xi \). Обикновено \( \theta \) е вектор от моменти на \( \xi \) или, в параметричната статистика, \( \theta \) е някой от параметрите на класът от разпределения, на който се предполага, че принадлежи \( \xi \). Условна вероятност при условие, че \( \theta = \alpha \) е конкретна стойност на вектора, бележим с
   \begin{align*}
-    \Prob(\cdot \mid \theta = \alpha)
+    \Prob(\cdot \given \theta = \alpha)
     &&\text{ или}&&
-    \Prob(\cdot \mid \alpha).
+    \Prob(\cdot \given \alpha).
   \end{align*}
 
   Множеството от всички възможни стойности на \( \theta \) ще бележим с \( \Theta \).
@@ -67,29 +60,29 @@
 
     \item Ако \( \theta = (\theta_1, \ldots, \theta_m) \) са някакви числени характеристика на \( \xi \) и статистиката \( t_n = t_n(x_1, \ldots, x_n) \) не зависи от \( \theta \), казваме, че \( t_n \) е \textbf{точкова оценка} за \( \theta \).
 
-    \item Стойността \( t_n - \Expect(t_n \mid \theta) \) наричаме \textbf{случайна грешка}, а стойността \( \Expect(t_n \mid \theta) - \theta \) наричаме \textbf{систематична грешка} или \textbf{изместване} на оценката. Разликата
+    \item Стойността \( t_n - \Expect(t_n \given \theta) \) наричаме \textbf{случайна грешка}, а стойността \( \Expect(t_n \given \theta) - \theta \) наричаме \textbf{систематична грешка} или \textbf{изместване} на оценката. Разликата
     \begin{equation*}
-      t_n - \theta = t_n - \Expect(t_n \mid \theta) + \Expect(t_n \mid \theta) - \theta
+      t_n - \theta = t_n - \Expect(t_n \given \theta) + \Expect(t_n \given \theta) - \theta
     \end{equation*}
     се разпада на систематична и случайна грешка.
 
-    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \textbf{неизместена}, ако \( \Expect(t_n \mid \theta) = \theta \), и асимптотично неизместена, ако \( \Expect(t_n \mid \theta) \Conv[n \to \infty]{} \theta \).
+    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \textbf{неизместена}, ако \( \Expect(t_n \given \theta) = \theta \), и асимптотично неизместена, ако \( \Expect(t_n \given \theta) \xrightarrow[n \to \infty]{} \theta \).
 
-    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \textbf{състоятелна}, ако \( t_n \Conv[n \to \infty]{} \theta \) по вероятност, т.е.
+    \item Точковата оценка \( t_n \) за \( \theta \) наричаме \textbf{състоятелна}, ако \( t_n \xrightarrow[n \to \infty]{} \theta \) по вероятност, т.е.
     \begin{equation*}
-      \Prob(\Abs{t_n - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0\quad\forall \varepsilon > 0.
+      \Prob(\abs{t_n - \theta} > \varepsilon \given \theta) \xrightarrow[n \to \infty]{} 0\quad\forall \varepsilon > 0.
     \end{equation*}
 
     Оценката наричаме \textbf{силно състоятелна}, ако сходимостта е почти сигурна, т.е.
     \begin{equation*}
-      \Prob(\sup_{k \geq n} \Abs{t_k - \theta} > \varepsilon \mid \theta) \Conv[n \to \infty]{} 0\quad\forall \varepsilon > 0.
+      \Prob(\sup_{k \geq n} \abs{t_k - \theta} > \varepsilon \given \theta) \xrightarrow[n \to \infty]{} 0\quad\forall \varepsilon > 0.
     \end{equation*}
 
-    \item Точковата оценка \( t_n \) за \( \theta \) с изместване \( \Expect(t_n) - \theta \) има \textbf{минимална дисперсия}, ако \( \Var(t_n) \leq \Var(u_n) \) за произволна друга точкова оценка \( u_n \) със същото изместване.
+    \item Точковата оценка \( t_n \) за \( \theta \) с изместване \( \Expect(t_n) - \theta \) има \textbf{минимална дисперсия}, ако \( \var(t_n) \leq \var(u_n) \) за произволна друга точкова оценка \( u_n \) със същото изместване.
 
     \item Ако векторът \( \theta \) е едномерен (т.е. \( \theta \) е число), \textbf{интервална оценка} с ниво на доверие \( \gamma \) за \( \theta \) наричаме двойка точкови оценки \( a_n \) и \( b_n \) за \( \theta \), за които
     \begin{equation*}
-      \Prob(a_n \leq \theta \leq b_n \mid \theta) = \gamma
+      \Prob(a_n \leq \theta \leq b_n \given \theta) = \gamma
     \end{equation*}
     независимо от стойността на \( \theta \).
   \end{itemize}
@@ -111,7 +104,7 @@
   \begin{equation*}
     s_n^2(x_1, \ldots, x_n) \coloneqq \frac 1 {n-1} \sum_{k=1}^n {(x_k - \hat \xi(x_1, \ldots, x_n))}^2
   \end{equation*}
-  е неизместена оценка за \( \Var(\xi) \).
+  е неизместена оценка за \( \var(\xi) \).
 \end{proposition}
 \begin{proof}
   Разписваме \( s_n^2 \)
@@ -122,15 +115,15 @@
     &=
     \frac 1 {n-1} \sum_{i=1}^n {(\xi_i - \hat \xi(\xi_1, \ldots, \xi_n))}^2
     = \\ &=
-    \frac 1 {n-1} \sum_{i=1}^n \left[\xi_i^2 - \frac 2 n \sum_{j=1}^n \xi_i \xi_j + \frac 1 {n^2} {\left( \sum_{j=1}^n \xi_m \right)}^2 \right]
+    \frac 1 {n-1} \sum_{i=1}^n \bracks*{\xi_i^2 - \frac 2 n \sum_{j=1}^n \xi_i \xi_j + \frac 1 {n^2} {\parens*{ \sum_{j=1}^n \xi_m }}^2 }
     = \\ &=
-    \frac 1 {n-1} \sum_{i=1}^n \left[\xi_i^2 - \frac 2 n \sum_{j=1}^n \xi_i \xi_j + \frac 1 {n^2} \sum_{j=1}^n \sum_{k=1}^n \xi_j \xi_k \right]
+    \frac 1 {n-1} \sum_{i=1}^n \bracks*{\xi_i^2 - \frac 2 n \sum_{j=1}^n \xi_i \xi_j + \frac 1 {n^2} \sum_{j=1}^n \sum_{k=1}^n \xi_j \xi_k }
     = \\ &=
     \frac 1 {n-1} \sum_{i=1}^n \xi_i^2 - \frac 2 {n(n-1)} \sum_{i=1}^n \sum_{j=1}^n \xi_i \xi_j + \frac n {n^2 (n-1)} \sum_{j=1}^n \sum_{k=1}^n \xi_j \xi_k
     = \\ &=
     \frac 1 {n-1} \sum_{i=1}^n \xi_i^2 - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{j=1}^n \xi_i \xi_j
     = \\ &=
-    \left(\frac 1 {n-1} - \frac 1 {n(n-1)} \right) \sum_{i=1}^n \xi_i^2 - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \xi_i \xi_j
+    \parens*{\frac 1 {n-1} - \frac 1 {n(n-1)} } \sum_{i=1}^n \xi_i^2 - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \xi_i \xi_j
     = \\ &=
     \frac 1 n \sum_{i=1}^n \xi_i^2 - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \xi_i \xi_j.
   \end{align*}
@@ -138,19 +131,19 @@
 
   Като вземем очакване, получаваме
   \begin{align*}
-    \Expect(s_n^2 \mid \theta)
+    \Expect(s_n^2 \given \theta)
     &=
-    \frac 1 n \sum_{i=1}^n \Expect(\xi_i^2 \mid \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \Expect(\xi_i \xi_j \mid \theta)
+    \frac 1 n \sum_{i=1}^n \Expect(\xi_i^2 \given \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \Expect(\xi_i \xi_j \given \theta)
     = \\ &=
-    \frac 1 n \sum_{i=1}^n \Expect(\xi_i^2 \mid \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \Expect(\xi_i \mid \theta) \Expect(\xi_j \mid \theta)
+    \frac 1 n \sum_{i=1}^n \Expect(\xi_i^2 \given \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n \Expect(\xi_i \given \theta) \Expect(\xi_j \given \theta)
     = \\ &=
-    \frac 1 n \sum_{i=1}^n \Expect(\xi^2 \mid \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n {\Expect(\xi \mid \theta)}^2
+    \frac 1 n \sum_{i=1}^n \Expect(\xi^2 \given \theta) - \frac 1 {n(n-1)} \sum_{i=1}^n \sum_{\substack{j=1 \\ j\neq i}}^n {\Expect(\xi \given \theta)}^2
     = \\ &=
-    \frac n n \Expect(\xi^2 \mid \theta) - \frac {n(n-1)} {n(n-1)} {\Expect(\xi \mid \theta)}^2
+    \frac n n \Expect(\xi^2 \given \theta) - \frac {n(n-1)} {n(n-1)} {\Expect(\xi \given \theta)}^2
     = \\ &=
-    \Expect(\xi^2 \mid \theta) - {\Expect(\xi \mid \theta)}^2
+    \Expect(\xi^2 \given \theta) - {\Expect(\xi \given \theta)}^2
     = \\ &=
-    \Var(\xi^2 \mid \theta).
+    \var(\xi^2 \given \theta).
   \end{align*}
 \end{proof}
 
@@ -159,28 +152,28 @@
 \begin{definition}\label{def:fisher_information}
   Нека \( \theta \in \Theta \) е числена характеристика на \( \xi \), т.е. \( \theta \) е едномерен вектор с възможни стойности в \( \Theta \).
 
-  Разглеждаме \textbf{логаритмичната функция на правдоподобие} \( \ln l_\xi(x \mid \theta) \). За нея ще изискаме допълнителни условия за регулярност:
+  Разглеждаме \textbf{логаритмичната функция на правдоподобие} \( \ln l_\xi(x \given \theta) \). За нея ще изискаме допълнителни условия за регулярност:
   \begin{enumerate}
-    \item Множеството \( \{ x \in \R \mid l_\xi(x \mid \theta) = 0 \} \), в което не е дефинирана \( \ln l_\xi(x \mid \theta) \), има вероятност \( 0 \) независимо от \( \theta \). Така очакването на \( \ln l_\xi(x \mid \theta) \) е дефинирано почти навсякъде.
-    \item Функцията \( \ln l_\xi(x \mid \theta) \) е диференцируема по \( \theta \) за (почти) всяко \( x \) от дефиниционната си област.
+    \item Множеството \( \set{ x \in \BbbR \given l_\xi(x \given \theta) = 0 } \), в което не е дефинирана \( \ln l_\xi(x \given \theta) \), има вероятност \( 0 \) независимо от \( \theta \). Така очакването на \( \ln l_\xi(x \given \theta) \) е дефинирано почти навсякъде.
+    \item Функцията \( \ln l_\xi(x \given \theta) \) е диференцируема по \( \theta \) за (почти) всяко \( x \) от дефиниционната си област.
     \item За произволно \( \theta \in \Theta \) са изпълнени условията за диференциране под очакването
     \begin{equation*}
-      \frac {\partial \Expect(\ln l_\xi(x \mid \theta) \mid \theta)} {\partial \theta}
+      \frac {\partial \Expect(\ln l_\xi(x \given \theta) \given \theta)} {\partial \theta}
       =
-      \Expect\left( \frac {\partial \ln l_\xi(x \mid \theta) \mid \theta)} {\partial \theta} \right).
+      \Expect\parens*{ \frac {\partial \ln l_\xi(x \given \theta) \given \theta)} {\partial \theta} }.
     \end{equation*}
   \end{enumerate}
 
   \textbf{Информация на Фишър} за \( \theta \) на \( \xi \) наричаме очакването
   \begin{equation*}
-    \FisherInfo_\xi(\theta) \coloneqq \Var\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right).
+    \mscrI_\xi(\theta) \coloneqq \var\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }.
   \end{equation*}
 
-  Естествено, \( \FisherInfo_\xi(\theta) \) може и да не съществува.
+  Естествено, \( \mscrI_\xi(\theta) \) може и да не съществува.
 
   \textbf{Информация на Фишър} за \( \theta \) на извадката \( \xi_1, \ldots, \xi_n \) над \( \xi \) наричаме информация на Фишър за \( \theta \) на случайния вектор \( (\xi_1, \ldots, \xi_n) \). За прости извадки от независими случайни величини имаме
   \begin{equation*}
-    \FisherInfo_{(\xi_1, \ldots, \xi_n)}(\theta) = n \FisherInfo_\xi(\theta).
+    \mscrI_{(\xi_1, \ldots, \xi_n)}(\theta) = n \mscrI_\xi(\theta).
   \end{equation*}
 \end{definition}
 
@@ -189,16 +182,16 @@
 \end{remark}
 
 \begin{theorem}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item Ако информацията \( \FisherInfo_\xi(\theta) \) съществува, тогава
+    \item Ако информацията \( \mscrI_\xi(\theta) \) съществува, тогава
     \begin{equation*}
-      \FisherInfo_\xi(\theta) = \Expect\left( {\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)}^2 \right).
+      \mscrI_\xi(\theta) = \Expect\parens*{ {\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }}^2 }.
     \end{equation*}
 
-    \item Ако освен това логаритмичното правдоподобие \( \ln l_\xi (x \mid \theta) \) е двукратно диференцируемо по \( \theta \) и \( \ln l_\xi \) позволява двукратно диференциране под очакването, имаме
+    \item Ако освен това логаритмичното правдоподобие \( \ln l_\xi (x \given \theta) \) е двукратно диференцируемо по \( \theta \) и \( \ln l_\xi \) позволява двукратно диференциране под очакването, имаме
     \begin{equation*}
-      \FisherInfo_\xi(\theta) = -\Expect\left( \frac {\partial^2 \ln l_\xi(\xi \mid \theta)} {\partial \theta^2} \mid \theta \right).
+      \mscrI_\xi(\theta) = -\Expect\parens*{ \frac {\partial^2 \ln l_\xi(\xi \given \theta)} {\partial \theta^2} \given* \theta }.
     \end{equation*}
   \end{enumerate}
 \end{theorem}
@@ -207,13 +200,13 @@
   \begin{enumerate}
     \item Разглеждаме очакването
     \begin{align*}
-      \Expect\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)
+      \Expect\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }
       &=
-      \int_{\R} \frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} l_\xi(x \mid \theta) dx
+      \int_{\BbbR} \frac {\partial \ln l_\xi(x \given \theta)} {\partial \theta} l_\xi(x \given \theta) dx
       = \\ &=
-      \int_{\R} \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \frac {l_\xi(x \mid \theta)} {l_\xi(x \mid \theta)} dx
+      \int_{\BbbR} \frac {\partial l_\xi(x \given \theta)} {\partial \theta} \frac {l_\xi(x \given \theta)} {l_\xi(x \given \theta)} dx
       = \\ &=
-      \frac \partial {\partial \theta} \int_{\R} l_\xi(x \mid \theta) dx
+      \frac \partial {\partial \theta} \int_{\BbbR} l_\xi(x \given \theta) dx
       = \\ &=
       \frac {\partial 1} {\partial \theta}
       =
@@ -222,30 +215,30 @@
 
     Тогава
     \begin{align*}
-      \FisherInfo_\xi(\theta)
+      \mscrI_\xi(\theta)
       &=
-      \Var\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)
+      \var\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }
       = \\ &=
-      \Expect\left( {\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)}^2 \right) + {\left(\Expect\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)\right)}^2
+      \Expect\parens*{ {\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }}^2 } + {\parens*{\Expect\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }}}^2
       = \\ &=
-      \Expect\left( {\left( \frac {\partial \ln l_\xi(\xi \mid \theta)} {\partial \theta} \mid \theta \right)}^2 \right).
+      \Expect\parens*{ {\parens*{ \frac {\partial \ln l_\xi(\xi \given \theta)} {\partial \theta} \given* \theta }}^2 }.
     \end{align*}
 
     \item Директно пресмятаме
     \begin{align*}
-      &\quad\Expect\left( \frac {\partial^2 \ln l_\xi(\xi \mid \theta)} {\partial \theta^2} \mid \theta \right)
+      &\quad\Expect\parens*{ \frac {\partial^2 \ln l_\xi(\xi \given \theta)} {\partial \theta^2} \given* \theta }
       = \\ &=
-      \int_{\R} \frac {\partial^2 \ln l_\xi(x \mid \theta)} {\partial \theta^2} l_\xi(x \mid \theta) dx
+      \int_{\BbbR} \frac {\partial^2 \ln l_\xi(x \given \theta)} {\partial \theta^2} l_\xi(x \given \theta) dx
       = \\ &=
-      \int_{\R} \frac \partial {\partial \theta} \left(\frac 1 {l_\xi(x \mid \theta)} \cdot \frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right) \cdot l_\xi(x \mid \theta) dx
+      \int_{\BbbR} \frac \partial {\partial \theta} \parens*{\frac 1 {l_\xi(x \given \theta)} \cdot \frac {\partial l_\xi(x \given \theta)} {\partial \theta} } \cdot l_\xi(x \given \theta) dx
       = \\ &=
-      \int_{\R} \frac 1 {{(l_\xi(x \mid \theta))}^2} \cdot \left( \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} \cdot l_\xi(x \mid \theta) - {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \right) \cdot l_\xi(x \mid \theta) dx
+      \int_{\BbbR} \frac 1 {{(l_\xi(x \given \theta))}^2} \cdot \parens*{ \frac {\partial^2 l_\xi(x \given \theta)} {\partial \theta^2} \cdot l_\xi(x \given \theta) - {\parens*{\frac {\partial l_\xi(x \given \theta)} {\partial \theta} }}^2 } \cdot l_\xi(x \given \theta) dx
       = \\ &=
-      \int_{\R} \frac {\partial^2 l_\xi(x \mid \theta)} {\partial \theta^2} dx - \int_{\R} {\left(\frac {\partial l_\xi(x \mid \theta)} {\partial \theta} \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
+      \int_{\BbbR} \frac {\partial^2 l_\xi(x \given \theta)} {\partial \theta^2} dx - \int_{\BbbR} {\parens*{\frac {\partial l_\xi(x \given \theta)} {\partial \theta} }}^2 \frac 1 {l_\xi(x \given \theta)} dx
       = \\ &=
-      \frac {\partial^2} {\partial \theta^2} \int_{\R} l_\xi(x \mid \theta) dx - \int_{\R} {\left(\frac {\partial \ln l_\xi(x \mid \theta)} {\partial \theta} \cdot l_\xi(x \mid \theta) \right)}^2 \frac 1 {l_\xi(x \mid \theta)} dx
+      \frac {\partial^2} {\partial \theta^2} \int_{\BbbR} l_\xi(x \given \theta) dx - \int_{\BbbR} {\parens*{\frac {\partial \ln l_\xi(x \given \theta)} {\partial \theta} \cdot l_\xi(x \given \theta) }}^2 \frac 1 {l_\xi(x \given \theta)} dx
       = \\ &=
-      -\FisherInfo_\xi(\theta).
+      -\mscrI_\xi(\theta).
     \end{align*}
   \end{enumerate}
 \end{proof}
@@ -255,10 +248,10 @@
 \begin{definition}
   Казваме, че неизместената точкова оценка \( t_n \) на числената характеристика \( \theta \) за случайната величина \( \xi \) е \textbf{ефективна}, ако
   \begin{equation*}
-    \Var(t_n \mid \theta) = \Var(t_n(\xi_1, \ldots, \xi_n) \mid \theta) = \frac 1 {\FisherInfo_\xi(\theta)}.
+    \var(t_n \given \theta) = \var(t_n(\xi_1, \ldots, \xi_n) \given \theta) = \frac 1 {\mscrI_\xi(\theta)}.
   \end{equation*}
 
-  Разбира се, това изисква за \( l_\xi(x \mid \theta) \) да бъдат изпълнени условията за регулярност.
+  Разбира се, това изисква за \( l_\xi(x \given \theta) \) да бъдат изпълнени условията за регулярност.
 \end{definition}
 
 \begin{theorem}
@@ -269,29 +262,29 @@
 
   Нека \( u_n = (t_n + u_n) / 2 \). Поради линейността на очакването, \( v_n \) също е неизместена оценка на \( \theta \). За дисперсията на \( v_n \) имаме
   \begin{equation*}
-    \Var(v_n \mid \theta)
+    \var(v_n \given \theta)
     =
-    \frac 1 4 \Expect \left( {(t_n + u_n)}^2 \mid \theta \right)
+    \frac 1 4 \Expect \parens*{ {(t_n + u_n)}^2 \given \theta }
     =
-    \frac 1 4 [\Var(t_n \mid \theta) + \Var(u_n \mid \theta) + 2 \Cov(t_n, u_n \mid \theta)].
+    \frac 1 4 [\var(t_n \given \theta) + \var(u_n \given \theta) + 2 \cov(t_n, u_n \given \theta)].
   \end{equation*}
 
   Неравенството на Коши-Буняковски-Шварц ни дава
   \begin{equation*}
-    \Cov(t_n, u_n \mid \theta)
+    \cov(t_n, u_n \given \theta)
     =
-    \Expect(t_n u_n \mid \theta)
+    \Expect(t_n u_n \given \theta)
     \leq
-    \sqrt {\Expect(t_n^2 \mid \theta) \Expect(u_n^2 \mid \theta)}
+    \sqrt {\Expect(t_n^2 \given \theta) \Expect(u_n^2 \given \theta)}
     =
     d^2.
   \end{equation*}
 
-  Така получихме \( \Var(v_n \mid \theta) \leq d^2 \). Тъй като дисперсията \( d^2 \) е минимална, строгото неравенство \( \Var(v_n \mid \theta) < d^2 \) няма как да е изпълнено. Остава \( \Var(v_n \mid \theta) = \Cov(t_n, u_n \mid \theta) = d^2 \) и значи в горното неравенство се достига равенство.
+  Така получихме \( \var(v_n \given \theta) \leq d^2 \). Тъй като дисперсията \( d^2 \) е минимална, строгото неравенство \( \var(v_n \given \theta) < d^2 \) няма как да е изпълнено. Остава \( \var(v_n \given \theta) = \cov(t_n, u_n \given \theta) = d^2 \) и значи в горното неравенство се достига равенство.
 
-  Но равенство в неравенството на Коши-Буняковски-Шварц може да се достигне единствено когато \( t_n \) и \( u_n \) са линейно зависими, т.е. \( t_n = \alpha u_n \) за някое \( \alpha \in \R \setminus \{ 0 \} \). Тогава
+  Но равенство в неравенството на Коши-Буняковски-Шварц може да се достигне единствено когато \( t_n \) и \( u_n \) са линейно зависими, т.е. \( t_n = \alpha u_n \) за някое \( \alpha \in \BbbR \setminus \set{ 0 } \). Тогава
   \begin{equation*}
-    d^2 = \Var(t_n \mid \theta) = \alpha^2 \Var(u_n \mid \theta) = d^2,
+    d^2 = \var(t_n \given \theta) = \alpha^2 \var(u_n \given \theta) = d^2,
   \end{equation*}
   следователно \( \alpha = 1 \) и \( t_n = u_n \).
 \end{proof}
@@ -306,30 +299,30 @@
 
   За всяка неизместена оценка \( t_n \) на \( r(\theta) \) е изпълнено
   \begin{equation*}
-    \Var(t_n \mid \theta) \geq \frac {{\left[r'(\theta) \right]}^2} {n \FisherInfo_\xi(\theta)},
+    \var(t_n \given \theta) \geq \frac {{\bracks*{r'(\theta) }}^2} {n \mscrI_\xi(\theta)},
   \end{equation*}
   като равенство се достига тогава и само тогава, когато производната на логаритмичното правдоподобие на извадката \( \xi_1, \ldots, \xi_n \) допуска представяне
   \begin{equation*}
-    \frac {\partial \ln l(x_1, \ldots, x_n \mid \theta)} {\partial \theta}
+    \frac {\partial \ln l(x_1, \ldots, x_n \given \theta)} {\partial \theta}
     =
     k(\theta) [t_n(x_1, \ldots, x_n) + r(\theta)],
   \end{equation*}
-  където \( k: \Theta \to \R \) не зависи от \( x_1, \ldots, x_n \).
+  където \( k: \Theta \to \BbbR \) не зависи от \( x_1, \ldots, x_n \).
 \end{theorem}
 \begin{proof}
   Отново ще докажем теоремата само за абсолютно непрекъснати разпределения. В общия случай римановите интеграли могат да се заменят с интеграли по вероятностни мерки, съответстващи на различните параметри \( \theta \in \Theta \).
 
   Диференцираме интегралите
   \begin{align*}
-     1 &= \int_{\R^n} l(x_1, \ldots, x_n \mid \theta) dx_1 \ldots dx_n,
+     1 &= \int_{\BbbR^n} l(x_1, \ldots, x_n \given \theta) dx_1 \ldots dx_n,
      \\
-     \Expect(t_n \mid \theta) &= \int_{\R^n} l(x_1, \ldots, x_n \mid \theta) t(x_1, \ldots, x_n) dx_1 \ldots dx_n.
+     \Expect(t_n \given \theta) &= \int_{\BbbR^n} l(x_1, \ldots, x_n \given \theta) t(x_1, \ldots, x_n) dx_1 \ldots dx_n.
   \end{align*}
   по \( \theta \)
   \begin{align*}
-     0 &= \int_{\R^n} \frac {\partial l(x_1, \ldots, x_n \mid \theta)} {\partial \theta} dx_1 \ldots dx_n,
+     0 &= \int_{\BbbR^n} \frac {\partial l(x_1, \ldots, x_n \given \theta)} {\partial \theta} dx_1 \ldots dx_n,
      \\
-     r'(\theta) &= \int_{\R^n} \frac {\partial l(x_1, \ldots, x_n \mid \theta)} {\partial \theta} t(x_1, \ldots, x_n) dx_1 \ldots dx_n.
+     r'(\theta) &= \int_{\BbbR^n} \frac {\partial l(x_1, \ldots, x_n \given \theta)} {\partial \theta} t(x_1, \ldots, x_n) dx_1 \ldots dx_n.
   \end{align*}
 
   Тогава
@@ -338,39 +331,39 @@
     &=
     r'(\theta) - 0 \cdot r(\theta)
     = \\ &=
-    \int_{\R^n} \frac {\partial l(x_1, \ldots, x_n \mid \theta)} {\partial \theta} \cdot [t(x_1, \ldots, x_n) - r(\theta)] dx_1 \ldots dx_n
+    \int_{\BbbR^n} \frac {\partial l(x_1, \ldots, x_n \given \theta)} {\partial \theta} \cdot [t(x_1, \ldots, x_n) - r(\theta)] dx_1 \ldots dx_n
     = \\ &=
-    \int_{\R^n} \frac {\partial \ln l(x_1, \ldots, x_n \mid \theta)} {\partial \theta} \cdot l(x_1, \ldots, x_n) \cdot [t(x_1, \ldots, x_n) - r(\theta)] dx_1 \ldots dx_n
+    \int_{\BbbR^n} \frac {\partial \ln l(x_1, \ldots, x_n \given \theta)} {\partial \theta} \cdot l(x_1, \ldots, x_n) \cdot [t(x_1, \ldots, x_n) - r(\theta)] dx_1 \ldots dx_n
     = \\ &=
-    \Expect \left( \frac {\partial \ln l(\xi_1, \ldots, \xi_n \mid \theta)} {\partial \theta} \cdot [t(\xi_1, \ldots, \xi_n) - r(\theta)] \mid \theta \right).
+    \Expect \parens*{ \frac {\partial \ln l(\xi_1, \ldots, \xi_n \given \theta)} {\partial \theta} \cdot [t(\xi_1, \ldots, \xi_n) - r(\theta)] \given* \theta }.
   \end{align*}
 
   От неравенството на Коши-Буняковски-Шварц получаваме
   \begin{align*}
-    {\left(r'(\theta) \right)}^2
+    {\parens*{r'(\theta) }}^2
     &=
-    {\left( \Expect \left( \frac {\partial \ln l(\xi_1, \ldots, \xi_n \mid \theta)} {\partial \theta} \cdot [t(\xi_1, \ldots, \xi_n) - r(\theta)] \mid \theta \right)\right)}^2
+    {\parens*{ \Expect \parens*{ \frac {\partial \ln l(\xi_1, \ldots, \xi_n \given \theta)} {\partial \theta} \cdot [t(\xi_1, \ldots, \xi_n) - r(\theta)] \given* \theta }}}^2
     \leq \\ &\leq
-    \Expect \left( {\left(\frac {\partial \ln l(\xi_1, \ldots, \xi_n \mid \theta)} {\partial \theta} \right)}^2 \mid \theta \right) \cdot \Expect \left( {\left[t(\xi_1, \ldots, \xi_n) - r(\theta) \right]}^2 \mid \theta \right)
+    \Expect \parens*{ {\parens*{\frac {\partial \ln l(\xi_1, \ldots, \xi_n \given \theta)} {\partial \theta} }}^2 \given* \theta } \cdot \Expect \parens*{ {\bracks*{t(\xi_1, \ldots, \xi_n) - r(\theta) }}^2 \given* \theta }
     = \\ &=
-    n \FisherInfo_\xi(\theta) \Var \left( t_n \mid \theta \right),
+    n \mscrI_\xi(\theta) \var \parens{ t_n \given \theta },
   \end{align*}
   като равенство се достига, когато за някоя зависеща от \( \theta \) константа \( k(\theta) \) е изпълнено
   \begin{equation*}
-    \frac {\partial \ln l(x_1, \ldots, x_n \mid \theta)} {\partial \theta} = k(\theta) (t(x_1, \ldots, x_n) - r(\theta)).
+    \frac {\partial \ln l(x_1, \ldots, x_n \given \theta)} {\partial \theta} = k(\theta) (t(x_1, \ldots, x_n) - r(\theta)).
   \end{equation*}
 \end{proof}
 
 \subsection{Нормално разпределение}
 
-Нека \( \xi \in \DNormal(\mu, \sigma^2) \) и \( \xi_1, \ldots, \xi_n \) е проста извадка над \( \xi \).
+Нека \( \xi \in \distr{No}(\mu, \sigma^2) \) и \( \xi_1, \ldots, \xi_n \) е проста извадка над \( \xi \).
 
 \begin{proposition}\label{thm:normal_mean_variance_estimators_independent}
-  Оценките \( m_n \) и \( s_n^2 \) за \( \DNormal(\mu, \sigma^2) \)-разпределена извадка са независими. За разпределенията им имаме
+  Оценките \( m_n \) и \( s_n^2 \) за \( \distr{No}(\mu, \sigma^2) \)-разпределена извадка са независими. За разпределенията им имаме
   \begin{equation*}
-    m_n \in \DNormal \left(\mu, \frac {\sigma^2} n \right),
+    m_n \in \distr{No} \parens*{\mu, \frac {\sigma^2} n },
     \\
-    (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1).
+    (n-1) \frac {s_n^2} {\sigma^2} \in \distr{\chi^2}(n-1).
   \end{equation*}
 \end{proposition}
 \begin{proof}
@@ -382,13 +375,13 @@
     &=
     \sum_{k=1}^n \xi_k^2 - {[\sqrt n \cdot m_n(\eta_1, \ldots, \eta_n)]}^2,
     \\
-    \sum_{i=1}^n {\left(\eta_i - \frac 1 n \sum_{j=1}^n \eta_j \right)}^2
+    \sum_{i=1}^n {\parens*{\eta_i - \frac 1 n \sum_{j=1}^n \eta_j }}^2
     &=
-    \sum_{k=1}^n \eta_k^2 - \frac 1 n {\left(\sum_{k=1}^n \eta_k \right)}^2,
+    \sum_{k=1}^n \eta_k^2 - \frac 1 n {\parens*{\sum_{k=1}^n \eta_k }}^2,
     \\
-    \V{\eta_n}^T \left(I_n - \frac 1 n 1_n \right) \V{\eta_n}
+    \vect{\eta_n}^T \parens*{I_n - \frac 1 n 1_n } \vect{\eta_n}
     &=
-    \V{\eta_n}^T I_n \V{\eta_n} - \V{\eta_n}^T \left(\frac 1 n 1_n \right) \V{\eta_n},
+    \vect{\eta_n}^T I_n \vect{\eta_n} - \vect{\eta_n}^T \parens*{\frac 1 n 1_n } \vect{\eta_n},
   \end{align*}
   където с \( I_n \) сме означили единичната \( n \times n \) матрица и
   \begin{align*}
@@ -403,43 +396,43 @@
 
   Имаме равенство и за ранговете на матриците на квадратичните форми, т.е.
   \begin{equation*}
-    \left(I_n - \frac 1 n 1_n \right) = \Rank I_n - \Rank \left( \frac 1 n 1_n \right).
+    \parens*{I_n - \frac 1 n 1_n } = \rank I_n - \rank \parens*{ \frac 1 n 1_n }.
   \end{equation*}
 
   От теоремата на Кокрън следва, че
   \begin{align*}
-    {[\sqrt n m_n(\eta_1, \ldots, \eta_n)]}^2 &\in \DChiSq(1),
+    {[\sqrt n m_n(\eta_1, \ldots, \eta_n)]}^2 &\in \distr{\chi^2}(1),
     \\
-    (n-1) s_n^2(\eta_1, \ldots, \eta_n) &\in \DChiSq(n - 1)
+    (n-1) s_n^2(\eta_1, \ldots, \eta_n) &\in \distr{\chi^2}(n - 1)
   \end{align*}
   и освен това двете са независими.
 
   Изразено чрез оригиналната извадка \( \xi_1, \ldots, \xi_n \), получаваме:
   \begin{enumerate}
-    \item Оценката на очакването \( m_n \) е \( \DNormal(\mu, n \sigma^2) \)-разпределена. Наистина,
+    \item Оценката на очакването \( m_n \) е \( \distr{No}(\mu, n \sigma^2) \)-разпределена. Наистина,
     \begin{align*}
-      {\left(\frac 1 {\sqrt n} \sum_{k=1}^n \frac {\xi_k - \mu} \sigma \right)}^2
+      {\parens*{\frac 1 {\sqrt n} \sum_{k=1}^n \frac {\xi_k - \mu} \sigma }}^2
       &=
-      {\left( \sqrt n \frac {m_n(\xi_1, \ldots, \xi_n) - \mu} \sigma \right)}^2
+      {\parens*{ \sqrt n \frac {m_n(\xi_1, \ldots, \xi_n) - \mu} \sigma }}^2
       = \\ &=
       {[\sqrt n \cdot m_n(\eta_1, \ldots, \eta_n)]}^2
       \in
-      \DChiSq(1),
+      \distr{\chi^2}(1),
     \end{align*}
     следователно
     \begin{align*}
-      \sqrt n \frac {m_n(\xi_1, \ldots, \xi_n) - \mu} \sigma &\in \DNormal(0, 1),
+      \sqrt n \frac {m_n(\xi_1, \ldots, \xi_n) - \mu} \sigma &\in \distr{No}(0, 1),
       \\
-      m_n(\xi_1, \ldots, \xi_n) &\in \DNormal \left(\mu, \frac {\sigma^2} n \right).
+      m_n(\xi_1, \ldots, \xi_n) &\in \distr{No} \parens*{\mu, \frac {\sigma^2} n }.
     \end{align*}
 
-    \item Коригираната оценка на дисперсията \( (n-1) \frac {s_n^2} {\sigma^2} \) е \( \DChiSq(n-1) \)-разпределена. Наистина,
+    \item Коригираната оценка на дисперсията \( (n-1) \frac {s_n^2} {\sigma^2} \) е \( \distr{\chi^2}(n-1) \)-разпределена. Наистина,
     \begin{equation*}
       (n-1) \frac {s_n^2(\xi_1, \ldots, \xi_n)} {\sigma^2}
       =
       (n-1) s_n^2(\eta_1, \ldots, \eta_n)
       \in
-      \DChiSq(n - 1).
+      \distr{\chi^2}(n - 1).
     \end{equation*}
 
     \item Оценките \( m_n \) и \( s_n^2 \) за оригиналната извадка са независими, тъй като съответните оценки за стандартизираната извадка са техни афинни преобразования и са независими.
@@ -450,12 +443,12 @@
 \begin{definition}
   Стандартизация на извадката \( \xi_1, \ldots, \xi_n \) наричаме случайната величина
   \begin{equation*}
-    \sqrt n \frac {m_n - \mu} \sigma \in \DNormal(0, 1).
+    \sqrt n \frac {m_n - \mu} \sigma \in \distr{No}(0, 1).
   \end{equation*}
 
   Аналогично на стандартизацията, \textbf{стюдентизация} наричаме случайната величина
   \begin{equation*}
-    \sqrt n \frac {m_n - \mu} {s_n} \in \DStudent(n - 1).
+    \sqrt n \frac {m_n - \mu} {s_n} \in \distr{t}(n - 1).
   \end{equation*}
 \end{definition}
 
@@ -478,33 +471,33 @@
 
 Разглеждаме следния \( \gamma \)-доверителен интервал с ниво на доверие
 \begin{align*}
-  \Prob \left( z_{\frac {1-\gamma} 2} \leq \sqrt n \frac {m_n - \mu} \sigma \leq -z_{\frac {1-\gamma} 2} = z_{\frac {1+\gamma} 2} \right) &= \gamma,
+  \Prob \parens*{ z_{\frac {1-\gamma} 2} \leq \sqrt n \frac {m_n - \mu} \sigma \leq -z_{\frac {1-\gamma} 2} = z_{\frac {1+\gamma} 2} } &= \gamma,
   \\
-  \Prob \left( -z_{\frac {1-\gamma} 2} \leq \sqrt n \frac {\mu - m_n} \sigma \leq z_{\frac {1-\gamma} 2} \right) &= \gamma,
+  \Prob \parens*{ -z_{\frac {1-\gamma} 2} \leq \sqrt n \frac {\mu - m_n} \sigma \leq z_{\frac {1-\gamma} 2} } &= \gamma,
   \\
-  \Prob \left( m_n - \frac \sigma {\sqrt n} z_{\frac {1-\gamma} 2} \leq \mu \leq m_n + \frac \sigma {\sqrt n} z_{\frac {1-\gamma} 2} \right) &= \gamma.
+  \Prob \parens*{ m_n - \frac \sigma {\sqrt n} z_{\frac {1-\gamma} 2} \leq \mu \leq m_n + \frac \sigma {\sqrt n} z_{\frac {1-\gamma} 2} } &= \gamma.
 \end{align*}
 
 \subsubsection{Доверителен интервал за очакването при неизвестна дисперсия}
 
-С \( {\DStudent(m)}_p \) ще означаваме \( p \)-квантила на \( \DStudent(m) \) разпределението на Стюдънт.
+С \( {\distr{t}(m)}_p \) ще означаваме \( p \)-квантила на \( \distr{t}(m) \) разпределението на Стюдънт.
 
 Аналогично със случая с известно средно, но използвайки стюдентизация вместо стандартизация, получаваме интервала
 \begin{equation*}
-  \Prob \left( m_n - \frac {s_n} {\sqrt n} \cdot {\DStudent(n-1)}_{\frac {1-\gamma} 2} \leq \mu \leq m_n + \frac {s_n} {\sqrt n} \cdot {\DStudent(n-1)}_{\frac {1-\gamma} 2} \right) = \gamma.
+  \Prob \parens*{ m_n - \frac {s_n} {\sqrt n} \cdot {\distr{t}(n-1)}_{\frac {1-\gamma} 2} \leq \mu \leq m_n + \frac {s_n} {\sqrt n} \cdot {\distr{t}(n-1)}_{\frac {1-\gamma} 2} } = \gamma.
 \end{equation*}
 
 \subsubsection{Доверителен интервал за стандартното отклонение}
 
-С \( {\DChiSq(m)}_p \) ще означаваме \( p \)-квантила на \( \DChiSq(m) \) разпределението.
+С \( {\distr{\chi^2}(m)}_p \) ще означаваме \( p \)-квантила на \( \distr{\chi^2}(m) \) разпределението.
 
-Тъй като според \cref{thm:normal_mean_variance_estimators_independent} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \DChiSq(n-1) \), директно намираме \( \gamma \)-доверителния интервал
+Тъй като според \cref{thm:normal_mean_variance_estimators_independent} имаме \( (n-1) \frac {s_n^2} {\sigma^2} \in \distr{\chi^2}(n-1) \), директно намираме \( \gamma \)-доверителния интервал
 \begin{align*}
-  \Prob \left( {\DChiSq(n-1)}_{\frac {1-\gamma} 2} \leq (n-1) \frac {s_n^2} {\sigma^2} \leq {\DChiSq(n-1)}_{\frac {1+\gamma} 2} \right) &= \gamma,
+  \Prob \parens*{ {\distr{\chi^2}(n-1)}_{\frac {1-\gamma} 2} \leq (n-1) \frac {s_n^2} {\sigma^2} \leq {\distr{\chi^2}(n-1)}_{\frac {1+\gamma} 2} } &= \gamma,
   \\
-  \Prob \left( \frac {{\DChiSq(n-1)}_{\frac {1-\gamma} 2}} {(n-1) s_n^2} \leq \frac 1 {\sigma^2} \leq \frac {{\DChiSq(n-1)}_{\frac {1+\gamma} 2}} {(n-1) s_n^2} \right) &= \gamma,
+  \Prob \parens*{ \frac {{\distr{\chi^2}(n-1)}_{\frac {1-\gamma} 2}} {(n-1) s_n^2} \leq \frac 1 {\sigma^2} \leq \frac {{\distr{\chi^2}(n-1)}_{\frac {1+\gamma} 2}} {(n-1) s_n^2} } &= \gamma,
   \\
-  \Prob \left( \frac {(n-1) s_n^2} {{\DChiSq(n-1)}_{\frac {1+\gamma} 2}} \leq \sigma^2 \leq \frac {(n-1) s_n^2} {{\DChiSq(n-1)}_{\frac {1-\gamma} 2}} \right) &= \gamma.
+  \Prob \parens*{ \frac {(n-1) s_n^2} {{\distr{\chi^2}(n-1)}_{\frac {1+\gamma} 2}} \leq \sigma^2 \leq \frac {(n-1) s_n^2} {{\distr{\chi^2}(n-1)}_{\frac {1-\gamma} 2}} } &= \gamma.
 \end{align*}
 
 \printbibliography

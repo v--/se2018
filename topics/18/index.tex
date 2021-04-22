@@ -1,20 +1,14 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=18,
+  title={Поасонов процес. Характеризационни свойства. Приложения.},
+  basedate={26 юни 2019},
+  author={Янис Василев}
+}
+
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{18}}
-\subtitle{Поасонов процес. Характеризационни свойства. Приложения.}
-\author{Янис Василев}
-\date{\Revision{26 юни 2019}}
 
 \begin{document}
 
@@ -39,10 +33,12 @@
 
 \subsection{Основни понятия}
 
-Ще считаме, че е фиксирано някакво вероятностно пространство \( (\Omega, \F, \Prob) \) и множество \( \symcal{N} \) от целочислени случайни величини с неотрицателни стойности над това пространство.
+Ще считаме, че е фиксирано някакво вероятностно пространство \( (\Omega, \mscrF, \Prob) \) и множество \( \symcal{N} \) от целочислени случайни величини с неотрицателни стойности над това пространство.
 
 % I want the three definition for Poisson processes to have numbers 1-3
-\setcounter{ThmCounter}{-1}
+\makeatletter
+\setcounter{counters@theorem}{-1}
+\makeatother
 \begin{definition}
   \textbf{Броящ процес} наричаме монотонната с вероятност \( 1 \) функция \( N: [0, \infty) \to \symcal{N} \), чиито аргументи обикновено интерпретираме като време и бележим с \( t \), а стойностите \( N(t) \) като брой настъпили събития за време \( t \).
 
@@ -70,13 +66,13 @@
   \begin{enumerate}
     \item \( N(0) = 0 \)
     \item \( N(t) \) е процес със стационарни и независими нараствания
-    \item \( \frac {\Prob(N(h) = 1)} h \Conv[h \to 0]{} \lambda \)
-    \item \( \frac {\Prob(N(h) \geq 1)} h \Conv[h \to 0]{} 0 \)
+    \item \( \frac {\Prob(N(h) = 1)} h \xrightarrow[h \to 0]{} \lambda \)
+    \item \( \frac {\Prob(N(h) \geq 1)} h \xrightarrow[h \to 0]{} 0 \)
   \end{enumerate}
 \end{definition}
 
 \begin{definition}\label{def:poisson_process/waiting_times}
-  Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \DExp(\lambda) \), т.е.
+  Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с разпределение \( \distr{Exp}(\lambda) \), т.е.
   \begin{align*}
     f_{\xi_n}(t) =
     \begin{cases}
@@ -92,7 +88,7 @@
     S_n &\coloneqq \sum_{k=1}^n \xi_k.
   \end{align*}
 
-  Очевидно \( S_n \in \DGamma(n, \lambda), n > 0 \), т.е.
+  Очевидно \( S_n \in \distr{Gamma}(n, \lambda), n > 0 \), т.е.
   \begin{align*}
     f_{S_n}(t)
     =
@@ -105,13 +101,13 @@
 
   Броящият процес \( N(t) \), за който е изпълнено
   \begin{equation*}
-    N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \},
+    N(t) \coloneqq \max \set{ m \geq 0 \mid S_m \leq t },
   \end{equation*}
   се нарича \textbf{поасонов процес} със степен \( \lambda \), случайните величини \( S_0, S_1, S_2, \ldots \) наричаме времена на появява на \( n \)-тото събитие, а \( \xi_1, \xi_2, \ldots \) наричаме \textbf{времена на чакане} за поява на \( n \)-тото събитие.
 \end{definition}
 
 \begin{remark}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item И при трите определения поасоновият процес \( N(t) \) има стационарни нараствания.
     \item Параметърът \( \lambda \) се нарича степен на процеса, тъй като \( \Expect(N(t)) = \lambda t \).
@@ -122,7 +118,7 @@
   Трите определения са еквивалентни.
 \end{theorem}
 \begin{proof}
-  \SubProofImplication{def:poisson_process/increments}{def:poisson_process/limits} Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
+  \ImplicationSubProof{def:poisson_process/increments}{def:poisson_process/limits} Нека първо броящият процес \( N(t) \) удовлетворява първото определение.
 
   Тогава
   \begin{equation*}
@@ -131,7 +127,7 @@
     \frac 1 h \frac {e^{-\lambda h} {(\lambda h)}^1} {1!}
     =
     \lambda e^{-\lambda h}
-    \Conv[h \to 0]{}
+    \xrightarrow[h \to 0]{}
     \lambda.
   \end{equation*}
   и
@@ -147,13 +143,13 @@
     \frac {1 - e^{-\lambda h}} h - \lambda e^{-\lambda h}
     = \\ &=
     - \frac {e^{-\lambda (0 + h)} - e^{-\lambda 0}} h - \lambda e^{-\lambda h}
-    \Conv[h \to 0]{}
+    \xrightarrow[h \to 0]{}
     -(-\lambda) e^{-\lambda 0} - \lambda e^{-\lambda 0}
     =
     0.
   \end{align*}
 
-  \SubProofImplication{def:poisson_process/limits}{def:poisson_process/increments} Обратно, ако \( N(t) \) удовлетворява второто определение, получаваме диференциалното уравнение
+  \ImplicationSubProof{def:poisson_process/limits}{def:poisson_process/increments} Обратно, ако \( N(t) \) удовлетворява второто определение, получаваме диференциалното уравнение
   \begin{align*}
     \frac {\partial \Prob(N(t) = 0)} {\partial t}
     =&
@@ -199,7 +195,7 @@
     = \\ =&
     \lim_{h \to 0} \frac {\Prob(N(t+h) = n) - \Prob(N(t) = n)} h
     = \\ =&
-    \lim_{h \to 0} \frac 1 h \left( \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k) - \Prob(N(t) = n) \right)
+    \lim_{h \to 0} \frac 1 h \parens*{ \sum_{k=0}^n \Prob(N(h) = k) \Prob(N(t) = n - k) - \Prob(N(t) = n) }
     = \\ =&
     \lim_{h \to 0} \frac 1 h [\Prob(N(t) = n) [\Prob(N(h) = 0) - 1] + \Prob(N(h) = 1) \Prob(N(t) = n - 1) + \cdots]
     = \\ =&
@@ -220,7 +216,7 @@
     =&
     -\lambda e^{\lambda t} \Prob(N(t) = n) + \lambda e^{\lambda t} \Prob(N(t) = n - 1)
     \\
-    e^{\lambda t} \left(\frac {\partial \Prob(N(t) = n)} {\partial t} + \lambda \Prob(N(t) = n) \right)
+    e^{\lambda t} \parens*{\frac {\partial \Prob(N(t) = n)} {\partial t} + \lambda \Prob(N(t) = n) }
     =&
     \lambda e^{\lambda t} \Prob(N(t) = n - 1),
     \\
@@ -277,7 +273,7 @@
     \boxed{\Prob(N(t) = n) = e^{-\lambda t} \frac {{(\lambda t)}^n} {n!}}.
   \end{equation*}
 
-  \SubProofImplication{def:poisson_process/increments}{def:poisson_process/waiting_times} Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
+  \ImplicationSubProof{def:poisson_process/increments}{def:poisson_process/waiting_times} Отново приемаме първото определение и разглеждаме вероятността за нарастване между моментите \( t \) и \( t+h \), т.е.
   \begin{align*}
     \Prob(N(t) < N(t+h))
     &=
@@ -292,11 +288,11 @@
 
   Виждаме, времето за чакане за настъпване на събитие между моментите \( t \) и \( t+h \) е експоненциално разпределено и не зависи от \( t \), т.е. времената за чакане са независими.
 
-  \SubProofImplication{def:poisson_process/waiting_times}{def:poisson_process/increments} Сега приемаме третото определение и разглеждаме вероятността да са се случили \( n \) събития до момента \( t \)
+  \ImplicationSubProof{def:poisson_process/waiting_times}{def:poisson_process/increments} Сега приемаме третото определение и разглеждаме вероятността да са се случили \( n \) събития до момента \( t \)
   \begin{align*}
     \Prob(N(t) = n)
     &=
-    \Prob(\max \{ m \geq 0 \mid S_m \leq t \} = n)
+    \Prob(\max \set{ m \geq 0 \mid S_m \leq t } = n)
     = \\ &=
     \Prob(S_n \leq t < S_{n+1})
     = \\ &=
@@ -366,7 +362,7 @@
 \end{proof}
 
 \begin{remark}
-  В частния случай, когато \( \eta \in \DUniform(0, t) \), съвместната плътност на наредените статистики ще бележим с \( u_t(x_1, \ldots, x_n) \). Тази плътност има вида
+  В частния случай, когато \( \eta \in \distr{Uniform}(0, t) \), съвместната плътност на наредените статистики ще бележим с \( u_t(x_1, \ldots, x_n) \). Тази плътност има вида
   \begin{align*}
     u_t(x_1, \ldots, x_n)
     =
@@ -416,13 +412,13 @@
 
 Предполагаме, че те са експоненциално разпределени с параметър \( 3 \). Тогава времето на повреда на \( n \)-тия машинен елемент се описва от случайните величини \( S_n = \xi_1 + \cdots + \xi_n \), а
 \begin{equation*}
-  N(t) \coloneqq \max \{ m \geq 0 \mid S_m \leq t \}
+  N(t) \coloneqq \max \set{ m \geq 0 \mid S_m \leq t }
 \end{equation*}
 е поасонов процес.
 
 Този модел ни позволява да отговаряме на много въпроси, сред които:
 \begin{enumerate}
-  \item Количеството повредени машинни елементи за три години имат разпределение \( N(3) \in \DPoisson(9) \). За три години се очакват средно \( 9 \) повреди със стандартно отклонение \( 3 \), а вероятността да се повредят цели \( 12 \) елемента е
+  \item Количеството повредени машинни елементи за три години имат разпределение \( N(3) \in \distr{Poisson}(9) \). За три години се очакват средно \( 9 \) повреди със стандартно отклонение \( 3 \), а вероятността да се повредят цели \( 12 \) елемента е
   \begin{equation*}
     \Prob(N(3) = 12) = e^{-9} \frac {9^{12}} {12!} \approx 0.07.
   \end{equation*}
@@ -435,7 +431,7 @@
 
 Можем да използваме поасонов процес, за да моделираме броя заявки към даден сървър. Ако за една секунда се случват средно \( 1000 \) заявки, използваме поасонов процес с параметър \( \lambda = 1000 \).
 \begin{enumerate}
-  \item Редно е да очакваме \( \Expect(N(90)) \pm 2\sqrt{\Var(N(90))} = 90000 \pm 600 \) заявки за минута и половина.
+  \item Редно е да очакваме \( \Expect(N(90)) \pm 2\sqrt{\var(N(90))} = 90000 \pm 600 \) заявки за минута и половина.
   \item Наредените времена на заявките са равновероятни.
   \item Поради липсата на памет на процеса, вероятността за нови повреди не се влияе от броя заявки до момента.
 \end{enumerate}
@@ -461,16 +457,16 @@
   \begin{align*}
     \Expect(X(t)) = \Expect(N(t)) \Expect(\xi_1),
     &&
-    \Var(X(t)) = \Expect(N(t)) \Expect(\xi_1^2).
+    \var(X(t)) = \Expect(N(t)) \Expect(\xi_1^2).
   \end{align*}
 \end{theorem}
 \begin{proof}
   \begin{align*}
     \Expect(X(t))
     &=
-    \Expect\left( \sum_{k=1}^{N(t)} \eta_k \right)
+    \Expect\parens*{ \sum_{k=1}^{N(t)} \eta_k }
     = \\ &=
-    \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \eta_k \mid N(t) = n \right) \Prob(N(t) = n)
+    \sum_{n=0}^\infty \Expect\parens*{ \sum_{k=1}^{N(t)} \eta_k \mid N(t) = n } \Prob(N(t) = n)
     = \\ &=
     \sum_{n=0}^\infty \Prob(N(t) = n) \sum_{k=1}^n \Expect(\eta_k)
     = \\ &=
@@ -480,27 +476,27 @@
     \\
     \Expect({X(t)}^2)
     &=
-    \Expect\left( {\left(\sum_{k=1}^{N(t)} \eta_k \right)}^2 \right)
+    \Expect\parens*{ {\parens*{\sum_{k=1}^{N(t)} \eta_k }}^2 }
     = \\ &=
-    \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \right)
+    \Expect\parens*{ \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m }
     = \\ &=
-    \sum_{n=0}^\infty \Expect\left( \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \mid N(t) = n \right) \Prob(N(t) = n)
+    \sum_{n=0}^\infty \Expect\parens*{ \sum_{k=1}^{N(t)} \sum_{m=1}^{N(t)} \eta_k \eta_m \mid N(t) = n } \Prob(N(t) = n)
     = \\ &=
-    \sum_{n=0}^\infty \left( \sum_{k=1}^n \sum_{m=1}^n \Expect(\eta_k \eta_m) \right) \Prob(N(t) = n)
+    \sum_{n=0}^\infty \parens*{ \sum_{k=1}^n \sum_{m=1}^n \Expect(\eta_k \eta_m) } \Prob(N(t) = n)
     = \\ &=
-    \sum_{n=0}^\infty \left( n \Expect(\eta_1^2) + n (n-1) {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
+    \sum_{n=0}^\infty \parens*{ n \Expect(\eta_1^2) + n (n-1) {\Expect(\eta_1)}^2 } \Prob(N(t) = n)
     = \\ &=
-    \sum_{n=0}^\infty n \left( \Expect(\eta_1^2) - {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n) + \sum_{n=0}^\infty n^2 \left( {\Expect(\eta_1)}^2 \right) \Prob(N(t) = n)
+    \sum_{n=0}^\infty n \parens*{ \Expect(\eta_1^2) - {\Expect(\eta_1)}^2 } \Prob(N(t) = n) + \sum_{n=0}^\infty n^2 \parens*{ {\Expect(\eta_1)}^2 } \Prob(N(t) = n)
     = \\ &=
-    \boxed{\Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2)},
+    \boxed{\var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2)},
     \\
-    \Var(X(t))
+    \var(X(t))
     &=
-    \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2) - {\Expect(\eta_1)}^2 {\Expect(N(t))}^2
+    \var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Expect({N(t)}^2) - {\Expect(\eta_1)}^2 {\Expect(N(t))}^2
     = \\ &=
-    \Var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \Var(N(t))
+    \var(\eta_1) \Expect(N(t)) + {\Expect(\eta_1)}^2 \var(N(t))
     = \\ &=
-    (\Var(\eta_1) + {\Expect(\eta_1)}^2) \lambda t
+    (\var(\eta_1) + {\Expect(\eta_1)}^2) \lambda t
     = \\ &=
     \lambda t \Expect(\eta_1^2)
     = \\ &=
@@ -516,8 +512,8 @@
   \begin{enumerate}
     \item \( N(0) = 0 \)
     \item \( N(t) \) е процес с независими нараствания
-    \item \( \frac {\Prob(N(t+h) - N(t) = 1)} h \Conv[h \to 0]{} \lambda(t) \)
-    \item \( \frac {\Prob(N(t+h) - N(t) \geq 1)} h \Conv[h \to 0]{} 0 \)
+    \item \( \frac {\Prob(N(t+h) - N(t) = 1)} h \xrightarrow[h \to 0]{} \lambda(t) \)
+    \item \( \frac {\Prob(N(t+h) - N(t) \geq 1)} h \xrightarrow[h \to 0]{} 0 \)
   \end{enumerate}
 
   За удобство полагаме
@@ -530,7 +526,7 @@
 \begin{theorem}
   Нека \( N(t) \) е нехомогенен поасонов процес със степен \( \lambda(t) \). Тогава
   \begin{enumerate}
-    \item \( N(t) \in \DPoisson(\Lambda(t)) \).
+    \item \( N(t) \in \distr{Poisson}(\Lambda(t)) \).
     \item Моментът \( S_n \) на появяване на \( n \)-тото събитие има плътност
     \begin{equation*}
       f_{S_n}(t) = \lambda(t) e^{-\Lambda(t)} \frac {{(\Lambda(t))}^{n-1}} {(n-1)!}

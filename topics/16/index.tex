@@ -1,20 +1,17 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=16,
+  title={Случайни величини с непрекъснати разпределения. Нормално разпределение. Равномерно разпределение, експоненциално разпределение или гама разпределение. Задачи, в които възникват.},
+  basedate={22 юни 2019},
+  author={Янис Василев}
+}
+
+% Packages
+\usepackage{enumitem}
+
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{16}}
-\subtitle{Случайни величини с непрекъснати разпределения. Нормално разпределение. Равномерно разпределение, експоненциално разпределение или гама разпределение. Задачи, в които възникват.}
-\author{Янис Василев}
-\date{\Revision{23 юни 2019}}
 
 \begin{document}
 
@@ -39,11 +36,11 @@
 \subsection{Основни дефиниции и теореми}
 
 \begin{definition}
-  \textbf{(Реална) случайна величина} над вероятностното пространство \( (\Omega, \F, \Prob) \) наричаме всяка измерима функция \( \xi : \Omega \to \R \).
+  \textbf{(Реална) случайна величина} над вероятностното пространство \( (\Omega, \mscrF, \Prob) \) наричаме всяка измерима функция \( \xi : \Omega \to \BbbR \).
 
-  Условието за измеримост на \( \xi \) може да се запише така: за всяко Борелово множество \( B \in \BorelAlgebra(\R) \) имаме
+  Условието за измеримост на \( \xi \) може да се запише така: за всяко Борелово множество \( B \in \mfrakB(\BbbR) \) имаме
   \begin{equation*}
-    \xi^{-1} (B) = \{ \omega \in \Omega \mid \xi(\omega) \in B \} \in \F.
+    \xi^{-1} (B) = \set{ \omega \in \Omega \given \xi(\omega) \in B } \in \mscrF.
   \end{equation*}
 
   \textbf{Разпределение} на \( \xi \) наричаме мярката
@@ -51,7 +48,7 @@
     \Prob_\xi(A) \coloneqq \Prob(\xi \in A).
   \end{equation*}
 
-  Две случайни величини \( \xi \) и \( \eta \) наричаме \textbf{независими}, ако за всички \( A, B \in \F \) е изпълнено
+  Две случайни величини \( \xi \) и \( \eta \) наричаме \textbf{независими}, ако за всички \( A, B \in \mscrF \) е изпълнено
   \begin{equation*}
     \Prob(\xi \in A, \eta \in B) = \Prob_\xi(A) \Prob_\eta(B).
   \end{equation*}
@@ -61,12 +58,12 @@
     F_\xi(x) \coloneqq \Prob(\xi \leq x).
   \end{equation*}
 
-  Случайната величина \( \xi \) наричаме \textbf{абсолютно непрекъсната} и казваме, че \( \xi \) има \textbf{абсолютно непрекъснато разпределение}, ако функцията ѝ на разпределение е локално абсолютно непрекъсната в \( \R \), т.е. абсолютно непрекъсната във всеки затворен интервал. Известно е, че абсолютно непрекъснатите в затворен интервал \( [a, b] \) функции са точно тези, които са диференцируеми почти навсякъде в интервала, производните им в \( [a, b] \) са интегруеми по Риман и за \( x \in [a, b] \) е изпълнено
+  Случайната величина \( \xi \) наричаме \textbf{абсолютно непрекъсната} и казваме, че \( \xi \) има \textbf{абсолютно непрекъснато разпределение}, ако функцията ѝ на разпределение е локално абсолютно непрекъсната в \( \BbbR \), т.е. абсолютно непрекъсната във всеки затворен интервал. Известно е, че абсолютно непрекъснатите в затворен интервал \( [a, b] \) функции са точно тези, които са диференцируеми почти навсякъде в интервала, производните им в \( [a, b] \) са интегруеми по Риман и за \( x \in [a, b] \) е изпълнено
   \begin{equation*}
     F_\xi(x) = \int_a^x F'_\xi(x) + F_\xi(a).
   \end{equation*}
 
-  Функцията \( f_\xi: \R \to \R \) наричаме \textbf{вероятностна плътност} на случайната величина \( \xi \), ако \( F'_\xi(x) = f_\xi(x) \) във всяка точка, в която \( F_\xi \) е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като \( f_\xi(x) \) се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
+  Функцията \( f_\xi: \BbbR \to \BbbR \) наричаме \textbf{вероятностна плътност} на случайната величина \( \xi \), ако \( F'_\xi(x) = f_\xi(x) \) във всяка точка, в която \( F_\xi \) е диференцируема. Ако за едно разпределение съществуват множество плътности, те се различават само върху множество с лебегова мярка 0 и тъй като \( f_\xi(x) \) се използва основно за интегриране, на практика няма значение с коя от плътностите ще работим.
 
   От критерия на Лебег за интегруемост по Риман следва, че плътностите са непрекъснато почти навсякъде.
 \end{definition}
@@ -88,7 +85,7 @@
 \Cref{thm:cdf_properties} ни дава обосновка да задаваме случайни величини изцяло чрез функцията им на разпределение, т.е. без изрично да задаваме вероятностни пространства.
 
 \begin{proof}[Доказателство на \cref{thm:cdf_properties}]
-  \Sufficiency
+  \SufficiencySubProof
   \begin{enumerate}
     \item За всички \( x < y \)
     \begin{align*}
@@ -96,11 +93,11 @@
       &=
       \Prob(\xi \leq x)
       = \\ &=
-      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq x })
       = \\ &=
-      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \} \cap \{ \omega \in \Omega \mid \xi(\omega) \leq y \})
+      \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq x } \cap \set{ \omega \in \Omega \given \xi(\omega) \leq y })
       \leq \\ &\leq
-      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq y \})
+      \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq y })
       = \\ &=
       \Prob(\xi \leq y)
       = \\ &=
@@ -113,11 +110,11 @@
       &=
       \lim_{h \downarrow 0} \Prob(\xi \leq x + h)
       = \\ &=
-      \lim_{h \downarrow 0} \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x + h \})
+      \lim_{h \downarrow 0} \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq x + h })
       = \\ &=
-      \Prob(\cup_{h \geq 0} \{ \omega \in \Omega \mid \xi(\omega) \leq x + h \})
+      \Prob\parens*{\bigcup_{h \geq 0} \set{ \omega \in \Omega \given \xi(\omega) \leq x + h }}
       = \\ &=
-      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      \Prob\parens*{\set{ \omega \in \Omega \given \xi(\omega) \leq x }}
       = \\ &=
       \Prob(\xi \leq x)
       = \\ &=
@@ -130,13 +127,13 @@
       &=
       \lim_{x \uparrow \infty} \Prob(\xi \leq x)
       = \\ &=
-      \lim_{x \uparrow \infty} \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      \lim_{x \uparrow \infty} \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq x })
       = \\ &=
-      \Prob(\cup_{x \uparrow \infty} \{ \omega \in \Omega \mid \xi(\omega) \leq x \})
+      \Prob\parens*{\bigcup_{x \uparrow \infty} \set{ \omega \in \Omega \given \xi(\omega) \leq x }}
       = \\ &=
-      \Prob(\cup_{x \uparrow \infty} \{ \omega \in \Omega \mid \xi(\omega) \leq 1 \})
+      \Prob\parens*{\bigcup_{x \uparrow \infty} \set{ \omega \in \Omega \given \xi(\omega) \leq 1 }}
       = \\ &=
-      \Prob(\{ \omega \in \Omega \mid \xi(\omega) \leq \infty \})
+      \Prob(\set{ \omega \in \Omega \given \xi(\omega) \leq \infty })
       = \\ &=
       \Prob(\Omega)
       =
@@ -146,30 +143,30 @@
     \item \( \lim_{x \uparrow \infty} F_\xi(x) = 0 \) се доказва напълно аналогично на \( \lim_{x \uparrow \infty} F_\xi(x) = 1 \).
   \end{enumerate}
 
-  \Necessity Нека функцията \( F_\xi \) удовлетворява условията на теоремата. Дефинираме
+  \NecessitySubProof Нека функцията \( F_\xi \) удовлетворява условията на теоремата. Дефинираме
   \begin{align*}
-    \xi: \R \to \R,     &&& \Prob: \BorelAlgebra(\R) \to [0, 1], \\
-    \xi(x) \coloneqq x, &&& \Prob((a, b]) \coloneqq F_\xi \left(\lim_{h \downarrow 0} b + h \right) - F_\xi(a), a < b \in \R.
+    \xi: \BbbR \to \BbbR,     &&& \Prob: \mfrakB(\BbbR) \to [0, 1], \\
+    \xi(x) \coloneqq x, &&& \Prob((a, b]) \coloneqq F_\xi \parens*{\lim_{h \downarrow 0} b + h } - F_\xi(a), a < b \in \BbbR.
   \end{align*}
 
-  Интервалите от вида \( (a, b] \) пораждат Бореловата \( \sigma \)-алгебра \( \BorelAlgebra(\R) \). Ще пропуснем доказателството на това, че \( \Prob \) е вероятностна мярка над \( (\R, \BorelAlgebra(\R)) \).
+  Интервалите от вида \( (a, b] \) пораждат Бореловата \( \sigma \)-алгебра \( \mfrakB(\BbbR) \). Ще пропуснем доказателството на това, че \( \Prob \) е вероятностна мярка над \( (\BbbR, \mfrakB(\BbbR)) \).
 
-  Тогава \( \xi \) е измерима функция над \( (\R, \BorelAlgebra(\R), \Prob) \) и освен това
+  Тогава \( \xi \) е измерима функция над \( (\BbbR, \mfrakB(\BbbR), \Prob) \) и освен това
   \begin{equation*}
     \Prob(\xi \leq x)
     =
     \Prob((-\infty, x])
     =
-    F_\xi(x)\quad\forall x \in \R.
+    F_\xi(x)\quad\forall x \in \BbbR.
   \end{equation*}
 
   С други думи, построихме вероятностно пространство и случайна величина \( \xi \), чиято функцията на разпределение е \( F_\xi \).
 \end{proof}
 
-До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \F, \Prob) \).
+До края на темата ще считаме, че работим над вероятностното пространство \( (\Omega, \mscrF, \Prob) \).
 
 \begin{theorem}\label{thm:density_properties}
-  Интегруемата по Риман функция \( f_\xi: \R \to \R \) е плътност на някаква абсолютно непрекъсната случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
+  Интегруемата по Риман функция \( f_\xi: \BbbR \to \BbbR \) е плътност на някаква абсолютно непрекъсната случайна величина \( \xi \) тогава и само тогава, когато са изпълнени
   \begin{align}
     &f_\xi(x) \geq 0 \text{ почти навсякъде} \tag{неотрицателност}\label{thm:density_properties/nonnegative} \\
     &\sum_k p_k = 1 \tag{нормираност}\label{thm:density_properties/normed}
@@ -179,12 +176,12 @@
 Тази теорема ни позволява да задаваме непрекъсната случайна величина изцяло чрез плътността ѝ, поради което плътността понякога се нарича разпределение на случайната величина.
 
 \begin{proof}[Доказателство на \cref{thm:density_properties}]
-  \Sufficiency Нека \( f_\xi \) е плътност на \( \xi \).
+  \SufficiencySubProof Нека \( f_\xi \) е плътност на \( \xi \).
   \begin{enumerate}
-    \item За всяка точка \( x \in \R \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
+    \item За всяка точка \( x \in \BbbR \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
     \item За произволно \( c > 0 \) функцията \( F_\xi \) е абсолютно непрекъсната в \( [-c, c] \). Следователно
     \begin{equation*}
-      \int_{\R} f_\xi(x) dx
+      \int_{\BbbR} f_\xi(x) dx
       =
       \lim_{c \uparrow \infty} \int_{-c}^c f_\xi(x) dx
       =
@@ -194,7 +191,7 @@
     \end{equation*}
   \end{enumerate}
 
-  \Necessity Нека \( f_\xi: \R \to \R \) е неотрицателна, интегруема по Риман и нормирана. Дефинираме функцията \( F_\xi(x) \coloneqq \int_{-\infty}^x f_\xi(t) dt \). Ще покажем, че за \( F_\xi \) са изпълнени свойствата на функция на разпределение:
+  \NecessitySubProof Нека \( f_\xi: \BbbR \to \BbbR \) е неотрицателна, интегруема по Риман и нормирана. Дефинираме функцията \( F_\xi(x) \coloneqq \int_{-\infty}^x f_\xi(t) dt \). Ще покажем, че за \( F_\xi \) са изпълнени свойствата на функция на разпределение:
   \begin{enumerate}
     \item Ако \( x < y \), от адитивността на римановия интеграл и неотрицателността на \( f_\xi \) следва
     \begin{equation*}
@@ -228,7 +225,7 @@
       =
       \lim_{x \uparrow \infty} \int_{-\infty}^x f_\xi(x) dx
       =
-      \int_{\R} f_\xi(x) dx = 1.
+      \int_{\BbbR} f_\xi(x) dx = 1.
     \end{equation*}
 
     \item Директно пресмятаме
@@ -260,9 +257,9 @@
   \begin{equation*}
     f_{\xi + \eta} (x)
     =
-    \int_{\R} f_\xi(y) f_\eta(x - y) dy
+    \int_{\BbbR} f_\xi(y) f_\eta(x - y) dy
     =
-    \int_{\R} f_\xi(x - y) f_\eta(y) dy.
+    \int_{\BbbR} f_\xi(x - y) f_\eta(y) dy.
   \end{equation*}
 \end{proposition}
 \begin{proof} Сумата на измерими функции е измерима, следователно \( \xi + \eta \) е случайна величина. Използвайки формулата за пълната вероятност и независимостта на \( \xi \) и \( \eta \), намираме функцията на разпределение
@@ -273,28 +270,28 @@
     = \\ &=
     \Prob(\xi \leq x - \eta)
     = \\ &=
-    \int_{\R} \Prob(\xi \leq x - y) f_\eta(y) dy
+    \int_{\BbbR} \Prob(\xi \leq x - y) f_\eta(y) dy
     = \\ &=
-    \int_{\R} F_\xi(x - y) f_\eta(y) dy.
+    \int_{\BbbR} F_\xi(x - y) f_\eta(y) dy.
   \end{align*}
 
-  Сега ще докажем, че \( F_{\xi + \eta} \) е абсолютно непрекъсната във всеки интервал \( [a, b] \). Нека \( \varepsilon > 0 \) и \( \delta = \frac \varepsilon \sup_{\R}(f_\xi) \). За произволни \( n \) непресичащи се два по два интервала \( (a_k, b_k) \subseteq [a, b] \) поради монотонността на функциите на разпределение имаме \( F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0 \). Тогава
+  Сега ще докажем, че \( F_{\xi + \eta} \) е абсолютно непрекъсната във всеки интервал \( [a, b] \). Нека \( \varepsilon > 0 \) и \( \delta = \frac \varepsilon \sup_{\BbbR}(f_\xi) \). За произволни \( n \) непресичащи се два по два интервала \( (a_k, b_k) \subseteq [a, b] \) поради монотонността на функциите на разпределение имаме \( F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k) \geq 0 \). Тогава
   \begin{align*}
-    \sum_{k=1}^n \Abs{F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k)}
+    \sum_{k=1}^n \abs{F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k)}
     &=
     \sum_{k=1}^n (F_{\xi+\eta} (b_k) - F_{\xi+\eta}(a_k))
     = \\ &=
-    \sum_{k=1}^n \left(\int_{\R} F_\xi(b_k - y) f_\eta(y) dy - \int_{\R} F_\xi(a_k - y) f_\eta(y) dy \right)
+    \sum_{k=1}^n \parens*{\int_{\BbbR} F_\xi(b_k - y) f_\eta(y) dy - \int_{\BbbR} F_\xi(a_k - y) f_\eta(y) dy }
     = \\ &=
-    \sum_{k=1}^n \int_{\R} (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
+    \sum_{k=1}^n \int_{\BbbR} (F_\xi(b_k - y) - F_\xi(a_k - y)) f_\eta(y) dy
     = \\ &=
-    \sum_{k=1}^n \int_{\R} \int_{a_k - y}^{b_k - y} f_\xi(z) dz \cdot f_\eta(y) dy
+    \sum_{k=1}^n \int_{\BbbR} \int_{a_k - y}^{b_k - y} f_\xi(z) dz \cdot f_\eta(y) dy
     \leq \\ &\leq
-    \sup_{\R}(f_\xi) \sum_{k=1}^n (b_k - y - a_k + y) \int_{\R} f_\eta(y) dy
+    \sup_{\BbbR}(f_\xi) \sum_{k=1}^n (b_k - y - a_k + y) \int_{\BbbR} f_\eta(y) dy
     = \\ &=
-    \sup_{\R}(f_\xi) \sum_{k=1}^n (b_k - a_k)
+    \sup_{\BbbR}(f_\xi) \sum_{k=1}^n (b_k - a_k)
     < \\ &<
-    \delta \sup_{\R}(f_\xi)
+    \delta \sup_{\BbbR}(f_\xi)
     =
     \varepsilon.
   \end{align*}
@@ -305,25 +302,25 @@
     =
     F'_{\xi + \eta} (x)
     =
-    \int_{\R} F'_\xi(x - y) f_\eta(y) dy
+    \int_{\BbbR} F'_\xi(x - y) f_\eta(y) dy
     =
-    \int_{\R} f_\xi(x - y) f_\eta(y) dy.
+    \int_{\BbbR} f_\xi(x - y) f_\eta(y) dy.
   \end{equation*}
 
   Аналогично се доказва
   \begin{equation*}
     f_{\xi + \eta} (x)
     =
-    \int_{\R} f_\xi(t) f_\eta(x - t) dt.
+    \int_{\BbbR} f_\xi(t) f_\eta(x - t) dt.
   \end{equation*}
 \end{proof}
 
 \begin{proposition}\label{thm:density_of_transformed_variable}
-  Ако \( \xi \) е случайна величина и функцията \( \psi: \R \to \R \) е строго монотонна и диференцируема, тогава \( \psi(\xi) \) е непрекъсната случайна величина с плътност
+  Ако \( \xi \) е случайна величина и функцията \( \psi: \BbbR \to \BbbR \) е строго монотонна и диференцируема, тогава \( \psi(\xi) \) е непрекъсната случайна величина с плътност
   \begin{equation*}
     f_{\psi(\xi)} (x)
     =
-    \Abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
+    \abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
   \end{equation*}
 \end{proposition}
 \begin{proof} Диференцирайки
@@ -338,7 +335,7 @@
     =
     (F_{\xi} \circ \psi^{-1})'(x)
     =
-    \Abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
+    \abs{(\psi^{-1})'(x)} f(\psi^{-1}(x)).
   \end{equation*}
 \end{proof}
 
@@ -347,13 +344,13 @@
 \begin{definition}
   Нека \( \xi \) е непрекъсната случайна величина. Дефинираме \textbf{очакване} на \( \xi \) чрез
   \begin{equation*}
-    \Expect(\xi) \coloneqq \int_{\R} x f_\xi(x) dx.
+    \Expect(\xi) \coloneqq \int_{\BbbR} x f_\xi(x) dx.
   \end{equation*}
-  Казваме, че \( \xi \) има (крайно) очакване, ако интегралът е абсолютно сходящ, т.е. \( \Abs{x f_\xi} \) е интегруема функция.
+  Казваме, че \( \xi \) има (крайно) очакване, ако интегралът е абсолютно сходящ, т.е. \( \abs{x f_\xi} \) е интегруема функция.
 
   Случайни величини с очакване нула наричаме \textbf{центрирани}.
 
-  Очакване от константа \( x \in \R \) дефинираме да бъде самата константа \( x \).
+  Очакване от константа \( x \in \BbbR \) дефинираме да бъде самата константа \( x \).
 \end{definition}
 
 \begin{remark}
@@ -362,7 +359,7 @@
     \Expect(\xi) \coloneqq \int \xi d\Prob.
   \end{equation*}
 
-  Нещо повече, очакването е линеен функционал над линейното пространството от всички случайни величини над \( (\Omega, \F, \Prob) \).
+  Нещо повече, очакването е линеен функционал над линейното пространството от всички случайни величини над \( (\Omega, \mscrF, \Prob) \).
 
   Непрекъснатите случайни величини обаче не образуват линейно подпространство, тъй като сумата на две зависими непрекъснати случайни величини може да не бъде непрекъсната (например \( \xi - \xi = 0 \)). Тъй като тук се ограничаваме само до непрекъснати случайни величини, ще формулираме някои свойства (например адитивност) само в частния случай, в който случайните величини са независими.
 \end{remark}
@@ -378,19 +375,19 @@
   \begin{align*}
     \Expect(\xi \eta)
     &=
-    \int_{\R} z f_{\xi \eta}(z) dz
+    \int_{\BbbR} z f_{\xi \eta}(z) dz
     = \\ &=
-    \int_{\R} z \Prob(z \leq \xi \eta < z + dz) dz
+    \int_{\BbbR} z \Prob(z \leq \xi \eta < z + dz) dz
     = \\ &=
-    \int_{\R} \int_{\R} z \Prob(z \leq t \xi < z + dz) f_\eta(t) dz
+    \int_{\BbbR} \int_{\BbbR} z \Prob(z \leq t \xi < z + dz) f_\eta(t) dz
     = \\ &=
-    \int_{\R} \int_{\R} z \left( F_\xi\left(\frac z t \right) - F_\xi\left(\frac z t + d\frac z t \right) \right) f_\eta(t) dt \; dz
+    \int_{\BbbR} \int_{\BbbR} z \parens*{ F_\xi\parens*{\frac z t } - F_\xi\parens*{\frac z t + d\frac z t } } f_\eta(t) dt \; dz
     = \\ &=
-    \int_{\R} \int_{\R} z f_\xi \left(\frac z t \right) f_\eta(t) dt \; dz
+    \int_{\BbbR} \int_{\BbbR} z f_\xi \parens*{\frac z t } f_\eta(t) dt \; dz
     = \\ &=
-    \int_{\R} t f_\eta(t) \left(\int_{\R} \frac z t f_\xi \left(\frac z t \right) d\frac z t \right) dt
+    \int_{\BbbR} t f_\eta(t) \parens*{\int_{\BbbR} \frac z t f_\xi \parens*{\frac z t } d\frac z t } dt
     = \\ &=
-    \Expect(\xi) \int_{\R} t f_\eta(t) dt
+    \Expect(\xi) \int_{\BbbR} t f_\eta(t) dt
     = \\ &=
     \Expect(\xi) \Expect(\eta).
   \end{align*}
@@ -404,30 +401,30 @@
   \begin{align*}
     \Expect(\xi + \eta)
     &=
-    \int_{\R} x f_{\xi + \eta} (x) dx
+    \int_{\BbbR} x f_{\xi + \eta} (x) dx
     = \\ &=
-    \int_{\R} x \int_{\R} f_\xi(x - t) f_\eta(t) dt \; dx
+    \int_{\BbbR} x \int_{\BbbR} f_\xi(x - t) f_\eta(t) dt \; dx
     = \\ &=
-    \int_{\R} \left( \int_{\R} x f_\xi(x - t) dx \right) f_\eta(t) dt
+    \int_{\BbbR} \parens*{ \int_{\BbbR} x f_\xi(x - t) dx } f_\eta(t) dt
     = \\ &=
-    \int_{\R} \left( \int_{\R} (x - t + t) f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    \int_{\BbbR} \parens*{ \int_{\BbbR} (x - t + t) f_\xi(x - t) d(x - t) } f_\eta(t) dt
     = \\ &=
-    \int_{\R} \left( \int_{\R} (x - t) f_\xi(x - t) d(x - t) + t \int_{\R} f_\xi(x - t) d(x - t) \right) f_\eta(t) dt
+    \int_{\BbbR} \parens*{ \int_{\BbbR} (x - t) f_\xi(x - t) d(x - t) + t \int_{\BbbR} f_\xi(x - t) d(x - t) } f_\eta(t) dt
     = \\ &=
-    \int_{\R} (\Expect(\xi) + t) f_\eta(t) dt
+    \int_{\BbbR} (\Expect(\xi) + t) f_\eta(t) dt
     = \\ &=
-    \Expect(\xi) \int_{\R} f_\eta(t) dt + \int_{\R} t f_\eta(t) dt
+    \Expect(\xi) \int_{\BbbR} f_\eta(t) dt + \int_{\BbbR} t f_\eta(t) dt
     = \\ &=
     \Expect(\xi) + \Expect(\eta).
   \end{align*}
 \end{proof}
 
 \begin{proposition}\label{thm:lotus}
-  Нека \( \xi \) е непрекъсната случайна величина с крайно очакване. Нека \( \psi: \R \to \R \) е монотонна. Тогава \( \psi(\xi) \) е непрекъсната случайна и е изпълнено
+  Нека \( \xi \) е непрекъсната случайна величина с крайно очакване. Нека \( \psi: \BbbR \to \BbbR \) е монотонна. Тогава \( \psi(\xi) \) е непрекъсната случайна и е изпълнено
   \begin{equation*}
     \Expect(\psi(\xi))
     =
-    \int_{\R} \psi(x) f_\xi(x) dx.
+    \int_{\BbbR} \psi(x) f_\xi(x) dx.
   \end{equation*}
 \end{proposition}
 
@@ -435,19 +432,19 @@
   \begin{align*}
     \Expect(\psi(\xi))
     &=
-    \int_{\R} x f_{\psi(\xi)}(x) dx
+    \int_{\BbbR} x f_{\psi(\xi)}(x) dx
     = \\ &=
-    \int_{\R} x \Prob(x \leq \psi(\xi) \leq x + dx) dx
+    \int_{\BbbR} x \Prob(x \leq \psi(\xi) \leq x + dx) dx
     = \\ &=
-    \int_{\R} x \Prob(\psi^{-1}(x) \leq \xi \leq \psi^{-1}(x + dx)) dx
+    \int_{\BbbR} x \Prob(\psi^{-1}(x) \leq \xi \leq \psi^{-1}(x + dx)) dx
     = \\ &=
-    \int_{\R} x \left( F_\xi(\psi^{-1}(x + dx)) - F_\xi(\psi^{-1}(x)) \right) dx
+    \int_{\BbbR} x \parens*{ F_\xi(\psi^{-1}(x + dx)) - F_\xi(\psi^{-1}(x)) } dx
     = \\ &=
-    \int_{\R} x f_\xi(\psi^{-1}(x)) dx
+    \int_{\BbbR} x f_\xi(\psi^{-1}(x)) dx
     = \\ &=
-    \int_{\R} \psi(x) f_\xi(x) d \psi(x)
+    \int_{\BbbR} \psi(x) f_\xi(x) d \psi(x)
     = \\ &=
-    \int_{\R} \psi(x) f_\xi(x) \psi'(x) dx.
+    \int_{\BbbR} \psi(x) f_\xi(x) \psi'(x) dx.
   \end{align*}
 \end{proof}
 
@@ -456,18 +453,18 @@
 \begin{definition}
   \textbf{Ковариация} на случайните величини \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
-    \Cov(\xi, \eta)
+    \cov(\xi, \eta)
     \coloneqq
     \Expect((\xi - \Expect \xi) (\eta - \Expect \eta)).
   \end{equation*}
 
   \textbf{Дисперсия} или \textbf{вариация} на случайната величина \( \xi \) наричаме
   \begin{align*}
-    \Var(\xi)
+    \var(\xi)
     \coloneqq
-    \Cov(\xi, \xi)
+    \cov(\xi, \xi)
     &=
-    \Expect \left({(\xi - \Expect \xi)}^2 \right)
+    \Expect \parens*{{(\xi - \Expect \xi)}^2 }
     = \\ &=
     \Expect(\xi^2 - 2 \xi \Expect \xi + {\Expect(\xi)}^2)
     = \\ &=
@@ -478,20 +475,20 @@
 
   \textbf{Корелация} на \( \xi \) и \( \eta \) наричаме
   \begin{equation*}
-    \Corr(\xi, \eta)
+    \corr(\xi, \eta)
     \coloneqq
-    \frac {\Cov(\xi, \eta)} {\sqrt{\Var(\xi) \Var(\eta)}}.
+    \frac {\cov(\xi, \eta)} {\sqrt{\var(\xi) \var(\eta)}}.
   \end{equation*}
 
-  От неравенството на Коши-Буняковски-Шварц следва, че \( \Abs{\Corr(\xi, \eta)} \leq 1 \).
+  От неравенството на Коши-Буняковски-Шварц следва, че \( \abs{\corr(\xi, \eta)} \leq 1 \).
 
-  Числото \( \Expect(\xi^n) \) наричаме \( n \)-ти \textbf{момент} на \( \xi \), а \( \Expect \left( {(\xi - \Expect \xi)}^n \right) \) наричаме \( n \)-ти \textbf{централен момент} на \( \xi \).
+  Числото \( \Expect(\xi^n) \) наричаме \( n \)-ти \textbf{момент} на \( \xi \), а \( \Expect \parens*{ {(\xi - \Expect \xi)}^n } \) наричаме \( n \)-ти \textbf{централен момент} на \( \xi \).
 
   Очакването всъщност е просто първият момент, а дисперсията - вторият централен момент. Коренът на дисперсията се нарича \textbf{стандартно отклонение} и често се бележи със \( \sigma_\xi \).
 
-  Две случайни величини се наричат \textbf{некорелирани} или \textbf{ортогонални}, ако ковариацията им е \( 0 \), защото ковариацията играе ролята на скаларно произведение в пространството \( \LSpace^2 \) от (всички, не непременно непрекъснати) случайни величини с краен втори момент.
+  Две случайни величини се наричат \textbf{некорелирани} или \textbf{ортогонални}, ако ковариацията им е \( 0 \), защото ковариацията играе ролята на скаларно произведение в пространството \( \op{L}^2 \) от (всички, не непременно непрекъснати) случайни величини с краен втори момент.
 
-  Случайни величини със стандартно отклонение единица наричаме \textbf{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \LSpace^2 \).
+  Случайни величини със стандартно отклонение единица наричаме \textbf{нормирани}, тъй като стандартно отклонение играе ролята на норма в \( \op{L}^2 \).
 \end{definition}
 
 \begin{proposition}\label{thm:independence_implies_orthogonality}
@@ -500,7 +497,7 @@
 \begin{proof}
   Нека \( \xi \) и \( \eta \) са независими и имат крайни очаквания съответно \( \mu \) и \( \eta \). Тогава
   \begin{equation*}
-    \Cov(\xi, \eta)
+    \cov(\xi, \eta)
     =
     \Expect((\xi - \mu) (\eta - \nu))
     =
@@ -518,28 +515,28 @@
   Ако \( \Expect(\xi^n) \) съществува, съществуват и моментите от по-нисък ред.
 \end{proposition}
 \begin{proof}
-  Първо да забележим, че за \( y \in (0, 1) \) имаме \( {\Prob(\xi \leq x)}^y < \Prob(\xi \leq x) \). Ще докажем, че \( \Expect({\Abs{\xi}}^{n-1}) \) съществува. Тъй като вероятностната мярка е нормирана, можем да приложим неравенството на Йенсен и да получим:
+  Първо да забележим, че за \( y \in (0, 1) \) имаме \( {\Prob(\xi \leq x)}^y < \Prob(\xi \leq x) \). Ще докажем, че \( \Expect({\abs{\xi}}^{n-1}) \) съществува. Тъй като вероятностната мярка е нормирана, можем да приложим неравенството на Йенсен и да получим:
   \begin{align*}
-    \Expect({\Abs{\xi}}^{n-1})
+    \Expect({\abs{\xi}}^{n-1})
     &\leq
-    {\Expect({\Abs{\xi}}^{n-1})}^{\frac n {n-1}}
+    {\Expect({\abs{\xi}}^{n-1})}^{\frac n {n-1}}
     = \\ &=
-    {\left( \int_{\R} {\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
+    {\parens*{ \int_{\BbbR} {\abs{x_k}}^{n-1} f_\xi(x) dx }}^{\frac n {n-1}}
     \leq \\ &\leq
-    \int_{\R} {\left({\Abs{x_k}}^{n-1} f_\xi(x) dx \right)}^{\frac n {n-1}}
+    \int_{\BbbR} {\parens*{{\abs{x_k}}^{n-1} f_\xi(x) dx }}^{\frac n {n-1}}
     \leq \\ &\leq
-    \int_{\R} {\left({\Abs{x_k}}^{n-1} \right)}^{\frac n {n-1}} f_\xi(x) dx
+    \int_{\BbbR} {\parens*{{\abs{x_k}}^{n-1} }}^{\frac n {n-1}} f_\xi(x) dx
     = \\ &=
-    \int_{\R} {\Abs{x_k}}^n f_\xi(x) dx
+    \int_{\BbbR} {\abs{x_k}}^n f_\xi(x) dx
     =
-    \Expect({\Abs{\xi}}^n).
+    \Expect({\abs{\xi}}^n).
   \end{align*}
 \end{proof}
 
 \begin{definition}
   Ако една случайна величина има крайна дисперсия, можем да я \textbf{стандартизираме}, разглеждайки вместо нея
   \begin{equation*}
-    \hat \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\Var(\xi)}}.
+    \hat \xi = \frac {\xi - \Expect(\xi)} {\sqrt{\var(\xi)}}.
   \end{equation*}
 \end{definition}
 
@@ -551,17 +548,17 @@
   \begin{align*}
     \Expect(\hat \xi)
     &=
-    \frac 1 {\sqrt{\Var(\xi)}} \Expect(\xi - \Expect\xi)
+    \frac 1 {\sqrt{\var(\xi)}} \Expect(\xi - \Expect\xi)
     =
     0
     \\
-    \Var(\hat \xi)
+    \var(\hat \xi)
     &=
-    \frac 1 {\Var(\xi)} \Expect({\left[ \xi - \Expect\xi - \Expect(\xi - \Expect\xi) \right]}^2) = 0
+    \frac 1 {\var(\xi)} \Expect({\bracks*{ \xi - \Expect\xi - \Expect(\xi - \Expect\xi) }}^2) = 0
     =
-    \frac 1 {\Var(\xi)} \Expect({(\xi - \Expect\xi)}^2)
+    \frac 1 {\var(\xi)} \Expect({(\xi - \Expect\xi)}^2)
     =
-    \frac {\Var(\xi)} {\Var(\xi)}
+    \frac {\var(\xi)} {\var(\xi)}
     =
     1.
   \end{align*}
@@ -577,16 +574,16 @@
 
   \textbf{Характеристична функция} на \( \xi \) наричаме
   \begin{equation*}
-    \Char_\xi (t) \coloneqq \Expect(e^{it\xi}).
+    \varphi_\xi (t) \coloneqq \Expect(e^{it\xi}).
   \end{equation*}
 
-  Изпълнено е \( \Char_\xi(t) = \MGF_\xi(it) \).
+  Изпълнено е \( \varphi_\xi(t) = \MGF_\xi(it) \).
 \end{definition}
 
 \begin{remark}
   Не сме дефинирали очакване от комплексна случайна величина, но теоретичната обосновка идва от формулите на Ойлер:
   \begin{equation*}
-    \Char_\xi (t)
+    \varphi_\xi (t)
     =
     \Expect(e^{it\xi})
     =
@@ -607,16 +604,16 @@
   \begin{enumerate}
     \item В общия случай пораждащата моментите функция съществува само в \( 0 \). Ако тя съществува в околност на \( 0 \), то тя е гладка в тази околност, съществуват всички моменти и е изпълнено \( \Expect(\xi^m) = \MGF_\xi^{(m)} (0) \) за \( m = 1, 2, \ldots \)
 
-    \item Ако пораждащите моментите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( t \in \R \), имаме
+    \item Ако пораждащите моментите функции на \( \xi \), \( \eta \) и \( \xi + \eta \) съществуват в точка \( t \in \BbbR \), имаме
     \begin{equation*}
       \MGF_{\xi + \eta}(t) = \MGF_\xi(t) \MGF_\eta(t).
     \end{equation*}
 
-    \item Ако \( \MGF_\xi \) и \( \MGF_\eta \) имат обща дефиниционна област, различна от \( \{ 0 \} \), в която те съвпадат, то \( \xi \) и \( \eta \) имат еднакво разпределение.
+    \item Ако \( \MGF_\xi \) и \( \MGF_\eta \) имат обща дефиниционна област, различна от \( \set{ 0 } \), в която те съвпадат, то \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item Пораждащата моментите функция винаги съществува в \( 0 \), тъй като \( \MGF_\xi(0) = \Expect(e^{0\xi}) = \Expect(1) = 1 \).
 
@@ -626,12 +623,12 @@
       =
       \Expect(e^{-\tau\xi} + e^{\tau\xi})
       =
-      \Expect\left( 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} \right)
+      \Expect\parens*{ 2 \sum_{k=0}^\infty \frac {\xi^{2k}} {(2k)!} \tau^{2k} }
       =
       2 \sum_{k=0}^\infty \frac {\Expect(\xi^{2k})} {(2k)!} \tau^{2k}.
     \end{equation*}
 
-    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\Abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според \cref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
+    Внасянето на очакването е възможно, защото всички членове на реда са неотрицателни. От \( \Expect(\xi^{2m}) = \Expect(\abs{\xi^{2m}}) \) се вижда, че всички четни моменти съществуват. Според \cref{thm:lower_order_moments_exist} съществуват и всички нечетни моменти.
 
     При фиксирано \( n = 1, 2, \ldots \) за някаква околност на \( 0 \), съдържаща се в \( U \), за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
@@ -639,11 +636,11 @@
       &=
       \Expect(e^{t\xi})
       = \\ &=
-      \Expect\left(\sum_{k=0}^n \frac {\xi^k} {k!} t^k + \frac {{(\alpha \xi)}^{(n+1)} e^{\alpha t \xi}} {(n+1)!} t^{n+1} \right)
+      \Expect\parens*{\sum_{k=0}^n \frac {\xi^k} {k!} t^k + \frac {{(\alpha \xi)}^{(n+1)} e^{\alpha t \xi}} {(n+1)!} t^{n+1} }
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{\alpha}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \Conv[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha t \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
 
     Получихме полином на Тейлър за функцията \( \MGF_\xi(t) \). Тогава \( \MGF_\xi(t) \) има \( n \)-та производна, при това \( \MGF^{(n)}_\xi(0) = \Expect(\xi^n) \).
 
@@ -658,7 +655,7 @@
 
     В частност, \( \MGF^{(n)}_\xi(0) = \Expect(\xi^n) \).
 
-    \item Ако пораждащите моментите функции съществуват в \( t \in \R \), тъй като \( \xi \) и \( \eta \) са независими, случайните величини \( e^{t\xi} \) и \( e^{t\eta} \) също са независими и
+    \item Ако пораждащите моментите функции съществуват в \( t \in \BbbR \), тъй като \( \xi \) и \( \eta \) са независими, случайните величини \( e^{t\xi} \) и \( e^{t\eta} \) също са независими и
     \begin{equation*}
       \MGF_{\xi + \eta}(t)
       =
@@ -675,96 +672,96 @@
     \begin{align*}
       \MGF_\xi(t) - \MGF_\eta(t) &= 0
       \\
-      \int_{\R} e^{tx} f_\xi(x) - \int_{\R} e^{tx} f_\eta(x) dx &= 0
+      \int_{\BbbR} e^{tx} f_\xi(x) - \int_{\BbbR} e^{tx} f_\eta(x) dx &= 0
       \\
-      \int_{\R} e^{tx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+      \int_{\BbbR} e^{tx} (f_\xi(x) - f_\eta(x)) dx &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко \( t \in U \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \R \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
+    Последното равенство е изпълнено за всяко \( t \in U \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \BbbR \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
 \end{proof}
 
 \begin{theorem}[Свойства на характеристичните функции]\label{thm:char_properties}
   Нека \( \xi \) и \( \eta \) са независими дискретни случайни величини.
 
-  За характеристичните функции \( \Char_\xi \) и \( \Char_\eta \) са изпълнени следните свойства
+  За характеристичните функции \( \varphi_\xi \) и \( \varphi_\eta \) са изпълнени следните свойства
   \begin{enumerate}
-    \item \( \Char_\xi \) съществува и е равномерно непрекъсната навсякъде върху реалната права.
+    \item \( \varphi_\xi \) съществува и е равномерно непрекъсната навсякъде върху реалната права.
 
-    \item Ако \( \xi^n \) има краен \( n \)-ти момент, е изпълнено \( \Expect(\xi^m) = i^{-m} \Char_\xi^{(m)} (0) \) за \( m = 1, \ldots, n \).
+    \item Ако \( \xi^n \) има краен \( n \)-ти момент, е изпълнено \( \Expect(\xi^m) = i^{-m} \varphi_\xi^{(m)} (0) \) за \( m = 1, \ldots, n \).
 
-    \item За всяко \( t \in \R \) имаме
+    \item За всяко \( t \in \BbbR \) имаме
     \begin{equation*}
-      \Char_{\xi + \eta}(t) = \Char_\xi(t) \Char_\eta(t).
+      \varphi_{\xi + \eta}(t) = \varphi_\xi(t) \varphi_\eta(t).
     \end{equation*}
 
-    \item Ако \( \Char_\xi \) и \( \Char_\eta \) съвпадат, то \( \xi \) и \( \eta \) имат еднакво разпределение.
+    \item Ако \( \varphi_\xi \) и \( \varphi_\eta \) съвпадат, то \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item За да докажем, че \( \Char_\xi \) е дефинирана навсякъде в \( \R \), оценяваме отгоре абсолютната стойност на \( \Char_\xi \) за \( t \in \R \):
+    \item За да докажем, че \( \varphi_\xi \) е дефинирана навсякъде в \( \BbbR \), оценяваме отгоре абсолютната стойност на \( \varphi_\xi \) за \( t \in \BbbR \):
     \begin{equation*}
-      \Abs{\Char_\xi(t)}
+      \abs{\varphi_\xi(t)}
       =
-      \Abs{\Expect(e^{it\xi})}
+      \abs{\Expect(e^{it\xi})}
       =
-      \Abs{\int_{\R} e^{itx} f_\xi(x) dx}
+      \abs{\int_{\BbbR} e^{itx} f_\xi(x) dx}
       \leq
-      \int_{\R} \Abs{e^{itx}} f_\xi(x) dx
+      \int_{\BbbR} \abs{e^{itx}} f_\xi(x) dx
       =
-      \int_{\R} f_\xi(x) dx
+      \int_{\BbbR} f_\xi(x) dx
       =
       1.
     \end{equation*}
 
-    За да докажем и равномерната непрекъснатост в \( \R \), първо оценяваме отгоре израза
+    За да докажем и равномерната непрекъснатост в \( \BbbR \), първо оценяваме отгоре израза
     \begin{align*}
-      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      \abs{\varphi_\xi(t + h) - \varphi_\xi(t)}
       &=
-      \Abs{\Expect(e^{i(t + h)\xi}) - \Expect(e^{it\xi})}
+      \abs{\Expect(e^{i(t + h)\xi}) - \Expect(e^{it\xi})}
       = \\ &=
-      \Abs{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
+      \abs{\Expect(e^{it\xi} (e^{ih\xi} - 1))}
       = \\ &=
-      \Abs{\int_{\R} e^{itx} (e^{ihx} - 1) f_\xi(x) dx}
+      \abs{\int_{\BbbR} e^{itx} (e^{ihx} - 1) f_\xi(x) dx}
       \leq \\ &\leq
-      \int_{\R} \Abs{e^{itx}} \Abs{(e^{ihx} - 1)} f_\xi(x) dx
+      \int_{\BbbR} \abs{e^{itx}} \abs{(e^{ihx} - 1)} f_\xi(x) dx
       = \\ &=
-      \int_{\R} \Abs{(e^{ihx} - 1)} f_\xi(x) dx.
+      \int_{\BbbR} \abs{(e^{ihx} - 1)} f_\xi(x) dx.
     \end{align*}
 
-    Ще използваме, че за всяко \( z \in \Complex \) неравенството на Йенсен ни дава
+    Ще използваме, че за всяко \( z \in \BbbC \) неравенството на Йенсен ни дава
     \begin{equation*}
-      \Abs{e^{iz} - 1}
+      \abs{e^{iz} - 1}
       =
-      \Abs{i \int_0^z e^{it} dt}
+      \abs{i \int_0^z e^{it} dt}
       \leq
-      \int_0^{\Abs{z}} \Abs{e^{it}} dt
+      \int_0^{\abs{z}} \abs{e^{it}} dt
       =
-      \int_0^{\Abs{z}} dt
+      \int_0^{\abs{z}} dt
       =
-      \Abs{z}.
+      \abs{z}.
     \end{equation*}
 
-    Фиксираме \( \varepsilon > 0 \). Избираме константа \( c_\varepsilon > 0 \), такава че \( \Prob(\Abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
-    Разглеждаме две множества: \( A \coloneqq (-c_\varepsilon, c_\varepsilon) \) и \( B \coloneqq \R \setminus A \).
+    Фиксираме \( \varepsilon > 0 \). Избираме константа \( c_\varepsilon > 0 \), такава че \( \Prob(\abs{\xi} > c_\varepsilon) < \frac \varepsilon 3 \).
+    Разглеждаме две множества: \( A \coloneqq (-c_\varepsilon, c_\varepsilon) \) и \( B \coloneqq \BbbR \setminus A \).
 
     За \( x \in A \) имаме
     \begin{equation*}
-      \int_A \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \int_A \abs{e^{ihx} - 1} f_\xi(x) dx
       \leq
-      \int_A \Abs{h x} f_\xi(x) dx
+      \int_A \abs{h x} f_\xi(x) dx
       \leq
-      c_\varepsilon \Abs h \int_A f_\xi(x) dx
+      c_\varepsilon \abs h \int_A f_\xi(x) dx
       \leq
-      c_\varepsilon \Abs h.
+      c_\varepsilon \abs h.
     \end{equation*}
 
     За \( x \in B \) имаме
     \begin{equation*}
-      \int_B \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \int_B \abs{e^{ihx} - 1} f_\xi(x) dx
       \leq
-      \int_B \left( \Abs{e^{ihx}} + 1 \right) f_\xi(x) dx
+      \int_B \parens*{ \abs{e^{ihx}} + 1 } f_\xi(x) dx
       \leq
       2 \int_B f_\xi(x) dx
       <
@@ -773,43 +770,43 @@
 
     За целия интеграл тогава получаваме
     \begin{equation*}
-      \int_{\R} \Abs{e^{ihx} - 1} f_\xi(x) dx
+      \int_{\BbbR} \abs{e^{ihx} - 1} f_\xi(x) dx
       <
-      c_\varepsilon \Abs{h} + 2 \varepsilon.
+      c_\varepsilon \abs{h} + 2 \varepsilon.
     \end{equation*}
 
     Полагаме \( \delta = \frac \varepsilon {3 c_\varepsilon} \).
 
-    Тогава за \( \Abs h < \delta \) имаме
+    Тогава за \( \abs h < \delta \) имаме
     \begin{equation*}
-      \Abs{\Char_\xi(t + h) - \Char_\xi(t)}
+      \abs{\varphi_\xi(t + h) - \varphi_\xi(t)}
       <
-      c_\varepsilon \Abs{h} + \frac {2\varepsilon} 3
+      c_\varepsilon \abs{h} + \frac {2\varepsilon} 3
       <
       \frac {\varepsilon} 3 + \frac {2\varepsilon} 3
       =
       \varepsilon.
     \end{equation*}
 
-    Числото \( \delta \) зависи само от \( \varepsilon \), следователно \( \Char_\xi(t) \) е равномерно непрекъсната върху цялата реална права.
+    Числото \( \delta \) зависи само от \( \varepsilon \), следователно \( \varphi_\xi(t) \) е равномерно непрекъсната върху цялата реална права.
 
     \item Нека съществува моментът \( \Expect \xi^n \). Тогава съществуват и моментите от по-нисък ред и в някаква околност на \( 0 \) за някакво \( \alpha \in [0, 1] \) теоремата на Тейлър, приложена към експоненциалната функция, ни дава
     \begin{align*}
-      \Char_\xi(t)
+      \varphi_\xi(t)
       &=
       \Expect(e^{it\xi})
       = \\ &=
-      \Expect\left(\sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + \frac {{(\alpha i \xi)}^{(n+1)} e^{\alpha it \xi}} {(n+1)!} t^{n+1} \right)
+      \Expect\parens*{\sum_{k=0}^n \frac {i^k \xi^k} {k!} t^k + \frac {{(\alpha i \xi)}^{(n+1)} e^{\alpha it \xi}} {(n+1)!} t^{n+1} }
       = \\ &=
       \sum_{k=0}^n \frac {i^k \Expect(\xi^k)} {k!} t^k + \frac {{(\alpha i)}^{(n+1)} \Expect(h(t))} {(n+1)!} t^{n+1},
     \end{align*}
-    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \Conv[t \to 0]{} 0 \) поточково.
+    където \( h(t) \coloneqq \xi^{(n+1)} e^{\alpha it \xi} \xrightarrow[t \to 0]{} 0 \) поточково.
 
-    Получихме полином на Тейлър за функцията \( \Char_\xi(t) \). Тогава \( \Char_\xi(t) \) има \( n \)-та производна, при това \( \Char^{(n)}_\xi(0) = i^n \Expect(\xi^n) \).
+    Получихме полином на Тейлър за функцията \( \varphi_\xi(t) \). Тогава \( \varphi_\xi(t) \) има \( n \)-та производна, при това \( \varphi^{(n)}_\xi(0) = i^n \Expect(\xi^n) \).
 
-    \item Тъй като \( \xi \) и \( \eta \) са независими, за произволно \( t \in \R \) величините \( e^{t\xi} \) и \( e^{t\eta} \) са независими и
+    \item Тъй като \( \xi \) и \( \eta \) са независими, за произволно \( t \in \BbbR \) величините \( e^{t\xi} \) и \( e^{t\eta} \) са независими и
     \begin{equation*}
-      \Char_{\xi + \eta}(t)
+      \varphi_{\xi + \eta}(t)
       =
       \Expect(e^{it(\xi + \eta)})
       =
@@ -817,18 +814,18 @@
       =
       \Expect(e^{it\xi}) \Expect(e^{it\eta})
       =
-      \Char_\xi(t) \Char_\eta(t).
+      \varphi_\xi(t) \varphi_\eta(t).
     \end{equation*}
 
     \item Ако функциите \( \MGF_\xi \) и \( \MGF_\eta \) съвпадат, имаме
     \begin{align*}
-      \Char_\xi(t) - \Char_\eta(t) &= 0
+      \varphi_\xi(t) - \varphi_\eta(t) &= 0
       \\
-      \int_{\R} e^{itx} f_\xi(x) - \int_{\R} e^{itx} f_\eta(x) dx &= 0
+      \int_{\BbbR} e^{itx} f_\xi(x) - \int_{\BbbR} e^{itx} f_\eta(x) dx &= 0
       \\
-      \int_{\R} e^{itx} (f_\xi(x) - f_\eta(x)) dx &= 0.
+      \int_{\BbbR} e^{itx} (f_\xi(x) - f_\eta(x)) dx &= 0.
     \end{align*}
-    Последното равенство е изпълнено за всяко \( t \in \R \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \R \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
+    Последното равенство е изпълнено за всяко \( t \in \BbbR \) точно когато \( f_\xi(x) = f_\eta(x) \) почти за всяко \( x \in \BbbR \). Следователно \( \xi \) и \( \eta \) имат еднакво разпределение.
   \end{enumerate}
 \end{proof}
 
@@ -837,18 +834,18 @@
 \subsubsection{Нормално разпределение}\label{sec:normal}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{нормално разпределение} с очакване \( \mu \in \R \) и стандартно отклонение \( \sigma > 0 \) и пишем \( \xi \in \DNormal(\mu, \sigma^2) \), ако плътността има вида
+  Казваме, че случайната величина \( \xi \) има \textbf{нормално разпределение} с очакване \( \mu \in \BbbR \) и стандартно отклонение \( \sigma > 0 \) и пишем \( \xi \in \distr{No}(\mu, \sigma^2) \), ако плътността има вида
   \begin{equation*}
     f_\xi(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}}.
   \end{equation*}
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и от \( \int_{\R} e^{-x^2} dx = \sqrt \pi \) получаваме
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \BbbR \) и от \( \int_{\BbbR} e^{-x^2} dx = \sqrt \pi \) получаваме
   \begin{equation*}
-    \int_{\R} \varphi(x) dx
+    \int_{\BbbR} \varphi(x) dx
     =
-    \int_{\R} \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}} dx
+    \int_{\BbbR} \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{{(x-\mu)}^2} {2\sigma^2}} dx
     =
-    \frac 1 {\sqrt{\pi}} \int_{\R} e^{-{\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)}^2} d\left(\frac {x-\mu} {\sqrt 2 \sigma} \right)
+    \frac 1 {\sqrt{\pi}} \int_{\BbbR} e^{-{\parens*{\frac {x-\mu} {\sqrt 2 \sigma} }}^2} d\parens*{\frac {x-\mu} {\sqrt 2 \sigma} }
     =
     \frac {\sqrt{\pi}} {\sqrt{\pi}}
     =
@@ -860,7 +857,7 @@
 
 Поради различните варианти на централната гранична теорема, нормалното разпределение е гранично за средно аритметичното на независими случайни величини от много други разпределения. Това го прави най-широко приложимото вероятностно разпределение. На практика нормалното разпределение се използва за приближено описание на всякакъв род данни - от анализ на резултати от социологически проучвания до моделиране на финансови пазари или термална радиация.
 
-Нека \( \eta \in \DNormal(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от \cref{thm:density_of_transformed_variable} получаваме, че плътността на \( \xi \) е
+Нека \( \eta \in \distr{No}(\mu, \sigma^2) \) и \( \xi \coloneqq \frac {\eta - \mu} \sigma \). Тъй като \( \eta = \sigma \xi + \mu \), от \cref{thm:density_of_transformed_variable} получаваме, че плътността на \( \xi \) е
 \begin{equation*}
   f_\xi(x)
   =
@@ -873,7 +870,7 @@
   \varphi(x).
 \end{equation*}
 
-Получихме, че \( \xi \in \DNormal(0, 1) \) има стандартно нормално разпределение. Затова е достатъчно да намерим пораждащата моментите функция, очакването и дисперсията само на стандартното нормално разпределение:
+Получихме, че \( \xi \in \distr{No}(0, 1) \) има стандартно нормално разпределение. Затова е достатъчно да намерим пораждащата моментите функция, очакването и дисперсията само на стандартното нормално разпределение:
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -881,13 +878,13 @@
   &=
   \Expect(e^{t\xi})
   = \\ &=
-  \int_{\R} e^{tx} \cdot \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2} dx
+  \int_{\BbbR} e^{tx} \cdot \frac 1 {\sqrt{2\pi}} e^{-\frac {x^2} 2} dx
   = \\ &=
-  \frac 1 {\sqrt{2\pi}} \int_{\R} e^{tx -\frac {x^2} 2} dx
+  \frac 1 {\sqrt{2\pi}} \int_{\BbbR} e^{tx -\frac {x^2} 2} dx
   = \\ &=
-  \frac 1 {\sqrt{2\pi}} \int_{\R} e^{- \frac 1 2 (x^2 - 2tx + t^2) + \frac 1 2 t^2} dx
+  \frac 1 {\sqrt{2\pi}} \int_{\BbbR} e^{- \frac 1 2 (x^2 - 2tx + t^2) + \frac 1 2 t^2} dx
   = \\ &=
-  \frac {e^{t^2}} {\sqrt \pi} \int_{\R} e^{- {\left(\frac {x - t} {\sqrt 2} \right)}^2 + \frac 1 2 t^2} d\left( \frac {x - t} {\sqrt 2} \right)
+  \frac {e^{t^2}} {\sqrt \pi} \int_{\BbbR} e^{- {\parens*{\frac {x - t} {\sqrt 2} }}^2 + \frac 1 2 t^2} d\parens*{ \frac {x - t} {\sqrt 2} }
   = \\ &=
   \boxed{e^{\frac {t^2} 2}},
   \\
@@ -913,7 +910,7 @@
   =
   \boxed{1}
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   =
@@ -923,13 +920,13 @@
 \end{align*}
 \endgroup
 
-Тогава за оригиналната случайна величина \( \eta \in \DNormal(\mu, \sigma^2) \) имаме
+Тогава за оригиналната случайна величина \( \eta \in \distr{No}(\mu, \sigma^2) \) имаме
 \begin{align*}
   \Expect(\eta) &= \Expect(\sigma \xi + \mu) = \sigma \Expect(\eta) + \mu = \boxed{\mu}, \\
-  \Var(\eta) &= \Var(\sigma \xi + \mu) = \sigma^2 \Var(\xi) = \boxed{\sigma^2}.
+  \var(\eta) &= \var(\sigma \xi + \mu) = \sigma^2 \var(\xi) = \boxed{\sigma^2}.
 \end{align*}
 
-Получихме, че произволна нормална случайна величина \( \eta \in \DNormal(\mu, \sigma^2) \) има очакване \( \mu \) и дисперсия \( \sigma^2 \), които отговарят на съответните параметри. Стандартизираните нормални случайни величини тогава винаги имат стандартно нормално разпределение.
+Получихме, че произволна нормална случайна величина \( \eta \in \distr{No}(\mu, \sigma^2) \) има очакване \( \mu \) и дисперсия \( \sigma^2 \), които отговарят на съответните параметри. Стандартизираните нормални случайни величини тогава винаги имат стандартно нормално разпределение.
 
 За пораждащата моментите функция на \( \eta \) получаваме
 \begin{equation*}
@@ -948,21 +945,21 @@
 
 Оттук директно следва
 \begin{proposition}\label{thm:normal_distribution_is_stable}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item Ако \( \xi_k \in \DNormal(\mu_k, \sigma_k^2), k = 1, \ldots, n \), то
+    \item Ако \( \xi_k \in \distr{No}(\mu_k, \sigma_k^2), k = 1, \ldots, n \), то
     \begin{equation*}
-      \sum_{k=1}^n \xi_k \in \DNormal\left( \sum_{k=1}^n \mu_k, \sum_{k=1}^n \sigma_k^2 \right).
+      \sum_{k=1}^n \xi_k \in \distr{No}\parens*{ \sum_{k=1}^n \mu_k, \sum_{k=1}^n \sigma_k^2 }.
     \end{equation*}
 
-    \item Ако \( \xi \in \DNormal(\mu, \sigma^2) \) и \( c \in \R \), тогава
+    \item Ако \( \xi \in \distr{No}(\mu, \sigma^2) \) и \( c \in \BbbR \), тогава
     \begin{equation*}
-      c \xi \in \DNormal(c \mu, c^2 \sigma^2).
+      c \xi \in \distr{No}(c \mu, c^2 \sigma^2).
     \end{equation*}
   \end{enumerate}
 \end{proposition}
 
-Ако \( \xi_1, \ldots, \xi_n \) са стандартни нормални, сумата им има разпределение \( \DNormal(0, n) \). За да бъде сумата стандартна нормална, стандартизираме чрез
+Ако \( \xi_1, \ldots, \xi_n \) са стандартни нормални, сумата им има разпределение \( \distr{No}(0, n) \). За да бъде сумата стандартна нормална, стандартизираме чрез
 \begin{equation*}
   \frac 1 {\sqrt n} \sum_{k=1}^n \xi_k.
 \end{equation*}
@@ -983,7 +980,7 @@
   Нека \( \xi_1, \xi_2, \ldots \) са независими случайни величини с крайни дисперсии. Без ограничение на общността считаме, че те са стандартизирани.
   Ако за някое \( \delta > 2 \) е изпълнено условието на Ляпунов,
   \begin{equation*}
-    \lim_{n \to \infty} \frac 1 {n^{\frac \delta 2}} \sum_{k=1}^n \Expect \left( {\Abs{\xi_k}}^\delta \right) = 0,
+    \lim_{n \to \infty} \frac 1 {n^{\frac \delta 2}} \sum_{k=1}^n \Expect \parens*{ {\abs{\xi_k}}^\delta } = 0,
   \end{equation*}
   тогава случайната величина
   \begin{equation*}
@@ -995,7 +992,7 @@
 \subsubsection{Равномерно разпределение}\label{sec:unif}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) е \textbf{равномерно разпределена} в интервала \( [a, b] \) пишем \( \xi \in \DUniform(a, b) \), ако плътността има вида
+  Казваме, че случайната величина \( \xi \) е \textbf{равномерно разпределена} в интервала \( [a, b] \) пишем \( \xi \in \distr{Uniform}(a, b) \), ако плътността има вида
   \begin{align*}
     f_\xi(x)
     =
@@ -1007,7 +1004,7 @@
 
   Дефиницията на плътност е коректна, тъй като за \( x \in [a, b] \) е в сила \( f_\xi(x) = \frac 1 {b-a} > 0 \) и
   \begin{equation*}
-    \int_{\R} f_\xi(x) dx
+    \int_{\BbbR} f_\xi(x) dx
     =
     \int_a^b \frac 1 {b-a} dx
     =
@@ -1021,7 +1018,7 @@
   \item За моделиране експерименти с континуум от възможни изходи, за които предполагаме, че са равновероятни. Например попадението на материална точка в даден паралелепипед.
 \end{enumerate}
 
-За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DUniform(a, b) \) имаме
+За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на \( \xi \in \distr{Uniform}(a, b) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -1068,11 +1065,11 @@
   = \\ &=
   \boxed{\frac {b^2+ba+a^2} 3},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   = \\ &=
-  \frac {b^2+ba+a^2} 3 - {\left(\frac {a+b} 2 \right)}^2
+  \frac {b^2+ba+a^2} 3 - {\parens*{\frac {a+b} 2 }}^2
   = \\ &=
   \frac {4(b^2+ba+a^2)} {12} - \frac {3 (a^2+2ab+b^2)} {12}
   = \\ &=
@@ -1087,7 +1084,7 @@
 \subsubsection{Експоненциално разпределение}\label{sec:exp}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{експоненциално разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \DExp(\lambda) \), ако плътността има вида
+  Казваме, че случайната величина \( \xi \) има \textbf{експоненциално разпределение} със степен \( \lambda > 0 \) и пишем \( \xi \in \distr{Exp}(\lambda) \), ако плътността има вида
   \begin{align*}
     f_\xi(x) = \begin{cases}
       \lambda e^{-\lambda x}, & x \geq 0 \\
@@ -1095,9 +1092,9 @@
     \end{cases}
   \end{align*}
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \BbbR \) и
   \begin{equation*}
-    \int_{\R} \varphi(x) dx
+    \int_{\BbbR} \varphi(x) dx
     =
     \int_0^\infty \lambda e^{-\lambda x} dx
     =
@@ -1119,7 +1116,7 @@
 
 Експоненциалното разпределение моделира време на изчакване. Това включва време за чакане на градски транспорт, време до настъпване на застрахователно събитие или време за полуразпад на радиоактивно вещество. Предимство на експоненциалното разпределение за тези модели е свойството липса на памет, описано в \cref{thm:memorylessness}.
 
-За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на \( \xi \in \DExp(\lambda) \) имаме
+За функцията на разпределение, пораждащата моментите функция, очакването и дисперсията на \( \xi \in \distr{Exp}(\lambda) \) имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -1147,17 +1144,17 @@
   = \\ &=
   \frac \lambda {\lambda-t}
   = \\ &=
-  {\left(\frac {\lambda-t} \lambda \right)}^{-1}
+  {\parens*{\frac {\lambda-t} \lambda }}^{-1}
   = \\ &=
-  \boxed{{\left(1 - \frac t \lambda \right)}^{-1}, t < \lambda},
+  \boxed{{\parens*{1 - \frac t \lambda }}^{-1}, t < \lambda},
   \\
   \MGF'_\xi(t)
   &=
-  \boxed{\frac 1 \lambda {\left(1 - \frac t \lambda \right)}^{-2}, t < \lambda},
+  \boxed{\frac 1 \lambda {\parens*{1 - \frac t \lambda }}^{-2}, t < \lambda},
   \\
   \MGF''_\xi(t)
   &=
-  \boxed{\frac 2 {\lambda^2} {\left(1 - \frac t \lambda \right)}^{-3}, t < \lambda},
+  \boxed{\frac 2 {\lambda^2} {\parens*{1 - \frac t \lambda }}^{-3}, t < \lambda},
   \\
   \Expect(\xi)
   &=
@@ -1171,7 +1168,7 @@
   =
   \boxed{\frac 2 {\lambda^2}},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   = \\ &=
@@ -1182,14 +1179,14 @@
 \endgroup
 
 \begin{theorem}[Липса на памет]\label{thm:memorylessness}
-  За \( \xi \in \DExp(\lambda) \) и \( x, y > 0 \) е изпълнено
+  За \( \xi \in \distr{Exp}(\lambda) \) и \( x, y > 0 \) е изпълнено
   \begin{equation*}
-    \Prob(\xi > x + y \mid \xi > x) = \Prob(\xi > y).
+    \Prob(\xi > x + y \given \xi > x) = \Prob(\xi > y).
   \end{equation*}
 \end{theorem}
 \begin{proof}
   \begin{align*}
-    \Prob(\xi > x + y \mid \xi > x)
+    \Prob(\xi > x + y \given \xi > x)
     &=
     \frac {\Prob(\xi > x + y, \xi > x)} {\Prob(\xi > x)}
     = \\ &=
@@ -1212,7 +1209,7 @@
 \subsubsection{Гама разпределение}\label{sec:gamma}
 
 \begin{definition}
-  Казваме, че случайната величина \( \xi \) има \textbf{гама разпределение} с мащаб \( \alpha > 0 \) и степен \( \beta > 0 \) и пишем \( \xi \in \DGamma(\alpha, \beta) \), ако плътността има вида
+  Казваме, че случайната величина \( \xi \) има \textbf{гама разпределение} с мащаб \( \alpha > 0 \) и степен \( \beta > 0 \) и пишем \( \xi \in \distr{Gamma}(\alpha, \beta) \), ако плътността има вида
   \begin{align*}
     f_\xi(x)
     =
@@ -1223,7 +1220,7 @@
   \end{align*}
   където \( \Gamma(x) \) е \( \Gamma \)-функцията на Ойлер.
 
-  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \R \) и
+  Дефиницията на плътност е коректна, тъй като \( f_\xi(x) \geq 0\quad\forall x \in \BbbR \) и
   \begin{equation*}
     \frac 1 {\Gamma(\alpha)} \int_0^\infty {\beta^\alpha x^{\alpha-1} e^{-\beta x}} dx
     =
@@ -1245,9 +1242,9 @@
   \end{align*}
 \end{definition}
 
-Гама разпределението обобщава други често срещани разпределения, тъй като като \( \DGamma(1, \lambda) = \DExp(\lambda) \) и \( \DGamma(n/2, 1/2) = \DChiSq(n) \). Като такова то наследява и разширява техни приложения, например за моделиране на време между \( n > 1 \) последователни нервни импулса, но гама разпределението има и самостоятелни приложения, например за статистически анализ на асиметрично-разпределени данни.
+Гама разпределението обобщава други често срещани разпределения, тъй като като \( \distr{Gamma}(1, \lambda) = \distr{Exp}(\lambda) \) и \( \distr{Gamma}(n/2, 1/2) = \distr{\chi^2}(n) \). Като такова то наследява и разширява техни приложения, например за моделиране на време между \( n > 1 \) последователни нервни импулса, но гама разпределението има и самостоятелни приложения, например за статистически анализ на асиметрично-разпределени данни.
 
-Фиксираме \( \xi \in \DGamma(\alpha, \beta) \). За пораждащата моментите функция, очакването и дисперсията имаме
+Фиксираме \( \xi \in \distr{Gamma}(\alpha, \beta) \). За пораждащата моментите функция, очакването и дисперсията имаме
 \begingroup
 \allowdisplaybreaks
 \begin{align*}
@@ -1261,21 +1258,21 @@
   = \\ &=
   \frac {\beta^\alpha} {(\beta-t) \cdot \Gamma(\alpha)} \int_0^\infty \frac {{[(\beta-t)x]}^{\alpha-1}} {{(\beta-t)}^{\alpha-1}} e^{-(\beta-t)x} d[(\beta-t)x]
   = \\ &=
-  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac 1 {\Gamma(\alpha)} \int_0^\infty {[(\beta-t)x]}^{\alpha-1} e^{-(\beta-t)x} d[(\beta-t)x]
+  {\parens*{\frac \beta {\beta-t} }}^\alpha \frac 1 {\Gamma(\alpha)} \int_0^\infty {[(\beta-t)x]}^{\alpha-1} e^{-(\beta-t)x} d[(\beta-t)x]
   = \\ &=
-  {\left(\frac \beta {\beta-t} \right)}^\alpha \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
+  {\parens*{\frac \beta {\beta-t} }}^\alpha \frac {\Gamma(\alpha)} {\Gamma(\alpha)}
   = \\ &=
-  {\left(\frac {\beta-t} \beta \right)}^{-\alpha}
+  {\parens*{\frac {\beta-t} \beta }}^{-\alpha}
   = \\ &=
-  \boxed{{\left(1 - \frac t \beta \right)}^{-\alpha}, t < \beta},
+  \boxed{{\parens*{1 - \frac t \beta }}^{-\alpha}, t < \beta},
   \\
   \MGF'_\xi(t)
   &=
-  \boxed{\frac \alpha \beta {\left(1 - \frac t \beta \right)}^{-\alpha-1}, t < \beta},
+  \boxed{\frac \alpha \beta {\parens*{1 - \frac t \beta }}^{-\alpha-1}, t < \beta},
   \\
   \MGF''_\xi(t)
   &=
-  \boxed{\frac {\alpha(\alpha+1)} {\beta^2} {\left(1 - \frac t \beta \right)}^{-\alpha-2}, t < \beta},
+  \boxed{\frac {\alpha(\alpha+1)} {\beta^2} {\parens*{1 - \frac t \beta }}^{-\alpha-2}, t < \beta},
   \\
   \Expect(\xi)
   &=
@@ -1289,7 +1286,7 @@
   =
   \boxed{\frac {\alpha(\alpha+1)} {\beta^2}},
   \\
-  \Var(\xi)
+  \var(\xi)
   &=
   \Expect(\xi^2) - {\Expect(\xi)}^2
   =
@@ -1300,34 +1297,34 @@
 \endgroup
 
 \begin{proposition}\label{thm:gamma_linear_combination_is_gamma}
-  \mbox{}
+  \hfill
   \begin{enumerate}
-    \item Ако \( \gamma_k \in \DGamma(\alpha_k, \beta), k = 1, \ldots, n \), то
+    \item Ако \( \gamma_k \in \distr{Gamma}(\alpha_k, \beta), k = 1, \ldots, n \), то
     \begin{equation*}
-      \sum_{k=1}^n \gamma_k \in \DGamma\left( \sum_{k=1}^n \alpha_k, \beta \right).
+      \sum_{k=1}^n \gamma_k \in \distr{Gamma}\parens*{ \sum_{k=1}^n \alpha_k, \beta }.
     \end{equation*}
 
-    \item Ако \( \gamma \in \DGamma(\alpha, \beta) \) и \( c \in \R \), тогава
+    \item Ако \( \gamma \in \distr{Gamma}(\alpha, \beta) \) и \( c \in \BbbR \), тогава
     \begin{equation*}
-      c \gamma \in \DGamma\left(\alpha, \frac \beta c \right).
+      c \gamma \in \distr{Gamma}\parens*{\alpha, \frac \beta c }.
     \end{equation*}
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item Следва директно от вида на пораждащата моментите функция.
     \item Използвайки \cref{thm:density_of_transformed_variable}, намираме плътността за \( x \geq 0 \)
     \begin{equation*}
       f_{c\xi}(x)
       =
-      \frac 1 c f_\xi\left(\frac x c \right)
+      \frac 1 c f_\xi\parens*{\frac x c }
       =
-      \frac 1 c \cdot \frac {\beta^\alpha {\left(\frac x c \right)}^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)}
+      \frac 1 c \cdot \frac {\beta^\alpha {\parens*{\frac x c }}^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)}
       =
-      \frac {{\left(\frac \beta c \right)}^\alpha x^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)},
+      \frac {{\parens*{\frac \beta c }}^\alpha x^{\alpha-1} e^{-\frac \beta c x}} {\Gamma(\alpha)},
     \end{equation*}
-    която е плътност на \( \DGamma\left(\alpha, \frac \beta c \right) \)-разпределена случайна величина.
+    която е плътност на \( \distr{Gamma}\parens*{\alpha, \frac \beta c } \)-разпределена случайна величина.
   \end{enumerate}
 \end{proof}
 
@@ -1338,7 +1335,7 @@
 В конспекта не е посочен списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
 
 \begin{exercise}[\cite{SESummer2011}]\label{ex:se_summer2011}
-  Нека \( \xi \in \DExp(\lambda), \lambda > 0 \), т.е. нейната вероятностна плътност е \( f(x) = \frac 1 \lambda e^{-\frac x \lambda} \)
+  Нека \( \xi \in \distr{Exp}(\lambda), \lambda > 0 \), т.е. нейната вероятностна плътност е \( f(x) = \frac 1 \lambda e^{-\frac x \lambda} \)
   \begin{enumerate}[label=\alph*)]
     \item Намерете разпределението на \( \eta = \min(\xi_1, \xi_2) \), където \( \eta_1 \) и \( \eta_2 \) са независими и еднакво разпределени случайни величини, както \( \xi \).
 
@@ -1360,16 +1357,16 @@
 \end{exercise}
 
 \begin{remark}
-  За тази задача е дадена таблица за \( \DChiSq \) за квантилите \( 2.5\% \), \( 5.0\% \), \( 10.0\% \), \( 90.0\% \), \( 95.0\% \) и \( 97.5\% \) от \( 1 \) до \( 25 \) степени на свобода.
+  За тази задача е дадена таблица за \( \distr{\chi^2} \) за квантилите \( 2.5\% \), \( 5.0\% \), \( 10.0\% \), \( 90.0\% \), \( 95.0\% \) и \( 97.5\% \) от \( 1 \) до \( 25 \) степени на свобода.
 \end{remark}
 
 \begin{solution}
-  В\cref{sec:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в\cref{sec:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
+  В \cref{sec:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в\cref{sec:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
   \begin{equation*}
     F_\xi(x) = 1 - e^{-\frac x \lambda}.
   \end{equation*}
 
-  Също така ще използваме наготово, че \( \Expect(\xi) = \lambda \) и \( \Var(\xi) = \lambda^2 \).
+  Също така ще използваме наготово, че \( \Expect(\xi) = \lambda \) и \( \var(\xi) = \lambda^2 \).
 
   \begin{enumerate}[label=\alph*)]
     \item Независимо от разпределенията на \( \xi_1 \) и \( \xi_2 \), за \( \eta = \min(\xi_1, \xi_2) \) имаме
@@ -1397,11 +1394,11 @@
       =
       1 - e^{- \frac {2 x} \lambda},
     \end{equation*}
-    т.е. \( \eta \in \DExp\left(\frac \lambda 2 \right) \).
+    т.е. \( \eta \in \distr{Exp}\parens*{\frac \lambda 2 } \).
 
     \item Да отбележим, че оценката \( \overline \xi_n \) е неизместена, тъй като
     \begin{equation*}
-      \Expect\left( \frac 1 n \sum_{k=1}^n \xi_k \right)
+      \Expect\parens*{ \frac 1 n \sum_{k=1}^n \xi_k }
       =
       \frac 1 n \sum_{k=1}^n \Expect(\xi_k)
       =
@@ -1412,11 +1409,11 @@
       \lambda.
     \end{equation*}
 
-    За да докажем, че \( \xi \) е ефективна, остава да намерим границата на Рао-Крамер и да я сравним с \( \Var(\overline \xi_n) \). Поради независимостта на \( \xi_1, \ldots, \xi_n \) е достатъчно да пресметнем информацията на Фишер \( \FisherInfo_\xi(\lambda) \) за параметъра \( \lambda \) на \( \xi \) и да я сравним с \( \Var(\xi) = \lambda^2 \).
+    За да докажем, че \( \xi \) е ефективна, остава да намерим границата на Рао-Крамер и да я сравним с \( \var(\overline \xi_n) \). Поради независимостта на \( \xi_1, \ldots, \xi_n \) е достатъчно да пресметнем информацията на Фишер \( \mscrI_\xi(\lambda) \) за параметъра \( \lambda \) на \( \xi \) и да я сравним с \( \var(\xi) = \lambda^2 \).
     \begin{align*}
       \ln f_\xi(x)
       &=
-      \ln \left(\frac 1 \lambda e^{-\frac x \lambda} \right)
+      \ln \parens*{\frac 1 \lambda e^{-\frac x \lambda} }
       =
       -\ln \lambda -\frac x \lambda,
       \\
@@ -1426,28 +1423,28 @@
       =
       \frac {x - \lambda} {\lambda^2},
       \\
-      \FisherInfo_\xi(\lambda)
+      \mscrI_\xi(\lambda)
       &=
-      \Expect \left( {\left( \frac {\partial \ln f_\xi(\xi \mid \lambda)} {\partial \lambda} \right)}^2 \right)
+      \Expect \parens*{ {\parens*{ \frac {\partial \ln f_\xi(\xi \given \lambda)} {\partial \lambda} }}^2 }
       = \\ &=
-      \Expect \left( {\left( \frac {\xi - \lambda} {\lambda^2} \right)}^2 \right)
+      \Expect \parens*{ {\parens*{ \frac {\xi - \lambda} {\lambda^2} }}^2 }
       = \\ &=
-      \frac 1 {\lambda^4} \Expect \left( {({\xi - \lambda})}^2 \right)
+      \frac 1 {\lambda^4} \Expect \parens*{ {({\xi - \lambda})}^2 }
       = \\ &=
-      \frac {\Var(\xi)} {\lambda^4}
+      \frac {\var(\xi)} {\lambda^4}
       =
       \frac {\lambda^2} {\lambda^4}
       =
       \frac 1 {\lambda^2}.
     \end{align*}
 
-    Тъй като \( \Var(\xi) = \frac 1 {\FisherInfo_\xi(\lambda)} \), заключаваме, че оценката \( \overline \xi_n \) достига границата на Рао-Крамер и следователно тя е ефективна.
+    Тъй като \( \var(\xi) = \frac 1 {\mscrI_\xi(\lambda)} \), заключаваме, че оценката \( \overline \xi_n \) достига границата на Рао-Крамер и следователно тя е ефективна.
 
     \item Търсим оптимална критична област с помощта на лемата на Нейман-Пирсън. Първо намираме логаритмичното отношение на правдоподобие само за \( \xi \):
     \begin{align*}
-      \ln \left(\frac {f_\xi(x \mid \lambda=3)} {f_\xi(x \mid \lambda=5)} \right)
+      \ln \parens*{\frac {f_\xi(x \given \lambda=3)} {f_\xi(x \given \lambda=5)} }
       &=
-      \ln f_\xi(x \mid \lambda=3) - \ln f_\xi(x \mid \lambda=5)
+      \ln f_\xi(x \given \lambda=3) - \ln f_\xi(x \given \lambda=5)
       = \\ &=
       - \ln 3 - \frac x 3 + \ln 5 + \frac x 5
       = \\ &=
@@ -1456,41 +1453,41 @@
 
     Тогава логаритмичното отношение на правдоподобие за цялата извадка ще бъде
     \begin{equation*}
-      \ln \left(\frac {L(x_1, \ldots, x_n \mid \lambda=3)} {L(x_1, \ldots, x_n \mid \lambda=5)} \right)
+      \ln \parens*{\frac {L(x_1, \ldots, x_n \given \lambda=3)} {L(x_1, \ldots, x_n \given \lambda=5)} }
       =
-      n \left(\ln 5 - \ln 3 - \frac 2 {15} \overline x_n \right).
+      n \parens*{\ln 5 - \ln 3 - \frac 2 {15} \overline x_n }.
     \end{equation*}
 
     Уравнението
     \begin{equation*}
-      n \left(\ln 5 - \ln 3 - \frac 2 {15} \overline \xi_n \right) \geq c_0
+      n \parens*{\ln 5 - \ln 3 - \frac 2 {15} \overline \xi_n } \geq c_0
     \end{equation*}
 
     е еквивалентно на по-простото уравнение \( \overline \xi_n \geq c \) за подходяща константа \( c \). В такъв случай задачата се свежда до намиране на \( \alpha \)-квантил \( c \) за \( \overline \xi_n \), за който
     \begin{equation*}
-      \Prob(\overline \xi_n \geq c \mid \lambda = 3) = \alpha
+      \Prob\parens*{\overline \xi_n \geq c \given \lambda = 3} = \alpha
       \iff
-      \Prob(\overline \xi_n \leq c \mid \lambda = 3) = 1 - \alpha.
+      \Prob\parens*{\overline \xi_n \leq c \given \lambda = 3} = 1 - \alpha.
     \end{equation*}
 
-    Тъй като ни е дадена единствено таблица за \( \DChiSq \) разпределение, ще използваме връзките
+    Тъй като ни е дадена единствено таблица за \( \distr{\chi^2} \) разпределение, ще използваме връзките
     \begin{align*}
-      \DChiSq(n) = \DGamma \left(\frac n 2, \frac 1 2 \right),
+      \distr{\chi^2}(n) = \distr{Gamma} \parens*{\frac n 2, \frac 1 2 },
       &&
-      \DExp(\lambda) = \DGamma\left(1, \frac 1 \lambda \right),
+      \distr{Exp}(\lambda) = \distr{Gamma}\parens*{1, \frac 1 \lambda },
     \end{align*}
-    където \( \DExp \) е параметризирано както в тази задача, а \( \DGamma \)-както в\cref{sec:gamma}.
+    където \( \distr{Exp} \) е параметризирано както в тази задача, а \( \distr{Gamma} \)-както в\cref{sec:gamma}.
 
     От \cref{thm:gamma_linear_combination_is_gamma} имаме
     \begin{align*}
-      \overline \xi_n \in \DGamma\left( n, \frac n \lambda \right)
+      \overline \xi_n \in \distr{Gamma}\parens*{ n, \frac n \lambda }
       &&
-      \frac {2n} \lambda \overline \xi_n \in \DGamma\left( n, \frac 1 2 \right) = \DChiSq(2n).
+      \frac {2n} \lambda \overline \xi_n \in \distr{Gamma}\parens*{ n, \frac 1 2 } = \distr{\chi^2}(2n).
     \end{align*}
 
     От дадената таблица намираме търсената константа \( c \),
     \begin{equation*}
-      \Prob(\overline \xi_n \leq c \mid \lambda = 3) = 1 - \alpha = 0.95
+      \Prob(\overline \xi_n \leq c \given \lambda = 3) = 1 - \alpha = 0.95
       \iff
       \frac {2 \cdot 10} 3 c = \frac {20} 3 c \approx 31.41.
       \iff
@@ -1499,7 +1496,7 @@
 
     Оптималната критична област е
     \begin{equation*}
-      \left \{ (x_1, \ldots, x_n) \in \R^n \mid \frac 1 n \sum_{k=1}^n x_k \geq c \approx 4.71 \right \}.
+      \set*{ (x_1, \ldots, x_n) \in \BbbR^n \given* \frac 1 n \sum_{k=1}^n x_k \geq c \approx 4.71 }.
     \end{equation*}
   \end{enumerate}
 \end{solution}
@@ -1508,22 +1505,22 @@
   Нека случайната величина \( X \) е равномерно разпределена в \( (0, a) \), а \( Y \) е равномерно разпределена в \( (0, b) \).
   \begin{enumerate}[label=\alph*)]
     \item Ако \( X \) и \( Y \) са независими, намерете математическото очакване и дисперсията на \( 2X - 3Y \).
-    \item Ако \( X \) и \( Y \) са такива, че корелационният им коефициент \( \Corr(X, Y) = 0.8 \), намерете математическото очакване и дисперсията на \( 2X - 3Y \).
+    \item Ако \( X \) и \( Y \) са такива, че корелационният им коефициент \( \corr(X, Y) = 0.8 \), намерете математическото очакване и дисперсията на \( 2X - 3Y \).
     \item Ако \( X \) и \( Y \) са независими случайни величини, намерете вероятността \( X - Y < 2 \).
   \end{enumerate}
 \end{exercise}
 \begin{solution}
-  \mbox{}
+  \hfill
   \begin{enumerate}[label=\alph*)]
-    \item В\cref{sec:unif} сме намерили, че за \( \xi \in \DUniform(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \Var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
+    \item В\cref{sec:unif} сме намерили, че за \( \xi \in \distr{Uniform}(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
     \begin{align*}
       \Expect(X) = \frac a 2,
       &&
-      \Var(X) = \frac {a^2} {12},
+      \var(X) = \frac {a^2} {12},
       \\
       \Expect(Y) = \frac b 2,
       &&
-      \Var(Y) = \frac {b^2} {12}.
+      \var(Y) = \frac {b^2} {12}.
     \end{align*}
 
     Тогава
@@ -1534,22 +1531,22 @@
       =
       \boxed{\frac {2a - 3b} 2},
       \\
-      \Var(2X - 3Y)
+      \var(2X - 3Y)
       &=
-      4\Var(X) + 2 \cdot 6 \Cov(X, Y) + 9\Var(Y)
+      4\var(X) + 2 \cdot 6 \cov(X, Y) + 9\var(Y)
       = \\ &=
-      4\Var(X) + 9\Var(Y)
+      4\var(X) + 9\var(Y)
       = \\ &=
       \boxed{\frac {4a^2 + 9b^2} {12}}.
     \end{align*}
 
     \item Независимо от това дали \( X \) и \( Y \) са корелирани или не, очакването на техните линейни комбинации не се променя. За дисперсията на \( 2X - 3Y \) имаме
     \begin{align*}
-      \Var(2X - 3Y)
+      \var(2X - 3Y)
       &=
-      4\Var(X) + 2 \cdot 6 \Cov(X, Y) + 9\Var(Y)
+      4\var(X) + 2 \cdot 6 \cov(X, Y) + 9\var(Y)
       = \\ &=
-      4\Var(X) + 12 \cdot \frac 4 5 + 9\Var(Y)
+      4\var(X) + 12 \cdot \frac 4 5 + 9\var(Y)
       = \\ &=
       \boxed{\frac {4a^2 + 9b^2} {12} + \frac {48} 5}.
     \end{align*}
@@ -1565,7 +1562,7 @@
       &=
       \Prob(X < Y + 2)
       = \\ &=
-      \int_{\R} F_X(y+2) f_Y(y) dy
+      \int_{\BbbR} F_X(y+2) f_Y(y) dy
       = \\ &=
       \int_0^b \frac {\max(0, \min(a, y+2))} a \cdot \frac 1 b dy
       = \\ &=
@@ -1587,15 +1584,15 @@
       \begin{align*}
         \Prob(X - Y < 2)
         &=
-        \frac 1 {ab} \left(\int_0^{a-2} (y+2) dy + \int_{a-2}^b a dy \right)
+        \frac 1 {ab} \parens*{\int_0^{a-2} (y+2) dy + \int_{a-2}^b a dy }
         = \\ &=
-        \frac 1 {ab} \left(\int_0^{a-2} y dy + 2 \int_0^{a-2} dy + \int_{a-2}^b a dy \right)
+        \frac 1 {ab} \parens*{\int_0^{a-2} y dy + 2 \int_0^{a-2} dy + \int_{a-2}^b a dy }
         = \\ &=
-        \frac 1 {ab} \left(\frac 1 2 {(a-2)}^2 + 2(a-2) + a(b-a+2) \right)
+        \frac 1 {ab} \parens*{\frac 1 2 {(a-2)}^2 + 2(a-2) + a(b-a+2) }
         = \\ &=
-        \frac 1 {ab} \left(\frac {a^2} 2 - 2a + 2 + 2a - 4 + ab - a^2 + 2a \right)
+        \frac 1 {ab} \parens*{\frac {a^2} 2 - 2a + 2 + 2a - 4 + ab - a^2 + 2a }
         = \\ &=
-        \frac 1 {ab} \left(-\frac {a^2} 2 + ab + 2a - 2 \right)
+        \frac 1 {ab} \parens*{-\frac {a^2} 2 + ab + 2a - 2 }
         = \\ &=
         \frac {-a^2 + 2ab + 4a - 4} {2ab}.
       \end{align*}
@@ -1606,9 +1603,9 @@
         &=
         \frac 1 {ab} \int_0^b (y+2) dy
         = \\ &=
-        \frac 1 {ab} \left( \int_0^b y dy + 2 \int_0^b dy \right)
+        \frac 1 {ab} \parens*{ \int_0^b y dy + 2 \int_0^b dy }
         = \\ &=
-        \frac 1 {ab} \left(\frac {b^2} 2 + 2b \right)
+        \frac 1 {ab} \parens*{\frac {b^2} 2 + 2b }
         = \\ &=
         \frac {b + 4} {2a}.
       \end{align*}
@@ -1626,6 +1623,9 @@
   \end{enumerate}
 \end{solution}
 
-\printbibliography
+{
+  \hfuzz=3pt
+  \printbibliography
+}
 
 \end{document}

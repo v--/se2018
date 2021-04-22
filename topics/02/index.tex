@@ -1,21 +1,14 @@
-\documentclass[
-  headings=standardclasses,
-  bibliography=totocnumbered,
-]{scrartcl}
+\documentclass{../../common/topic}
 
-\usepackage{../../common/common_packages}
-\usepackage{../../common/macros}
-\usepackage{../../common/theorem_styles}
-\usepackage{../../common/colors}
+\TopicSetup{
+  number=2,
+  title={Симетрични оператори в крайномерни евклидови пространства. Основни свойства. Теорема за диагонализация.},
+  basedate={5 юли 2019},
+  author={Янис Василев}
+}
 
 % Bibliography
 \addbibresource{./references.bib}
-
-% Document
-\title{\Title{2}}
-\subtitle{Симетрични оператори в крайномерни евклидови пространства. Основни свойства. Теорема за диагонализация.}
-\author{Янис Василев}
-\date{\Revision{5 юли 2019}}
 
 \begin{document}
 
@@ -38,17 +31,17 @@
 
 \subsection{Основни понятия}
 
-Нека \( V_n \) е фиксирано \( n \)-мерно евклидово пространство над полето \( \R \), т.е. \( \R \)-линейно пространство снабдено със скаларно произведение \( \Prod \cdot \cdot \).
+Нека \( V_n \) е фиксирано \( n \)-мерно евклидово пространство над полето \( \BbbR \), т.е. \( \BbbR \)-линейно пространство снабдено със скаларно произведение \( \inprod \cdot \cdot \).
 
 \begin{definition}
-  \mbox{}
+  \hfill
   \begin{enumerate}
     \item Линейният оператор \( L: V_n \to V_n \) наричаме \textbf{симетричен}, ако за произволен вектор \( x \in V_n \) е изпълнено равенството
     \begin{equation*}
-      \Prod x {L(x)} = \Prod {L(x)} x.
+      \inprod x {L(x)} = \inprod {L(x)} x.
     \end{equation*}
 
-    \item Квадратната матрица \( A \in \R^{n \times n} \) наричаме \textbf{симетрична}, ако \( A = A^T \).
+    \item Квадратната матрица \( A \in \BbbR^{n \times n} \) наричаме \textbf{симетрична}, ако \( A = A^T \).
   \end{enumerate}
 \end{definition}
 
@@ -62,42 +55,42 @@
 
   За произволни базисни вектори \( e_i \) и \( e_j \) имаме
   \begin{equation*}
-    \Prod {e_i} {L(e_j)}
+    \inprod {e_i} {L(e_j)}
     =
-    \Prod {e_i} {\sum_{k=1}^n a_{k,j} e_k}
+    \inprod* {e_i} {\sum_{k=1}^n a_{k,j} e_k}
     =
-    \sum_{k=1}^n a_{k,j} \Prod {e_i} {e_k}
+    \sum_{k=1}^n a_{k,j} \inprod {e_i} {e_k}
     =
     \sum_{k=1}^n a_{k,j} \delta_{i,k}
     =
     a_{i,j}.
   \end{equation*}
 
-  \Sufficiency Ако операторът \( L \) е симетричен, за произволни базисни вектори получаваме
+  \SufficiencySubProof Ако операторът \( L \) е симетричен, за произволни базисни вектори получаваме
   \begin{equation*}
     a_{i,j}
     =
-    \Prod {e_i} {L(e_j)}
+    \inprod {e_i} {L(e_j)}
     =
-    \Prod {L(e_i)} {e_j}
+    \inprod {L(e_i)} {e_j}
     =
-    \Prod {e_j} {L(e_i)}
+    \inprod {e_j} {L(e_i)}
     =
     a_{j,i}.
   \end{equation*}
   Следователно матрицата \( A \) е симетрична.
 
-  \Necessity Обратно, ако матрицата \( A \) е симетрична, за произволни базисни вектори получаваме
+  \NecessitySubProof Обратно, ако матрицата \( A \) е симетрична, за произволни базисни вектори получаваме
   \begin{equation*}
-    \Prod {e_i} {L(e_j)}
+    \inprod {e_i} {L(e_j)}
     =
     a_{i,j}
     =
     a_{j,i}
     =
-    \Prod {e_j} {L(e_i)}
+    \inprod {e_j} {L(e_i)}
     =
-    \Prod {L(e_i)} {e_j}.
+    \inprod {L(e_i)} {e_j}.
   \end{equation*}
   Следователно операторът \( L \) е симетричен.
 \end{proof}
@@ -107,13 +100,13 @@
 Тъй като в общия случай корените на характеристичния полином на линеен оператор могат да не бъдат реални числа, ще работим с по-базови понятия от собствени стойности и собствени вектори, тъй като не разполагаме с необходимия апарат за комплексни линейни пространства. В частност, \enquote{имитираме} комплексно скаларно произведение.
 
 \begin{theorem}
-  Корените на характеристичния полином \( \det(A - \lambda I_n) \) на симетрична матрица \( A \in \R^{n \times n} \) са реални числа.
+  Корените на характеристичния полином \( \det(A - \lambda I_n) \) на симетрична матрица \( A \in \BbbR^{n \times n} \) са реални числа.
 \end{theorem}
 
 \begin{proof}
-  Нека \( \lambda \in \Complex \) е корен на характеристичния полином \( \det(A - \lambda I_n) \). Ще покажем, че \( \lambda \in \R \).
+  Нека \( \lambda \in \BbbC \) е корен на характеристичния полином \( \det(A - \lambda I_n) \). Ще покажем, че \( \lambda \in \BbbR \).
 
-  Тъй като \( \det(A - \lambda I_n) = 0 \), матрицата \( A - \lambda I_n \) има нетривиално ядро и значи съществува ненулев комплексен вектор \( x = (x_1, \ldots, x_n) \in \Complex^n \), такъв че
+  Тъй като \( \det(A - \lambda I_n) = 0 \), матрицата \( A - \lambda I_n \) има нетривиално ядро и значи съществува ненулев комплексен вектор \( x = (x_1, \ldots, x_n) \in \BbbC^n \), такъв че
   \begin{equation*}
     (A - \lambda I_n) x = x,
   \end{equation*}
@@ -126,43 +119,43 @@
     \sum_{j=1}^n a_{i,j} x_j = \lambda x_i, i = 1, \ldots, n.
   \end{equation*}
 
-  За фиксирано \( i \) умножаваме двете страни на равенството с комплексно спрегнатото \( \CConj{x_i} \) на \( x_i \) и сумираме по \( i \), за да получим
+  За фиксирано \( i \) умножаваме двете страни на равенството с комплексно спрегнатото \( \overline{x_i} \) на \( x_i \) и сумираме по \( i \), за да получим
   \begin{align*}
     \sum_{j=1}^n a_{i,j} x_j
     &=
-    \lambda x_i \ \mid \ \cdot \; \CConj{x_i}
+    \lambda x_i \ \mid \ \cdot \; \overline{x_i}
     \\
-    \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    \sum_{j=1}^n a_{i,j} \overline{x_i} x_j
     &=
-    \lambda x_i \CConj{x_i} = \lambda \Abs{x_i}^2\; \mid \sum_{i=1}^n \cdot
+    \lambda x_i \overline{x_i} = \lambda \abs{x_i}^2\; \mid \sum_{i=1}^n \cdot
     \\
-    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \overline{x_i} x_j
     &=
-    \lambda \sum_{i=1}^n \Abs{x_i}^2.
+    \lambda \sum_{i=1}^n \abs{x_i}^2.
   \end{align*}
 
   Поради симетричността на матрицата \( A \) е изпълнено
   \begin{equation*}
-    \CConj{a_{i,j} \CConj{x_i} x_j}
+    \overline{a_{i,j} \overline{x_i} x_j}
     =
-    a_{j,i} x_i \CConj{x_j},~i, j = 1, \ldots, n,
+    a_{j,i} x_i \overline{x_j},~i, j = 1, \ldots, n,
   \end{equation*}
   следователно
   \begin{align*}
-    \CConj{\lambda \sum_{i=1}^n \Abs{x_i}^2}
+    \overline{\lambda \sum_{i=1}^n \abs{x_i}^2}
     &=
-    \CConj{\sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j}
+    \overline{\sum_{i=1}^n \sum_{j=1}^n a_{i,j} \overline{x_i} x_j}
     = \\ &=
-    \sum_{i=1}^n \sum_{j=1}^n \CConj{a_{i,j} \CConj{x_i} x_j}
+    \sum_{i=1}^n \sum_{j=1}^n \overline{a_{i,j} \overline{x_i} x_j}
     = \\ &=
-    \sum_{i=1}^n \sum_{j=1}^n a_{j,i} \CConj{x_j} x_i
+    \sum_{i=1}^n \sum_{j=1}^n a_{j,i} \overline{x_j} x_i
     = \\ &=
-    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \CConj{x_i} x_j
+    \sum_{i=1}^n \sum_{j=1}^n a_{i,j} \overline{x_i} x_j
     = \\ &=
-    \lambda \sum_{i=1}^n \Abs{x_i}^2.
+    \lambda \sum_{i=1}^n \abs{x_i}^2.
   \end{align*}
 
-  Тъй като \( \sum_{i=1}^n \Abs{x_i}^2 > 0 \), получаваме, че \( \lambda = \CConj{\lambda} \) и \( \lambda \in \R \).
+  Тъй като \( \sum_{i=1}^n \abs{x_i}^2 > 0 \), получаваме, че \( \lambda = \overline{\lambda} \) и \( \lambda \in \BbbR \).
 \end{proof}
 
 \begin{corollary}
@@ -177,29 +170,29 @@
 \begin{proof}
   Ще докажем теоремата с индукция по \( n \). За \( n = 1 \) линейните оператори са умножение с число, следователно всеки линеен оператор \( L: V_1 \to V_1 \) е симетричен и има за собствен вектор числото \( 1 \).
 
-  Нека \( n > 1 \). Допускаме, че теоремата е вярна за всички линейни пространства над \( \R \) с размерност \( < n \).
+  Нека \( n > 1 \). Допускаме, че теоремата е вярна за всички линейни пространства над \( \BbbR \) с размерност \( < n \).
 
-  Нека \( L: V_n \to V_n \) е симетричен оператор, \( \lambda \) е собствена стойност на \( L \) и \( v \) е съответния собствен вектор. Разглеждаме ортогоналното допълнение \( U \) на \( \Span \{ v \} \), т.е.
+  Нека \( L: V_n \to V_n \) е симетричен оператор, \( \lambda \) е собствена стойност на \( L \) и \( v \) е съответния собствен вектор. Разглеждаме ортогоналното допълнение \( U \) на \( \linspan \set{ v } \), т.е.
   \begin{equation*}
-    U = \{ u \in V_n \mid \Prod u v = 0 \}.
+    U = \set{ u \in V_n \mid \inprod u v = 0 }.
   \end{equation*}
 
-  Множествата \( \Span \{ v \} \) и \( U \) не се пресичат, директната им сума е цялото пространство \( V_n \) и \( \Span \{ v \} \) е едномерно линейно подпространство на \( V_n \), следователно \( U \) е \( n-1 \)-мерно подпространство.
+  Множествата \( \linspan \set{ v } \) и \( U \) не се пресичат, директната им сума е цялото пространство \( V_n \) и \( \linspan \set{ v } \) е едномерно линейно подпространство на \( V_n \), следователно \( U \) е \( n-1 \)-мерно подпространство.
 
   Ще покажем, че подпространството \( U \) е инвариантно относно \( L \), т.е. \( L(U) \subseteq U \). За произволен вектор \( u \in U \) имаме
   \begin{equation*}
-    \Prod {L(u)} v
+    \inprod {L(u)} v
     =
-    \Prod u {L(v)}
+    \inprod u {L(v)}
     =
-    \Prod u {\lambda v}
+    \inprod u {\lambda v}
     =
-    \lambda \Prod u v
+    \lambda \inprod u v
     =
     0.
   \end{equation*}
 
-  Следователно \( \Prod u v = 0 \) и \( L(u) \in U \).
+  Следователно \( \inprod u v = 0 \) и \( L(u) \in U \).
 
   Прилагаме индуктивната хипотеза към рестрикцията \( L_U \) на оператора \( L \) върху \( U \) и получаваме ортонормиран базис \( e_1, \ldots, e_{n-1} \) на \( U \) от собствени вектори на \( L \). Всички те са ортогонални на \( v \) като елементи на \( U \), следователно системата вектори \( e_1, \ldots, e_{n-1}, v \) образува ортонормиран базис на \( V_n \), състоящ се от собствени вектори на \( L \).
 \end{proof}
@@ -223,7 +216,7 @@
 \subsection{Диагонализация на симетричен оператор}
 
 \begin{exercise}[\cite{SEAutumn2011}]
-  Спрямо ортонормиран базис на евклидовото пространство \( \R^3 \), линейният оператор \( \varphi: \R^3 \to \R^3 \) има матрица
+  Спрямо ортонормиран базис на евклидовото пространство \( \BbbR^3 \), линейният оператор \( \varphi: \BbbR^3 \to \BbbR^3 \) има матрица
   \begin{align*}
     A = \begin{pmatrix}
       1 & p & 0 \\
@@ -231,7 +224,7 @@
       0 & 2 & -1
     \end{pmatrix},
   \end{align*}
-  зависеща от реален параметър \( p \). Да се пресметнат стойностите на реалния параметър \( p \), за които характеристичният полином \( f_\varphi(x) \) на \( \varphi \) изпълнява равенството \( f_\varphi(2) = 10 \). За получените стойности на \( p \) да се намери ортонормиран базис \( e_1, e_2, e_3 \) в \( \R^3 \), в който матрицата \( D \) на \( \varphi \) е диагонална, както и тази диагонална матрица \( D \).
+  зависеща от реален параметър \( p \). Да се пресметнат стойностите на реалния параметър \( p \), за които характеристичният полином \( f_\varphi(x) \) на \( \varphi \) изпълнява равенството \( f_\varphi(2) = 10 \). За получените стойности на \( p \) да се намери ортонормиран базис \( e_1, e_2, e_3 \) в \( \BbbR^3 \), в който матрицата \( D \) на \( \varphi \) е диагонална, както и тази диагонална матрица \( D \).
 \end{exercise}
 \begin{solution}
   Първо намираме характеристичния полином на \( \varphi \):
@@ -324,24 +317,24 @@
 
   Тъй като искаме собствените вектори да бъдат нормирани, имаме ограничението
   \begin{align*}
-    {\Norm{e_k}}^2
+    {\norm{e_k}}^2
     &=
-    \Prod{e_k} {e_k}
+    \inprod{e_k} {e_k}
     = \\ &=
-    {e_{1,k}}^2 + {\left(\pm \frac {\lambda - 1} 2 e_{1,k} \right)}^2 + {\left(\pm \frac {\lambda - 1} {\lambda + 1} e_{1,k} \right)}^2
+    {e_{1,k}}^2 + {\parens*{\pm \frac {\lambda - 1} 2 e_{1,k} }}^2 + {\parens*{\pm \frac {\lambda - 1} {\lambda + 1} e_{1,k} }}^2
     = \\ &=
-    {e_{1,k}}^2 \left[1 + {\left(\frac {\lambda - 1} 2 \right)}^2 + {\left(\frac {\lambda - 1} {\lambda + 1} \right)}^2 \right]
+    {e_{1,k}}^2 \bracks*{1 + {\parens*{\frac {\lambda - 1} 2 }}^2 + {\parens*{\frac {\lambda - 1} {\lambda + 1} }}^2 }
     =
     1.
   \end{align*}
 
   За конкретните собствени стойности получаваме
   \begin{align*}
-    {e_{1,1}}^2 \left[1 + {\left( - \tfrac 1 2 \right)}^2 + {(-1)}^2 \right] &= \frac 9 4 {e_{1,1}}^2 = 1 \implies e_{1,1} = \frac 2 3 \implies e_{2,1} = \mp \frac 1 3 \implies e_{3,1} = \mp \frac 2 3,
+    {e_{1,1}}^2 \bracks*{1 + {\parens*{ - \tfrac 1 2 }}^2 + {(-1)}^2 } &= \frac 9 4 {e_{1,1}}^2 = 1 \implies e_{1,1} = \frac 2 3 \implies e_{2,1} = \mp \frac 1 3 \implies e_{3,1} = \mp \frac 2 3,
     \\
-    {e_{1,2}}^2 \left[1 + 1^2 + {\left( \frac 1 2 \right)}^2 \right] &= \frac 9 4 {e_{2,1}}^2 = 1 \implies e_{1,2} = \frac 2 3 \implies e_{2,2} = \pm \frac 2 3 \implies e_{3,2} = \pm \frac 1 3,
+    {e_{1,2}}^2 \bracks*{1 + 1^2 + {\parens*{ \frac 1 2 }}^2 } &= \frac 9 4 {e_{2,1}}^2 = 1 \implies e_{1,2} = \frac 2 3 \implies e_{2,2} = \pm \frac 2 3 \implies e_{3,2} = \pm \frac 1 3,
     \\
-    {e_{1,3}}^2 \left(1 + {(-2)}^2 + 2^2 \right) &= 9 \cdot {e_{1,3}^2} = 1 \implies e_{1,3} = \frac 1 3 \implies e_{2,3} = \mp \frac 2 3 \implies e_{2,3} = \pm \frac 2 3.
+    {e_{1,3}}^2 \parens*{1 + {(-2)}^2 + 2^2 } &= 9 \cdot {e_{1,3}^2} = 1 \implies e_{1,3} = \frac 1 3 \implies e_{2,3} = \mp \frac 2 3 \implies e_{2,3} = \pm \frac 2 3.
   \end{align*}
 
   Следователно базисите от собствени стойности за \( p = \pm 2 \) има матрица
