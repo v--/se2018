@@ -1334,7 +1334,7 @@
 
 В конспекта не е посочен списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
 
-\begin{exercise}[\cite{SESummer2011}]\label{ex:se_summer2011}
+\begin{problem}[\cite{SESummer2011}]\label{ex:se_summer2011}
   Нека \( \xi \in \distr{Exp}(\lambda), \lambda > 0 \), т.е. нейната вероятностна плътност е \( f(x) = \frac 1 \lambda e^{-\frac x \lambda} \)
   \begin{enumerate}[label=\alph*)]
     \item Намерете разпределението на \( \eta = \min(\xi_1, \xi_2) \), където \( \eta_1 \) и \( \eta_2 \) са независими и еднакво разпределени случайни величини, както \( \xi \).
@@ -1354,14 +1354,14 @@
     \end{align*}
     с ниво на значимост \( \alpha = 0.05 \) по \( n = 10 \) независими наблюдения над \( \xi \).
   \end{enumerate}
-\end{exercise}
+\end{problem}
 
 \begin{remark}
   За тази задача е дадена таблица за \( \distr{\chi^2} \) за квантилите \( 2.5\% \), \( 5.0\% \), \( 10.0\% \), \( 90.0\% \), \( 95.0\% \) и \( 97.5\% \) от \( 1 \) до \( 25 \) степени на свобода.
 \end{remark}
 
 \begin{solution}
-  В \cref{sec:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в\cref{sec:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
+  В \cref{sec:exp} вече описахме експоненциалното разпределение, но с друга параметризация. Тук ще използваме намерената в \cref{sec:exp} функция на разпределение, но заменяйки параметъра с реципрочния му, т.е.
   \begin{equation*}
     F_\xi(x) = 1 - e^{-\frac x \lambda}.
   \end{equation*}
@@ -1476,7 +1476,7 @@
       &&
       \distr{Exp}(\lambda) = \distr{Gamma}\parens*{1, \frac 1 \lambda },
     \end{align*}
-    където \( \distr{Exp} \) е параметризирано както в тази задача, а \( \distr{Gamma} \)-както в\cref{sec:gamma}.
+    където \( \distr{Exp} \) е параметризирано както в тази задача, а \( \distr{Gamma} \)-както в \cref{sec:gamma}.
 
     От \cref{thm:gamma_linear_combination_is_gamma} имаме
     \begin{align*}
@@ -1501,18 +1501,18 @@
   \end{enumerate}
 \end{solution}
 
-\begin{exercise}[\cite{SEAutumn2016}]\label{ex:se_autumn2016}
+\begin{problem}[\cite{SEAutumn2016}]\label{ex:se_autumn2016}
   Нека случайната величина \( X \) е равномерно разпределена в \( (0, a) \), а \( Y \) е равномерно разпределена в \( (0, b) \).
   \begin{enumerate}[label=\alph*)]
     \item Ако \( X \) и \( Y \) са независими, намерете математическото очакване и дисперсията на \( 2X - 3Y \).
     \item Ако \( X \) и \( Y \) са такива, че корелационният им коефициент \( \corr(X, Y) = 0.8 \), намерете математическото очакване и дисперсията на \( 2X - 3Y \).
     \item Ако \( X \) и \( Y \) са независими случайни величини, намерете вероятността \( X - Y < 2 \).
   \end{enumerate}
-\end{exercise}
+\end{problem}
 \begin{solution}
   \hfill
   \begin{enumerate}[label=\alph*)]
-    \item В\cref{sec:unif} сме намерили, че за \( \xi \in \distr{Uniform}(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
+    \item В \cref{sec:unif} сме намерили, че за \( \xi \in \distr{Uniform}(\alpha, \beta) \) имаме \( \Expect(X) = \frac {\alpha + \beta} 2 \) и \( \var(\xi) = \frac {{(\beta - \alpha)}^2} {12} \). Тогава
     \begin{align*}
       \Expect(X) = \frac a 2,
       &&

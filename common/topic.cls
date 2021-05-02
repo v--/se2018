@@ -40,6 +40,7 @@
 % Generic math packages
 \RequirePackage{mathtools} % Loads amsmath
 \RequirePackage{amsthm}
+\RequirePackage{thmtools}
 \RequirePackage{lualatex-math}
 
 % Reference packages

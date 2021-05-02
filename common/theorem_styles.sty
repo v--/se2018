@@ -1,38 +1,57 @@
 \newcounter{counters@theorem}
-\newcounter{counters@exercise}
+\newcounter{counters@problem}
 
-\theoremstyle {plain}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Теорема,
+  refname={теорема,теореми},
+  Refname={Теорема,Теореми}
+]{theorem}
 
-\crefname   {proposition}  {твърдение}         {твърдения}
-\Crefname   {proposition}  {Твърдение}         {Твърдения}
-\newtheorem {proposition}  [counters@theorem]  {Твърдение}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Твърдение,
+  refname={твърдение,твърдения},
+  Refname={Твърдение,Твърдения}
+]{proposition}
 
-\crefname   {corollary}    {следствие}         {следствия}
-\Crefname   {corollary}    {Следствие}         {Следствия}
-\newtheorem {corollary}    [counters@theorem]  {Следствие}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Лема,
+  refname={лема,леми},
+  Refname={Лема,Леми}
+]{lemma}
 
-\crefname   {lemma}        {лема}              {леми}
-\Crefname   {lemma}        {Лема}              {Леми}
-\newtheorem {lemma}        [counters@theorem]  {Лема}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Следствие,
+  refname={следствие,следствия},
+  Refname={Следствие,Следствия}
+]{corollary}
 
-\crefname   {theorem}      {теорема}           {теореми}
-\Crefname   {theorem}      {Теорема}           {Теореми}
-\newtheorem {theorem}      [counters@theorem]  {Теорема}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Определение,
+  refname={определение,определения},
+  Refname={Определение,Определения}
+]{definition}
 
-\theoremstyle {definition}
+\declaretheorem[
+  numberlike=counters@theorem,
+  name=Забележка,
+  refname={забележка,забележки},
+  Refname={Забележка,Забележки}
+]{remark}
 
-\crefname   {definition}   {определение}       {определения}
-\Crefname   {definition}   {Определение}       {Определения}
-\newtheorem {definition}   [counters@theorem]  {Определение}
+\declaretheorem[
+  numberlike=counters@problem,
+  name=Задача,
+  refname={задача,задачи},
+  Refname={Задача,Задачи}
+]{problem}
 
-\crefname   {exercise}     {задача}            {задачи}
-\Crefname   {exercise}     {Задача}            {Задачи}
-\newtheorem {exercise}     [counters@exercise] {Задача}
-
-\crefname   {remark}       {забележка}         {забележки}
-\Crefname   {remark}       {Забележка}         {Забележки}
-\newtheorem {remark}       [counters@theorem]  {Забележка}
-
-\crefname   {solution}     {решение}           {решения}
-\Crefname   {solution}     {Решение}           {Решения}
-\newtheorem*{solution}                         {Решение}
+\NewDocumentEnvironment{solution} {O{Решение}} {
+  \proof[#1]%
+} {
+  \endproof%
+}

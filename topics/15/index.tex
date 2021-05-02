@@ -1020,7 +1020,7 @@
 
 В конспекта не е посочен списък с възможни задачи, затова съм включил разни задачи, давани на държавен изпит.
 
-\begin{exercise}[\cite{SESummer2014}]\label{ex:se_summer2014}
+\begin{problem}[\cite{SESummer2014}]\label{ex:se_summer2014}
   Дадена е редица от независими опити с два изхода: успех и неуспех. Вероятността за успех е \( p \in (0, 1) \). Опитите се провеждат до първа поява на успех. Случайната величина \( X \) е равна на броя на неуспехите. Да се намери:
   \begin{enumerate}[label=\alph*)]
     \item Разпределението на случайната величина \( X \)
@@ -1028,11 +1028,11 @@
     \item Математическото очакване и дисперсията на \( X \)
     \item За \( k \geq 0 \) да се намери \( \Prob(k \geq 0) \)
   \end{enumerate}
-\end{exercise}
+\end{problem}
 \begin{solution}
   \hfill
   \begin{enumerate}[label=\alph*)]
-    \item Това е именно алтернативната формулировка на геометричното разпределение, която споменахме в\cref{sec:geom}, т.е. \( \Prob(X = k) = {(1-p)}^k p \).
+    \item Това е именно алтернативната формулировка на геометричното разпределение, която споменахме в \cref{sec:geom}, т.е. \( \Prob(X = k) = {(1-p)}^k p \).
 
     Ако вече разполагаме с информацията за геометричното разпределение от\cref{sec:geom} и \( \xi \) има разпределение \( \distr{Geom}(p) \) спрямо оригиналната дефиниция, тогава \( X = \xi - 1 \) и директно получаваме
     \begin{align*}
@@ -1109,7 +1109,7 @@
   \end{enumerate}
 \end{solution}
 
-\begin{exercise}[\cite{SESummer2016}]\label{ex:se_summer2016}
+\begin{problem}[\cite{SESummer2016}]\label{ex:se_summer2016}
   Нека \( X \) е случайна величина с разпределение на Поасон с параметър \( \lambda > 0 \):
   \begin{align*}
     X \in \distr{Poisson}(\lambda),
@@ -1142,7 +1142,7 @@
     \end{align*}
     при \( n = 4 \) и \( S_4 = 15 \).
   \end{enumerate}
-\end{exercise}
+\end{problem}
 
 \begin{remark}
   За тази задача е дадена таблица за разпределението на Поасон за \( x = 0, 1, \ldots, 24 \) и \( \lambda = 3, 6, \ldots, 21, 24 \).
@@ -1151,7 +1151,7 @@
 \begin{solution}
   \hfill
   \begin{enumerate}[label=\alph*)]
-    \item В\cref{sec:poisson} сме намерили, че \( \Expect(X) = \var(X) = \lambda \).
+    \item В \cref{sec:poisson} сме намерили, че \( \Expect(X) = \var(X) = \lambda \).
     \item Според \cref{thm:char_properties} \( \MGF_{X_1 + X_2} \) определя напълно разпределението на \( X_1 + X_2 \). Използваме пораждащата моментите функция от\cref{sec:poisson}, за да намерим
     \begin{equation*}
       \MGF_{X_1 + X_2}
