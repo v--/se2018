@@ -19,7 +19,7 @@
 \NewDocumentCommand \TopicSetup {m} {
   \keys_set:nn {topicsetup} {#1}
 
-  \title{Тема~{\int_use:N \l_topicsetup_number} \\[0.2em] \large{\url{https://github.com/v--/se2018}}}%
+  \title{Тема~{\int_use:N \l_topicsetup_number} \\[0.2em] \large{\url{https://github.com/v--/se2018}}}
 
   \date{
     \normalsize{
@@ -45,7 +45,7 @@
 
 % Reference packages
 \RequirePackage[colorlinks]{hyperref}
-% https://tex.stackexchange.com/a/525297
+%% https://tex.stackexchange.com/a/525297
 \RequirePackage{xcolor}
 
 \NewDocumentCommand \setcolor {mmm} {%
@@ -67,14 +67,34 @@
 \Crefname{section}{Параграф}{Параграфи}
 
 % Internationalization
-\RequirePackage[english,main=bulgarian]{babel}
-\RequirePackage[autostyle]{csquotes}
+\RequirePackage[base]{babel}
 
-\DeclareQuoteAlias[quotes]{german}{bulgarian}
+%% Relax some conflicting macros in the Russian and Bulgarian babel files
+\ExplSyntaxOn
 
-\addto\captionsbulgarian{%
-  \def\proofname{Доказателство}%
+\AfterBabelLanguage{bulgarian}{
+  \let\sh\relax
+  \let\ch\relax
+  \let\tg\relax
+  \let\ctg\relax
+  \let\arctg\relax
+  \let\arcctg\relax
+  \let\cth\relax
+  \let\cosec\relax
 }
+
+\AfterBabelLanguage{russian}{
+  \let\Prob\relax
+}
+
+\ExplSyntaxOff
+
+%% This definition came up after a lot of attempts to make the Russian and Bulgarian babel files work together
+\def\bulgarianhyphenmins{\tw@ \tw@}
+
+\RequirePackage[english,russian,main=bulgarian]{babel}
+\RequirePackage[autostyle]{csquotes}
+\DeclareQuoteAlias[quotes]{german}{bulgarian}
 
 % Citations
 \RequirePackage[
@@ -87,8 +107,10 @@
 % Fonts
 \RequirePackage{fontspec}
 \setmainfont{Stix Two Text}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
 
-% These are generic warnings about compatibility with mathtools and are not code-related.
+%% Disable generic warnings about compatibility with mathtools.
 \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \setmathfont{Stix Two Math}
 

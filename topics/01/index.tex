@@ -240,15 +240,15 @@
       -C_1 \\ -C_2
     \end{pmatrix},
   \end{equation}
-  което ни дава едновременните решения на уравненията (\eqref{thm:plane_line_position/scalar_equations}).
+  което ни дава едновременните решения на уравненията \eqref{thm:plane_line_position/scalar_equations}.
 
-  Ако \( \rank L \neq \rank \tilde L \), то по теоремата на Руше матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) няма решения и \( \rank L \neq \rank \tilde L \).
+  Ако \( \rank L \neq \rank \tilde L \), то по теоремата на Руше матричното уравнение \eqref{thm:plane_line_position/matrix_equation} няма решение, правите \( l_1 \) и \( l_2 \) нямат общи точки и \( l_1 \parallel l_2 \). Обратно, ако правите са успоредни, те нямат общи точки, матричното уравнение \eqref{thm:plane_line_position/matrix_equation} няма решения и \( \rank L \neq \rank \tilde L \).
 
-  Ако \( \rank L = \rank \tilde L \), то по теоремата на Руше матричното уравнение (\eqref{thm:plane_line_position/matrix_equation}) има поне едно решение. Разглеждаме два случая:
+  Ако \( \rank L = \rank \tilde L \), то по теоремата на Руше матричното уравнение \eqref{thm:plane_line_position/matrix_equation} има поне едно решение. Разглеждаме два случая:
   \begin{enumerate}
-    \item Ако \( \rank L = \rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията (\eqref{thm:plane_line_position/scalar_equations}) са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
+    \item Ако \( \rank L = \rank \tilde L = 1 \), то редовете на \( L \) са линейно зависими, следователно уравненията \eqref{thm:plane_line_position/scalar_equations} са еквивалентни и задават едно и също множество. Тъй като и двете са уравнения на прави, те задават една и съща права.
 
-    Обратно, нека уравненията (\eqref{thm:plane_line_position/scalar_equations}) задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
+    Обратно, нека уравненията \eqref{thm:plane_line_position/scalar_equations} задават една и съща права и нека за определеност \( A_1 \neq 0 \). Тогава за произволна точка \( P(x, y) \in l_1 \equiv l_2 \) имаме
     \begin{equation*}
       A_1x + B_1y + C_1 = 0
       \implies
@@ -269,18 +269,21 @@
       C_2 = \frac {A_2} {A_1} C_1.
     \end{align*}
 
-    Тогава второто уравнение от (\eqref{thm:plane_line_position/scalar_equations}) има вида
+    Тогава второто уравнение от \eqref{thm:plane_line_position/scalar_equations} има вида
     \begin{equation*}
       l_2:
       A_2 x + B_2 y + C_2 =
       \frac {A_2} {A_1} A_1 x + \frac {A_2} {A_1} B_1 y + \frac {A_2} {A_1} C_1
       = 0,
     \end{equation*}
-    откъдето виждаме, че двете уравнения са пропорционални и следователно \( \rank \tilde L = 1 \).
+    откъдето виждаме, че двете уравнения са пропорционални и следователно
+    \begin{equation*}
+      \rank \tilde L = 1.
+    \end{equation*}
 
-    \item Ако \( \rank L = \rank \tilde L = 2 \), то системата (\eqref{thm:plane_line_position/matrix_equation}) има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
+    \item Ако \( \rank L = \rank \tilde L = 2 \), то системата \eqref{thm:plane_line_position/matrix_equation} има максимален ранг и решението е единствено. Това е пресечната точка на \( l_1 \) и \( l_2 \).
 
-    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват (\eqref{thm:plane_line_position/matrix_equation}). По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на (\eqref{thm:plane_line_position/matrix_equation}) и матрицата \( L \) има максимален ранг 2.
+    Обратно, ако \( l_1 \) и \( l_2 \) имат само една обща точка \( P \), то координатите ѝ удовлетворяват \eqref{thm:plane_line_position/matrix_equation}. По теоремата на Руше това или е единственото решение, или има още безброй решения. Но вече видяхме, че системата има безброй решения точно при \( \rank \tilde L = 1 \). Следователно координатите на \( P \) са единственото решение на \eqref{thm:plane_line_position/matrix_equation} и матрицата \( L \) има максимален ранг 2.
   \end{enumerate}
 \end{proof}
 
