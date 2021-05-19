@@ -1,26 +1,32 @@
 % I use mathtools' paired delimiters functionality since this is as canonical as it gets within LaTeX.
 % The name of the macro often differs from its usage, as is customary in TeX. For example, I don't actually use Bra-Ket notation.
 % The motivation for naming the macro \braket comes from analogous macros in other packages like "physics" and "braket".
-\DeclarePairedDelimiter  \abs        \vert   \vert
-\DeclarePairedDelimiter  \norm       \Vert   \Vert
-\DeclarePairedDelimiter  \set        \lbrace \rbrace
-\DeclarePairedDelimiter  \parens     \lparen \rparen
-\DeclarePairedDelimiter  \bracks     \lbrack \rbrack
-\DeclarePairedDelimiter  \Bracks     \lBrack \rBrack
-\DeclarePairedDelimiter  \braket     \langle \rangle
-\DeclarePairedDelimiterX \inprod [2] \langle \rangle {%
-  #1, #2%
-}
+% Note that \DeclarePairedDelimiterX is used rather than \DeclarePairedDelimiter because otherwise \delimsize is left undefined.
+\DeclarePairedDelimiterX \abs    [1] \vert   \vert   { #1 }
+\DeclarePairedDelimiterX \norm   [1] \Vert   \Vert   { #1 }
+\DeclarePairedDelimiterX \set    [1] \lbrace \rbrace { #1 }
+\DeclarePairedDelimiterX \parens [1] \lparen \rparen { #1 }
+\DeclarePairedDelimiterX \bracks [1] \lbrack \rbrack { #1 }
+\DeclarePairedDelimiterX \braket [1] \langle \rangle { #1 }
+\DeclarePairedDelimiterX \inprod [2] \langle \rangle { #1, #2 }
 
 % \given acts like a resizable vertical pipe with some horizontal spacing around it.
 % \given by itself inserts a simple vertical pipe with no resizing.
 % In analogy to mathtools' delimiter syntax, \given* is autosized and \given[\Big] is manually sized.
 % Use \given* with caution, especially in fractions. Unexpected things happen sometimes.
 % Note: \delimsize is only defined within the body of a paired delimiter macro so we have to check if it is defined at all.
-\NewDocumentCommand \given    {sO{}} {%
-  \,%
-  \IfBooleanTF{#1}%
-    {\@ifundefined{delimsize}{}{\delimsize}} %
-    {#2} %
-  \vert\,%
+\ExplSyntaxOn % Ignore whitespace
+
+\NewDocumentCommand \given {sO{}}
+{
+  \,
+
+  \IfBooleanTF{ #1 }
+    { \cs_if_exist:NT \delimsize { \delimsize } }
+    { #2 }
+
+  \vert
+  \,
 }
+
+\ExplSyntaxOff

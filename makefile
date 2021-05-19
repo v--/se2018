@@ -1,18 +1,21 @@
 TOPICS := $(patsubst topics/%,topics/%/index.pdf,$(wildcard topics/*))
-COMPILER := latexmk -cd -interaction=batchmode -time -bibtex
+COMPILER := pdflatex -interaction=batchmode
 
 .PHONY: all clean output-revision
 
 all: $(TOPICS)
 
-topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/*.sty revision
-	$(COMPILER) $(<D)/index.tex -pdflua $(args)
+topics/%/index.pdf: topics/%/index.tex topics/%/references.bib common/topic.cls common/*.sty revision
+	cd $(<D) && \
+	$(COMPILER) -draftmode index.tex && \
+	biber index.bcf && \
+	$(COMPILER) -draftmode index.tex && \
+	$(COMPILER) index.tex
 
 clean:
 	rm -fv topics/*/index.pdf
-	rm -fv topics/*/*.log # luatex
+	rm -fv topics/*/*.log # tex
 	rm -fv topics/*/*.{aux,out,fls} # latex
-	rm -fv topics/*/*.fdb_latexmk # latexmk
 	rm -fv topics/*/*.{bbl,bcf,blg,run.xml} # biber
 
 output-revision:

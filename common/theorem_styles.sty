@@ -2,6 +2,7 @@
 \newcounter{counters@problem}
 
 \declaretheorem[
+  style=theorem,
   numberlike=counters@theorem,
   name=Теорема,
   refname={теорема,теореми},
@@ -9,6 +10,7 @@
 ]{theorem}
 
 \declaretheorem[
+  style=theorem,
   numberlike=counters@theorem,
   name=Твърдение,
   refname={твърдение,твърдения},
@@ -16,6 +18,7 @@
 ]{proposition}
 
 \declaretheorem[
+  style=theorem,
   numberlike=counters@theorem,
   name=Лема,
   refname={лема,леми},
@@ -23,6 +26,7 @@
 ]{lemma}
 
 \declaretheorem[
+  style=theorem,
   numberlike=counters@theorem,
   name=Следствие,
   refname={следствие,следствия},
@@ -30,6 +34,7 @@
 ]{corollary}
 
 \declaretheorem[
+  style=definition,
   numberlike=counters@theorem,
   name=Определение,
   refname={определение,определения},
@@ -37,6 +42,7 @@
 ]{definition}
 
 \declaretheorem[
+  style=remark,
   numberlike=counters@theorem,
   name=Забележка,
   refname={забележка,забележки},
@@ -44,14 +50,21 @@
 ]{remark}
 
 \declaretheorem[
+  style=theorem,
   numberlike=counters@problem,
   name=Задача,
   refname={задача,задачи},
   Refname={Задача,Задачи}
 ]{problem}
 
-\NewDocumentEnvironment{solution} {O{Решение}} {
-  \proof[#1]%
-} {
-  \endproof%
+\ExplSyntaxOn % Ignore whitespace
+
+\NewDocumentEnvironment{solution} {O{Решение}}
+{
+  \proof[#1]
 }
+{
+  \endproof
+}
+
+\ExplSyntaxOff

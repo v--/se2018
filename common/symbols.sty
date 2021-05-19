@@ -1,0 +1,24 @@
+% Imitate some macros from unicode-math
+\ExplSyntaxOn
+
+% https://tex.stackexchange.com/a/564222
+\NewDocumentCommand{\definealphabet}{mmmm}
+{% #1 = prefix, #2 = command, #3 = start, #4 = end
+  \int_step_inline:nnn { `#3 } { `#4 }
+  {
+    \cs_new_protected:cpx { #1 \char_generate:nn { ##1 }{ 11 } }
+    {
+      \exp_not:N #2 { \char_generate:nn { ##1 } { 11 } }
+    }
+  }
+}
+
+\ExplSyntaxOff
+
+\let\Bbbk\relax
+\definealphabet {Bbb}   {\mathbb}   {A} {Z}
+\definealphabet {Bbb}   {\mathbb}   {a} {z}
+\definealphabet {mscr}  {\mathcal}  {A} {Z}
+\definealphabet {mscr}  {\mathcal}  {a} {z}
+\definealphabet {mfrak} {\mathfrak} {A} {Z}
+\definealphabet {mfrak} {\mathfrak} {a} {z}

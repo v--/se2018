@@ -11,6 +11,7 @@
 \usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{float} % Allow figures inside minipages
+\usepackage{mathabx} % \updownarrows
 
 % Bibliography
 \addbibresource{./references.bib}
@@ -670,17 +671,14 @@
       \end{cases}.
     \end{equation*}
 
-    {
-      \hbadness=10000
-      \textbf{Скаларни параметрични уравнения на окръжност} наричаме системата
-      \begin{equation*}
-        \begin{cases}
-          x = x_0 + r \cos \varphi \\
-          y = y_0 + r \sin \varphi
-        \end{cases},
-        \varphi \in [0, 2\pi).
-      \end{equation*}
-    }
+    \textbf{Скаларни параметрични уравнения на окръжност} наричаме системата
+    \begin{equation*}
+      \begin{cases}
+        x = x_0 + r \cos \varphi \\
+        y = y_0 + r \sin \varphi
+      \end{cases},
+      \varphi \in [0, 2\pi).
+    \end{equation*}
 
     \vspace{0.5cm}
   \end{minipage}
@@ -1048,7 +1046,7 @@
 
     \item Ъгълът между \( a \) и \( b \) намираме чрез нормалните им вектори \( n_a(3, 5) \) и \( n_b(5, -12) \):
     \begin{equation*}
-      \sphericalangle(a, b) = \arccos \frac {\abs{\inprod{n_a} {n_b}}} {\norm{n_a} \norm{n_b}} = \arccos \abs{- \frac {33} {65}} = \arccos \frac {33} {65}
+      \sphericalangle(a, b) = \arccos \frac {\abs{\inprod{n_a} {n_b}}} {\norm{n_a} \norm{n_b}} = \arccos \abs*{- \frac {33} {65}} = \arccos \frac {33} {65}
     \end{equation*}
 
     \item Координатите на пресечната точка \( T \) на \( a \) и \( b \) намираме от системата
@@ -1450,7 +1448,7 @@
       z = 4 + \lambda
     \end{cases},
     \lambda \in \BbbR
-    &&
+    &&\text{и}&&
     h: \begin{cases}
       x = -1 \\
       y = -1 - 5\mu \\
@@ -1477,20 +1475,30 @@
   Тъй като правата \( t \) е трансверзала на \( g \) и \( h \), тя има по една обща точка с двете прави. Да означим тези точки с \( G \) и \( H \), т.е.
   \begin{align*}
     t \cap g = \set{ G(x_g, y_g, z_g) }
-    &&
+    &&\text{и}&&
     t \cap h = \set{ H(x_h, y_h, z_h) }.
   \end{align*}
 
   Тъй като \( G \in g \) и \( H \in h \), то техните координати удовлетворяват уравненията на \( g \) и \( h \) за някои стойности на параметрите \( \lambda \) и \( \mu \), т.е.
   \begin{align*}
-    &G(1 + 2\lambda_G, 4 + 4\lambda_G, 4 + 4\lambda_G) \\
-    &H(-1, -1 -5\mu_H, 1 + 3\mu_H).
+    G(1 + 2\lambda_G, 4 + 4\lambda_G, 4 + 4\lambda_G)
+    &&\text{и}&&
+    H(-1, -1 -5\mu_H, 1 + 3\mu_H).
   \end{align*}
 
-  Тогава векторът \( \vect{HG} \) има координати \( \vect{HG}(2 + 2\lambda_G, 5 + 4\lambda_G + 5\mu_H, 3 + \lambda_G - 3\mu_H) \).
+  Тогава векторът \( \vect{HG} \) има координати
+  \begin{equation*}
+    \vect{HG}(2 + 2\lambda_G, 5 + 4\lambda_G + 5\mu_H, 3 + \lambda_G - 3\mu_H).
+  \end{equation*}
 
   \begin{enumerate}[label=\alph*)]
-    \item За да принадлежи точката \( A \) на трансверзалата \( t \), искаме векторите \( \vect{AG}(2\lambda_G, 3 + 4\lambda_G, 3 + \lambda_G) \) и \( \vect{AH}(-2, -2 - 5\mu_H, 3\mu_H) \) да бъдат колинеарни, т.е. \( \exists k \in \BbbR \setminus \set{ 0 }: \vect{AG} = k\vect{AH} \). Разписваме това уравнение покоординатно:
+    \item За да принадлежи точката \( A \) на трансверзалата \( t \), искаме векторите
+    \begin{align*}
+      \vect{AG}(2\lambda_G, 3 + 4\lambda_G, 3 + \lambda_G)
+      &&\text{и}&&
+      \vect{AH}(-2, -2 - 5\mu_H, 3\mu_H)
+    \end{align*}
+    да бъдат колинеарни, т.е. съществува \( k \in \BbbR \setminus \set{ 0 }\) такова, че \( \vect{AG} = k\vect{AH} \). Разписваме това уравнение покоординатно:
     \begin{align*}
       &\begin{cases}
         2\lambda_G = -2k \mid (\times 1 / 2) \\
