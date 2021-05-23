@@ -115,6 +115,6 @@
 \RequirePackage{../../common/symbols}
 \RequirePackage{../../common/paired_delimiters}
 \RequirePackage{../../common/subproofs}
-\RequirePackage{../../common/theorem_styles}
+\RequirePackage{../../common/theorems}
 
 \ExplSyntaxOff
