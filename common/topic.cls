@@ -1,11 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{../../common/topic}
 
-\LoadClass[
+\LoadClass
+[
   numbers=endperiod,
   headings=standardclasses,
   bibliography=totocnumbered
-]{scrartcl}
+]
+{scrartcl}
 
 \ExplSyntaxOn
 
@@ -22,10 +24,12 @@
 {
   \keys_set:nn {topic} { #1 }
 
-  \title{ Тема~{ \int_use:N \l_topic_number_int } \\[0.2em] \large{ \fontencoding{T1} \selectfont \url{https://github.com/v--/se2018} } }
+  \title{ Тема~{ \int_use:N \l_topic_number_int } \\[0.2em] \large{ \url{https://github.com/v--/se2018} } }
 
-  \date{
-    \normalsize{
+  \date
+  {
+    \normalsize
+    {
       \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl }
       \\
       \textbf{Ревизия:}~\input{../../revision}
@@ -39,6 +43,7 @@
 }
 
 % Fonts
+%% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
 \RequirePackage[T2A]{fontenc}
 \RequirePackage[tt=false]{libertinus}
 \RequirePackage{libertinust1math}
@@ -82,11 +87,13 @@
 \DeclareQuoteAlias[quotes]{german}{bulgarian}
 
 % Citations
-\RequirePackage[
+\RequirePackage
+[
   backend=biber,
   style=authortitle,
   citestyle=authortitle
-]{biblatex}
+]
+{biblatex}
 
 %
 \RequirePackage{../../common/math_macros}
