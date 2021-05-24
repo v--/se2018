@@ -2,7 +2,7 @@
 \ExplSyntaxOn
 
 % https://tex.stackexchange.com/a/564222
-\NewDocumentCommand{\definealphabet}{mmmm}
+\NewDocumentCommand \definealphabet {mmmm}
 {% #1 = prefix, #2 = command, #3 = start, #4 = end
   \int_step_inline:nnn { `#3 } { `#4 }
   {

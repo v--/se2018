@@ -178,7 +178,11 @@
 \begin{proof}[Доказателство на \cref{thm:density_properties}]
   \SufficiencySubProof Нека \( f_\xi \) е плътност на \( \xi \).
   \begin{enumerate}
-    \item За всяка точка \( x \in \BbbR \), в която \( F_\xi \) е диференцируема, имаме \( f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0 \) поради монотонността на \( F_\xi \)
+    \item За всяка точка \( x \in \BbbR \), в която \( F_\xi \) е диференцируема, имаме
+    \begin{equation*}
+      f_\xi(x) = F'_\xi(x) = \lim_{h \downarrow 0} \frac {F_\xi(x + h) - F_\xi(x)} h \geq 0
+    \end{equation*}
+    поради монотонността на \( F_\xi \).
     \item За произволно \( c > 0 \) функцията \( F_\xi \) е абсолютно непрекъсната в \( [-c, c] \). Следователно
     \begin{equation*}
       \int_{\BbbR} f_\xi(x) dx

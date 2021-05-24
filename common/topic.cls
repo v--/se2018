@@ -22,7 +22,7 @@
 {
   \keys_set:nn {topic} { #1 }
 
-  \title{ Тема~{ \int_use:N \l_topic_number_int } \\[0.2em] \large{ \url{https://github.com/v--/se2018} } }
+  \title{ Тема~{ \int_use:N \l_topic_number_int } \\[0.2em] \large{ \fontencoding{T1} \selectfont \url{https://github.com/v--/se2018} } }
 
   \date{
     \normalsize{
@@ -40,6 +40,8 @@
 
 % Fonts
 \RequirePackage[T2A]{fontenc}
+\RequirePackage[tt=false]{libertinus}
+\RequirePackage{libertinust1math}
 \RequirePackage{microtype}
 
 % Generic math packages
@@ -53,18 +55,20 @@
 %% https://tex.stackexchange.com/a/525297
 \RequirePackage{xcolor}
 
-\NewDocumentCommand \setcolor {mmm}
+\NewDocumentCommand \SetHRColor {mmm}
 {
   \definecolor{Hy#1color}{#2}{#3}
   \hypersetup{#1color=Hy#1color}
 }
 
-\setcolor{link}{HTML}{800006}
-\setcolor{cite}{HTML}{2E7E2A}
-\setcolor{file}{HTML}{131877}
-\setcolor{url} {HTML}{8A0087}
-\setcolor{menu}{HTML}{727500}
-\setcolor{run} {HTML}{137776}
+\SetHRColor{link}{HTML}{800006}
+\SetHRColor{cite}{HTML}{2E7E2A}
+\SetHRColor{file}{HTML}{131877}
+\SetHRColor{url} {HTML}{8A0087}
+\SetHRColor{menu}{HTML}{727500}
+\SetHRColor{run} {HTML}{137776}
+
+\let\SetHRColor\relax
 
 \RequirePackage{cleveref}
 \crefname{figure}{фигура}{фигури}
