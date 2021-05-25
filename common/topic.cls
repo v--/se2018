@@ -4,7 +4,6 @@
 \LoadClass
 [
   numbers=endperiod,
-  headings=standardclasses,
   bibliography=totocnumbered
 ]
 {scrartcl}
