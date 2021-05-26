@@ -56,7 +56,6 @@
 \RequirePackage[notext,not1]{stix2} % Math font family
 \RequirePackage[tt=false,ScaleRM=1.075]{libertinus} % Serif and sans-serif font families
 \RequirePackage{microtype}
-\hfuzz=3pt % These fonts occasionally produce slightly overfull hboxes
 
 % Generic math packages
 \RequirePackage{mathtools} % Loads amsmath
@@ -95,6 +94,7 @@
 \DeclareQuoteAlias[quotes]{german}{bulgarian}
 
 % Citations
+\fontencoding{T2A}
 \RequirePackage
 [
   backend=biber,
@@ -102,6 +102,7 @@
   citestyle=authortitle
 ]
 {biblatex}
+\fontencoding{T1}
 
 %
 \RequirePackage{../../common/math_macros}
