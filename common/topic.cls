@@ -35,15 +35,17 @@
           }
       }
 
-    \date
+    % Failsafe means "use defauls if no file is found", see common/git_commit_info.sty
+    \GitCommitInfoReadFailsafe{../../git-commit-info}
       {
-        \normalsize
+        \date
           {
-            \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl }
-            \\
-            \textbf{Ревизия:}~\IfFileExists{ ../../revision } { \input{../../revision} }{ Не~е~посочена }
-            \\
-            За~всеки~случай~проверете~дали~няма~по-нова~ревизия
+            \normalsize
+              {
+                \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl } \\
+                \textbf{Ревизия:}~{ \texttt{\GitCommitInfoHash}~от~\GitCommitInfoDate } \\
+                За~всеки~случай~проверете~дали~няма~по-нова~ревизия
+              }
           }
       }
 
@@ -51,14 +53,14 @@
     \author{ \tl_use:N \l_topic_author_tl }
   }
 
-% Generic math packages
+% Generic math packages (load first to avoid misbehaving macros later)
 \RequirePackage{mathtools} % Loads amsmath
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
 
 % Fonts
 %% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
-\RequirePackage[notext,not1]{stix2} % Math font family
+\RequirePackage[notext,not1]{stix2} % Math font family; load after amsmath despite documentation, it breaks otherwise
 \RequirePackage[tt=false,ScaleRM=1.075]{libertinus} % Serif and sans-serif font families
 \RequirePackage{microtype}
 
@@ -101,12 +103,13 @@
   ]
   {biblatex}
 
-%
+% Custom code
 \RequirePackage{../../common/math_macros}
 \RequirePackage{../../common/math_environments}
-\RequirePackage{../../common/symbols}
+\RequirePackage{../../common/unicode_math_symbols}
 \RequirePackage{../../common/paired_delimiters}
 \RequirePackage{../../common/subproofs}
 \RequirePackage{../../common/theorems}
+\RequirePackage{../../common/git_commit_info}
 
 \ExplSyntaxOff

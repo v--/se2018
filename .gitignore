@@ -17,5 +17,5 @@ index.pdf
 *.blg
 *.run.xml
 
-;
-revision
+; custom
+git-commit-info
