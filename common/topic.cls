@@ -41,7 +41,7 @@
     {
       \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl }
       \\
-      \textbf{Ревизия:}~\input{../../revision}
+      \textbf{Ревизия:}~\IfFileExists{ ../../revision } { \input{../../revision} }{ Не~е~посочена }
       \\
       За~всеки~случай~проверете~дали~няма~по-нова~ревизия
     }
