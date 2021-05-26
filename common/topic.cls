@@ -2,54 +2,54 @@
 \ProvidesClass{../../common/topic}
 
 \LoadClass
-[
-  numbers=endperiod,
-  bibliography=totocnumbered
-]
-{scrartcl}
+  [
+    numbers=endperiod,
+    bibliography=totocnumbered
+  ]
+  {scrartcl}
 
 \ExplSyntaxOn
 
 % Setup options
 \keys_define:nn {topic}
-{
-  number   .int_set:N = \l_topic_number_int,
-  title     .tl_set:N = \l_topic_title_tl,
-  basedate  .tl_set:N = \l_topic_basedate_tl,
-  author    .tl_set:N = \l_topic_author_tl
-}
+  {
+    number   .int_set:N = \l_topic_number_int,
+    title     .tl_set:N = \l_topic_title_tl,
+    basedate  .tl_set:N = \l_topic_basedate_tl,
+    author    .tl_set:N = \l_topic_author_tl
+  }
 
 \NewDocumentCommand \TopicSetup {m}
-{
-  \keys_set:nn {topic} { #1 }
-
-  \title
   {
-    Тема~{ \int_use:N \l_topic_number_int }
-    \\[0.2em]
-    \large
-    {
-      \DeclareFontFamilySubstitution{T1}{cmtt}{lmtt} % Use the slightly heavier latin modern typewriter font
-      \fontencoding{T1} % lmtt provides no T2A font
-      \url{https://github.com/v--/se2018}
-    }
-  }
+    \keys_set:nn {topic} { #1 }
 
-  \date
-  {
-    \normalsize
-    {
-      \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl }
-      \\
-      \textbf{Ревизия:}~\IfFileExists{ ../../revision } { \input{../../revision} }{ Не~е~посочена }
-      \\
-      За~всеки~случай~проверете~дали~няма~по-нова~ревизия
-    }
-  }
+    \title
+      {
+        Тема~{ \int_use:N \l_topic_number_int }
+        \\[0.2em]
+        \large
+          {
+            \DeclareFontFamilySubstitution{T1}{cmtt}{lmtt} % Use the slightly heavier latin modern typewriter font
+            \fontencoding{T1} % lmtt provides no T2A font
+            \url{https://github.com/v--/se2018}
+          }
+      }
 
-  \subtitle{ \tl_use:N \l_topic_title_tl }
-  \author{ \tl_use:N \l_topic_author_tl }
-}
+    \date
+      {
+        \normalsize
+          {
+            \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl }
+            \\
+            \textbf{Ревизия:}~\IfFileExists{ ../../revision } { \input{../../revision} }{ Не~е~посочена }
+            \\
+            За~всеки~случай~проверете~дали~няма~по-нова~ревизия
+          }
+      }
+
+    \subtitle{ \tl_use:N \l_topic_title_tl }
+    \author{ \tl_use:N \l_topic_author_tl }
+  }
 
 % Fonts
 %% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
@@ -69,10 +69,10 @@
 \RequirePackage{xcolor}
 
 \NewDocumentCommand \SetHRColor {mmm}
-{
-  \definecolor{Hy#1color}{#2}{#3}
-  \hypersetup{#1color=Hy#1color}
-}
+  {
+    \definecolor{Hy#1color}{#2}{#3}
+    \hypersetup{#1color=Hy#1color}
+  }
 
 \SetHRColor{link}{HTML}{800006}
 \SetHRColor{cite}{HTML}{2E7E2A}
@@ -94,15 +94,13 @@
 \DeclareQuoteAlias[quotes]{german}{bulgarian}
 
 % Citations
-\fontencoding{T2A}
 \RequirePackage
-[
-  backend=biber,
-  style=authortitle,
-  citestyle=authortitle
-]
-{biblatex}
-\fontencoding{T1}
+  [
+    backend=biber,
+    style=authortitle,
+    citestyle=authortitle
+  ]
+  {biblatex}
 
 %
 \RequirePackage{../../common/math_macros}

@@ -7,6 +7,7 @@
 \DeclarePairedDelimiterX \set    [1] \lbrace \rbrace { #1 }
 \DeclarePairedDelimiterX \parens [1] \lparen \rparen { #1 }
 \DeclarePairedDelimiterX \bracks [1] \lbrack \rbrack { #1 }
+\DeclarePairedDelimiterX \Bracks [1] \lBrack \rBrack { #1 }
 \DeclarePairedDelimiterX \braket [1] \langle \rangle { #1 }
 \DeclarePairedDelimiterX \inprod [2] \langle \rangle { #1, #2 }
 
@@ -18,15 +19,15 @@
 \ExplSyntaxOn % Ignore whitespace
 
 \NewDocumentCommand \given {sO{}}
-{
-  \,
+  {
+    \,
 
-  \IfBooleanTF{ #1 }
-    { \cs_if_exist:NT \delimsize { \delimsize } }
-    { #2 }
+    \IfBooleanTF{ #1 }
+      { \cs_if_exist:NT \delimsize { \delimsize } }
+      { #2 }
 
-  \vert
-  \,
-}
+    \vert
+    \,
+  }
 
 \ExplSyntaxOff

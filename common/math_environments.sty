@@ -1,32 +1,32 @@
 % https://tex.stackexchange.com/a/162895
 \NewDocumentEnvironment{balign*} {}
-{
-  \begingroup
-  \allowdisplaybreaks
-  \start@align\@ne\st@rredtrue\m@ne
-}
-{
-  \endalign
-  \endgroup
-}
+  {
+    \begingroup
+    \allowdisplaybreaks
+    \start@align\@ne\st@rredtrue\m@ne
+  }
+  {
+    \endalign
+    \endgroup
+  }
 
 \NewDocumentEnvironment{balign} {}
-{
-  \begingroup
-  \allowdisplaybreaks
-  \align
-}
-{
-  \endalign
-  \endgroup
-}
+  {
+    \begingroup
+    \allowdisplaybreaks
+    \align
+  }
+  {
+    \endalign
+    \endgroup
+  }
 
 \NewDocumentEnvironment{hfuzzpar} {m}
-{
-  \begingroup
-  \hfuzz=#1
-}
-{
-  \par
-  \endgroup
-}
+  {
+    \begingroup
+    \hfuzz=#1
+  }
+  {
+    \par
+    \endgroup
+  }

@@ -2,83 +2,83 @@
 \newcounter{counters@problem}
 
 \declaretheorem
-[
-  style=plain,
-  numberlike=counters@theorem,
-  name=Теорема,
-  refname={теорема,теореми},
-  Refname={Теорема,Теореми}
-]
-{theorem}
+  [
+    style=plain,
+    numberlike=counters@theorem,
+    name=Теорема,
+    refname={теорема,теореми},
+    Refname={Теорема,Теореми}
+  ]
+  {theorem}
 
 \declaretheorem
-[
-  style=plain,
-  numberlike=counters@theorem,
-  name=Твърдение,
-  refname={твърдение,твърдения},
-  Refname={Твърдение,Твърдения}
-]
-{proposition}
+  [
+    style=plain,
+    numberlike=counters@theorem,
+    name=Твърдение,
+    refname={твърдение,твърдения},
+    Refname={Твърдение,Твърдения}
+  ]
+  {proposition}
 
 \declaretheorem
-[
-  style=plain,
-  numberlike=counters@theorem,
-  name=Лема,
-  refname={лема,леми},
-  Refname={Лема,Леми}
-]
-{lemma}
+  [
+    style=plain,
+    numberlike=counters@theorem,
+    name=Лема,
+    refname={лема,леми},
+    Refname={Лема,Леми}
+  ]
+  {lemma}
 
 \declaretheorem
-[
-  style=plain,
-  numberlike=counters@theorem,
-  name=Следствие,
-  refname={следствие,следствия},
-  Refname={Следствие,Следствия}
-]
-{corollary}
+  [
+    style=plain,
+    numberlike=counters@theorem,
+    name=Следствие,
+    refname={следствие,следствия},
+    Refname={Следствие,Следствия}
+  ]
+  {corollary}
 
 \declaretheorem
-[
-  style=definition,
-  numberlike=counters@theorem,
-  name=Определение,
-  refname={определение,определения},
-  Refname={Определение,Определения}
-]
-{definition}
+  [
+    style=definition,
+    numberlike=counters@theorem,
+    name=Определение,
+    refname={определение,определения},
+    Refname={Определение,Определения}
+  ]
+  {definition}
 
 \declaretheorem
-[
-  style=remark,
-  numberlike=counters@theorem,
-  name=Забележка,
-  refname={забележка,забележки},
-  Refname={Забележка,Забележки}
-]
-{remark}
+  [
+    style=remark,
+    numberlike=counters@theorem,
+    name=Забележка,
+    refname={забележка,забележки},
+    Refname={Забележка,Забележки}
+  ]
+  {remark}
 
 \declaretheorem
-[
-  style=plain,
-  numberlike=counters@problem,
-  name=Задача,
-  refname={задача,задачи},
-  Refname={Задача,Задачи}
-]
-{problem}
+  [
+    style=plain,
+    numberlike=counters@problem,
+    name=Задача,
+    refname={задача,задачи},
+    Refname={Задача,Задачи}
+  ]
+  {problem}
 
 \ExplSyntaxOn % Ignore whitespace
 
 \NewDocumentEnvironment{solution} {O{Решение}}
-{
-  \proof[#1]
-}
-{
-  \endproof
-}
+  {
+    \proof[#1]
+  }
+  {
+    \endproof
+  }
 
 \ExplSyntaxOff
