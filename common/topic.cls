@@ -51,17 +51,16 @@
     \author{ \tl_use:N \l_topic_author_tl }
   }
 
+% Generic math packages
+\RequirePackage{mathtools} % Loads amsmath
+\RequirePackage{amsthm}
+\RequirePackage{thmtools}
+
 % Fonts
 %% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
 \RequirePackage[notext,not1]{stix2} % Math font family
 \RequirePackage[tt=false,ScaleRM=1.075]{libertinus} % Serif and sans-serif font families
 \RequirePackage{microtype}
-
-% Generic math packages
-\RequirePackage{mathtools} % Loads amsmath
-\stix@MathSymbol \mapsto \mathrel {arrows1} {"AD} % This gets redefined in amsmath so I redefine it again
-\RequirePackage{amsthm}
-\RequirePackage{thmtools}
 
 % Reference packages
 \RequirePackage[unicode,colorlinks]{hyperref}
