@@ -23,7 +23,17 @@
 {
   \keys_set:nn {topic} { #1 }
 
-  \title{ Тема~{ \int_use:N \l_topic_number_int } \\[0.2em] \large{ \url{https://github.com/v--/se2018} } }
+  \title
+  {
+    Тема~{ \int_use:N \l_topic_number_int }
+    \\[0.2em]
+    \large
+    {
+      \DeclareFontFamilySubstitution{T1}{cmtt}{lmtt} % Use the slightly heavier latin modern typewriter font
+      \fontencoding{T1} % lmtt provides no T2A font
+      \url{https://github.com/v--/se2018}
+    }
+  }
 
   \date
   {
@@ -43,15 +53,15 @@
 
 % Fonts
 %% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
-\RequirePackage[T2A]{fontenc}
-\RequirePackage[tt=false]{libertinus}
-\RequirePackage{libertinust1math}
+\RequirePackage[notext,not1]{stix2} % Math font family
+\RequirePackage[tt=false,ScaleRM=1.075]{libertinus} % Serif and sans-serif font families
 \RequirePackage{microtype}
+\hfuzz=3pt % These fonts occasionally produce slightly overfull hboxes
 
 % Generic math packages
 \RequirePackage{mathtools} % Loads amsmath
+\stix@MathSymbol \mapsto \mathrel {arrows1} {"AD} % This gets redefined in amsmath so I redefine it again
 \RequirePackage{amsthm}
-\RequirePackage{amssymb}
 \RequirePackage{thmtools}
 
 % Reference packages
@@ -71,7 +81,6 @@
 \SetHRColor{url} {HTML}{8A0087}
 \SetHRColor{menu}{HTML}{727500}
 \SetHRColor{run} {HTML}{137776}
-
 \let\SetHRColor\relax
 
 \RequirePackage{cleveref}
@@ -96,6 +105,7 @@
 
 %
 \RequirePackage{../../common/math_macros}
+\RequirePackage{../../common/math_environments}
 \RequirePackage{../../common/symbols}
 \RequirePackage{../../common/paired_delimiters}
 \RequirePackage{../../common/subproofs}

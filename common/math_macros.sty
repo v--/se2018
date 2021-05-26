@@ -5,7 +5,7 @@
 \DeclareMathOperator \dist          {d}
 \DeclareMathOperator \point         {\text{т.}}
 \NewDocumentCommand  \vect      {m} {\overrightarrow{#1}}
-\NewDocumentCommand  \ray        {} {\vect{\phantom{x}}}
+\NewDocumentCommand  \ray       {m} { #1 \mkern3mu \vect{\vphantom{x}} }
 
 % Linear algebra
 \DeclareMathOperator \rank          {rank}
