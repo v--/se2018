@@ -6,16 +6,21 @@ on:
 
 jobs:
   build:
-    runs-on:  ubuntu-latest
+    runs-on:  ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
 
-    - uses: xu-cheng/texlive-action/full@v1
+    - name: Output revision
+      run: |
+        sudo locale-gen bg_BG.UTF-8
+        make output-revision
+
+    - name: Build
+      uses: xu-cheng/texlive-action/full@v1
       with:
         run: |
-          apk add make git
-          make output-revision
+          apk add make
           make all
 
     - name: Archive

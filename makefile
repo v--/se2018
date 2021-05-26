@@ -19,4 +19,4 @@ clean:
 	rm -fv topics/*/*.{bbl,bcf,blg,run.xml} # biber
 
 output-revision:
-	git --no-pager log -1 --date=short --decorate=short --pretty=format:"%h (%cd)" HEAD > revision
+	LC_ALL=bg_BG.UTF-8 git --no-pager log -1 --date='format:%d %B %Y' --decorate=short --pretty=format:"%h от %cd" HEAD > revision
