@@ -11,23 +11,23 @@
 \DeclarePairedDelimiterX \braket [1] \langle \rangle { #1 }
 \DeclarePairedDelimiterX \inprod [2] \langle \rangle { #1, #2 }
 
-% \given acts like a resizable vertical pipe with some horizontal spacing around it.
+% \given acts like a resizable vertical pipe with \mathrel-style horizontal spacing around it.
+% \mathrel itself doesn't work well with \delimsize so the padding is added manually.
 % \given by itself inserts a simple vertical pipe with no resizing.
 % In analogy to mathtools' delimiter syntax, \given* is autosized and \given[\Big] is manually sized.
 % Use \given* with caution, especially in fractions. Unexpected things happen sometimes.
 % Note: \delimsize is only defined within the body of a paired delimiter macro so we have to check if it is defined at all.
+
 \ExplSyntaxOn
 
 \NewDocumentCommand \given {sO{}}
   {
-    \,
-
+    \thickspace
     \IfBooleanTF {#1}
       { \cs_if_exist:NT \delimsize { \delimsize } }
       { #2 }
-
     \vert
-    \,
+    \thickspace
   }
 
 \ExplSyntaxOff
