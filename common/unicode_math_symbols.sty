@@ -1,8 +1,9 @@
 % Imitate some macros from unicode-math
+
 \ExplSyntaxOn
 
 % https://tex.stackexchange.com/a/564222
-\NewDocumentCommand \definealphabet {mmmm}
+\NewDocumentCommand \DefineAlphabet {mmmm}
   {% #1 = prefix, #2 = command, #3 = start, #4 = end
     \int_step_inline:nnn { `#3 } { `#4 }
       {
@@ -16,9 +17,12 @@
 \ExplSyntaxOff
 
 \let\Bbbk\relax
-\definealphabet {Bbb}   {\mathbb}   {A} {Z}
-\definealphabet {Bbb}   {\mathbb}   {a} {z}
-\definealphabet {mscr}  {\mathcal}  {A} {Z}
-\definealphabet {mscr}  {\mathcal}  {a} {z}
-\definealphabet {mfrak} {\mathfrak} {A} {Z}
-\definealphabet {mfrak} {\mathfrak} {a} {z}
+
+\DefineAlphabet {Bbb}   \mathbb   {A} {Z}
+\DefineAlphabet {Bbb}   \mathbb   {a} {z}
+\DefineAlphabet {mscr}  \mathcal  {A} {Z}
+\DefineAlphabet {mscr}  \mathcal  {a} {z}
+\DefineAlphabet {mfrak} \mathfrak {A} {Z}
+\DefineAlphabet {mfrak} \mathfrak {a} {z}
+
+\let\DefineAlphabet\relax

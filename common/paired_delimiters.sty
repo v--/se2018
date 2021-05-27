@@ -16,13 +16,13 @@
 % In analogy to mathtools' delimiter syntax, \given* is autosized and \given[\Big] is manually sized.
 % Use \given* with caution, especially in fractions. Unexpected things happen sometimes.
 % Note: \delimsize is only defined within the body of a paired delimiter macro so we have to check if it is defined at all.
-\ExplSyntaxOn % Ignore whitespace
+\ExplSyntaxOn
 
 \NewDocumentCommand \given {sO{}}
   {
     \,
 
-    \IfBooleanTF{ #1 }
+    \IfBooleanTF {#1}
       { \cs_if_exist:NT \delimsize { \delimsize } }
       { #2 }
 

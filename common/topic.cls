@@ -21,7 +21,7 @@
 
 \NewDocumentCommand \TopicSetup {m}
   {
-    \keys_set:nn {topic} { #1 }
+    \keys_set:nn {topic} {#1}
 
     \title
       {
@@ -36,22 +36,22 @@
       }
 
     % Failsafe means "use defauls if no file is found", see common/git_commit_info.sty
-    \GitCommitInfoReadFailsafe{../../git-commit-info}
+    \GitCommitInfoReadFailsafe { ../../git-commit-info }
       {
         \date
           {
             \normalsize
-              {
-                \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl } \\
-                \textbf{Ревизия:}~{ \texttt{\GitCommitInfoHash}~от~\GitCommitInfoDate } \\
-                За~всеки~случай~проверете~дали~няма~по-нова~ревизия
-              }
+            \textbf{Оригинал:}~{ \tl_use:N \l_topic_basedate_tl } \\
+            \textbf{Ревизия:}~{ \texttt{\GitCommitInfoHash}~от~\GitCommitInfoDate } \\
+            За~всеки~случай~проверете~дали~няма~по-нова~ревизия
           }
       }
 
-    \subtitle{ \tl_use:N \l_topic_title_tl }
-    \author{ \tl_use:N \l_topic_author_tl }
+    \subtitle { \tl_use:N \l_topic_title_tl }
+    \author   { \tl_use:N \l_topic_author_tl }
   }
+
+\ExplSyntaxOff
 
 % Generic math packages (load first to avoid misbehaving macros later)
 \RequirePackage{mathtools} % Loads amsmath
@@ -111,5 +111,3 @@
 \RequirePackage{../../common/subproofs}
 \RequirePackage{../../common/theorems}
 \RequirePackage{../../common/git_commit_info}
-
-\ExplSyntaxOff
