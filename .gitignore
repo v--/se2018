@@ -1,21 +1,18 @@
 index.pdf
 
-; luatex
+# tex
 *.log
 
-; latex
+# latex
 *.aux
 *.out
 *.fls
 
-; latexmk
-*.fdb_latexmk
-
-; biber
+# biber
 *.bbl
 *.bcf
 *.blg
 *.run.xml
 
-; custom
+# custom
 git-commit-info
