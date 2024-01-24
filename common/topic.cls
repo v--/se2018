@@ -1,3 +1,5 @@
+\ExplSyntaxOn
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{../../common/topic}
 
@@ -7,8 +9,6 @@
     bibliography=totocnumbered
   ]
   {scrartcl}
-
-\ExplSyntaxOn
 
 % Setup options
 \keys_define:nn {topic}
@@ -29,8 +29,6 @@
         \\[0.2em]
         \large
           {
-            \DeclareFontFamilySubstitution{T1}{cmtt}{lmtt} % Use the slightly heavier latin modern typewriter font
-            \fontencoding{T1} % lmtt provides no T2A font
             \url{https://github.com/v--/se2018}
           }
       }
@@ -51,39 +49,44 @@
     \author   { \tl_use:N \l_topic_author_tl }
   }
 
-\ExplSyntaxOff
-
 % Generic math packages (load first to avoid misbehaving macros later)
 \RequirePackage{mathtools} % Loads amsmath
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
 
 % Fonts
-%% I avoid fontspec and unicode-math (and hence XeTeX/LuaTeX) because they drastically slow down the compilation
-\RequirePackage[notext,not1]{stix2} % Math font family; load after amsmath despite documentation, it breaks otherwise
-\RequirePackage[tt=false,ScaleRM=1.075]{libertinus} % Serif and sans-serif font families
+\RequirePackage
+  [
+    warnings-off={mathtools-colon,mathtools-overbracket}
+  ]
+  {unicode-math}
+
+\setmainfont{STIX~Two~Text}
+\setsansfont[BoldItalicFont={Libertinus~Sans}]{Libertinus~Sans}
+\setmathfont{STIX~Two~Math}
 \RequirePackage{microtype}
 
 % Reference packages
 \RequirePackage[unicode,colorlinks]{hyperref}
-%% https://tex.stackexchange.com/a/525297
+
+%% Based on https://tex.stackexchange.com/a/525297
 \RequirePackage{xcolor}
 
-\NewDocumentCommand \SetHRColor {mmm}
+\cs_new_protected:Nn \nb_set_hyperref_color:nn
   {
-    \definecolor{Hy#1color}{#2}{#3}
+    \definecolor{Hy#1color}{HTML}{#2}
     \hypersetup{#1color=Hy#1color}
   }
 
-\SetHRColor{link}{HTML}{800006}
-\SetHRColor{cite}{HTML}{2E7E2A}
-\SetHRColor{file}{HTML}{131877}
-\SetHRColor{url} {HTML}{8A0087}
-\SetHRColor{menu}{HTML}{727500}
-\SetHRColor{run} {HTML}{137776}
-\let\SetHRColor\relax
+\nb_set_hyperref_color:nn {link} {800006}
+\nb_set_hyperref_color:nn {cite} {2E7E2A}
+\nb_set_hyperref_color:nn {file} {131877}
+\nb_set_hyperref_color:nn {url}  {8A0087}
+\nb_set_hyperref_color:nn {menu} {727500}
+\nb_set_hyperref_color:nn {run}  {137776}
 
 \RequirePackage{cleveref}
+
 \crefname{figure}{фигура}{фигури}
 \Crefname{figure}{Фигура}{Фигури}
 \crefname{section}{параграф}{параграфи}
@@ -106,8 +109,9 @@
 % Custom code
 \RequirePackage{../../common/math_macros}
 \RequirePackage{../../common/math_environments}
-\RequirePackage{../../common/unicode_math_symbols}
 \RequirePackage{../../common/paired_delimiters}
 \RequirePackage{../../common/subproofs}
 \RequirePackage{../../common/theorems}
 \RequirePackage{../../common/git_commit_info}
+
+\ExplSyntaxOff

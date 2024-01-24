@@ -1,5 +1,5 @@
 TOPICS := $(patsubst topics/%,topics/%/index.pdf,$(wildcard topics/*))
-COMPILER := pdflatex -interaction=batchmode
+COMPILER := lualatex -interaction=batchmode
 
 .PHONY: all clean
 

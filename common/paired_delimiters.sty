@@ -5,29 +5,30 @@
 \DeclarePairedDelimiterX \abs    [1] \vert   \vert   { #1 }
 \DeclarePairedDelimiterX \norm   [1] \Vert   \Vert   { #1 }
 \DeclarePairedDelimiterX \set    [1] \lbrace \rbrace { #1 }
+\DeclarePairedDelimiterX \seq    [1] \lbrace \rbrace { #1 }
 \DeclarePairedDelimiterX \parens [1] \lparen \rparen { #1 }
 \DeclarePairedDelimiterX \bracks [1] \lbrack \rbrack { #1 }
 \DeclarePairedDelimiterX \Bracks [1] \lBrack \rBrack { #1 }
 \DeclarePairedDelimiterX \braket [1] \langle \rangle { #1 }
 \DeclarePairedDelimiterX \inprod [2] \langle \rangle { #1, #2 }
 
-% \given acts like a resizable vertical pipe with \mathrel-style horizontal spacing around it.
-% \mathrel itself doesn't work well with \delimsize so the padding is added manually.
+% \given acts like a resizable vertical pipe with \mathbin-style horizontal spacing around it.
+% \mathbin itself doesn't work well with \delimsize, so the padding is added manually.
 % \given by itself inserts a simple vertical pipe with no resizing.
 % In analogy to mathtools' delimiter syntax, \given* is autosized and \given[\Big] is manually sized.
 % Use \given* with caution, especially in fractions. Unexpected things happen sometimes.
-% Note: \delimsize is only defined within the body of a paired delimiter macro so we have to check if it is defined at all.
+% Note: \delimsize is only defined within the body of a paired delimiter macro, so we have to check if it is defined at all.
 
 \ExplSyntaxOn
 
 \NewDocumentCommand \given {sO{}}
   {
-    \thickspace
+    \medspace
     \IfBooleanTF {#1}
       { \cs_if_exist:NT \delimsize { \delimsize } }
       { #2 }
     \vert
-    \thickspace
+    \medspace
   }
 
 \ExplSyntaxOff
