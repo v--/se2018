@@ -55,15 +55,8 @@
 \RequirePackage{thmtools}
 
 % Fonts
-\RequirePackage
-  [
-    warnings-off={mathtools-colon,mathtools-overbracket}
-  ]
-  {unicode-math}
-
-\setmainfont{STIX~Two~Text}
+\RequirePackage[stixtwo]{fontsetup}
 \setsansfont[BoldItalicFont={Libertinus~Sans}]{Libertinus~Sans}
-\setmathfont{STIX~Two~Math}
 \RequirePackage{microtype}
 
 % Reference packages
