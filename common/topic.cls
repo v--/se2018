@@ -63,20 +63,22 @@
 \RequirePackage[unicode,colorlinks]{hyperref}
 
 %% Based on https://tex.stackexchange.com/a/525297
-\RequirePackage{xcolor}
-
-\cs_new_protected:Nn \nb_set_hyperref_color:nn
+\RequirePackage[x11names]{xcolor}
+\hypersetup
   {
-    \definecolor{Hy#1color}{HTML}{#2}
-    \hypersetup{#1color=Hy#1color}
+    linkcolor=DeepSkyBlue3,
+    citecolor=DeepSkyBlue3,
+    urlcolor=DeepSkyBlue3,
+    filecolor=Coral4,
+    menucolor=Coral4,
+    runcolor=Coral4,
+    linkbordercolor=DeepSkyBlue3,
+    citebordercolor=DeepSkyBlue3,
+    urlbordercolor=DeepSkyBlue3,
+    filebordercolor=Coral4,
+    menubordercolor=Coral4,
+    runbordercolor=Coral4
   }
-
-\nb_set_hyperref_color:nn {link} {800006}
-\nb_set_hyperref_color:nn {cite} {2E7E2A}
-\nb_set_hyperref_color:nn {file} {131877}
-\nb_set_hyperref_color:nn {url}  {8A0087}
-\nb_set_hyperref_color:nn {menu} {727500}
-\nb_set_hyperref_color:nn {run}  {137776}
 
 \RequirePackage{cleveref}
 
